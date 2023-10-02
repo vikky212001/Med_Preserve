@@ -65,8 +65,9 @@
             // userMasterToolStripMenuItem
             // 
             this.userMasterToolStripMenuItem.Name = "userMasterToolStripMenuItem";
-            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userMasterToolStripMenuItem.Text = "User Master";
+            this.userMasterToolStripMenuItem.Click += new System.EventHandler(this.userMasterToolStripMenuItem_Click);
             // 
             // changeMasterToolStripMenuItem
             // 

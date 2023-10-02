@@ -21,5 +21,11 @@ namespace Med_Preserve.Forms
         {
 
         }
+
+        private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserMaster userMaster = new UserMaster();
+            userMaster.Show();
+        }
     }
 }

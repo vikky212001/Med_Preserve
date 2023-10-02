@@ -58,6 +58,7 @@
             this.bt_Cancel.TabIndex = 9;
             this.bt_Cancel.Text = "Cancel";
             this.bt_Cancel.UseVisualStyleBackColor = true;
+            this.bt_Cancel.Click += new System.EventHandler(this.bt_Cancel_Click);
             // 
             // bt_Login
             // 
@@ -99,6 +100,7 @@
             this.Controls.Add(this.lb_Pass);
             this.Controls.Add(this.lb_UName);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
