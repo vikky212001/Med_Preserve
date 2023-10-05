@@ -43,7 +43,7 @@ namespace Med_Preserve.Forms
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM UserData";
+                    string query = "SELECT * FROM UserData WHERE IsDeleted = 0";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -154,11 +154,13 @@ namespace Med_Preserve.Forms
                             using (SqlConnection connection = new SqlConnection(connectionString))
                             {
                                 connection.Open();
-                                string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
+                               // string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
+                                string deleteQuery = "UPDATE UserData SET IsDeleted = 'True' WHERE UserID = @PrimaryKeyValue";
                                 using (SqlCommand command = new SqlCommand(deleteQuery, connection))
                                 {
                                     command.Parameters.AddWithValue("@PrimaryKeyValue", primaryKeyValue);
                                     command.ExecuteNonQuery();
+                                    MessageBox.Show("User Deleted Successfully.");
                                 }
                             }
                         }
@@ -207,6 +209,17 @@ namespace Med_Preserve.Forms
             {
                 e.Cancel = true;
                 errorProvider.SetError(tb_Email, "Invalid email format");
+            }
+        }
+        private void dgv_UserMaster_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5) // Replace 'yourPasswordFieldIndex' with the actual index of your password column
+            {
+                if (e.Value != null)
+                {
+                    string password = e.Value.ToString();
+                    e.Value = new string('*', 8); // Replace the password with asterisks
+                }
             }
         }
     }

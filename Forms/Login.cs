@@ -100,5 +100,10 @@ namespace Med_Preserve
 
             return false;
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            tb_Pass.PasswordChar = '*';
+        }
     }
 }

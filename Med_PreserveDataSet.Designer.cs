@@ -693,6 +693,8 @@ namespace Med_Preserve {
             
             private global::System.Data.DataColumn columnIsAdmin;
             
+            private global::System.Data.DataColumn columnReason;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public UserDataDataTable() {
@@ -792,6 +794,14 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReasonColumn {
+                get {
+                    return this.columnReason;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -827,7 +837,7 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public UserDataRow AddUserDataRow(string Name, string Email, string Mobile, string UserName, string Password, bool IsDeleted, bool IsAdmin) {
+            public UserDataRow AddUserDataRow(string Name, string Email, string Mobile, string UserName, string Password, bool IsDeleted, bool IsAdmin, string Reason) {
                 UserDataRow rowUserDataRow = ((UserDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -837,7 +847,8 @@ namespace Med_Preserve {
                         UserName,
                         Password,
                         IsDeleted,
-                        IsAdmin};
+                        IsAdmin,
+                        Reason};
                 rowUserDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUserDataRow);
                 return rowUserDataRow;
@@ -875,6 +886,7 @@ namespace Med_Preserve {
                 this.columnPassword = base.Columns["Password"];
                 this.columnIsDeleted = base.Columns["IsDeleted"];
                 this.columnIsAdmin = base.Columns["IsAdmin"];
+                this.columnReason = base.Columns["Reason"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -896,6 +908,8 @@ namespace Med_Preserve {
                 base.Columns.Add(this.columnIsDeleted);
                 this.columnIsAdmin = new global::System.Data.DataColumn("IsAdmin", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIsAdmin);
+                this.columnReason = new global::System.Data.DataColumn("Reason", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReason);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUserID}, true));
                 this.columnUserID.AutoIncrement = true;
@@ -916,6 +930,7 @@ namespace Med_Preserve {
                 this.columnPassword.MaxLength = 256;
                 this.columnIsDeleted.AllowDBNull = false;
                 this.columnIsAdmin.AllowDBNull = false;
+                this.columnReason.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1331,6 +1346,34 @@ namespace Med_Preserve {
                     this[this.tableUserData.IsAdminColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Reason {
+                get {
+                    try {
+                        return ((string)(this[this.tableUserData.ReasonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reason\' in table \'UserData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUserData.ReasonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsReasonNull() {
+                return this.IsNull(this.tableUserData.ReasonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetReasonNull() {
+                this[this.tableUserData.ReasonColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1605,8 +1648,7 @@ SELECT SensorID, SensorName, Temperature, Humidity, Temperature_1, Humidity_1, D
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SensorID, SensorName, Temperature, Humidity, Temperature_1, Humidity_1, Da" +
-                "te, Time FROM dbo.SensorData";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.SensorData";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2051,10 +2093,11 @@ SELECT SensorID, SensorName, Temperature, Humidity, Temperature_1, Humidity_1, D
             tableMapping.ColumnMappings.Add("Password", "Password");
             tableMapping.ColumnMappings.Add("IsDeleted", "IsDeleted");
             tableMapping.ColumnMappings.Add("IsAdmin", "IsAdmin");
+            tableMapping.ColumnMappings.Add("Reason", "Reason");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserData] WHERE (([UserID] = @Original_UserID) AND ([Name] = @Original_Name) AND ([Email] = @Original_Email) AND ([Mobile] = @Original_Mobile) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsDeleted] = @Original_IsDeleted) AND ([IsAdmin] = @Original_IsAdmin))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserData] WHERE (([UserID] = @Original_UserID) AND ([Name] = @Original_Name) AND ([Email] = @Original_Email) AND ([Mobile] = @Original_Mobile) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsDeleted] = @Original_IsDeleted) AND ([IsAdmin] = @Original_IsAdmin) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2064,10 +2107,12 @@ SELECT SensorID, SensorName, Temperature, Humidity, Temperature_1, Humidity_1, D
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsAdmin", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAdmin", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Reason", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserData] ([Name], [Email], [Mobile], [UserName], [Password], [IsDeleted], [IsAdmin]) VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @IsAdmin);
-SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM UserData WHERE (UserID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserData] ([Name], [Email], [Mobile], [UserName], [Password], [IsDeleted], [IsAdmin], [Reason]) VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @IsAdmin, @Reason);
+SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin, Reason FROM UserData WHERE (UserID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2076,10 +2121,11 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsAdmin", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAdmin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserData] SET [Name] = @Name, [Email] = @Email, [Mobile] = @Mobile, [UserName] = @UserName, [Password] = @Password, [IsDeleted] = @IsDeleted, [IsAdmin] = @IsAdmin WHERE (([UserID] = @Original_UserID) AND ([Name] = @Original_Name) AND ([Email] = @Original_Email) AND ([Mobile] = @Original_Mobile) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsDeleted] = @Original_IsDeleted) AND ([IsAdmin] = @Original_IsAdmin));
-SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM UserData WHERE (UserID = @UserID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserData] SET [Name] = @Name, [Email] = @Email, [Mobile] = @Mobile, [UserName] = @UserName, [Password] = @Password, [IsDeleted] = @IsDeleted, [IsAdmin] = @IsAdmin, [Reason] = @Reason WHERE (([UserID] = @Original_UserID) AND ([Name] = @Original_Name) AND ([Email] = @Original_Email) AND ([Mobile] = @Original_Mobile) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ([IsDeleted] = @Original_IsDeleted) AND ([IsAdmin] = @Original_IsAdmin) AND ((@IsNull_Reason = 1 AND [Reason] IS NULL) OR ([Reason] = @Original_Reason)));
+SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin, Reason FROM UserData WHERE (UserID = @UserID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2088,6 +2134,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsAdmin", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAdmin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -2096,6 +2143,8 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Password", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsDeleted", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsDeleted", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsAdmin", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsAdmin", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Reason", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reason", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reason", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -2112,8 +2161,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM d" +
-                "bo.UserData";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.UserData";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2174,7 +2222,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_UserID, string Original_Name, string Original_Email, string Original_Mobile, string Original_UserName, string Original_Password, bool Original_IsDeleted, bool Original_IsAdmin) {
+        public virtual int Delete(int Original_UserID, string Original_Name, string Original_Email, string Original_Mobile, string Original_UserName, string Original_Password, bool Original_IsDeleted, bool Original_IsAdmin, string Original_Reason) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_UserID));
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
@@ -2208,6 +2256,14 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             }
             this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_IsDeleted));
             this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_IsAdmin));
+            if ((Original_Reason == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_Reason));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2228,7 +2284,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Name, string Email, string Mobile, string UserName, string Password, bool IsDeleted, bool IsAdmin) {
+        public virtual int Insert(string Name, string Email, string Mobile, string UserName, string Password, bool IsDeleted, bool IsAdmin, string Reason) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -2261,6 +2317,12 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             }
             this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(IsDeleted));
             this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(IsAdmin));
+            if ((Reason == null)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Reason));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2289,6 +2351,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
                     string Password, 
                     bool IsDeleted, 
                     bool IsAdmin, 
+                    string Reason, 
                     int Original_UserID, 
                     string Original_Name, 
                     string Original_Email, 
@@ -2297,6 +2360,7 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
                     string Original_Password, 
                     bool Original_IsDeleted, 
                     bool Original_IsAdmin, 
+                    string Original_Reason, 
                     int UserID) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
@@ -2330,40 +2394,54 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
             }
             this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(IsDeleted));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(IsAdmin));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_UserID));
+            if ((Reason == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Reason));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_UserID));
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Name));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Name));
             }
             if ((Original_Email == null)) {
                 throw new global::System.ArgumentNullException("Original_Email");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Email));
             }
             if ((Original_Mobile == null)) {
                 throw new global::System.ArgumentNullException("Original_Mobile");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Mobile));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Mobile));
             }
             if ((Original_UserName == null)) {
                 throw new global::System.ArgumentNullException("Original_UserName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_UserName));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_UserName));
             }
             if ((Original_Password == null)) {
                 throw new global::System.ArgumentNullException("Original_Password");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Password));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_Password));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_IsDeleted));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_IsAdmin));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(UserID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_IsDeleted));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_IsAdmin));
+            if ((Original_Reason == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Reason));
+            }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(UserID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2384,8 +2462,25 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Email, string Mobile, string UserName, string Password, bool IsDeleted, bool IsAdmin, int Original_UserID, string Original_Name, string Original_Email, string Original_Mobile, string Original_UserName, string Original_Password, bool Original_IsDeleted, bool Original_IsAdmin) {
-            return this.Update(Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin, Original_UserID, Original_Name, Original_Email, Original_Mobile, Original_UserName, Original_Password, Original_IsDeleted, Original_IsAdmin, Original_UserID);
+        public virtual int Update(
+                    string Name, 
+                    string Email, 
+                    string Mobile, 
+                    string UserName, 
+                    string Password, 
+                    bool IsDeleted, 
+                    bool IsAdmin, 
+                    string Reason, 
+                    int Original_UserID, 
+                    string Original_Name, 
+                    string Original_Email, 
+                    string Original_Mobile, 
+                    string Original_UserName, 
+                    string Original_Password, 
+                    bool Original_IsDeleted, 
+                    bool Original_IsAdmin, 
+                    string Original_Reason) {
+            return this.Update(Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin, Reason, Original_UserID, Original_Name, Original_Email, Original_Mobile, Original_UserName, Original_Password, Original_IsDeleted, Original_IsAdmin, Original_Reason, Original_UserID);
         }
     }
     

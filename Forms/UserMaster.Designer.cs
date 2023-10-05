@@ -48,22 +48,22 @@
             this.lb_Email = new System.Windows.Forms.Label();
             this.lb_Name = new System.Windows.Forms.Label();
             this.dgv_UserMaster = new System.Windows.Forms.DataGridView();
-            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
-            this.sensorDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sensorDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.SensorDataTableAdapter();
-            this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
+            this.sensorDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sensorDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.SensorDataTableAdapter();
+            this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sensorDataBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,29 +239,7 @@
             this.dgv_UserMaster.Name = "dgv_UserMaster";
             this.dgv_UserMaster.Size = new System.Drawing.Size(643, 150);
             this.dgv_UserMaster.TabIndex = 38;
-            // 
-            // med_PreserveDataSet
-            // 
-            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
-            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sensorDataBindingSource
-            // 
-            this.sensorDataBindingSource.DataMember = "SensorData";
-            this.sensorDataBindingSource.DataSource = this.med_PreserveDataSet;
-            // 
-            // sensorDataTableAdapter
-            // 
-            this.sensorDataTableAdapter.ClearBeforeFill = true;
-            // 
-            // userDataBindingSource
-            // 
-            this.userDataBindingSource.DataMember = "UserData";
-            this.userDataBindingSource.DataSource = this.med_PreserveDataSet;
-            // 
-            // userDataTableAdapter
-            // 
-            this.userDataTableAdapter.ClearBeforeFill = true;
+            this.dgv_UserMaster.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_UserMaster_CellFormatting);
             // 
             // userIDDataGridViewTextBoxColumn
             // 
@@ -300,6 +278,29 @@
             this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
+            // userDataBindingSource
+            // 
+            this.userDataBindingSource.DataMember = "UserData";
+            this.userDataBindingSource.DataSource = this.med_PreserveDataSet;
+            // 
+            // med_PreserveDataSet
+            // 
+            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
+            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sensorDataBindingSource
+            // 
+            this.sensorDataBindingSource.DataMember = "SensorData";
+            this.sensorDataBindingSource.DataSource = this.med_PreserveDataSet;
+            // 
+            // sensorDataTableAdapter
+            // 
+            this.sensorDataTableAdapter.ClearBeforeFill = true;
+            // 
+            // userDataTableAdapter
+            // 
+            this.userDataTableAdapter.ClearBeforeFill = true;
+            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
@@ -333,9 +334,9 @@
             this.Text = "UserMaster";
             this.Load += new System.EventHandler(this.UserMaster_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sensorDataBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -64,6 +64,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\PasswordHasher.cs" />
+    <Compile Include="Forms\DeletedUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeletedUser.Designer.cs">
+      <DependentUpon>DeletedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeleteReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeleteReason.Designer.cs">
+      <DependentUpon>DeleteReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +101,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\DeletedUser.resx">
+      <DependentUpon>DeletedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeleteReason.resx">
+      <DependentUpon>DeleteReason.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
