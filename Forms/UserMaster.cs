@@ -11,12 +11,44 @@ namespace Med_Preserve.Forms
     public partial class UserMaster : Form
     {
         private string connectionString;
+
+        private bool IsUsernameDuplicate(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM UserData WHERE UserName = @Username AND IsDeleted = 0";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+        private bool IsEmailDuplicate(string email)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM UserData WHERE Email = @Email AND IsDeleted = 0";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
         public UserMaster()
         {
             InitializeComponent();
             dgv_UserMaster.CellClick += dgv_UserMaster_CellClick;
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
+
         private void dgv_UserMaster_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -36,6 +68,7 @@ namespace Med_Preserve.Forms
                 tb_R_UName.Text = dg_UserName;
             }
         }
+
         private void RefreshData()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -56,6 +89,7 @@ namespace Med_Preserve.Forms
                 }
             }
         }
+
         private void Clear()
         {
             tb_Name.Text = "";
@@ -66,10 +100,12 @@ namespace Med_Preserve.Forms
             tb_R_UName.Text = "";
             lb_UID.Text = "";
         }
+
         private void HandleError(string message, Exception ex)
         {
             MessageBox.Show(message + "\nError Details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
         private void UserMaster_Load(object sender, EventArgs e)
         {
             try
@@ -82,6 +118,7 @@ namespace Med_Preserve.Forms
             }
             RefreshData();
         }
+
         private void bt_Add_Click(object sender, EventArgs e)
         {
             try
@@ -97,7 +134,15 @@ namespace Med_Preserve.Forms
 
                     if (tb_Name.Text != "" && tb_Mobile.Text != "" && tb_Email.Text != "" && tb_R_UName.Text != "" && tb_R_Pass.Text != "" && tb_R_ConPass.Text != "")
                     {
-                        if (tb_R_Pass.Text == tb_R_ConPass.Text)
+                        if (IsUsernameDuplicate(userNameValue))
+                        {
+                            MessageBox.Show("Username is already taken. Please choose a different one.", "Prompt");
+                        }
+                        else if (IsEmailDuplicate(emailValue))
+                        {
+                            MessageBox.Show("Email address is already in use. Please use a different one.", "Prompt");
+                        }
+                        else if (tb_R_Pass.Text == tb_R_ConPass.Text)
                         {
                             PasswordHasher passwordHasher = new PasswordHasher();
                             string hashedPassword = passwordHasher.HashPassword(passValue);
@@ -134,10 +179,12 @@ namespace Med_Preserve.Forms
                 HandleError("An error occurred while adding a new user.", ex);
             }
         }
+
         private void bt_Clear_Click(object sender, EventArgs e)
         {
             Clear();
         }
+
         private void bt_Delete_Click(object sender, EventArgs e)
         {
             try
@@ -151,18 +198,21 @@ namespace Med_Preserve.Forms
                         int primaryKeyValue;
                         if (int.TryParse(lb_UID.Text, out primaryKeyValue))
                         {
-                            Audit audit = new Audit();
-                            audit.Show();
-                            using (SqlConnection connection = new SqlConnection(connectionString))
+                            Audit audit = new Audit(primaryKeyValue);
+                            DialogResult dialogResult = audit.ShowDialog();
+                            if (dialogResult == DialogResult.OK)
                             {
-                                connection.Open();
-                               // string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
-                                string deleteQuery = "UPDATE UserData SET IsDeleted = 'True' WHERE UserID = @PrimaryKeyValue";
-                                using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                                using (SqlConnection connection = new SqlConnection(connectionString))
                                 {
-                                    command.Parameters.AddWithValue("@PrimaryKeyValue", primaryKeyValue);
-                                    command.ExecuteNonQuery();
-                                    MessageBox.Show("User Deleted Successfully.");
+                                    connection.Open();
+                                    // string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
+                                    string deleteQuery = "UPDATE UserData SET IsDeleted = 'True' WHERE UserID = @PrimaryKeyValue";
+                                    using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                                    {
+                                        command.Parameters.AddWithValue("@PrimaryKeyValue", primaryKeyValue);
+                                        command.ExecuteNonQuery();
+                                        MessageBox.Show("User Deleted Successfully.");
+                                    }
                                 }
                             }
                         }
@@ -184,6 +234,7 @@ namespace Med_Preserve.Forms
                 HandleError("An error occurred while deleting the record.", ex);
             }
         }
+
         private void tb_Mobile_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -191,6 +242,7 @@ namespace Med_Preserve.Forms
                 e.Handled = true;
             }
         }
+
         private void tb_Name_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -198,6 +250,7 @@ namespace Med_Preserve.Forms
                 e.Handled = true;
             }
         }
+
         private void tb_Email_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             string email = tb_Email.Text.Trim();
@@ -213,6 +266,7 @@ namespace Med_Preserve.Forms
                 errorProvider.SetError(tb_Email, "Invalid email format");
             }
         }
+
         private void dgv_UserMaster_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.ColumnIndex == 5) // Replace 'yourPasswordFieldIndex' with the actual index of your password column
@@ -224,5 +278,6 @@ namespace Med_Preserve.Forms
                 }
             }
         }
+
     }
 }

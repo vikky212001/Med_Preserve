@@ -49,5 +49,10 @@ namespace Med_Preserve.Forms
                 tb_R_UName.Text = dg_UserName;
             }
         }
+
+        private void bt_Recover_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

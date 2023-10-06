@@ -27,5 +27,11 @@ namespace Med_Preserve.Forms
             UserMaster userMaster = new UserMaster();
             userMaster.Show();
         }
+
+        private void deletedUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeletedUser deletedUser = new DeletedUser();
+            deletedUser.Show();
+        }
     }
 }

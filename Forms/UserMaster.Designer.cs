@@ -60,6 +60,8 @@
             this.sensorDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.SensorDataTableAdapter();
             this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lb_Search = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
@@ -70,7 +72,7 @@
             // lb_UID
             // 
             this.lb_UID.AutoSize = true;
-            this.lb_UID.Location = new System.Drawing.Point(491, 181);
+            this.lb_UID.Location = new System.Drawing.Point(484, 238);
             this.lb_UID.Name = "lb_UID";
             this.lb_UID.Size = new System.Drawing.Size(0, 13);
             this.lb_UID.TabIndex = 37;
@@ -78,7 +80,7 @@
             // lb_UserID
             // 
             this.lb_UserID.AutoSize = true;
-            this.lb_UserID.Location = new System.Drawing.Point(433, 181);
+            this.lb_UserID.Location = new System.Drawing.Point(426, 238);
             this.lb_UserID.Name = "lb_UserID";
             this.lb_UserID.Size = new System.Drawing.Size(52, 13);
             this.lb_UserID.TabIndex = 36;
@@ -86,7 +88,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(549, 254);
+            this.bt_Clear.Location = new System.Drawing.Point(542, 311);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 35;
@@ -96,7 +98,7 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(549, 292);
+            this.bt_Delete.Location = new System.Drawing.Point(542, 349);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
             this.bt_Delete.TabIndex = 34;
@@ -106,7 +108,7 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(549, 216);
+            this.bt_Update.Location = new System.Drawing.Point(542, 273);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(75, 23);
             this.bt_Update.TabIndex = 33;
@@ -115,7 +117,7 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(549, 176);
+            this.bt_Add.Location = new System.Drawing.Point(542, 233);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(75, 23);
             this.bt_Add.TabIndex = 32;
@@ -126,7 +128,7 @@
             // lb_R_ConPass
             // 
             this.lb_R_ConPass.AutoSize = true;
-            this.lb_R_ConPass.Location = new System.Drawing.Point(311, 264);
+            this.lb_R_ConPass.Location = new System.Drawing.Point(304, 321);
             this.lb_R_ConPass.Name = "lb_R_ConPass";
             this.lb_R_ConPass.Size = new System.Drawing.Size(91, 13);
             this.lb_R_ConPass.TabIndex = 31;
@@ -134,28 +136,28 @@
             // 
             // tb_R_ConPass
             // 
-            this.tb_R_ConPass.Location = new System.Drawing.Point(314, 292);
+            this.tb_R_ConPass.Location = new System.Drawing.Point(307, 349);
             this.tb_R_ConPass.Name = "tb_R_ConPass";
             this.tb_R_ConPass.Size = new System.Drawing.Size(100, 20);
             this.tb_R_ConPass.TabIndex = 30;
             // 
             // tb_R_Pass
             // 
-            this.tb_R_Pass.Location = new System.Drawing.Point(161, 292);
+            this.tb_R_Pass.Location = new System.Drawing.Point(154, 349);
             this.tb_R_Pass.Name = "tb_R_Pass";
             this.tb_R_Pass.Size = new System.Drawing.Size(100, 20);
             this.tb_R_Pass.TabIndex = 29;
             // 
             // tb_R_UName
             // 
-            this.tb_R_UName.Location = new System.Drawing.Point(32, 292);
+            this.tb_R_UName.Location = new System.Drawing.Point(25, 349);
             this.tb_R_UName.Name = "tb_R_UName";
             this.tb_R_UName.Size = new System.Drawing.Size(100, 20);
             this.tb_R_UName.TabIndex = 28;
             // 
             // tb_Mobile
             // 
-            this.tb_Mobile.Location = new System.Drawing.Point(314, 202);
+            this.tb_Mobile.Location = new System.Drawing.Point(307, 259);
             this.tb_Mobile.MaxLength = 10;
             this.tb_Mobile.Name = "tb_Mobile";
             this.tb_Mobile.Size = new System.Drawing.Size(100, 20);
@@ -164,7 +166,7 @@
             // 
             // tb_Email
             // 
-            this.tb_Email.Location = new System.Drawing.Point(161, 202);
+            this.tb_Email.Location = new System.Drawing.Point(154, 259);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(100, 20);
             this.tb_Email.TabIndex = 26;
@@ -172,7 +174,7 @@
             // 
             // tb_Name
             // 
-            this.tb_Name.Location = new System.Drawing.Point(32, 202);
+            this.tb_Name.Location = new System.Drawing.Point(25, 259);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(100, 20);
             this.tb_Name.TabIndex = 25;
@@ -181,7 +183,7 @@
             // lb_R_Pass
             // 
             this.lb_R_Pass.AutoSize = true;
-            this.lb_R_Pass.Location = new System.Drawing.Point(158, 264);
+            this.lb_R_Pass.Location = new System.Drawing.Point(151, 321);
             this.lb_R_Pass.Name = "lb_R_Pass";
             this.lb_R_Pass.Size = new System.Drawing.Size(53, 13);
             this.lb_R_Pass.TabIndex = 24;
@@ -190,7 +192,7 @@
             // lb_R_UName
             // 
             this.lb_R_UName.AutoSize = true;
-            this.lb_R_UName.Location = new System.Drawing.Point(29, 264);
+            this.lb_R_UName.Location = new System.Drawing.Point(22, 321);
             this.lb_R_UName.Name = "lb_R_UName";
             this.lb_R_UName.Size = new System.Drawing.Size(60, 13);
             this.lb_R_UName.TabIndex = 23;
@@ -199,7 +201,7 @@
             // lb_Mobile
             // 
             this.lb_Mobile.AutoSize = true;
-            this.lb_Mobile.Location = new System.Drawing.Point(311, 176);
+            this.lb_Mobile.Location = new System.Drawing.Point(304, 233);
             this.lb_Mobile.Name = "lb_Mobile";
             this.lb_Mobile.Size = new System.Drawing.Size(38, 13);
             this.lb_Mobile.TabIndex = 22;
@@ -208,7 +210,7 @@
             // lb_Email
             // 
             this.lb_Email.AutoSize = true;
-            this.lb_Email.Location = new System.Drawing.Point(158, 176);
+            this.lb_Email.Location = new System.Drawing.Point(151, 233);
             this.lb_Email.Name = "lb_Email";
             this.lb_Email.Size = new System.Drawing.Size(32, 13);
             this.lb_Email.TabIndex = 21;
@@ -217,7 +219,7 @@
             // lb_Name
             // 
             this.lb_Name.AutoSize = true;
-            this.lb_Name.Location = new System.Drawing.Point(29, 176);
+            this.lb_Name.Location = new System.Drawing.Point(22, 233);
             this.lb_Name.Name = "lb_Name";
             this.lb_Name.Size = new System.Drawing.Size(35, 13);
             this.lb_Name.TabIndex = 20;
@@ -305,11 +307,29 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // lb_Search
+            // 
+            this.lb_Search.AutoSize = true;
+            this.lb_Search.Location = new System.Drawing.Point(25, 179);
+            this.lb_Search.Name = "lb_Search";
+            this.lb_Search.Size = new System.Drawing.Size(41, 13);
+            this.lb_Search.TabIndex = 39;
+            this.lb_Search.Text = "Search";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(72, 176);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(182, 20);
+            this.textBox1.TabIndex = 40;
+            // 
             // UserMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 338);
+            this.ClientSize = new System.Drawing.Size(668, 384);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.dgv_UserMaster);
             this.Controls.Add(this.lb_UID);
             this.Controls.Add(this.lb_UserID);
@@ -376,5 +396,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lb_Search;
     }
 }

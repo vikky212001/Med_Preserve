@@ -25,16 +25,13 @@ namespace Med_Preserve
                 home.ShowDialog();
                 Application.Exit();
             }
-            else
-            {
-                MessageBox.Show("Login failed. Please try again.");
-            }
         }
 
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
         public bool IsLoginSuccessful()
         {
             string UserName = tb_UName.Text;
