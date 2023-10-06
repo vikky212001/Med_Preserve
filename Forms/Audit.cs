@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
 {
-    public partial class DeleteReason : Form
+    public partial class Audit : Form
     {
-        public DeleteReason()
+        public Audit()
         {
             InitializeComponent();
         }

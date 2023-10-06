@@ -151,6 +151,8 @@ namespace Med_Preserve.Forms
                         int primaryKeyValue;
                         if (int.TryParse(lb_UID.Text, out primaryKeyValue))
                         {
+                            Audit audit = new Audit();
+                            audit.Show();
                             using (SqlConnection connection = new SqlConnection(connectionString))
                             {
                                 connection.Open();

@@ -70,11 +70,11 @@
     <Compile Include="Forms\DeletedUser.Designer.cs">
       <DependentUpon>DeletedUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DeleteReason.cs">
+    <Compile Include="Forms\Audit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DeleteReason.Designer.cs">
-      <DependentUpon>DeleteReason.cs</DependentUpon>
+    <Compile Include="Forms\Audit.Designer.cs">
+      <DependentUpon>Audit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
@@ -104,8 +104,8 @@
     <EmbeddedResource Include="Forms\DeletedUser.resx">
       <DependentUpon>DeletedUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DeleteReason.resx">
-      <DependentUpon>DeleteReason.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Audit.resx">
+      <DependentUpon>Audit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -150,6 +150,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reports\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

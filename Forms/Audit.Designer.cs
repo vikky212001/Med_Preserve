@@ -1,6 +1,6 @@
 ﻿namespace Med_Preserve.Forms
 {
-    partial class DeleteReason
+    partial class Audit
     {
         /// <summary>
         /// Required designer variable.
