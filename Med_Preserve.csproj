@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Duplication.cs" />
     <Compile Include="Class\PasswordHasher.cs" />
     <Compile Include="Forms\DeletedUser.cs">
       <SubType>Form</SubType>

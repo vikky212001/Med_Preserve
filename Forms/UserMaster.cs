@@ -11,37 +11,6 @@ namespace Med_Preserve.Forms
     public partial class UserMaster : Form
     {
         private string connectionString;
-
-        private bool IsUsernameDuplicate(string username)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT COUNT(*) FROM UserData WHERE UserName = @Username AND IsDeleted = 0";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Username", username);
-                    int count = (int)command.ExecuteScalar();
-                    return count > 0;
-                }
-            }
-        }
-
-        private bool IsEmailDuplicate(string email)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT COUNT(*) FROM UserData WHERE Email = @Email AND IsDeleted = 0";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Email", email);
-                    int count = (int)command.ExecuteScalar();
-                    return count > 0;
-                }
-            }
-        }
-
         public UserMaster()
         {
             InitializeComponent();
@@ -131,14 +100,15 @@ namespace Med_Preserve.Forms
                     string mobileValue = tb_Mobile.Text;
                     string userNameValue = tb_R_UName.Text;
                     string passValue = tb_R_Pass.Text;
+                    Duplication duplication = new Duplication();
 
                     if (tb_Name.Text != "" && tb_Mobile.Text != "" && tb_Email.Text != "" && tb_R_UName.Text != "" && tb_R_Pass.Text != "" && tb_R_ConPass.Text != "")
                     {
-                        if (IsUsernameDuplicate(userNameValue))
+                        if (duplication.IsUsernameDuplicate(userNameValue))
                         {
                             MessageBox.Show("Username is already taken. Please choose a different one.", "Prompt");
                         }
-                        else if (IsEmailDuplicate(emailValue))
+                        else if (duplication.IsEmailDuplicate(emailValue))
                         {
                             MessageBox.Show("Email address is already in use. Please use a different one.", "Prompt");
                         }
@@ -205,7 +175,6 @@ namespace Med_Preserve.Forms
                                 using (SqlConnection connection = new SqlConnection(connectionString))
                                 {
                                     connection.Open();
-                                    // string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
                                     string deleteQuery = "UPDATE UserData SET IsDeleted = 'True' WHERE UserID = @PrimaryKeyValue";
                                     using (SqlCommand command = new SqlCommand(deleteQuery, connection))
                                     {

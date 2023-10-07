@@ -53,6 +53,8 @@
             this.bt_Recover = new System.Windows.Forms.Button();
             this.bt_Clear = new System.Windows.Forms.Button();
             this.bt_Cancel = new System.Windows.Forms.Button();
+            this.lb_reason = new System.Windows.Forms.Label();
+            this.rtb_Reason = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DeletedUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
@@ -73,7 +75,7 @@
             this.dgv_DeletedUser.DataSource = this.userDataBindingSource;
             this.dgv_DeletedUser.Location = new System.Drawing.Point(12, 12);
             this.dgv_DeletedUser.Name = "dgv_DeletedUser";
-            this.dgv_DeletedUser.Size = new System.Drawing.Size(644, 150);
+            this.dgv_DeletedUser.Size = new System.Drawing.Size(742, 150);
             this.dgv_DeletedUser.TabIndex = 0;
             this.dgv_DeletedUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DeletedUser_CellClick);
             // 
@@ -233,6 +235,7 @@
             this.bt_Clear.TabIndex = 12;
             this.bt_Clear.Text = "Clear";
             this.bt_Clear.UseVisualStyleBackColor = true;
+            this.bt_Clear.Click += new System.EventHandler(this.bt_Clear_Click);
             // 
             // bt_Cancel
             // 
@@ -242,12 +245,32 @@
             this.bt_Cancel.TabIndex = 13;
             this.bt_Cancel.Text = "Cancel";
             this.bt_Cancel.UseVisualStyleBackColor = true;
+            this.bt_Cancel.Click += new System.EventHandler(this.bt_Cancel_Click);
+            // 
+            // lb_reason
+            // 
+            this.lb_reason.AutoSize = true;
+            this.lb_reason.Location = new System.Drawing.Point(476, 180);
+            this.lb_reason.Name = "lb_reason";
+            this.lb_reason.Size = new System.Drawing.Size(44, 13);
+            this.lb_reason.TabIndex = 14;
+            this.lb_reason.Text = "Reason";
+            // 
+            // rtb_Reason
+            // 
+            this.rtb_Reason.Location = new System.Drawing.Point(540, 173);
+            this.rtb_Reason.Name = "rtb_Reason";
+            this.rtb_Reason.Size = new System.Drawing.Size(203, 126);
+            this.rtb_Reason.TabIndex = 15;
+            this.rtb_Reason.Text = "";
             // 
             // DeletedUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 383);
+            this.ClientSize = new System.Drawing.Size(769, 383);
+            this.Controls.Add(this.rtb_Reason);
+            this.Controls.Add(this.lb_reason);
             this.Controls.Add(this.bt_Cancel);
             this.Controls.Add(this.bt_Clear);
             this.Controls.Add(this.bt_Recover);
@@ -299,5 +322,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Reason;
+        private System.Windows.Forms.Label lb_reason;
+        private System.Windows.Forms.RichTextBox rtb_Reason;
     }
 }
