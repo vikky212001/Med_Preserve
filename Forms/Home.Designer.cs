@@ -33,11 +33,13 @@
             this.userMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggerMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletedUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.liveDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletedUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.liveReadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doenloadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,21 +69,28 @@
             // userMasterToolStripMenuItem
             // 
             this.userMasterToolStripMenuItem.Name = "userMasterToolStripMenuItem";
-            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.userMasterToolStripMenuItem.Text = "User Master";
             this.userMasterToolStripMenuItem.Click += new System.EventHandler(this.userMasterToolStripMenuItem_Click);
             // 
             // changeMasterToolStripMenuItem
             // 
             this.changeMasterToolStripMenuItem.Name = "changeMasterToolStripMenuItem";
-            this.changeMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeMasterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.changeMasterToolStripMenuItem.Text = "Change Master";
             // 
             // loggerMasterToolStripMenuItem
             // 
             this.loggerMasterToolStripMenuItem.Name = "loggerMasterToolStripMenuItem";
-            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.loggerMasterToolStripMenuItem.Text = "Logger Master";
+            // 
+            // deletedUserToolStripMenuItem
+            // 
+            this.deletedUserToolStripMenuItem.Name = "deletedUserToolStripMenuItem";
+            this.deletedUserToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.deletedUserToolStripMenuItem.Text = "Deleted User";
+            this.deletedUserToolStripMenuItem.Click += new System.EventHandler(this.deletedUserToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -95,27 +104,35 @@
             // loginReportToolStripMenuItem
             // 
             this.loginReportToolStripMenuItem.Name = "loginReportToolStripMenuItem";
-            this.loginReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.loginReportToolStripMenuItem.Text = "Login Report";
             // 
             // loggerReportToolStripMenuItem
             // 
             this.loggerReportToolStripMenuItem.Name = "loggerReportToolStripMenuItem";
-            this.loggerReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggerReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.loggerReportToolStripMenuItem.Text = "Logger Report";
             // 
             // liveDataToolStripMenuItem
             // 
+            this.liveDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.liveReadingToolStripMenuItem,
+            this.doenloadDataToolStripMenuItem});
             this.liveDataToolStripMenuItem.Name = "liveDataToolStripMenuItem";
             this.liveDataToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.liveDataToolStripMenuItem.Text = "Live Data";
+            this.liveDataToolStripMenuItem.Text = "Readings";
             // 
-            // deletedUserToolStripMenuItem
+            // liveReadingToolStripMenuItem
             // 
-            this.deletedUserToolStripMenuItem.Name = "deletedUserToolStripMenuItem";
-            this.deletedUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deletedUserToolStripMenuItem.Text = "Deleted User";
-            this.deletedUserToolStripMenuItem.Click += new System.EventHandler(this.deletedUserToolStripMenuItem_Click);
+            this.liveReadingToolStripMenuItem.Name = "liveReadingToolStripMenuItem";
+            this.liveReadingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.liveReadingToolStripMenuItem.Text = "Live Reading";
+            // 
+            // doenloadDataToolStripMenuItem
+            // 
+            this.doenloadDataToolStripMenuItem.Name = "doenloadDataToolStripMenuItem";
+            this.doenloadDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.doenloadDataToolStripMenuItem.Text = "Download Data";
             // 
             // Home
             // 
@@ -145,5 +162,7 @@
         private System.Windows.Forms.ToolStripMenuItem loggerReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem liveDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletedUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem liveReadingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doenloadDataToolStripMenuItem;
     }
 }
