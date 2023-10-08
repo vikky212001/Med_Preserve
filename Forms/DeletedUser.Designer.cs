@@ -40,7 +40,6 @@
             this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
             this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
-            this.cb_Name = new System.Windows.Forms.ComboBox();
             this.lb_Name = new System.Windows.Forms.Label();
             this.lb_UName = new System.Windows.Forms.Label();
             this.lb_UID = new System.Windows.Forms.Label();
@@ -55,6 +54,10 @@
             this.bt_Cancel = new System.Windows.Forms.Button();
             this.lb_reason = new System.Windows.Forms.Label();
             this.rtb_Reason = new System.Windows.Forms.RichTextBox();
+            this.tb_Search = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_Name = new System.Windows.Forms.TextBox();
+            this.bt_pDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DeletedUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
@@ -62,6 +65,8 @@
             // 
             // dgv_DeletedUser
             // 
+            this.dgv_DeletedUser.AllowUserToAddRows = false;
+            this.dgv_DeletedUser.AllowUserToDeleteRows = false;
             this.dgv_DeletedUser.AutoGenerateColumns = false;
             this.dgv_DeletedUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_DeletedUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -75,9 +80,11 @@
             this.dgv_DeletedUser.DataSource = this.userDataBindingSource;
             this.dgv_DeletedUser.Location = new System.Drawing.Point(12, 12);
             this.dgv_DeletedUser.Name = "dgv_DeletedUser";
+            this.dgv_DeletedUser.ReadOnly = true;
             this.dgv_DeletedUser.Size = new System.Drawing.Size(742, 150);
             this.dgv_DeletedUser.TabIndex = 0;
             this.dgv_DeletedUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_DeletedUser_CellClick);
+            this.dgv_DeletedUser.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_DeletedUser_CellFormatting);
             // 
             // userIDDataGridViewTextBoxColumn
             // 
@@ -136,18 +143,10 @@
             // 
             this.userDataTableAdapter.ClearBeforeFill = true;
             // 
-            // cb_Name
-            // 
-            this.cb_Name.FormattingEnabled = true;
-            this.cb_Name.Location = new System.Drawing.Point(89, 173);
-            this.cb_Name.Name = "cb_Name";
-            this.cb_Name.Size = new System.Drawing.Size(127, 21);
-            this.cb_Name.TabIndex = 1;
-            // 
             // lb_Name
             // 
             this.lb_Name.AutoSize = true;
-            this.lb_Name.Location = new System.Drawing.Point(34, 176);
+            this.lb_Name.Location = new System.Drawing.Point(250, 176);
             this.lb_Name.Name = "lb_Name";
             this.lb_Name.Size = new System.Drawing.Size(35, 13);
             this.lb_Name.TabIndex = 2;
@@ -156,7 +155,7 @@
             // lb_UName
             // 
             this.lb_UName.AutoSize = true;
-            this.lb_UName.Location = new System.Drawing.Point(34, 218);
+            this.lb_UName.Location = new System.Drawing.Point(29, 221);
             this.lb_UName.Name = "lb_UName";
             this.lb_UName.Size = new System.Drawing.Size(60, 13);
             this.lb_UName.TabIndex = 3;
@@ -165,7 +164,7 @@
             // lb_UID
             // 
             this.lb_UID.AutoSize = true;
-            this.lb_UID.Location = new System.Drawing.Point(270, 176);
+            this.lb_UID.Location = new System.Drawing.Point(268, 221);
             this.lb_UID.Name = "lb_UID";
             this.lb_UID.Size = new System.Drawing.Size(43, 13);
             this.lb_UID.TabIndex = 4;
@@ -205,7 +204,7 @@
             // 
             // tb_UID
             // 
-            this.tb_UID.Location = new System.Drawing.Point(319, 173);
+            this.tb_UID.Location = new System.Drawing.Point(317, 218);
             this.tb_UID.Name = "tb_UID";
             this.tb_UID.Size = new System.Drawing.Size(100, 20);
             this.tb_UID.TabIndex = 9;
@@ -264,11 +263,49 @@
             this.rtb_Reason.TabIndex = 15;
             this.rtb_Reason.Text = "";
             // 
+            // tb_Search
+            // 
+            this.tb_Search.Location = new System.Drawing.Point(101, 177);
+            this.tb_Search.Name = "tb_Search";
+            this.tb_Search.Size = new System.Drawing.Size(100, 20);
+            this.tb_Search.TabIndex = 16;
+            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Search";
+            // 
+            // tb_Name
+            // 
+            this.tb_Name.Location = new System.Drawing.Point(317, 177);
+            this.tb_Name.Name = "tb_Name";
+            this.tb_Name.Size = new System.Drawing.Size(100, 20);
+            this.tb_Name.TabIndex = 18;
+            // 
+            // bt_pDelete
+            // 
+            this.bt_pDelete.Location = new System.Drawing.Point(592, 313);
+            this.bt_pDelete.Name = "bt_pDelete";
+            this.bt_pDelete.Size = new System.Drawing.Size(117, 23);
+            this.bt_pDelete.TabIndex = 19;
+            this.bt_pDelete.Text = "Permanent Delete";
+            this.bt_pDelete.UseVisualStyleBackColor = true;
+            this.bt_pDelete.Click += new System.EventHandler(this.bt_pDelete_Click);
+            // 
             // DeletedUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 383);
+            this.Controls.Add(this.bt_pDelete);
+            this.Controls.Add(this.tb_Name);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.rtb_Reason);
             this.Controls.Add(this.lb_reason);
             this.Controls.Add(this.bt_Cancel);
@@ -283,7 +320,6 @@
             this.Controls.Add(this.lb_UID);
             this.Controls.Add(this.lb_UName);
             this.Controls.Add(this.lb_Name);
-            this.Controls.Add(this.cb_Name);
             this.Controls.Add(this.dgv_DeletedUser);
             this.Name = "DeletedUser";
             this.Text = "DeletedUser";
@@ -302,7 +338,6 @@
         private Med_PreserveDataSet med_PreserveDataSet;
         private System.Windows.Forms.BindingSource userDataBindingSource;
         private Med_PreserveDataSetTableAdapters.UserDataTableAdapter userDataTableAdapter;
-        private System.Windows.Forms.ComboBox cb_Name;
         private System.Windows.Forms.Label lb_Name;
         private System.Windows.Forms.Label lb_UName;
         private System.Windows.Forms.Label lb_UID;
@@ -324,5 +359,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Reason;
         private System.Windows.Forms.Label lb_reason;
         private System.Windows.Forms.RichTextBox rtb_Reason;
+        private System.Windows.Forms.TextBox tb_Search;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb_Name;
+        private System.Windows.Forms.Button bt_pDelete;
     }
 }

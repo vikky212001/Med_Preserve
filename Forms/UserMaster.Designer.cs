@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lb_UID = new System.Windows.Forms.Label();
             this.lb_UserID = new System.Windows.Forms.Label();
             this.bt_Clear = new System.Windows.Forms.Button();
             this.bt_Delete = new System.Windows.Forms.Button();
@@ -48,12 +47,6 @@
             this.lb_Email = new System.Windows.Forms.Label();
             this.lb_Name = new System.Windows.Forms.Label();
             this.dgv_UserMaster = new System.Windows.Forms.DataGridView();
-            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
             this.sensorDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,7 +54,14 @@
             this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.lb_Search = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_Search = new System.Windows.Forms.TextBox();
+            this.tb_UID = new System.Windows.Forms.TextBox();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
@@ -69,18 +69,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // lb_UID
-            // 
-            this.lb_UID.AutoSize = true;
-            this.lb_UID.Location = new System.Drawing.Point(484, 238);
-            this.lb_UID.Name = "lb_UID";
-            this.lb_UID.Size = new System.Drawing.Size(0, 13);
-            this.lb_UID.TabIndex = 37;
-            // 
             // lb_UserID
             // 
             this.lb_UserID.AutoSize = true;
-            this.lb_UserID.Location = new System.Drawing.Point(426, 238);
+            this.lb_UserID.Location = new System.Drawing.Point(304, 179);
             this.lb_UserID.Name = "lb_UserID";
             this.lb_UserID.Size = new System.Drawing.Size(52, 13);
             this.lb_UserID.TabIndex = 36;
@@ -88,7 +80,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(542, 311);
+            this.bt_Clear.Location = new System.Drawing.Point(541, 271);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 35;
@@ -98,7 +90,7 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(542, 349);
+            this.bt_Delete.Location = new System.Drawing.Point(541, 309);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
             this.bt_Delete.TabIndex = 34;
@@ -108,7 +100,7 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(542, 273);
+            this.bt_Update.Location = new System.Drawing.Point(541, 233);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(75, 23);
             this.bt_Update.TabIndex = 33;
@@ -117,7 +109,7 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(542, 233);
+            this.bt_Add.Location = new System.Drawing.Point(541, 193);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(75, 23);
             this.bt_Add.TabIndex = 32;
@@ -227,10 +219,12 @@
             // 
             // dgv_UserMaster
             // 
+            this.dgv_UserMaster.AllowUserToAddRows = false;
+            this.dgv_UserMaster.AllowUserToDeleteRows = false;
             this.dgv_UserMaster.AutoGenerateColumns = false;
             this.dgv_UserMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_UserMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.userIDDataGridViewTextBoxColumn,
+            this.UserID,
             this.nameDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
@@ -239,46 +233,10 @@
             this.dgv_UserMaster.DataSource = this.userDataBindingSource;
             this.dgv_UserMaster.Location = new System.Drawing.Point(12, 12);
             this.dgv_UserMaster.Name = "dgv_UserMaster";
-            this.dgv_UserMaster.Size = new System.Drawing.Size(643, 150);
+            this.dgv_UserMaster.ReadOnly = true;
+            this.dgv_UserMaster.Size = new System.Drawing.Size(641, 150);
             this.dgv_UserMaster.TabIndex = 38;
             this.dgv_UserMaster.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_UserMaster_CellFormatting);
-            // 
-            // userIDDataGridViewTextBoxColumn
-            // 
-            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
-            this.userIDDataGridViewTextBoxColumn.HeaderText = "UserID";
-            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
-            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
-            // mobileDataGridViewTextBoxColumn
-            // 
-            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            this.mobileDataGridViewTextBoxColumn.HeaderText = "Mobile";
-            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
             // userDataBindingSource
             // 
@@ -316,22 +274,72 @@
             this.lb_Search.TabIndex = 39;
             this.lb_Search.Text = "Search";
             // 
-            // textBox1
+            // tb_Search
             // 
-            this.textBox1.Location = new System.Drawing.Point(72, 176);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 20);
-            this.textBox1.TabIndex = 40;
+            this.tb_Search.Location = new System.Drawing.Point(72, 176);
+            this.tb_Search.Name = "tb_Search";
+            this.tb_Search.Size = new System.Drawing.Size(182, 20);
+            this.tb_Search.TabIndex = 40;
+            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
+            // 
+            // tb_UID
+            // 
+            this.tb_UID.Location = new System.Drawing.Point(362, 176);
+            this.tb_UID.Name = "tb_UID";
+            this.tb_UID.Size = new System.Drawing.Size(71, 20);
+            this.tb_UID.TabIndex = 41;
+            // 
+            // UserID
+            // 
+            this.UserID.DataPropertyName = "UserID";
+            this.UserID.HeaderText = "UserID";
+            this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mobileDataGridViewTextBoxColumn
+            // 
+            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
+            this.mobileDataGridViewTextBoxColumn.HeaderText = "Mobile";
+            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // UserMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 384);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(667, 384);
+            this.Controls.Add(this.tb_UID);
+            this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.dgv_UserMaster);
-            this.Controls.Add(this.lb_UID);
             this.Controls.Add(this.lb_UserID);
             this.Controls.Add(this.bt_Clear);
             this.Controls.Add(this.bt_Delete);
@@ -364,8 +372,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lb_UID;
         private System.Windows.Forms.Label lb_UserID;
         private System.Windows.Forms.Button bt_Clear;
         private System.Windows.Forms.Button bt_Delete;
@@ -389,14 +395,15 @@
         private Med_PreserveDataSetTableAdapters.SensorDataTableAdapter sensorDataTableAdapter;
         private System.Windows.Forms.BindingSource userDataBindingSource;
         private Med_PreserveDataSetTableAdapters.UserDataTableAdapter userDataTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox tb_Search;
+        private System.Windows.Forms.Label lb_Search;
+        private System.Windows.Forms.TextBox tb_UID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lb_Search;
     }
 }

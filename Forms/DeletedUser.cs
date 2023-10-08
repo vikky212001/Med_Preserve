@@ -1,30 +1,27 @@
 ﻿using Med_Preserve.Class;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
 {
     public partial class DeletedUser : Form
     {
+        private DataTable dataTable = new DataTable();
         private string connectionString;
+
         public DeletedUser()
         {
             InitializeComponent();
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
+
         private void Clear()
         {
-            cb_Name.Text = "";
+            tb_Name.Text = "";
+            tb_Search.Text = "";
             tb_Email.Text = "";
             tb_Mobile.Text = "";
             tb_R_UName.Text = "";
@@ -32,9 +29,31 @@ namespace Med_Preserve.Forms
             rtb_Reason.Text = "";
         }
 
+        private void RefreshData()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM UserData WHERE IsDeleted = 1";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    dataTable.Clear();
+                    adapter.Fill(dataTable);
+
+                    dgv_DeletedUser.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while Refreshing Data: " + ex.Message, "Error");
+                }
+            }
+        }
+
         private void DeletedUser_Load(object sender, EventArgs e)
         {
-            this.userDataTableAdapter.Fill(this.med_PreserveDataSet.UserData);
+            userDataTableAdapter.Fill(med_PreserveDataSet.UserData);
+            RefreshData();
         }
 
         private void dgv_DeletedUser_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -42,20 +61,12 @@ namespace Med_Preserve.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgv_DeletedUser.Rows[e.RowIndex];
-
-                string dg_UserID = selectedRow.Cells[0].Value.ToString();
-                string dg_Name = selectedRow.Cells[1].Value.ToString();
-                string dg_Email = selectedRow.Cells[2].Value.ToString();
-                string dg_Mobile = selectedRow.Cells[3].Value.ToString();
-                string dg_UserName = selectedRow.Cells[4].Value.ToString();
-                string dg_Reason = selectedRow.Cells[6].Value.ToString();
-
-                tb_UID.Text = dg_UserID;
-                cb_Name.Text = dg_Name;
-                tb_Email.Text = dg_Email;
-                tb_Mobile.Text = dg_Mobile;
-                tb_R_UName.Text = dg_UserName;
-                rtb_Reason.Text = dg_Reason;
+                tb_UID.Text = selectedRow.Cells[0].Value.ToString();
+                tb_Name.Text = selectedRow.Cells[1].Value.ToString();
+                tb_Email.Text = selectedRow.Cells[2].Value.ToString();
+                tb_Mobile.Text = selectedRow.Cells[3].Value.ToString();
+                tb_R_UName.Text = selectedRow.Cells[4].Value.ToString();
+                rtb_Reason.Text = selectedRow.Cells[6].Value.ToString();
             }
         }
 
@@ -67,6 +78,7 @@ namespace Med_Preserve.Forms
                 string userNameValue = tb_R_UName.Text;
                 string emailValue = tb_Email.Text;
                 int primaryKeyValue;
+
                 if (tb_UID.Text != "")
                 {
                     if (duplication.IsUsernameDuplicate(userNameValue))
@@ -87,24 +99,30 @@ namespace Med_Preserve.Forms
                                 using (SqlConnection connection = new SqlConnection(connectionString))
                                 {
                                     connection.Open();
-                                    string deleteQuery = "UPDATE UserData SET IsDeleted = 'False', Email = @Email, UserName = @UserName WHERE UserID = @PrimaryKeyValue";
-                                    using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                                    string recoverQuery = "UPDATE UserData SET IsDeleted = 'False', Email = @Email, UserName = @UserName WHERE UserID = @PrimaryKeyValue";
+                                    using (SqlCommand command = new SqlCommand(recoverQuery, connection))
                                     {
                                         command.Parameters.AddWithValue("@UserName", userNameValue);
                                         command.Parameters.AddWithValue("@Email", emailValue);
                                         command.Parameters.AddWithValue("@PrimaryKeyValue", primaryKeyValue);
                                         command.ExecuteNonQuery();
                                         MessageBox.Show("User Recovered Successfully.");
+                                        RefreshData();
+                                        Clear();
                                     }
                                 }
                             }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please Select any User.");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
             }
         }
 
@@ -116,6 +134,67 @@ namespace Med_Preserve.Forms
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void tb_Search_TextChanged(object sender, EventArgs e)
+        {
+            if (dataTable != null)
+            {
+                string searchQuery = tb_Search.Text.Trim();
+                DataView dv = dataTable.DefaultView;
+                dv.RowFilter = $"Name LIKE '%{searchQuery}%'";
+                dgv_DeletedUser.DataSource = dv.ToTable();
+            }
+        }
+
+        private void dgv_DeletedUser_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                if (e.Value != null)
+                {
+                    e.Value = new string('●', 8);
+                }
+            }
+        }
+
+        private void bt_pDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tb_UID.Text != "")
+                {
+                    int primaryKeyValue;
+                    DialogResult result = MessageBox.Show("Are you sure you want to Permanently Delete this User?", "Recover Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (int.TryParse(tb_UID.Text, out primaryKeyValue))
+                        {
+                            using (SqlConnection connection = new SqlConnection(connectionString))
+                            {
+                                connection.Open();
+                                string deleteQuery = "DELETE FROM UserData WHERE UserID = @PrimaryKeyValue";
+                                using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                                {
+                                    command.Parameters.AddWithValue("@PrimaryKeyValue", primaryKeyValue);
+                                    command.ExecuteNonQuery();
+                                    MessageBox.Show("User Deleted Successfully.");
+                                    RefreshData();
+                                    Clear();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please Select any User.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
         }
     }
 }

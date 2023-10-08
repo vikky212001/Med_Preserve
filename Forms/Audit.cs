@@ -52,5 +52,10 @@ namespace Med_Preserve.Forms
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void Audit_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

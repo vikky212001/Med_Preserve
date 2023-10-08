@@ -100,7 +100,7 @@ namespace Med_Preserve
 
         private void Login_Load(object sender, EventArgs e)
         {
-            tb_Pass.PasswordChar = '*';
+            tb_Pass.PasswordChar = '●';
         }
     }
 }

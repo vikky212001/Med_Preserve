@@ -10,7 +10,9 @@ namespace Med_Preserve.Forms
 {
     public partial class UserMaster : Form
     {
+        private DataTable dataTable = new DataTable();
         private string connectionString;
+
         public UserMaster()
         {
             InitializeComponent();
@@ -23,19 +25,17 @@ namespace Med_Preserve.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgv_UserMaster.Rows[e.RowIndex];
-
-                string dg_UserID = selectedRow.Cells[0].Value.ToString();
-                string dg_Name = selectedRow.Cells[1].Value.ToString();
-                string dg_Email = selectedRow.Cells[2].Value.ToString();
-                string dg_Mobile = selectedRow.Cells[3].Value.ToString();
-                string dg_UserName = selectedRow.Cells[4].Value.ToString();
-
-                lb_UID.Text = dg_UserID;
-                tb_Name.Text = dg_Name;
-                tb_Email.Text = dg_Email;
-                tb_Mobile.Text = dg_Mobile;
-                tb_R_UName.Text = dg_UserName;
+                UpdateUserFields(selectedRow);
             }
+        }
+
+        private void UpdateUserFields(DataGridViewRow row)
+        {
+            tb_UID.Text = row.Cells[0].Value.ToString();
+            tb_Name.Text = row.Cells[1].Value.ToString();
+            tb_Email.Text = row.Cells[2].Value.ToString();
+            tb_Mobile.Text = row.Cells[3].Value.ToString();
+            tb_R_UName.Text = row.Cells[4].Value.ToString();
         }
 
         private void RefreshData()
@@ -47,7 +47,7 @@ namespace Med_Preserve.Forms
                     connection.Open();
                     string query = "SELECT * FROM UserData WHERE IsDeleted = 0";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
+                    dataTable.Clear(); 
                     adapter.Fill(dataTable);
 
                     dgv_UserMaster.DataSource = dataTable;
@@ -61,13 +61,14 @@ namespace Med_Preserve.Forms
 
         private void Clear()
         {
-            tb_Name.Text = "";
-            tb_Email.Text = "";
-            tb_Mobile.Text = "";
-            tb_R_ConPass.Text = "";
-            tb_R_Pass.Text = "";
-            tb_R_UName.Text = "";
-            lb_UID.Text = "";
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Text = string.Empty;
+                }
+            }
+            tb_UID.Text = string.Empty;
         }
 
         private void HandleError(string message, Exception ex)
@@ -77,15 +78,17 @@ namespace Med_Preserve.Forms
 
         private void UserMaster_Load(object sender, EventArgs e)
         {
+            tb_R_Pass.PasswordChar = '●';
+            tb_R_ConPass.PasswordChar = '●';
             try
             {
                 this.userDataTableAdapter.Fill(this.med_PreserveDataSet.UserData);
+                RefreshData();
             }
             catch (Exception ex)
             {
                 HandleError("An error occurred while loading data.", ex);
             }
-            RefreshData();
         }
 
         private void bt_Add_Click(object sender, EventArgs e)
@@ -102,47 +105,52 @@ namespace Med_Preserve.Forms
                     string passValue = tb_R_Pass.Text;
                     Duplication duplication = new Duplication();
 
-                    if (tb_Name.Text != "" && tb_Mobile.Text != "" && tb_Email.Text != "" && tb_R_UName.Text != "" && tb_R_Pass.Text != "" && tb_R_ConPass.Text != "")
-                    {
-                        if (duplication.IsUsernameDuplicate(userNameValue))
-                        {
-                            MessageBox.Show("Username is already taken. Please choose a different one.", "Prompt");
-                        }
-                        else if (duplication.IsEmailDuplicate(emailValue))
-                        {
-                            MessageBox.Show("Email address is already in use. Please use a different one.", "Prompt");
-                        }
-                        else if (tb_R_Pass.Text == tb_R_ConPass.Text)
-                        {
-                            PasswordHasher passwordHasher = new PasswordHasher();
-                            string hashedPassword = passwordHasher.HashPassword(passValue);
-
-                            string addQuery = "INSERT INTO UserData(Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin) VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @IsAdmin);";
-                            using (SqlCommand command = new SqlCommand(addQuery, connection))
-                            {
-                                command.Parameters.AddWithValue("@Name", nameValue);
-                                command.Parameters.AddWithValue("@Email", emailValue);
-                                command.Parameters.AddWithValue("@Mobile", mobileValue);
-                                command.Parameters.AddWithValue("@UserName", userNameValue);
-                                command.Parameters.AddWithValue("@Password", hashedPassword);
-                                command.Parameters.AddWithValue("@IsDeleted", "False");
-                                command.Parameters.AddWithValue("@IsAdmin", "False");
-                                command.ExecuteNonQuery();
-                                MessageBox.Show("User created successfully.", "Prompt");
-                                RefreshData();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Password and Confirm Password do not match.", "Prompt");
-                        }
-                    }
-                    else
+                    if (string.IsNullOrWhiteSpace(nameValue) || string.IsNullOrWhiteSpace(emailValue) ||
+                        string.IsNullOrWhiteSpace(mobileValue) || string.IsNullOrWhiteSpace(userNameValue) ||
+                        string.IsNullOrWhiteSpace(passValue) || string.IsNullOrWhiteSpace(tb_R_ConPass.Text))
                     {
                         MessageBox.Show("Fill in all required fields.", "Prompt");
+                        return;
+                    }
+
+                    if (duplication.IsUsernameDuplicate(userNameValue))
+                    {
+                        MessageBox.Show("Username is already taken. Please choose a different one.", "Prompt");
+                        return;
+                    }
+
+                    if (duplication.IsEmailDuplicate(emailValue))
+                    {
+                        MessageBox.Show("Email address is already in use. Please use a different one.", "Prompt");
+                        return;
+                    }
+
+                    if (passValue != tb_R_ConPass.Text)
+                    {
+                        MessageBox.Show("Password and Confirm Password do not match.", "Prompt");
+                        return;
+                    }
+
+                    PasswordHasher passwordHasher = new PasswordHasher();
+                    string hashedPassword = passwordHasher.HashPassword(passValue);
+
+                    string addQuery = "INSERT INTO UserData(Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin) " +
+                                      "VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @IsAdmin);";
+                    using (SqlCommand command = new SqlCommand(addQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", nameValue);
+                        command.Parameters.AddWithValue("@Email", emailValue);
+                        command.Parameters.AddWithValue("@Mobile", mobileValue);
+                        command.Parameters.AddWithValue("@UserName", userNameValue);
+                        command.Parameters.AddWithValue("@Password", hashedPassword);
+                        command.Parameters.AddWithValue("@IsDeleted", "False");
+                        command.Parameters.AddWithValue("@IsAdmin", "False");
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("User created successfully.", "Prompt");
+                        RefreshData();
+                        Clear();
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -159,14 +167,14 @@ namespace Med_Preserve.Forms
         {
             try
             {
-                if (lb_UID.Text != "")
+                if (tb_UID.Text != "")
                 {
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
                         int primaryKeyValue;
-                        if (int.TryParse(lb_UID.Text, out primaryKeyValue))
+                        if (int.TryParse(tb_UID.Text, out primaryKeyValue))
                         {
                             Audit audit = new Audit(primaryKeyValue);
                             DialogResult dialogResult = audit.ShowDialog();
@@ -238,15 +246,24 @@ namespace Med_Preserve.Forms
 
         private void dgv_UserMaster_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5) // Replace 'yourPasswordFieldIndex' with the actual index of your password column
+            if (e.ColumnIndex == 5) 
             {
                 if (e.Value != null)
                 {
-                    string password = e.Value.ToString();
-                    e.Value = new string('*', 8); // Replace the password with asterisks
+                    e.Value = new string('●', 8); 
                 }
             }
         }
 
+        private void tb_Search_TextChanged(object sender, EventArgs e)
+        {
+            if (dataTable != null)
+            {
+                string searchQuery = tb_Search.Text.Trim();
+                DataView dva = dataTable.DefaultView;
+                dva.RowFilter = $"Name LIKE '%{searchQuery}%' OR Email LIKE '%{searchQuery}%'"; // Update the filter to search in multiple columns
+                dgv_UserMaster.DataSource = dva.ToTable();
+            }
+        }
     }
 }

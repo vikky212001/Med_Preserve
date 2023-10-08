@@ -25,13 +25,13 @@ namespace Med_Preserve.Forms
         private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserMaster userMaster = new UserMaster();
-            userMaster.Show();
+            userMaster.ShowDialog();
         }
 
         private void deletedUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeletedUser deletedUser = new DeletedUser();
-            deletedUser.Show();
+            deletedUser.ShowDialog();
         }
     }
 }
