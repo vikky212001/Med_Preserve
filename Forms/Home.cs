@@ -33,5 +33,16 @@ namespace Med_Preserve.Forms
             DeletedUser deletedUser = new DeletedUser();
             deletedUser.ShowDialog();
         }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void companyMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompanyMaster companyMaster = new CompanyMaster();
+            companyMaster.ShowDialog();
+        }
     }
 }
