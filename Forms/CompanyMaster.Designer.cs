@@ -242,6 +242,7 @@
             this.bt_Delete.TabIndex = 11;
             this.bt_Delete.Text = "Delete";
             this.bt_Delete.UseVisualStyleBackColor = true;
+            this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
             // 
             // bt_Close
             // 

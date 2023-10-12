@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Med_Preserve.Forms
 {
@@ -47,7 +48,7 @@ namespace Med_Preserve.Forms
                     connection.Open();
                     string query = "SELECT * FROM UserData WHERE IsDeleted = 0";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                    dataTable.Clear(); 
+                    dataTable.Clear();
                     adapter.Fill(dataTable);
 
                     dgv_UserMaster.DataSource = dataTable;
@@ -246,11 +247,11 @@ namespace Med_Preserve.Forms
 
         private void dgv_UserMaster_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5) 
+            if (e.ColumnIndex == 5)
             {
                 if (e.Value != null)
                 {
-                    e.Value = new string('●', 8); 
+                    e.Value = new string('●', 8);
                 }
             }
         }
@@ -264,6 +265,78 @@ namespace Med_Preserve.Forms
                 dva.RowFilter = $"Name LIKE '%{searchQuery}%' OR Email LIKE '%{searchQuery}%'"; // Update the filter to search in multiple columns
                 dgv_UserMaster.DataSource = dva.ToTable();
             }
+        }
+
+        private void bt_Update_Click(object sender, EventArgs e)
+        {
+            string primaryKeyValue = tb_UID.Text;
+            string newName = tb_Name.Text;
+            string newEmail = tb_Email.Text;
+            string newMobile = tb_Mobile.Text;
+            string newUserName = tb_R_UName.Text;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UID", primaryKeyValue);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string vName = reader["Name"].ToString();
+                                string vEmail = reader["Email"].ToString();
+                                string vMobile = reader["Mobile"].ToString();
+                                string vUserName = reader["UserName"].ToString();
+
+                                if (vName == tb_Name.Text && vEmail == tb_Email.Text && vMobile == tb_Mobile.Text && vUserName == tb_R_UName.Text)
+                                {
+                                    MessageBox.Show("No Changes Found.", "Prompt");
+                                }
+                                else
+                                {
+                                    string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName WHERE UserId = @UID";
+                                    reader.Close();
+                                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                    {
+                                        updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
+                                        updateCommand.Parameters.AddWithValue("@Name", newName);
+                                        updateCommand.Parameters.AddWithValue("@Email", newEmail);
+                                        updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
+                                        updateCommand.Parameters.AddWithValue("@UserName", newUserName);
+
+                                        int rowsAffected = updateCommand.ExecuteNonQuery();
+                                        if (rowsAffected > 0)
+                                        {
+                                            MessageBox.Show("Record updated successfully.", "Success");
+                                            Clear();
+                                            RefreshData();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
+        }
+
+        private void bt_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

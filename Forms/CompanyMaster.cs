@@ -40,6 +40,7 @@ namespace Med_Preserve.Forms
             }
 
         }
+
         private void RefreshData()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -207,6 +208,50 @@ namespace Med_Preserve.Forms
         private void bt_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void bt_Delete_Click(object sender, EventArgs e)
+        {
+            if (dgv_CompanyMaster.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a company to delete.", "Prompt");
+                return;
+            }
+
+            string selectedCompanyID = dgv_CompanyMaster.SelectedRows[0].Cells[0].Value.ToString();
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this company?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string deleteQuery = "DELETE FROM CompanyMaster WHERE SrNo = @CompanyID";
+
+                        using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
+                            int rowsAffected = command.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Company deleted successfully.", "Success");
+                                RefreshData();
+                                Clear(); 
+                            }
+                            else
+                            {
+                                MessageBox.Show("Company not deleted. Please try again.", "Error");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while deleting the company.", "Error");
+                }
+            }
         }
     }
 }
