@@ -274,56 +274,78 @@ namespace Med_Preserve.Forms
             string newEmail = tb_Email.Text;
             string newMobile = tb_Mobile.Text;
             string newUserName = tb_R_UName.Text;
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlTransaction transaction = connection.BeginTransaction())
                     {
-                        command.Parameters.AddWithValue("@UID", primaryKeyValue);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        try
                         {
-                            if (reader.Read())
+                            string selectQuery = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
+
+                            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
                             {
-                                string vName = reader["Name"].ToString();
-                                string vEmail = reader["Email"].ToString();
-                                string vMobile = reader["Mobile"].ToString();
-                                string vUserName = reader["UserName"].ToString();
+                                selectCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
 
-                                if (vName == tb_Name.Text && vEmail == tb_Email.Text && vMobile == tb_Mobile.Text && vUserName == tb_R_UName.Text)
+                                using (SqlDataReader reader = selectCommand.ExecuteReader())
                                 {
-                                    MessageBox.Show("No Changes Found.", "Prompt");
-                                }
-                                else
-                                {
-                                    string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName WHERE UserId = @UID";
-                                    reader.Close();
-                                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                    if (reader.Read())
                                     {
-                                        updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
-                                        updateCommand.Parameters.AddWithValue("@Name", newName);
-                                        updateCommand.Parameters.AddWithValue("@Email", newEmail);
-                                        updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
-                                        updateCommand.Parameters.AddWithValue("@UserName", newUserName);
+                                        string vName = reader["Name"].ToString();
+                                        string vEmail = reader["Email"].ToString();
+                                        string vMobile = reader["Mobile"].ToString();
+                                        string vUserName = reader["UserName"].ToString();
 
-                                        int rowsAffected = updateCommand.ExecuteNonQuery();
-                                        if (rowsAffected > 0)
+                                        if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName)
                                         {
-                                            MessageBox.Show("Record updated successfully.", "Success");
-                                            Clear();
-                                            RefreshData();
+                                            MessageBox.Show("No Changes Found.", "Prompt");
                                         }
                                         else
                                         {
-                                            MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                            string updateQuery = @"UPDATE UserData
+                                                        SET Name = CASE WHEN Name <> @Name THEN @Name ELSE Name END,
+                                                            Email = CASE WHEN Email <> @Email THEN @Email ELSE Email END,
+                                                            Mobile = CASE WHEN Mobile <> @Mobile THEN @Mobile ELSE Mobile END,
+                                                            UserName = CASE WHEN UserName <> @UserName THEN @UserName ELSE UserName END
+                                                        WHERE UserId = @UID";
+
+                                            reader.Close();
+
+                                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                            {
+                                                updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
+                                                updateCommand.Parameters.AddWithValue("@Name", newName);
+                                                updateCommand.Parameters.AddWithValue("@Email", newEmail);
+                                                updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
+                                                updateCommand.Parameters.AddWithValue("@UserName", newUserName);
+
+                                                int rowsAffected = updateCommand.ExecuteNonQuery();
+                                                if (rowsAffected > 0)
+                                                {
+                                                    MessageBox.Show("Record updated successfully.", "Success");
+                                                    RefreshData();
+                                                    Clear();
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("An error occurred: " + ex.Message, "Error");
                         }
                     }
                 }
@@ -333,6 +355,7 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("An error occurred: " + ex.Message, "Error");
             }
         }
+
 
         private void bt_Close_Click(object sender, EventArgs e)
         {

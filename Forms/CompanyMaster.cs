@@ -93,11 +93,11 @@ namespace Med_Preserve.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgv_CompanyMaster.Rows[e.RowIndex];
-                byte[] imageData = (byte[])selectedRow.Cells[5].Value;
+                byte[] selectImageData = (byte[])selectedRow.Cells[5].Value;
 
-                if (imageData != null)
+                if (selectImageData != null)
                 {
-                    using (MemoryStream ms = new MemoryStream(imageData))
+                    using (MemoryStream ms = new MemoryStream(selectImageData))
                     {
                         pb_Logo.Image = Image.FromStream(ms);
                     }
@@ -238,7 +238,7 @@ namespace Med_Preserve.Forms
                             {
                                 MessageBox.Show("Company deleted successfully.", "Success");
                                 RefreshData();
-                                Clear(); 
+                                Clear();
                             }
                             else
                             {
@@ -251,6 +251,97 @@ namespace Med_Preserve.Forms
                 {
                     MessageBox.Show("An error occurred while deleting the company.", "Error");
                 }
+            }
+        }
+
+        private void bt_Update_Click(object sender, EventArgs e)
+        {
+            string newCompanyName = tb_CompanyName.Text;
+            string newEmail = tb_Email.Text;
+            string newContact = tb_ContactNo.Text;
+            string newAddress = rtb_Address.Text;
+            string selectedCompanyID = dgv_CompanyMaster.SelectedRows[0].Cells[0].Value.ToString();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            string selectQuery = "SELECT CompanyName, Address, ContactNo, Email, Logo FROM CompanyMaster WHERE SrNo = @CompanyID";
+
+                            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
+                            {
+                                selectCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
+
+                                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        string oldCompanyName = reader["CompanyName"].ToString();
+                                        string oldEmail = reader["Email"].ToString();
+                                        string oldContact = reader["ContactNo"].ToString();
+                                        string oldAddress = reader["Address"].ToString();
+                                        byte[] oldImageData = reader["Logo"] as byte[];
+
+                                        if (oldCompanyName == newCompanyName && oldEmail == newEmail && oldContact == newContact && oldAddress == newAddress && oldImageData == imageData)
+                                        {
+                                            MessageBox.Show("No Changes Found.", "Prompt");
+                                        }
+                                        else
+                                        {
+                                            string updateQuery = @"UPDATE UserData
+                                                        SET CompanyName = CASE WHEN CompanyName <> @CompanyName THEN @CompanyName ELSE CompanyName END,
+                                                            Email = CASE WHEN Email <> @Email THEN @Email ELSE Email END,
+                                                            ContactNo = CASE WHEN ContactNo <> @ContactNo THEN @ContactNo ELSE ContactNo END,
+                                                            Address = CASE WHEN Address <> @Address THEN @Address ELSE Address END
+                                                            Logo = CASE WHEN Logo <> @Logo THEN @Logo ELSE Logo END
+                                                        WHERE SrNo = @CompanyID";
+
+                                            reader.Close();
+
+                                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                            {
+                                                updateCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
+                                                updateCommand.Parameters.AddWithValue("@CompanyName", newCompanyName);
+                                                updateCommand.Parameters.AddWithValue("@Email", newEmail);
+                                                updateCommand.Parameters.AddWithValue("@ContactNo", newContact);
+                                                updateCommand.Parameters.AddWithValue("@Address", newAddress);
+                                                updateCommand.Parameters.AddWithValue("@Logo", imageData);
+
+                                                int rowsAffected = updateCommand.ExecuteNonQuery();
+                                                if (rowsAffected > 0)
+                                                {
+                                                    MessageBox.Show("Record updated successfully.", "Success");
+                                                    RefreshData();
+                                                    Clear();
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
             }
         }
     }

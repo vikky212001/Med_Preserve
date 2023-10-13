@@ -233,6 +233,7 @@
             this.bt_Update.TabIndex = 10;
             this.bt_Update.Text = "Update";
             this.bt_Update.UseVisualStyleBackColor = true;
+            this.bt_Update.Click += new System.EventHandler(this.bt_Update_Click);
             // 
             // bt_Delete
             // 
