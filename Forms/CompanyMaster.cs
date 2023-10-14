@@ -1,16 +1,12 @@
 ﻿using Med_Preserve.Class;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
@@ -260,83 +256,71 @@ namespace Med_Preserve.Forms
             string newEmail = tb_Email.Text;
             string newContact = tb_ContactNo.Text;
             string newAddress = rtb_Address.Text;
-            string selectedCompanyID = dgv_CompanyMaster.SelectedRows[0].Cells[0].Value.ToString();
+            string selectedCompanyID = tb_SrNo.Text;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    try
                     {
-                        try
+                        string selectQuery = "SELECT CompanyName, Address, ContactNo, Email, Logo FROM CompanyMaster WHERE SrNo = @CompanyID";
+
+                        using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                         {
-                            string selectQuery = "SELECT CompanyName, Address, ContactNo, Email, Logo FROM CompanyMaster WHERE SrNo = @CompanyID";
+                            selectCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
 
-                            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
+                            using (SqlDataReader reader = selectCommand.ExecuteReader())
                             {
-                                selectCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
-
-                                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                                if (reader.Read())
                                 {
-                                    if (reader.Read())
+                                    string oldCompanyName = reader["CompanyName"].ToString();
+                                    string oldEmail = reader["Email"].ToString();
+                                    string oldContact = reader["ContactNo"].ToString();
+                                    string oldAddress = reader["Address"].ToString();
+                                    byte[] oldImageData = reader["Logo"] as byte[];
+
+                                    if (oldCompanyName == newCompanyName && oldEmail == newEmail && oldContact == newContact && oldAddress == newAddress && oldImageData == imageData)
                                     {
-                                        string oldCompanyName = reader["CompanyName"].ToString();
-                                        string oldEmail = reader["Email"].ToString();
-                                        string oldContact = reader["ContactNo"].ToString();
-                                        string oldAddress = reader["Address"].ToString();
-                                        byte[] oldImageData = reader["Logo"] as byte[];
+                                        MessageBox.Show("No Changes Found.", "Prompt");
+                                    }
+                                    else
+                                    {
+                                        string updateQuery = "UPDATE CompanyMaster SET CompanyName = @CompanyName, Email = @Email, ContactNo = @ContactNo, Address = @Address, Logo = @Logo WHERE SrNo = @CompanyID";
 
-                                        if (oldCompanyName == newCompanyName && oldEmail == newEmail && oldContact == newContact && oldAddress == newAddress && oldImageData == imageData)
+                                        reader.Close();
+
+                                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                         {
-                                            MessageBox.Show("No Changes Found.", "Prompt");
-                                        }
-                                        else
-                                        {
-                                            string updateQuery = @"UPDATE UserData
-                                                        SET CompanyName = CASE WHEN CompanyName <> @CompanyName THEN @CompanyName ELSE CompanyName END,
-                                                            Email = CASE WHEN Email <> @Email THEN @Email ELSE Email END,
-                                                            ContactNo = CASE WHEN ContactNo <> @ContactNo THEN @ContactNo ELSE ContactNo END,
-                                                            Address = CASE WHEN Address <> @Address THEN @Address ELSE Address END
-                                                            Logo = CASE WHEN Logo <> @Logo THEN @Logo ELSE Logo END
-                                                        WHERE SrNo = @CompanyID";
+                                            updateCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
+                                            updateCommand.Parameters.AddWithValue("@CompanyName", newCompanyName);
+                                            updateCommand.Parameters.AddWithValue("@Email", newEmail);
+                                            updateCommand.Parameters.AddWithValue("@ContactNo", newContact);
+                                            updateCommand.Parameters.AddWithValue("@Address", newAddress);
+                                            updateCommand.Parameters.AddWithValue("@Logo", imageData);
 
-                                            reader.Close();
-
-                                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                            int rowsAffected = updateCommand.ExecuteNonQuery();
+                                            if (rowsAffected > 0)
                                             {
-                                                updateCommand.Parameters.AddWithValue("@CompanyID", selectedCompanyID);
-                                                updateCommand.Parameters.AddWithValue("@CompanyName", newCompanyName);
-                                                updateCommand.Parameters.AddWithValue("@Email", newEmail);
-                                                updateCommand.Parameters.AddWithValue("@ContactNo", newContact);
-                                                updateCommand.Parameters.AddWithValue("@Address", newAddress);
-                                                updateCommand.Parameters.AddWithValue("@Logo", imageData);
-
-                                                int rowsAffected = updateCommand.ExecuteNonQuery();
-                                                if (rowsAffected > 0)
-                                                {
-                                                    MessageBox.Show("Record updated successfully.", "Success");
-                                                    RefreshData();
-                                                    Clear();
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
-                                                }
+                                                MessageBox.Show("Record updated successfully.", "Success");
+                                                RefreshData();
+                                                Clear();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
                                             }
                                         }
                                     }
                                 }
                             }
-
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("An error occurred: " + ex.Message, "Error");
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                    }
+
                 }
             }
             catch (Exception ex)

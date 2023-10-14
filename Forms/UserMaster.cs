@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Med_Preserve.Forms
 {
@@ -281,73 +280,65 @@ namespace Med_Preserve.Forms
                 {
                     connection.Open();
 
-                    using (SqlTransaction transaction = connection.BeginTransaction())
+
+                    try
                     {
-                        try
+                        string selectQuery = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
+
+                        using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                         {
-                            string selectQuery = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
+                            selectCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
 
-                            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection, transaction))
+                            using (SqlDataReader reader = selectCommand.ExecuteReader())
                             {
-                                selectCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
-
-                                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                                if (reader.Read())
                                 {
-                                    if (reader.Read())
+                                    string vName = reader["Name"].ToString();
+                                    string vEmail = reader["Email"].ToString();
+                                    string vMobile = reader["Mobile"].ToString();
+                                    string vUserName = reader["UserName"].ToString();
+
+                                    if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName)
                                     {
-                                        string vName = reader["Name"].ToString();
-                                        string vEmail = reader["Email"].ToString();
-                                        string vMobile = reader["Mobile"].ToString();
-                                        string vUserName = reader["UserName"].ToString();
+                                        MessageBox.Show("No Changes Found.", "Prompt");
+                                    }
+                                    else
+                                    {
+                                        string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName WHERE UserId = @UID";
 
-                                        if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName)
+                                        reader.Close();
+
+                                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                         {
-                                            MessageBox.Show("No Changes Found.", "Prompt");
-                                        }
-                                        else
-                                        {
-                                            string updateQuery = @"UPDATE UserData
-                                                        SET Name = CASE WHEN Name <> @Name THEN @Name ELSE Name END,
-                                                            Email = CASE WHEN Email <> @Email THEN @Email ELSE Email END,
-                                                            Mobile = CASE WHEN Mobile <> @Mobile THEN @Mobile ELSE Mobile END,
-                                                            UserName = CASE WHEN UserName <> @UserName THEN @UserName ELSE UserName END
-                                                        WHERE UserId = @UID";
+                                            updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
+                                            updateCommand.Parameters.AddWithValue("@Name", newName);
+                                            updateCommand.Parameters.AddWithValue("@Email", newEmail);
+                                            updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
+                                            updateCommand.Parameters.AddWithValue("@UserName", newUserName);
 
-                                            reader.Close();
-
-                                            using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection, transaction))
+                                            int rowsAffected = updateCommand.ExecuteNonQuery();
+                                            if (rowsAffected > 0)
                                             {
-                                                updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
-                                                updateCommand.Parameters.AddWithValue("@Name", newName);
-                                                updateCommand.Parameters.AddWithValue("@Email", newEmail);
-                                                updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
-                                                updateCommand.Parameters.AddWithValue("@UserName", newUserName);
-
-                                                int rowsAffected = updateCommand.ExecuteNonQuery();
-                                                if (rowsAffected > 0)
-                                                {
-                                                    MessageBox.Show("Record updated successfully.", "Success");
-                                                    RefreshData();
-                                                    Clear();
-                                                }
-                                                else
-                                                {
-                                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
-                                                }
+                                                MessageBox.Show("Record updated successfully.", "Success");
+                                                RefreshData();
+                                                Clear();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
                                             }
                                         }
                                     }
                                 }
                             }
+                        }
 
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("An error occurred: " + ex.Message, "Error");
-                        }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -360,6 +351,24 @@ namespace Med_Preserve.Forms
         private void bt_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void tb_UID_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_UID.Text != "")
+            {
+                tb_R_Pass.Visible = false;
+                tb_R_ConPass.Visible = false;
+                lb_R_Pass.Visible = false;
+                lb_R_ConPass.Visible = false;
+            }
+            else
+            {
+                tb_R_Pass.Visible = true;
+                tb_R_ConPass.Visible = true;
+                lb_R_Pass.Visible = true;
+                lb_R_ConPass.Visible = true;
+            }
         }
     }
 }

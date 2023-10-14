@@ -332,6 +332,7 @@
             this.tb_UID.Name = "tb_UID";
             this.tb_UID.Size = new System.Drawing.Size(71, 20);
             this.tb_UID.TabIndex = 41;
+            this.tb_UID.TextChanged += new System.EventHandler(this.tb_UID_TextChanged);
             // 
             // bt_Close
             // 
