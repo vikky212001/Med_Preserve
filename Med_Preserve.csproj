@@ -95,6 +95,12 @@
     <Compile Include="Forms\LiveReading.Designer.cs">
       <DependentUpon>LiveReading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LoggerConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoggerConfig.Designer.cs">
+      <DependentUpon>LoggerConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoggerMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoggerConfig.resx">
+      <DependentUpon>LoggerConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoggerMaster.resx">
       <DependentUpon>LoggerMaster.cs</DependentUpon>
