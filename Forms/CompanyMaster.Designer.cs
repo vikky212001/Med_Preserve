@@ -72,6 +72,8 @@
             // 
             // dgv_CompanyMaster
             // 
+            this.dgv_CompanyMaster.AllowUserToAddRows = false;
+            this.dgv_CompanyMaster.AllowUserToDeleteRows = false;
             this.dgv_CompanyMaster.AutoGenerateColumns = false;
             this.dgv_CompanyMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_CompanyMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -84,6 +86,8 @@
             this.dgv_CompanyMaster.DataSource = this.companyMasterBindingSource;
             this.dgv_CompanyMaster.Location = new System.Drawing.Point(13, 13);
             this.dgv_CompanyMaster.Name = "dgv_CompanyMaster";
+            this.dgv_CompanyMaster.ReadOnly = true;
+            this.dgv_CompanyMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_CompanyMaster.Size = new System.Drawing.Size(644, 157);
             this.dgv_CompanyMaster.TabIndex = 0;
             this.dgv_CompanyMaster.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CompanyMaster_CellClick);
@@ -93,36 +97,42 @@
             this.srNoDataGridViewTextBoxColumn.DataPropertyName = "SrNo";
             this.srNoDataGridViewTextBoxColumn.HeaderText = "SrNo";
             this.srNoDataGridViewTextBoxColumn.Name = "srNoDataGridViewTextBoxColumn";
+            this.srNoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
             this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
             this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
             this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
+            this.companyNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contactNoDataGridViewTextBoxColumn
             // 
             this.contactNoDataGridViewTextBoxColumn.DataPropertyName = "ContactNo";
             this.contactNoDataGridViewTextBoxColumn.HeaderText = "ContactNo";
             this.contactNoDataGridViewTextBoxColumn.Name = "contactNoDataGridViewTextBoxColumn";
+            this.contactNoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // logoDataGridViewImageColumn
             // 
             this.logoDataGridViewImageColumn.DataPropertyName = "Logo";
             this.logoDataGridViewImageColumn.HeaderText = "Logo";
             this.logoDataGridViewImageColumn.Name = "logoDataGridViewImageColumn";
+            this.logoDataGridViewImageColumn.ReadOnly = true;
             // 
             // companyMasterBindingSource
             // 

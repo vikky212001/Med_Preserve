@@ -74,28 +74,28 @@
             // userMasterToolStripMenuItem
             // 
             this.userMasterToolStripMenuItem.Name = "userMasterToolStripMenuItem";
-            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.userMasterToolStripMenuItem.Text = "User Master";
             this.userMasterToolStripMenuItem.Click += new System.EventHandler(this.userMasterToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // deletedUserToolStripMenuItem
             // 
             this.deletedUserToolStripMenuItem.Name = "deletedUserToolStripMenuItem";
-            this.deletedUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletedUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.deletedUserToolStripMenuItem.Text = "Deleted User";
             this.deletedUserToolStripMenuItem.Click += new System.EventHandler(this.deletedUserToolStripMenuItem_Click);
             // 
             // companyMasterToolStripMenuItem
             // 
             this.companyMasterToolStripMenuItem.Name = "companyMasterToolStripMenuItem";
-            this.companyMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.companyMasterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.companyMasterToolStripMenuItem.Text = "Company Master";
             this.companyMasterToolStripMenuItem.Click += new System.EventHandler(this.companyMasterToolStripMenuItem_Click);
             // 
@@ -111,14 +111,16 @@
             // loggerMasterToolStripMenuItem
             // 
             this.loggerMasterToolStripMenuItem.Name = "loggerMasterToolStripMenuItem";
-            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loggerMasterToolStripMenuItem.Text = "Logger Master";
+            this.loggerMasterToolStripMenuItem.Click += new System.EventHandler(this.loggerMasterToolStripMenuItem_Click);
             // 
             // loggerConfigToolStripMenuItem
             // 
             this.loggerConfigToolStripMenuItem.Name = "loggerConfigToolStripMenuItem";
-            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loggerConfigToolStripMenuItem.Text = "Logger Config";
+            this.loggerConfigToolStripMenuItem.Click += new System.EventHandler(this.loggerConfigToolStripMenuItem_Click);
             // 
             // liveDataToolStripMenuItem
             // 

@@ -19,7 +19,7 @@ namespace Med_Preserve.Forms
 
         private void Home_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,8 +41,21 @@ namespace Med_Preserve.Forms
 
         private void companyMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             CompanyMaster companyMaster = new CompanyMaster();
             companyMaster.ShowDialog();
+        }
+
+        private void loggerMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoggerMaster loggerMaster = new LoggerMaster();
+            loggerMaster.ShowDialog();
+        }
+
+        private void loggerConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoggerConfig loggerConfig = new LoggerConfig();
+            loggerConfig.ShowDialog();
         }
     }
 }
