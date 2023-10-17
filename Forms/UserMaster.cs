@@ -1,8 +1,10 @@
 ﻿using Med_Preserve.Class;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Net.Mail;
 using System.Windows.Forms;
 
@@ -26,12 +28,19 @@ namespace Med_Preserve.Forms
             {
                 DataGridViewRow selectedRow = dgv_UserMaster.Rows[e.RowIndex];
                 UpdateUserFields(selectedRow);
+
+                var selectedUserIDs = dgv_UserMaster.Tag as List<dynamic>;
+                if (selectedUserIDs != null)
+                {
+                    int userID = selectedUserIDs.ElementAtOrDefault(e.RowIndex)?.UserID ?? -1; 
+                    tb_UID.Text = userID.ToString();
+                }
             }
         }
 
         private void UpdateUserFields(DataGridViewRow row)
         {
-            tb_UID.Text = row.Cells[0].Value.ToString();
+            //tb_UID.Text = row.Cells[0].Value.ToString();
             tb_Name.Text = row.Cells[1].Value.ToString();
             tb_Email.Text = row.Cells[2].Value.ToString();
             tb_Mobile.Text = row.Cells[3].Value.ToString();
@@ -89,6 +98,10 @@ namespace Med_Preserve.Forms
             {
                 HandleError("An error occurred while loading data.", ex);
             }
+            dgv_UserMaster.Columns["UserID"].Visible = false;
+            dgv_UserMaster.Tag = dataTable.AsEnumerable()
+                .Select(row => new { UserID = row.Field<int>("UserID") })
+                .ToList();
         }
 
         private void bt_Add_Click(object sender, EventArgs e)

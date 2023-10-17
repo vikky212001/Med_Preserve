@@ -111,14 +111,14 @@
             // loggerMasterToolStripMenuItem
             // 
             this.loggerMasterToolStripMenuItem.Name = "loggerMasterToolStripMenuItem";
-            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.loggerMasterToolStripMenuItem.Text = "Logger Master";
             this.loggerMasterToolStripMenuItem.Click += new System.EventHandler(this.loggerMasterToolStripMenuItem_Click);
             // 
             // loggerConfigToolStripMenuItem
             // 
             this.loggerConfigToolStripMenuItem.Name = "loggerConfigToolStripMenuItem";
-            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.loggerConfigToolStripMenuItem.Text = "Logger Config";
             this.loggerConfigToolStripMenuItem.Click += new System.EventHandler(this.loggerConfigToolStripMenuItem_Click);
             // 
