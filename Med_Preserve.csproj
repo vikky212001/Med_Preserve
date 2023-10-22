@@ -162,7 +162,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
@@ -211,8 +211,6 @@
     <None Include="Med_PreserveDataSet.xss">
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Med_Preserve_TemporaryKey.pfx" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

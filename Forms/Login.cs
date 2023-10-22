@@ -42,7 +42,7 @@ namespace Med_Preserve
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Password, IsAdmin FROM UserData WHERE UserName = @Username";
+                    string query = "SELECT Password, RoleID FROM UserData WHERE UserName = @Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -53,9 +53,9 @@ namespace Med_Preserve
                             if (reader.Read())
                             {
                                 string hashedPassword = reader["Password"].ToString();
-                                bool isAdmin = Convert.ToBoolean(reader["IsAdmin"]);
+                                int isAdmin = Convert.ToInt32(reader["RoleID"]);
 
-                                if (isAdmin)
+                                if (isAdmin == 1)
                                 {
                                     if (Password == hashedPassword)
                                     {
@@ -65,6 +65,20 @@ namespace Med_Preserve
                                     else
                                     {
                                         MessageBox.Show("Invalid admin password. Please try again.", "Error");
+                                    }
+                                }
+                                else if (isAdmin == 2)
+                                {
+                                    bool passwordMatches = passwordHasher.VerifyPassword(Password, hashedPassword);
+
+                                    if (passwordMatches)
+                                    {
+                                        MessageBox.Show("Manager Login Successful!", "Success");
+                                        return true;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Invalid username or password. Please try again.", "Error");
                                     }
                                 }
                                 else

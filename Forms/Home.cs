@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
@@ -19,7 +12,7 @@ namespace Med_Preserve.Forms
 
         private void Home_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,7 +34,7 @@ namespace Med_Preserve.Forms
 
         private void companyMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             CompanyMaster companyMaster = new CompanyMaster();
             companyMaster.ShowDialog();
         }
