@@ -29,17 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgv_CompanyMaster = new System.Windows.Forms.DataGridView();
-            this.srNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.companyMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
-            this.medPreserveDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companyMasterTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter();
             this.lb_CompanyName = new System.Windows.Forms.Label();
             this.lb_Address = new System.Windows.Forms.Label();
             this.lb_ContactNo = new System.Windows.Forms.Label();
@@ -62,96 +51,23 @@
             this.lb_SrNo = new System.Windows.Forms.Label();
             this.tb_Search = new System.Windows.Forms.TextBox();
             this.lb_Search = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medPreserveDataSetBindingSource)).BeginInit();
+            this.dgv_CompanyMaster = new System.Windows.Forms.DataGridView();
+            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
+            this.companyMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.companyMasterTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter();
+            this.srNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgv_CompanyMaster
-            // 
-            this.dgv_CompanyMaster.AllowUserToAddRows = false;
-            this.dgv_CompanyMaster.AllowUserToDeleteRows = false;
-            this.dgv_CompanyMaster.AutoGenerateColumns = false;
-            this.dgv_CompanyMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_CompanyMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.srNoDataGridViewTextBoxColumn,
-            this.companyNameDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.contactNoDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.logoDataGridViewImageColumn});
-            this.dgv_CompanyMaster.DataSource = this.companyMasterBindingSource;
-            this.dgv_CompanyMaster.Location = new System.Drawing.Point(13, 13);
-            this.dgv_CompanyMaster.Name = "dgv_CompanyMaster";
-            this.dgv_CompanyMaster.ReadOnly = true;
-            this.dgv_CompanyMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_CompanyMaster.Size = new System.Drawing.Size(644, 157);
-            this.dgv_CompanyMaster.TabIndex = 0;
-            this.dgv_CompanyMaster.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CompanyMaster_CellClick);
-            // 
-            // srNoDataGridViewTextBoxColumn
-            // 
-            this.srNoDataGridViewTextBoxColumn.DataPropertyName = "SrNo";
-            this.srNoDataGridViewTextBoxColumn.HeaderText = "SrNo";
-            this.srNoDataGridViewTextBoxColumn.Name = "srNoDataGridViewTextBoxColumn";
-            this.srNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // companyNameDataGridViewTextBoxColumn
-            // 
-            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
-            this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
-            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
-            this.companyNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contactNoDataGridViewTextBoxColumn
-            // 
-            this.contactNoDataGridViewTextBoxColumn.DataPropertyName = "ContactNo";
-            this.contactNoDataGridViewTextBoxColumn.HeaderText = "ContactNo";
-            this.contactNoDataGridViewTextBoxColumn.Name = "contactNoDataGridViewTextBoxColumn";
-            this.contactNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // logoDataGridViewImageColumn
-            // 
-            this.logoDataGridViewImageColumn.DataPropertyName = "Logo";
-            this.logoDataGridViewImageColumn.HeaderText = "Logo";
-            this.logoDataGridViewImageColumn.Name = "logoDataGridViewImageColumn";
-            this.logoDataGridViewImageColumn.ReadOnly = true;
-            // 
-            // companyMasterBindingSource
-            // 
-            this.companyMasterBindingSource.DataMember = "CompanyMaster";
-            this.companyMasterBindingSource.DataSource = this.med_PreserveDataSet;
-            // 
-            // med_PreserveDataSet
-            // 
-            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
-            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // medPreserveDataSetBindingSource
-            // 
-            this.medPreserveDataSetBindingSource.DataSource = this.med_PreserveDataSet;
-            this.medPreserveDataSetBindingSource.Position = 0;
-            // 
-            // companyMasterTableAdapter
-            // 
-            this.companyMasterTableAdapter.ClearBeforeFill = true;
             // 
             // lb_CompanyName
             // 
@@ -339,11 +255,87 @@
             this.lb_Search.TabIndex = 19;
             this.lb_Search.Text = "Search";
             // 
+            // dgv_CompanyMaster
+            // 
+            this.dgv_CompanyMaster.AutoGenerateColumns = false;
+            this.dgv_CompanyMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_CompanyMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.srNoDataGridViewTextBoxColumn,
+            this.companyNameDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.contactNoDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.logoDataGridViewImageColumn,
+            this.createdDateDataGridViewTextBoxColumn});
+            this.dgv_CompanyMaster.DataSource = this.companyMasterBindingSource;
+            this.dgv_CompanyMaster.Location = new System.Drawing.Point(13, 13);
+            this.dgv_CompanyMaster.Name = "dgv_CompanyMaster";
+            this.dgv_CompanyMaster.Size = new System.Drawing.Size(644, 150);
+            this.dgv_CompanyMaster.TabIndex = 21;
+            // 
+            // med_PreserveDataSet
+            // 
+            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
+            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // companyMasterBindingSource
+            // 
+            this.companyMasterBindingSource.DataMember = "CompanyMaster";
+            this.companyMasterBindingSource.DataSource = this.med_PreserveDataSet;
+            // 
+            // companyMasterTableAdapter
+            // 
+            this.companyMasterTableAdapter.ClearBeforeFill = true;
+            // 
+            // srNoDataGridViewTextBoxColumn
+            // 
+            this.srNoDataGridViewTextBoxColumn.DataPropertyName = "SrNo";
+            this.srNoDataGridViewTextBoxColumn.HeaderText = "SrNo";
+            this.srNoDataGridViewTextBoxColumn.Name = "srNoDataGridViewTextBoxColumn";
+            this.srNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // companyNameDataGridViewTextBoxColumn
+            // 
+            this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
+            this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
+            this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // contactNoDataGridViewTextBoxColumn
+            // 
+            this.contactNoDataGridViewTextBoxColumn.DataPropertyName = "ContactNo";
+            this.contactNoDataGridViewTextBoxColumn.HeaderText = "ContactNo";
+            this.contactNoDataGridViewTextBoxColumn.Name = "contactNoDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // logoDataGridViewImageColumn
+            // 
+            this.logoDataGridViewImageColumn.DataPropertyName = "Logo";
+            this.logoDataGridViewImageColumn.HeaderText = "Logo";
+            this.logoDataGridViewImageColumn.Name = "logoDataGridViewImageColumn";
+            // 
+            // createdDateDataGridViewTextBoxColumn
+            // 
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            // 
             // CompanyMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 450);
+            this.Controls.Add(this.dgv_CompanyMaster);
             this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.tb_SrNo);
@@ -364,34 +356,20 @@
             this.Controls.Add(this.lb_ContactNo);
             this.Controls.Add(this.lb_Address);
             this.Controls.Add(this.lb_CompanyName);
-            this.Controls.Add(this.dgv_CompanyMaster);
             this.Name = "CompanyMaster";
             this.Text = "CompanyMaster";
             this.Load += new System.EventHandler(this.CompanyMaster_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medPreserveDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgv_CompanyMaster;
-        private Med_PreserveDataSet med_PreserveDataSet;
-        private System.Windows.Forms.BindingSource medPreserveDataSetBindingSource;
-        private System.Windows.Forms.BindingSource companyMasterBindingSource;
-        private Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter companyMasterTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn srNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn companyNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn logoDataGridViewImageColumn;
         private System.Windows.Forms.Label lb_CompanyName;
         private System.Windows.Forms.Label lb_Address;
         private System.Windows.Forms.Label lb_ContactNo;
@@ -414,5 +392,16 @@
         private System.Windows.Forms.Label lb_SrNo;
         private System.Windows.Forms.TextBox tb_Search;
         private System.Windows.Forms.Label lb_Search;
+        private System.Windows.Forms.DataGridView dgv_CompanyMaster;
+        private Med_PreserveDataSet med_PreserveDataSet;
+        private System.Windows.Forms.BindingSource companyMasterBindingSource;
+        private Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter companyMasterTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn srNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn companyNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn logoDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
     }
 }

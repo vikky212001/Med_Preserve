@@ -40,7 +40,7 @@ namespace Med_Preserve.Forms
 
         private void UpdateUserFields(DataGridViewRow row)
         {
-            //tb_UID.Text = row.Cells[0].Value.ToString();
+            tb_UID.Text = row.Cells[0].Value.ToString();
             tb_Name.Text = row.Cells[1].Value.ToString();
             tb_Email.Text = row.Cells[2].Value.ToString();
             tb_Mobile.Text = row.Cells[3].Value.ToString();
@@ -54,7 +54,8 @@ namespace Med_Preserve.Forms
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM UserData WHERE IsDeleted = 0";
+                    string query = "SELECT UserData.*, Role.RoleType FROM UserData " +
+                       "INNER JOIN Role ON UserData.RoleID = Role.RoleID Where IsDeleted = 0";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
@@ -78,6 +79,7 @@ namespace Med_Preserve.Forms
                 }
             }
             tb_UID.Text = string.Empty;
+            cmb_Role.Text = "-SELECT-";
         }
 
         private void HandleError(string message, Exception ex)
@@ -87,21 +89,41 @@ namespace Med_Preserve.Forms
 
         private void UserMaster_Load(object sender, EventArgs e)
         {
-            tb_R_Pass.PasswordChar = '●';
-            tb_R_ConPass.PasswordChar = '●';
             try
             {
-                this.userDataTableAdapter.Fill(this.med_PreserveDataSet.UserData);
+                if (med_PreserveDataSet.UserData.Rows.Count == 0)
+                {
+                    this.userDataTableAdapter.Fill(this.med_PreserveDataSet.UserData);
+                }
+                tb_R_Pass.PasswordChar = '●';
+                tb_R_ConPass.PasswordChar = '●';
+                
+                dgv_UserMaster.Columns[0].Visible = false;
+                dgv_UserMaster.Columns[7].Visible = false;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT RoleType FROM Role";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            cmb_Role.Items.Insert(0, "-Select-");
+                            cmb_Role.DataSource = dataTable;
+                            cmb_Role.DisplayMember = "RoleType";
+                            cmb_Role.Text = "-SELECT-";
+                        }
+                    }
+                }
                 RefreshData();
             }
             catch (Exception ex)
             {
                 HandleError("An error occurred while loading data.", ex);
             }
-            dgv_UserMaster.Columns["UserID"].Visible = false;
-            dgv_UserMaster.Tag = dataTable.AsEnumerable()
-                .Select(row => new { UserID = row.Field<int>("UserID") })
-                .ToList();
+
         }
 
         private void bt_Add_Click(object sender, EventArgs e)
@@ -116,7 +138,11 @@ namespace Med_Preserve.Forms
                     string mobileValue = tb_Mobile.Text;
                     string userNameValue = tb_R_UName.Text;
                     string passValue = tb_R_Pass.Text;
+                    DateTime selectedDateTime = DateTime.Now;
+                    string FDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm");
+                    int index = cmb_Role.SelectedIndex + 1;
                     Duplication duplication = new Duplication();
+                    
 
                     if (string.IsNullOrWhiteSpace(nameValue) || string.IsNullOrWhiteSpace(emailValue) ||
                         string.IsNullOrWhiteSpace(mobileValue) || string.IsNullOrWhiteSpace(userNameValue) ||
@@ -147,8 +173,8 @@ namespace Med_Preserve.Forms
                     PasswordHasher passwordHasher = new PasswordHasher();
                     string hashedPassword = passwordHasher.HashPassword(passValue);
 
-                    string addQuery = "INSERT INTO UserData(Name, Email, Mobile, UserName, Password, IsDeleted, IsAdmin) " +
-                                      "VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @IsAdmin);";
+                    string addQuery = "INSERT INTO UserData(Name, Email, Mobile, UserName, Password, IsDeleted, RoleID, CreatedDate) " +
+                                      "VALUES (@Name, @Email, @Mobile, @UserName, @Password, @IsDeleted, @RoleID, @Date);";
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         command.Parameters.AddWithValue("@Name", nameValue);
@@ -157,7 +183,8 @@ namespace Med_Preserve.Forms
                         command.Parameters.AddWithValue("@UserName", userNameValue);
                         command.Parameters.AddWithValue("@Password", hashedPassword);
                         command.Parameters.AddWithValue("@IsDeleted", "False");
-                        command.Parameters.AddWithValue("@IsAdmin", "False");
+                        command.Parameters.AddWithValue("@RoleID", index);
+                        command.Parameters.AddWithValue("@Date", FDateTime);
                         command.ExecuteNonQuery();
                         MessageBox.Show("User created successfully.", "Prompt");
                         RefreshData();
@@ -292,16 +319,12 @@ namespace Med_Preserve.Forms
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
-
                     try
                     {
                         string selectQuery = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
-
                         using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                         {
                             selectCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
-
                             using (SqlDataReader reader = selectCommand.ExecuteReader())
                             {
                                 if (reader.Read())
@@ -310,7 +333,6 @@ namespace Med_Preserve.Forms
                                     string vEmail = reader["Email"].ToString();
                                     string vMobile = reader["Mobile"].ToString();
                                     string vUserName = reader["UserName"].ToString();
-
                                     if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName)
                                     {
                                         MessageBox.Show("No Changes Found.", "Prompt");
@@ -318,9 +340,7 @@ namespace Med_Preserve.Forms
                                     else
                                     {
                                         string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName WHERE UserId = @UID";
-
                                         reader.Close();
-
                                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                         {
                                             updateCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
@@ -345,7 +365,6 @@ namespace Med_Preserve.Forms
                                 }
                             }
                         }
-
                     }
                     catch (Exception ex)
                     {
@@ -374,6 +393,8 @@ namespace Med_Preserve.Forms
                 tb_R_ConPass.Visible = false;
                 lb_R_Pass.Visible = false;
                 lb_R_ConPass.Visible = false;
+                cmb_Role.Visible = false;
+                lb_Role.Visible = false;
             }
             else
             {
@@ -381,6 +402,8 @@ namespace Med_Preserve.Forms
                 tb_R_ConPass.Visible = true;
                 lb_R_Pass.Visible = true;
                 lb_R_ConPass.Visible = true;
+                cmb_Role.Visible = true;
+                lb_Role.Visible = true;
             }
         }
     }

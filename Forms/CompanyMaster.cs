@@ -25,6 +25,8 @@ namespace Med_Preserve.Forms
 
         private void CompanyMaster_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'med_PreserveDataSet.CompanyMaster' table. You can move, or remove it, as needed.
+            this.companyMasterTableAdapter.Fill(this.med_PreserveDataSet.CompanyMaster);
             try
             {
                 this.companyMasterTableAdapter.Fill(this.med_PreserveDataSet.CompanyMaster);
@@ -245,7 +247,7 @@ namespace Med_Preserve.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred while deleting the company.", "Error");
+                    MessageBox.Show("An error occurred while deleting the company." + ex.Message, "Error");
                 }
             }
         }

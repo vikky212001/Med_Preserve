@@ -37,7 +37,7 @@ namespace Med_Preserve.Forms
             }
             else
             {
-                MessageBox.Show("Provide SOme Reason", "Error");
+                MessageBox.Show("Provide Some Reason", "Error");
             }
         }
 
@@ -45,11 +45,6 @@ namespace Med_Preserve.Forms
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void Audit_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

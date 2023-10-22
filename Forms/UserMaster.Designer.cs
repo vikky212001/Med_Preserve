@@ -46,43 +46,46 @@
             this.lb_Mobile = new System.Windows.Forms.Label();
             this.lb_Email = new System.Windows.Forms.Label();
             this.lb_Name = new System.Windows.Forms.Label();
-            this.dgv_UserMaster = new System.Windows.Forms.DataGridView();
-            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
-            this.sensorDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sensorDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.SensorDataTableAdapter();
-            this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.lb_Search = new System.Windows.Forms.Label();
             this.tb_Search = new System.Windows.Forms.TextBox();
             this.tb_UID = new System.Windows.Forms.TextBox();
             this.bt_Close = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sensorDataBindingSource)).BeginInit();
+            this.lb_Role = new System.Windows.Forms.Label();
+            this.dgv_UserMaster = new System.Windows.Forms.DataGridView();
+            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
+            this.userDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
+            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isDeletedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.reasonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmb_Role = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_UserID
             // 
             this.lb_UserID.AutoSize = true;
-            this.lb_UserID.Location = new System.Drawing.Point(304, 179);
+            this.lb_UserID.Location = new System.Drawing.Point(420, 352);
             this.lb_UserID.Name = "lb_UserID";
             this.lb_UserID.Size = new System.Drawing.Size(52, 13);
             this.lb_UserID.TabIndex = 36;
             this.lb_UserID.Text = "User ID : ";
+            this.lb_UserID.Visible = false;
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(541, 271);
+            this.bt_Clear.Location = new System.Drawing.Point(632, 271);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 35;
@@ -92,7 +95,7 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(541, 307);
+            this.bt_Delete.Location = new System.Drawing.Point(632, 307);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
             this.bt_Delete.TabIndex = 34;
@@ -102,7 +105,7 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(541, 233);
+            this.bt_Update.Location = new System.Drawing.Point(632, 233);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(75, 23);
             this.bt_Update.TabIndex = 33;
@@ -112,7 +115,7 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(541, 193);
+            this.bt_Add.Location = new System.Drawing.Point(632, 193);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(75, 23);
             this.bt_Add.TabIndex = 32;
@@ -123,7 +126,7 @@
             // lb_R_ConPass
             // 
             this.lb_R_ConPass.AutoSize = true;
-            this.lb_R_ConPass.Location = new System.Drawing.Point(304, 321);
+            this.lb_R_ConPass.Location = new System.Drawing.Point(286, 321);
             this.lb_R_ConPass.Name = "lb_R_ConPass";
             this.lb_R_ConPass.Size = new System.Drawing.Size(91, 13);
             this.lb_R_ConPass.TabIndex = 31;
@@ -131,7 +134,7 @@
             // 
             // tb_R_ConPass
             // 
-            this.tb_R_ConPass.Location = new System.Drawing.Point(307, 349);
+            this.tb_R_ConPass.Location = new System.Drawing.Point(289, 349);
             this.tb_R_ConPass.Name = "tb_R_ConPass";
             this.tb_R_ConPass.Size = new System.Drawing.Size(100, 20);
             this.tb_R_ConPass.TabIndex = 30;
@@ -152,7 +155,7 @@
             // 
             // tb_Mobile
             // 
-            this.tb_Mobile.Location = new System.Drawing.Point(307, 259);
+            this.tb_Mobile.Location = new System.Drawing.Point(289, 259);
             this.tb_Mobile.MaxLength = 10;
             this.tb_Mobile.Name = "tb_Mobile";
             this.tb_Mobile.Size = new System.Drawing.Size(100, 20);
@@ -196,7 +199,7 @@
             // lb_Mobile
             // 
             this.lb_Mobile.AutoSize = true;
-            this.lb_Mobile.Location = new System.Drawing.Point(304, 233);
+            this.lb_Mobile.Location = new System.Drawing.Point(286, 233);
             this.lb_Mobile.Name = "lb_Mobile";
             this.lb_Mobile.Size = new System.Drawing.Size(38, 13);
             this.lb_Mobile.TabIndex = 22;
@@ -220,6 +223,55 @@
             this.lb_Name.TabIndex = 20;
             this.lb_Name.Text = "Name";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // lb_Search
+            // 
+            this.lb_Search.AutoSize = true;
+            this.lb_Search.Location = new System.Drawing.Point(25, 179);
+            this.lb_Search.Name = "lb_Search";
+            this.lb_Search.Size = new System.Drawing.Size(41, 13);
+            this.lb_Search.TabIndex = 39;
+            this.lb_Search.Text = "Search";
+            // 
+            // tb_Search
+            // 
+            this.tb_Search.Location = new System.Drawing.Point(72, 176);
+            this.tb_Search.Name = "tb_Search";
+            this.tb_Search.Size = new System.Drawing.Size(182, 20);
+            this.tb_Search.TabIndex = 40;
+            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
+            // 
+            // tb_UID
+            // 
+            this.tb_UID.Location = new System.Drawing.Point(478, 349);
+            this.tb_UID.Name = "tb_UID";
+            this.tb_UID.Size = new System.Drawing.Size(71, 20);
+            this.tb_UID.TabIndex = 41;
+            this.tb_UID.Visible = false;
+            this.tb_UID.TextChanged += new System.EventHandler(this.tb_UID_TextChanged);
+            // 
+            // bt_Close
+            // 
+            this.bt_Close.Location = new System.Drawing.Point(632, 339);
+            this.bt_Close.Name = "bt_Close";
+            this.bt_Close.Size = new System.Drawing.Size(75, 23);
+            this.bt_Close.TabIndex = 42;
+            this.bt_Close.Text = "Close";
+            this.bt_Close.UseVisualStyleBackColor = true;
+            this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
+            // 
+            // lb_Role
+            // 
+            this.lb_Role.AutoSize = true;
+            this.lb_Role.Location = new System.Drawing.Point(420, 263);
+            this.lb_Role.Name = "lb_Role";
+            this.lb_Role.Size = new System.Drawing.Size(29, 13);
+            this.lb_Role.TabIndex = 43;
+            this.lb_Role.Text = "Role";
+            // 
             // dgv_UserMaster
             // 
             this.dgv_UserMaster.AllowUserToAddRows = false;
@@ -227,26 +279,43 @@
             this.dgv_UserMaster.AutoGenerateColumns = false;
             this.dgv_UserMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_UserMaster.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserID,
+            this.userIDDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn,
-            this.passwordDataGridViewTextBoxColumn});
+            this.passwordDataGridViewTextBoxColumn,
+            this.isDeletedDataGridViewCheckBoxColumn,
+            this.reasonDataGridViewTextBoxColumn,
+            this.roleIDDataGridViewTextBoxColumn,
+            this.createdDateDataGridViewTextBoxColumn});
             this.dgv_UserMaster.DataSource = this.userDataBindingSource;
             this.dgv_UserMaster.Location = new System.Drawing.Point(12, 12);
             this.dgv_UserMaster.Name = "dgv_UserMaster";
             this.dgv_UserMaster.ReadOnly = true;
-            this.dgv_UserMaster.Size = new System.Drawing.Size(641, 150);
-            this.dgv_UserMaster.TabIndex = 38;
-            this.dgv_UserMaster.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_UserMaster_CellFormatting);
+            this.dgv_UserMaster.Size = new System.Drawing.Size(709, 150);
+            this.dgv_UserMaster.TabIndex = 44;
             // 
-            // UserID
+            // med_PreserveDataSet
             // 
-            this.UserID.DataPropertyName = "UserID";
-            this.UserID.HeaderText = "UserID";
-            this.UserID.Name = "UserID";
-            this.UserID.ReadOnly = true;
+            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
+            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // userDataBindingSource
+            // 
+            this.userDataBindingSource.DataMember = "UserData";
+            this.userDataBindingSource.DataSource = this.med_PreserveDataSet;
+            // 
+            // userDataTableAdapter
+            // 
+            this.userDataTableAdapter.ClearBeforeFill = true;
+            // 
+            // userIDDataGridViewTextBoxColumn
+            // 
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            this.userIDDataGridViewTextBoxColumn.HeaderText = "UserID";
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -283,88 +352,55 @@
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // userDataBindingSource
+            // isDeletedDataGridViewCheckBoxColumn
             // 
-            this.userDataBindingSource.DataMember = "UserData";
-            this.userDataBindingSource.DataSource = this.med_PreserveDataSet;
+            this.isDeletedDataGridViewCheckBoxColumn.DataPropertyName = "IsDeleted";
+            this.isDeletedDataGridViewCheckBoxColumn.HeaderText = "IsDeleted";
+            this.isDeletedDataGridViewCheckBoxColumn.Name = "isDeletedDataGridViewCheckBoxColumn";
+            this.isDeletedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
-            // med_PreserveDataSet
+            // reasonDataGridViewTextBoxColumn
             // 
-            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
-            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.reasonDataGridViewTextBoxColumn.DataPropertyName = "Reason";
+            this.reasonDataGridViewTextBoxColumn.HeaderText = "Reason";
+            this.reasonDataGridViewTextBoxColumn.Name = "reasonDataGridViewTextBoxColumn";
+            this.reasonDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // sensorDataBindingSource
+            // roleIDDataGridViewTextBoxColumn
             // 
-            this.sensorDataBindingSource.DataMember = "SensorData";
-            this.sensorDataBindingSource.DataSource = this.med_PreserveDataSet;
+            this.roleIDDataGridViewTextBoxColumn.DataPropertyName = "RoleID";
+            this.roleIDDataGridViewTextBoxColumn.HeaderText = "RoleID";
+            this.roleIDDataGridViewTextBoxColumn.Name = "roleIDDataGridViewTextBoxColumn";
+            this.roleIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // sensorDataTableAdapter
+            // createdDateDataGridViewTextBoxColumn
             // 
-            this.sensorDataTableAdapter.ClearBeforeFill = true;
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // userDataTableAdapter
+            // cmb_Role
             // 
-            this.userDataTableAdapter.ClearBeforeFill = true;
-            // 
-            // errorProvider
-            // 
-            this.errorProvider.ContainerControl = this;
-            // 
-            // lb_Search
-            // 
-            this.lb_Search.AutoSize = true;
-            this.lb_Search.Location = new System.Drawing.Point(25, 179);
-            this.lb_Search.Name = "lb_Search";
-            this.lb_Search.Size = new System.Drawing.Size(41, 13);
-            this.lb_Search.TabIndex = 39;
-            this.lb_Search.Text = "Search";
-            // 
-            // tb_Search
-            // 
-            this.tb_Search.Location = new System.Drawing.Point(72, 176);
-            this.tb_Search.Name = "tb_Search";
-            this.tb_Search.Size = new System.Drawing.Size(182, 20);
-            this.tb_Search.TabIndex = 40;
-            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
-            // 
-            // tb_UID
-            // 
-            this.tb_UID.Location = new System.Drawing.Point(362, 176);
-            this.tb_UID.Name = "tb_UID";
-            this.tb_UID.Size = new System.Drawing.Size(71, 20);
-            this.tb_UID.TabIndex = 41;
-            this.tb_UID.TextChanged += new System.EventHandler(this.tb_UID_TextChanged);
-            // 
-            // bt_Close
-            // 
-            this.bt_Close.Location = new System.Drawing.Point(541, 339);
-            this.bt_Close.Name = "bt_Close";
-            this.bt_Close.Size = new System.Drawing.Size(75, 23);
-            this.bt_Close.TabIndex = 42;
-            this.bt_Close.Text = "Close";
-            this.bt_Close.UseVisualStyleBackColor = true;
-            this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(372, 213);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "label1";
+            this.cmb_Role.FormattingEnabled = true;
+            this.cmb_Role.Location = new System.Drawing.Point(455, 258);
+            this.cmb_Role.Name = "cmb_Role";
+            this.cmb_Role.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Role.TabIndex = 45;
+            this.cmb_Role.Text = "-SELECT-";
             // 
             // UserMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 384);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(737, 384);
+            this.Controls.Add(this.cmb_Role);
+            this.Controls.Add(this.dgv_UserMaster);
+            this.Controls.Add(this.lb_Role);
             this.Controls.Add(this.bt_Close);
             this.Controls.Add(this.tb_UID);
             this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.lb_Search);
-            this.Controls.Add(this.dgv_UserMaster);
             this.Controls.Add(this.lb_UserID);
             this.Controls.Add(this.bt_Clear);
             this.Controls.Add(this.bt_Delete);
@@ -386,11 +422,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserMaster";
             this.Load += new System.EventHandler(this.UserMaster_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sensorDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,23 +449,26 @@
         private System.Windows.Forms.Label lb_Mobile;
         private System.Windows.Forms.Label lb_Email;
         private System.Windows.Forms.Label lb_Name;
-        private System.Windows.Forms.DataGridView dgv_UserMaster;
-        private Med_PreserveDataSet med_PreserveDataSet;
-        private System.Windows.Forms.BindingSource sensorDataBindingSource;
-        private Med_PreserveDataSetTableAdapters.SensorDataTableAdapter sensorDataTableAdapter;
-        private System.Windows.Forms.BindingSource userDataBindingSource;
-        private Med_PreserveDataSetTableAdapters.UserDataTableAdapter userDataTableAdapter;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.TextBox tb_Search;
         private System.Windows.Forms.Label lb_Search;
         private System.Windows.Forms.TextBox tb_UID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
+        private System.Windows.Forms.Button bt_Close;
+        private System.Windows.Forms.Label lb_Role;
+        private System.Windows.Forms.DataGridView dgv_UserMaster;
+        private Med_PreserveDataSet med_PreserveDataSet;
+        private System.Windows.Forms.BindingSource userDataBindingSource;
+        private Med_PreserveDataSetTableAdapters.UserDataTableAdapter userDataTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button bt_Close;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isDeletedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn reasonDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn roleIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox cmb_Role;
     }
 }

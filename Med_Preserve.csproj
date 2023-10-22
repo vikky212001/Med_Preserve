@@ -154,15 +154,12 @@
     <Compile Include="Forms\UserMaster.Designer.cs">
       <DependentUpon>UserMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Med_PreserveDataSet.cs">
-      <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="Class\Program.cs" />
     <Compile Include="Med_PreserveDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Class\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
