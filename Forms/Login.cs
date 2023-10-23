@@ -42,7 +42,7 @@ namespace Med_Preserve
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Password, RoleID FROM UserData WHERE UserName = @Username";
+                    string query = "Select UserData.Password, UserData.UserID, Role.RoleType From UserData INNER JOIN Role ON UserData.RoleID = Role.RoleID WHERE UserData.UserName =@Username";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -53,13 +53,17 @@ namespace Med_Preserve
                             if (reader.Read())
                             {
                                 string hashedPassword = reader["Password"].ToString();
-                                int isAdmin = Convert.ToInt32(reader["RoleID"]);
+                                string role = Convert.ToString(reader["RoleType"]);
+                                int uid = Convert.ToInt32(reader["UserID"]); 
 
-                                if (isAdmin == 1)
+                                if (role == "Admin")
                                 {
                                     if (Password == hashedPassword)
                                     {
                                         MessageBox.Show("Admin Login Successful!", "Success");
+                                        Global.UserRole = "Admin";
+                                        Global.UserId = uid;
+                                        Global.UserName = UserName;
                                         return true;
                                     }
                                     else
@@ -67,12 +71,15 @@ namespace Med_Preserve
                                         MessageBox.Show("Invalid admin password. Please try again.", "Error");
                                     }
                                 }
-                                else if (isAdmin == 2)
+                                else if (role == "Manager")
                                 {
                                     bool passwordMatches = passwordHasher.VerifyPassword(Password, hashedPassword);
 
                                     if (passwordMatches)
                                     {
+                                        Global.UserRole = "Manager";
+                                        Global.UserId = uid;
+                                        Global.UserName = UserName;
                                         MessageBox.Show("Manager Login Successful!", "Success");
                                         return true;
                                     }
@@ -88,6 +95,9 @@ namespace Med_Preserve
                                     if (passwordMatches)
                                     {
                                         MessageBox.Show("User Login Successful!", "Success");
+                                        Global.UserRole = role;
+                                        Global.UserId = uid;
+                                        Global.UserName = UserName;
                                         return true;
                                     }
                                     else

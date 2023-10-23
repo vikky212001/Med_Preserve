@@ -111,14 +111,14 @@
             // loggerMasterToolStripMenuItem
             // 
             this.loggerMasterToolStripMenuItem.Name = "loggerMasterToolStripMenuItem";
-            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loggerMasterToolStripMenuItem.Text = "Logger Master";
             this.loggerMasterToolStripMenuItem.Click += new System.EventHandler(this.loggerMasterToolStripMenuItem_Click);
             // 
             // loggerConfigToolStripMenuItem
             // 
             this.loggerConfigToolStripMenuItem.Name = "loggerConfigToolStripMenuItem";
-            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loggerConfigToolStripMenuItem.Text = "Logger Config";
             this.loggerConfigToolStripMenuItem.Click += new System.EventHandler(this.loggerConfigToolStripMenuItem_Click);
             // 
@@ -134,13 +134,14 @@
             // liveReadingToolStripMenuItem
             // 
             this.liveReadingToolStripMenuItem.Name = "liveReadingToolStripMenuItem";
-            this.liveReadingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.liveReadingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.liveReadingToolStripMenuItem.Text = "Live Reading";
+            this.liveReadingToolStripMenuItem.Click += new System.EventHandler(this.liveReadingToolStripMenuItem_Click);
             // 
             // doenloadDataToolStripMenuItem
             // 
             this.doenloadDataToolStripMenuItem.Name = "doenloadDataToolStripMenuItem";
-            this.doenloadDataToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.doenloadDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.doenloadDataToolStripMenuItem.Text = "Download Data";
             // 
             // reportToolStripMenuItem

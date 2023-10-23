@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Duplication.cs" />
+    <Compile Include="Class\Global.cs" />
     <Compile Include="Class\PasswordHasher.cs" />
     <Compile Include="Forms\ChangePassword.cs">
       <SubType>Form</SubType>

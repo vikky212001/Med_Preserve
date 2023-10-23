@@ -52,6 +52,7 @@ namespace Med_Preserve.Forms
 
         private void DeletedUser_Load(object sender, EventArgs e)
         {
+            dgv_DeletedUser.Columns[0].Visible = false;
             userDataTableAdapter.Fill(med_PreserveDataSet.UserData);
             RefreshData();
         }

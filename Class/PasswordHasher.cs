@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BCrypt.Net;
-
-namespace Med_Preserve.Class
+﻿namespace Med_Preserve.Class
 {
     internal class PasswordHasher
     {
@@ -19,3 +12,4 @@ namespace Med_Preserve.Class
         }
     }
 }
+    

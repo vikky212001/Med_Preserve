@@ -28,13 +28,6 @@ namespace Med_Preserve.Forms
             {
                 DataGridViewRow selectedRow = dgv_UserMaster.Rows[e.RowIndex];
                 UpdateUserFields(selectedRow);
-
-                var selectedUserIDs = dgv_UserMaster.Tag as List<dynamic>;
-                if (selectedUserIDs != null)
-                {
-                    int userID = selectedUserIDs.ElementAtOrDefault(e.RowIndex)?.UserID ?? -1; 
-                    tb_UID.Text = userID.ToString();
-                }
             }
         }
 
@@ -54,12 +47,13 @@ namespace Med_Preserve.Forms
                 try
                 {
                     connection.Open();
-                    string query = "SELECT UserData.*, Role.RoleType FROM UserData " +
-                       "INNER JOIN Role ON UserData.RoleID = Role.RoleID Where IsDeleted = 0";
+                    string query = "SELECT UserData.UserID, UserData.Name, UserData.Email, UserData.Mobile, UserData.UserName, UserData.Password, Role.RoleType, UserData.CreatedDate " +
+                                      "FROM UserData " +
+                                      "INNER JOIN Role ON UserData.RoleID = Role.RoleID " +
+                                      "WHERE (UserData.IsDeleted = 0)";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
-
                     dgv_UserMaster.DataSource = dataTable;
                 }
                 catch (Exception ex)
@@ -89,17 +83,13 @@ namespace Med_Preserve.Forms
 
         private void UserMaster_Load(object sender, EventArgs e)
         {
+            RefreshData();
             try
             {
-                if (med_PreserveDataSet.UserData.Rows.Count == 0)
-                {
-                    this.userDataTableAdapter.Fill(this.med_PreserveDataSet.UserData);
-                }
                 tb_R_Pass.PasswordChar = '●';
                 tb_R_ConPass.PasswordChar = '●';
-                
+
                 dgv_UserMaster.Columns[0].Visible = false;
-                dgv_UserMaster.Columns[7].Visible = false;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -110,22 +100,19 @@ namespace Med_Preserve.Forms
                         {
                             DataTable dataTable = new DataTable();
                             adapter.Fill(dataTable);
-                            cmb_Role.Items.Insert(0, "-Select-");
                             cmb_Role.DataSource = dataTable;
                             cmb_Role.DisplayMember = "RoleType";
                             cmb_Role.Text = "-SELECT-";
                         }
                     }
+                    
                 }
-                RefreshData();
             }
             catch (Exception ex)
             {
                 HandleError("An error occurred while loading data.", ex);
             }
-
         }
-
         private void bt_Add_Click(object sender, EventArgs e)
         {
             try
@@ -142,7 +129,7 @@ namespace Med_Preserve.Forms
                     string FDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm");
                     int index = cmb_Role.SelectedIndex + 1;
                     Duplication duplication = new Duplication();
-                    
+
 
                     if (string.IsNullOrWhiteSpace(nameValue) || string.IsNullOrWhiteSpace(emailValue) ||
                         string.IsNullOrWhiteSpace(mobileValue) || string.IsNullOrWhiteSpace(userNameValue) ||
@@ -210,7 +197,6 @@ namespace Med_Preserve.Forms
                 if (tb_UID.Text != "")
                 {
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                     if (result == DialogResult.Yes)
                     {
                         int primaryKeyValue;
@@ -271,7 +257,6 @@ namespace Med_Preserve.Forms
         private void tb_Email_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             string email = tb_Email.Text.Trim();
-
             try
             {
                 MailAddress mailAddress = new MailAddress(email);

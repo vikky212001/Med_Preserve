@@ -78,7 +78,7 @@
             this.passwordDataGridViewTextBoxColumn,
             this.Reason});
             this.dgv_DeletedUser.DataSource = this.userDataBindingSource;
-            this.dgv_DeletedUser.Location = new System.Drawing.Point(12, 12);
+            this.dgv_DeletedUser.Location = new System.Drawing.Point(12, 38);
             this.dgv_DeletedUser.Name = "dgv_DeletedUser";
             this.dgv_DeletedUser.ReadOnly = true;
             this.dgv_DeletedUser.Size = new System.Drawing.Size(742, 150);
@@ -98,36 +98,42 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
             this.mobileDataGridViewTextBoxColumn.HeaderText = "Mobile";
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // userNameDataGridViewTextBoxColumn
             // 
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // passwordDataGridViewTextBoxColumn
             // 
             this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
             this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Reason
             // 
             this.Reason.DataPropertyName = "Reason";
             this.Reason.HeaderText = "Reason";
             this.Reason.Name = "Reason";
+            this.Reason.ReadOnly = true;
             // 
             // userDataBindingSource
             // 
@@ -146,7 +152,7 @@
             // lb_Name
             // 
             this.lb_Name.AutoSize = true;
-            this.lb_Name.Location = new System.Drawing.Point(250, 176);
+            this.lb_Name.Location = new System.Drawing.Point(34, 198);
             this.lb_Name.Name = "lb_Name";
             this.lb_Name.Size = new System.Drawing.Size(35, 13);
             this.lb_Name.TabIndex = 2;
@@ -155,7 +161,7 @@
             // lb_UName
             // 
             this.lb_UName.AutoSize = true;
-            this.lb_UName.Location = new System.Drawing.Point(29, 221);
+            this.lb_UName.Location = new System.Drawing.Point(222, 201);
             this.lb_UName.Name = "lb_UName";
             this.lb_UName.Size = new System.Drawing.Size(60, 13);
             this.lb_UName.TabIndex = 3;
@@ -164,16 +170,17 @@
             // lb_UID
             // 
             this.lb_UID.AutoSize = true;
-            this.lb_UID.Location = new System.Drawing.Point(268, 221);
+            this.lb_UID.Location = new System.Drawing.Point(362, 354);
             this.lb_UID.Name = "lb_UID";
             this.lb_UID.Size = new System.Drawing.Size(43, 13);
             this.lb_UID.TabIndex = 4;
             this.lb_UID.Text = "User ID";
+            this.lb_UID.Visible = false;
             // 
             // lb_Email
             // 
             this.lb_Email.AutoSize = true;
-            this.lb_Email.Location = new System.Drawing.Point(29, 261);
+            this.lb_Email.Location = new System.Drawing.Point(29, 249);
             this.lb_Email.Name = "lb_Email";
             this.lb_Email.Size = new System.Drawing.Size(32, 13);
             this.lb_Email.TabIndex = 5;
@@ -182,7 +189,7 @@
             // lb_Mobile
             // 
             this.lb_Mobile.AutoSize = true;
-            this.lb_Mobile.Location = new System.Drawing.Point(270, 265);
+            this.lb_Mobile.Location = new System.Drawing.Point(247, 249);
             this.lb_Mobile.Name = "lb_Mobile";
             this.lb_Mobile.Size = new System.Drawing.Size(38, 13);
             this.lb_Mobile.TabIndex = 6;
@@ -190,35 +197,36 @@
             // 
             // tb_R_UName
             // 
-            this.tb_R_UName.Location = new System.Drawing.Point(101, 218);
+            this.tb_R_UName.Location = new System.Drawing.Point(294, 198);
             this.tb_R_UName.Name = "tb_R_UName";
             this.tb_R_UName.Size = new System.Drawing.Size(100, 20);
             this.tb_R_UName.TabIndex = 7;
             // 
             // tb_Email
             // 
-            this.tb_Email.Location = new System.Drawing.Point(101, 258);
+            this.tb_Email.Location = new System.Drawing.Point(101, 246);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(100, 20);
             this.tb_Email.TabIndex = 8;
             // 
             // tb_UID
             // 
-            this.tb_UID.Location = new System.Drawing.Point(317, 218);
+            this.tb_UID.Location = new System.Drawing.Point(411, 351);
             this.tb_UID.Name = "tb_UID";
             this.tb_UID.Size = new System.Drawing.Size(100, 20);
             this.tb_UID.TabIndex = 9;
+            this.tb_UID.Visible = false;
             // 
             // tb_Mobile
             // 
-            this.tb_Mobile.Location = new System.Drawing.Point(317, 258);
+            this.tb_Mobile.Location = new System.Drawing.Point(294, 242);
             this.tb_Mobile.Name = "tb_Mobile";
             this.tb_Mobile.Size = new System.Drawing.Size(100, 20);
             this.tb_Mobile.TabIndex = 10;
             // 
             // bt_Recover
             // 
-            this.bt_Recover.Location = new System.Drawing.Point(37, 313);
+            this.bt_Recover.Location = new System.Drawing.Point(30, 301);
             this.bt_Recover.Name = "bt_Recover";
             this.bt_Recover.Size = new System.Drawing.Size(75, 23);
             this.bt_Recover.TabIndex = 11;
@@ -228,7 +236,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(184, 313);
+            this.bt_Clear.Location = new System.Drawing.Point(177, 301);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 12;
@@ -238,7 +246,7 @@
             // 
             // bt_Cancel
             // 
-            this.bt_Cancel.Location = new System.Drawing.Point(319, 313);
+            this.bt_Cancel.Location = new System.Drawing.Point(312, 301);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(75, 23);
             this.bt_Cancel.TabIndex = 13;
@@ -249,7 +257,7 @@
             // lb_reason
             // 
             this.lb_reason.AutoSize = true;
-            this.lb_reason.Location = new System.Drawing.Point(476, 180);
+            this.lb_reason.Location = new System.Drawing.Point(421, 205);
             this.lb_reason.Name = "lb_reason";
             this.lb_reason.Size = new System.Drawing.Size(44, 13);
             this.lb_reason.TabIndex = 14;
@@ -257,7 +265,7 @@
             // 
             // rtb_Reason
             // 
-            this.rtb_Reason.Location = new System.Drawing.Point(540, 173);
+            this.rtb_Reason.Location = new System.Drawing.Point(485, 198);
             this.rtb_Reason.Name = "rtb_Reason";
             this.rtb_Reason.Size = new System.Drawing.Size(203, 126);
             this.rtb_Reason.TabIndex = 15;
@@ -265,7 +273,7 @@
             // 
             // tb_Search
             // 
-            this.tb_Search.Location = new System.Drawing.Point(101, 177);
+            this.tb_Search.Location = new System.Drawing.Point(654, 12);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(100, 20);
             this.tb_Search.TabIndex = 16;
@@ -274,7 +282,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 180);
+            this.label1.Location = new System.Drawing.Point(582, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 17;
@@ -282,14 +290,14 @@
             // 
             // tb_Name
             // 
-            this.tb_Name.Location = new System.Drawing.Point(317, 177);
+            this.tb_Name.Location = new System.Drawing.Point(101, 199);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(100, 20);
             this.tb_Name.TabIndex = 18;
             // 
             // bt_pDelete
             // 
-            this.bt_pDelete.Location = new System.Drawing.Point(592, 313);
+            this.bt_pDelete.Location = new System.Drawing.Point(524, 330);
             this.bt_pDelete.Name = "bt_pDelete";
             this.bt_pDelete.Size = new System.Drawing.Size(117, 23);
             this.bt_pDelete.TabIndex = 19;
@@ -322,7 +330,7 @@
             this.Controls.Add(this.lb_Name);
             this.Controls.Add(this.dgv_DeletedUser);
             this.Name = "DeletedUser";
-            this.Text = "DeletedUser";
+            this.Text = "Deleted User";
             this.Load += new System.EventHandler(this.DeletedUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_DeletedUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataBindingSource)).EndInit();

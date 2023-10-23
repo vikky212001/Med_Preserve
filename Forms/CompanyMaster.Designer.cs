@@ -52,9 +52,6 @@
             this.tb_Search = new System.Windows.Forms.TextBox();
             this.lb_Search = new System.Windows.Forms.Label();
             this.dgv_CompanyMaster = new System.Windows.Forms.DataGridView();
-            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
-            this.companyMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.companyMasterTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter();
             this.srNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,17 +59,20 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
+            this.companyMasterTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.CompanyMasterTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_CompanyName
             // 
             this.lb_CompanyName.AutoSize = true;
-            this.lb_CompanyName.Location = new System.Drawing.Point(13, 219);
+            this.lb_CompanyName.Location = new System.Drawing.Point(13, 201);
             this.lb_CompanyName.Name = "lb_CompanyName";
             this.lb_CompanyName.Size = new System.Drawing.Size(82, 13);
             this.lb_CompanyName.TabIndex = 1;
@@ -81,7 +81,7 @@
             // lb_Address
             // 
             this.lb_Address.AutoSize = true;
-            this.lb_Address.Location = new System.Drawing.Point(13, 253);
+            this.lb_Address.Location = new System.Drawing.Point(13, 235);
             this.lb_Address.Name = "lb_Address";
             this.lb_Address.Size = new System.Drawing.Size(45, 13);
             this.lb_Address.TabIndex = 2;
@@ -90,7 +90,7 @@
             // lb_ContactNo
             // 
             this.lb_ContactNo.AutoSize = true;
-            this.lb_ContactNo.Location = new System.Drawing.Point(440, 222);
+            this.lb_ContactNo.Location = new System.Drawing.Point(385, 204);
             this.lb_ContactNo.Name = "lb_ContactNo";
             this.lb_ContactNo.Size = new System.Drawing.Size(61, 13);
             this.lb_ContactNo.TabIndex = 3;
@@ -103,7 +103,7 @@
             // lb_Logo
             // 
             this.lb_Logo.AutoSize = true;
-            this.lb_Logo.Location = new System.Drawing.Point(470, 256);
+            this.lb_Logo.Location = new System.Drawing.Point(415, 238);
             this.lb_Logo.Name = "lb_Logo";
             this.lb_Logo.Size = new System.Drawing.Size(31, 13);
             this.lb_Logo.TabIndex = 4;
@@ -111,7 +111,7 @@
             // 
             // pb_Logo
             // 
-            this.pb_Logo.Location = new System.Drawing.Point(507, 253);
+            this.pb_Logo.Location = new System.Drawing.Point(452, 235);
             this.pb_Logo.Name = "pb_Logo";
             this.pb_Logo.Size = new System.Drawing.Size(150, 100);
             this.pb_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -120,7 +120,7 @@
             // 
             // rtb_Address
             // 
-            this.rtb_Address.Location = new System.Drawing.Point(117, 253);
+            this.rtb_Address.Location = new System.Drawing.Point(117, 235);
             this.rtb_Address.Name = "rtb_Address";
             this.rtb_Address.Size = new System.Drawing.Size(250, 78);
             this.rtb_Address.TabIndex = 6;
@@ -128,14 +128,14 @@
             // 
             // tb_CompanyName
             // 
-            this.tb_CompanyName.Location = new System.Drawing.Point(117, 216);
+            this.tb_CompanyName.Location = new System.Drawing.Point(117, 198);
             this.tb_CompanyName.Name = "tb_CompanyName";
             this.tb_CompanyName.Size = new System.Drawing.Size(165, 20);
             this.tb_CompanyName.TabIndex = 7;
             // 
             // tb_ContactNo
             // 
-            this.tb_ContactNo.Location = new System.Drawing.Point(507, 219);
+            this.tb_ContactNo.Location = new System.Drawing.Point(452, 201);
             this.tb_ContactNo.Name = "tb_ContactNo";
             this.tb_ContactNo.Size = new System.Drawing.Size(121, 20);
             this.tb_ContactNo.TabIndex = 8;
@@ -183,7 +183,7 @@
             // 
             // bt_Browse
             // 
-            this.bt_Browse.Location = new System.Drawing.Point(543, 359);
+            this.bt_Browse.Location = new System.Drawing.Point(488, 341);
             this.bt_Browse.Name = "bt_Browse";
             this.bt_Browse.Size = new System.Drawing.Size(75, 23);
             this.bt_Browse.TabIndex = 13;
@@ -194,7 +194,7 @@
             // lb_Email
             // 
             this.lb_Email.AutoSize = true;
-            this.lb_Email.Location = new System.Drawing.Point(13, 340);
+            this.lb_Email.Location = new System.Drawing.Point(13, 322);
             this.lb_Email.Name = "lb_Email";
             this.lb_Email.Size = new System.Drawing.Size(32, 13);
             this.lb_Email.TabIndex = 14;
@@ -202,7 +202,7 @@
             // 
             // tb_Email
             // 
-            this.tb_Email.Location = new System.Drawing.Point(117, 340);
+            this.tb_Email.Location = new System.Drawing.Point(117, 322);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(165, 20);
             this.tb_Email.TabIndex = 15;
@@ -224,23 +224,25 @@
             // 
             // tb_SrNo
             // 
-            this.tb_SrNo.Location = new System.Drawing.Point(117, 190);
+            this.tb_SrNo.Location = new System.Drawing.Point(80, 8);
             this.tb_SrNo.Name = "tb_SrNo";
             this.tb_SrNo.Size = new System.Drawing.Size(73, 20);
             this.tb_SrNo.TabIndex = 18;
+            this.tb_SrNo.Visible = false;
             // 
             // lb_SrNo
             // 
             this.lb_SrNo.AutoSize = true;
-            this.lb_SrNo.Location = new System.Drawing.Point(61, 193);
+            this.lb_SrNo.Location = new System.Drawing.Point(24, 11);
             this.lb_SrNo.Name = "lb_SrNo";
             this.lb_SrNo.Size = new System.Drawing.Size(34, 13);
             this.lb_SrNo.TabIndex = 17;
             this.lb_SrNo.Text = "Sr No";
+            this.lb_SrNo.Visible = false;
             // 
             // tb_Search
             // 
-            this.tb_Search.Location = new System.Drawing.Point(387, 186);
+            this.tb_Search.Location = new System.Drawing.Point(452, 4);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(205, 20);
             this.tb_Search.TabIndex = 20;
@@ -249,7 +251,7 @@
             // lb_Search
             // 
             this.lb_Search.AutoSize = true;
-            this.lb_Search.Location = new System.Drawing.Point(326, 190);
+            this.lb_Search.Location = new System.Drawing.Point(391, 8);
             this.lb_Search.Name = "lb_Search";
             this.lb_Search.Size = new System.Drawing.Size(41, 13);
             this.lb_Search.TabIndex = 19;
@@ -268,24 +270,10 @@
             this.logoDataGridViewImageColumn,
             this.createdDateDataGridViewTextBoxColumn});
             this.dgv_CompanyMaster.DataSource = this.companyMasterBindingSource;
-            this.dgv_CompanyMaster.Location = new System.Drawing.Point(13, 13);
+            this.dgv_CompanyMaster.Location = new System.Drawing.Point(16, 34);
             this.dgv_CompanyMaster.Name = "dgv_CompanyMaster";
             this.dgv_CompanyMaster.Size = new System.Drawing.Size(644, 150);
             this.dgv_CompanyMaster.TabIndex = 21;
-            // 
-            // med_PreserveDataSet
-            // 
-            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
-            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // companyMasterBindingSource
-            // 
-            this.companyMasterBindingSource.DataMember = "CompanyMaster";
-            this.companyMasterBindingSource.DataSource = this.med_PreserveDataSet;
-            // 
-            // companyMasterTableAdapter
-            // 
-            this.companyMasterTableAdapter.ClearBeforeFill = true;
             // 
             // srNoDataGridViewTextBoxColumn
             // 
@@ -330,6 +318,20 @@
             this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
             this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
             // 
+            // companyMasterBindingSource
+            // 
+            this.companyMasterBindingSource.DataMember = "CompanyMaster";
+            this.companyMasterBindingSource.DataSource = this.med_PreserveDataSet;
+            // 
+            // med_PreserveDataSet
+            // 
+            this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
+            this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // companyMasterTableAdapter
+            // 
+            this.companyMasterTableAdapter.ClearBeforeFill = true;
+            // 
             // CompanyMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,13 +359,13 @@
             this.Controls.Add(this.lb_Address);
             this.Controls.Add(this.lb_CompanyName);
             this.Name = "CompanyMaster";
-            this.Text = "CompanyMaster";
+            this.Text = "Company Master";
             this.Load += new System.EventHandler(this.CompanyMaster_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_CompanyMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyMasterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

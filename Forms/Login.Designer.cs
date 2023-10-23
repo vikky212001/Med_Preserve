@@ -38,21 +38,21 @@
             // 
             // tb_Pass
             // 
-            this.tb_Pass.Location = new System.Drawing.Point(142, 98);
+            this.tb_Pass.Location = new System.Drawing.Point(133, 87);
             this.tb_Pass.Name = "tb_Pass";
             this.tb_Pass.Size = new System.Drawing.Size(100, 20);
             this.tb_Pass.TabIndex = 11;
             // 
             // tb_UName
             // 
-            this.tb_UName.Location = new System.Drawing.Point(142, 53);
+            this.tb_UName.Location = new System.Drawing.Point(133, 42);
             this.tb_UName.Name = "tb_UName";
             this.tb_UName.Size = new System.Drawing.Size(100, 20);
             this.tb_UName.TabIndex = 10;
             // 
             // bt_Cancel
             // 
-            this.bt_Cancel.Location = new System.Drawing.Point(194, 149);
+            this.bt_Cancel.Location = new System.Drawing.Point(185, 138);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(75, 23);
             this.bt_Cancel.TabIndex = 9;
@@ -62,7 +62,7 @@
             // 
             // bt_Login
             // 
-            this.bt_Login.Location = new System.Drawing.Point(92, 149);
+            this.bt_Login.Location = new System.Drawing.Point(83, 138);
             this.bt_Login.Name = "bt_Login";
             this.bt_Login.Size = new System.Drawing.Size(75, 23);
             this.bt_Login.TabIndex = 8;
@@ -73,7 +73,7 @@
             // lb_Pass
             // 
             this.lb_Pass.AutoSize = true;
-            this.lb_Pass.Location = new System.Drawing.Point(54, 101);
+            this.lb_Pass.Location = new System.Drawing.Point(45, 90);
             this.lb_Pass.Name = "lb_Pass";
             this.lb_Pass.Size = new System.Drawing.Size(53, 13);
             this.lb_Pass.TabIndex = 7;
@@ -82,7 +82,7 @@
             // lb_UName
             // 
             this.lb_UName.AutoSize = true;
-            this.lb_UName.Location = new System.Drawing.Point(54, 61);
+            this.lb_UName.Location = new System.Drawing.Point(45, 50);
             this.lb_UName.Name = "lb_UName";
             this.lb_UName.Size = new System.Drawing.Size(60, 13);
             this.lb_UName.TabIndex = 6;

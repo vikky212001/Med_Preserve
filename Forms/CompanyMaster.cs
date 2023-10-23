@@ -25,10 +25,9 @@ namespace Med_Preserve.Forms
 
         private void CompanyMaster_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'med_PreserveDataSet.CompanyMaster' table. You can move, or remove it, as needed.
-            this.companyMasterTableAdapter.Fill(this.med_PreserveDataSet.CompanyMaster);
             try
             {
+                dgv_CompanyMaster.Columns[0].Visible = false;
                 this.companyMasterTableAdapter.Fill(this.med_PreserveDataSet.CompanyMaster);
                 RefreshData();
             }
@@ -142,6 +141,8 @@ namespace Med_Preserve.Forms
                     string emailValue = tb_Email.Text;
                     string contactValue = tb_ContactNo.Text;
                     string addressValue = rtb_Address.Text;
+                    DateTime selectedDateTime = DateTime.Now;
+                    string FDateTime = selectedDateTime.ToString("yyyy-MM-dd HH:mm");
                     Duplication duplication = new Duplication();
                     if (string.IsNullOrWhiteSpace(companyName) || string.IsNullOrWhiteSpace(emailValue) ||
                         string.IsNullOrWhiteSpace(contactValue) || string.IsNullOrWhiteSpace(addressValue))
@@ -161,8 +162,8 @@ namespace Med_Preserve.Forms
                         MessageBox.Show("Email address is already in use. Please use a different one.", "Prompt");
                         return;
                     }
-                    string addQuery = "INSERT INTO CompanyMaster(CompanyName, Address, ContactNo, Email, Logo) " +
-                  "VALUES (@CompanyName, @Address, @ContactNo, @Email, @Logo);";
+                    string addQuery = "INSERT INTO CompanyMaster(CompanyName, Address, ContactNo, Email, Logo, CreatedDate) " +
+                  "VALUES (@CompanyName, @Address, @ContactNo, @Email, @Logo, @CreatedDate);";
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         command.Parameters.AddWithValue("@CompanyName", companyName);
@@ -170,6 +171,7 @@ namespace Med_Preserve.Forms
                         command.Parameters.AddWithValue("@ContactNo", contactValue);
                         command.Parameters.AddWithValue("@Address", addressValue);
                         command.Parameters.AddWithValue("@Logo", imageData);
+                        command.Parameters.AddWithValue("@CreatedDate", FDateTime);
                         command.ExecuteNonQuery();
                         MessageBox.Show("Company Added successfully.", "Prompt");
                         RefreshData();

@@ -29,7 +29,8 @@ namespace Med_Preserve.Forms
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ChangePassword changePassword = new ChangePassword();
+            changePassword.ShowDialog();
         }
 
         private void companyMasterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,6 +50,12 @@ namespace Med_Preserve.Forms
         {
             LoggerConfig loggerConfig = new LoggerConfig();
             loggerConfig.ShowDialog();
+        }
+
+        private void liveReadingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LiveReading liveReading = new LiveReading();
+            liveReading.ShowDialog();
         }
     }
 }
