@@ -38,6 +38,7 @@ namespace Med_Preserve.Forms
             tb_Email.Text = row.Cells[2].Value.ToString();
             tb_Mobile.Text = row.Cells[3].Value.ToString();
             tb_R_UName.Text = row.Cells[4].Value.ToString();
+            cmb_Role.Text = row.Cells[6].Value.ToString();
         }
 
         private void RefreshData()
@@ -298,6 +299,7 @@ namespace Med_Preserve.Forms
             string newEmail = tb_Email.Text;
             string newMobile = tb_Mobile.Text;
             string newUserName = tb_R_UName.Text;
+            string role = Convert.ToString(cmb_Role.SelectedIndex + 1);
 
             try
             {
@@ -306,7 +308,7 @@ namespace Med_Preserve.Forms
                     connection.Open();
                     try
                     {
-                        string selectQuery = "SELECT Name, Email, Mobile, UserName FROM UserData WHERE UserID = @UID";
+                        string selectQuery = "SELECT Name, Email, Mobile, UserName, RoleID FROM UserData WHERE UserID = @UID";
                         using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                         {
                             selectCommand.Parameters.AddWithValue("@UID", primaryKeyValue);
@@ -318,13 +320,14 @@ namespace Med_Preserve.Forms
                                     string vEmail = reader["Email"].ToString();
                                     string vMobile = reader["Mobile"].ToString();
                                     string vUserName = reader["UserName"].ToString();
-                                    if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName)
+                                    string vRole = reader["RoleID"].ToString();
+                                    if (vName == newName && vEmail == newEmail && vMobile == newMobile && vUserName == newUserName && vRole == role)
                                     {
                                         MessageBox.Show("No Changes Found.", "Prompt");
                                     }
                                     else
                                     {
-                                        string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName WHERE UserId = @UID";
+                                        string updateQuery = "UPDATE UserData SET Name = @Name, Email = @Email, Mobile = @Mobile, UserName = @UserName, RoleID = @Role  WHERE UserId = @UID";
                                         reader.Close();
                                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                         {
@@ -333,6 +336,7 @@ namespace Med_Preserve.Forms
                                             updateCommand.Parameters.AddWithValue("@Email", newEmail);
                                             updateCommand.Parameters.AddWithValue("@Mobile", newMobile);
                                             updateCommand.Parameters.AddWithValue("@UserName", newUserName);
+                                            updateCommand.Parameters.AddWithValue("@Role", role);
 
                                             int rowsAffected = updateCommand.ExecuteNonQuery();
                                             if (rowsAffected > 0)
@@ -374,21 +378,13 @@ namespace Med_Preserve.Forms
         {
             if (tb_UID.Text != "")
             {
-                tb_R_Pass.Visible = false;
-                tb_R_ConPass.Visible = false;
-                lb_R_Pass.Visible = false;
-                lb_R_ConPass.Visible = false;
-                cmb_Role.Visible = false;
-                lb_Role.Visible = false;
+                tb_R_Pass.Enabled = false;
+                tb_R_ConPass.Enabled = false;
             }
             else
             {
-                tb_R_Pass.Visible = true;
-                tb_R_ConPass.Visible = true;
-                lb_R_Pass.Visible = true;
-                lb_R_ConPass.Visible = true;
-                cmb_Role.Visible = true;
-                lb_Role.Visible = true;
+                tb_R_Pass.Enabled = true;
+                tb_R_ConPass.Enabled = true;
             }
         }
     }

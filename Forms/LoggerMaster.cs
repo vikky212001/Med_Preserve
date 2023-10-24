@@ -72,7 +72,29 @@ namespace Med_Preserve.Forms
             tb_S3_Name.Text = row.Cells[8].Value.ToString();
             tb_S4_Name.Text = row.Cells[9].Value.ToString();
             tb_CreatedDate.Text = row.Cells[11].Value.ToString();
-            // Pending Radio Button Logic
+            switch (logType)
+            {
+                case "Temperature":
+                    rb_Temp.Checked = true;
+                    rb_humidity.Checked = false;
+                    rb_both.Checked = false;
+                    break;
+                case "Humidity":
+                    rb_Temp.Checked = false;
+                    rb_humidity.Checked = true;
+                    rb_both.Checked = false;
+                    break;
+                case "Both":
+                    rb_Temp.Checked = false;
+                    rb_humidity.Checked = false;
+                    rb_both.Checked = true;
+                    break;
+                default:
+                    rb_Temp.Checked = false;
+                    rb_humidity.Checked = false;
+                    rb_both.Checked = false;
+                    break;
+            }
         }
     }
 }

@@ -31,6 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.lb_LogID = new System.Windows.Forms.Label();
             this.dgv_LoggerMaster = new System.Windows.Forms.DataGridView();
+            this.loggerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loggerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loggerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noOfSensorsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assignToDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.intervalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s1NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s2NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s3NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s4NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loggerMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
             this.lb_LogType = new System.Windows.Forms.Label();
             this.lb_NoOfSensors = new System.Windows.Forms.Label();
@@ -50,24 +63,11 @@
             this.cmb_NoOfSensors = new System.Windows.Forms.ComboBox();
             this.rb_Temp = new System.Windows.Forms.RadioButton();
             this.rb_humidity = new System.Windows.Forms.RadioButton();
-            this.rd_both = new System.Windows.Forms.RadioButton();
+            this.rb_both = new System.Windows.Forms.RadioButton();
             this.cmb_AssignTo = new System.Windows.Forms.ComboBox();
             this.loggerMasterTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.LoggerMasterTableAdapter();
             this.lb_CreatedDate = new System.Windows.Forms.Label();
             this.tb_CreatedDate = new System.Windows.Forms.TextBox();
-            this.loggerMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loggerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loggerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loggerTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noOfSensorsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.assignToDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.intervalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s1NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s2NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s3NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s4NameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bt_Add = new System.Windows.Forms.Button();
             this.bt_Update = new System.Windows.Forms.Button();
             this.bt_Delete = new System.Windows.Forms.Button();
@@ -76,8 +76,8 @@
             this.tb_LogName = new System.Windows.Forms.TextBox();
             this.lb_LogName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loggerMasterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_LogID
@@ -116,6 +116,95 @@
             this.dgv_LoggerMaster.Size = new System.Drawing.Size(776, 150);
             this.dgv_LoggerMaster.TabIndex = 2;
             this.dgv_LoggerMaster.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_LoggerMaster_CellClick);
+            // 
+            // loggerIDDataGridViewTextBoxColumn
+            // 
+            this.loggerIDDataGridViewTextBoxColumn.DataPropertyName = "LoggerID";
+            this.loggerIDDataGridViewTextBoxColumn.HeaderText = "LoggerID";
+            this.loggerIDDataGridViewTextBoxColumn.Name = "loggerIDDataGridViewTextBoxColumn";
+            this.loggerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loggerNameDataGridViewTextBoxColumn
+            // 
+            this.loggerNameDataGridViewTextBoxColumn.DataPropertyName = "LoggerName";
+            this.loggerNameDataGridViewTextBoxColumn.HeaderText = "LoggerName";
+            this.loggerNameDataGridViewTextBoxColumn.Name = "loggerNameDataGridViewTextBoxColumn";
+            this.loggerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loggerTypeDataGridViewTextBoxColumn
+            // 
+            this.loggerTypeDataGridViewTextBoxColumn.DataPropertyName = "LoggerType";
+            this.loggerTypeDataGridViewTextBoxColumn.HeaderText = "LoggerType";
+            this.loggerTypeDataGridViewTextBoxColumn.Name = "loggerTypeDataGridViewTextBoxColumn";
+            this.loggerTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // noOfSensorsDataGridViewTextBoxColumn
+            // 
+            this.noOfSensorsDataGridViewTextBoxColumn.DataPropertyName = "NoOfSensors";
+            this.noOfSensorsDataGridViewTextBoxColumn.HeaderText = "NoOfSensors";
+            this.noOfSensorsDataGridViewTextBoxColumn.Name = "noOfSensorsDataGridViewTextBoxColumn";
+            this.noOfSensorsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // assignToDataGridViewTextBoxColumn
+            // 
+            this.assignToDataGridViewTextBoxColumn.DataPropertyName = "AssignTo";
+            this.assignToDataGridViewTextBoxColumn.HeaderText = "AssignTo";
+            this.assignToDataGridViewTextBoxColumn.Name = "assignToDataGridViewTextBoxColumn";
+            this.assignToDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // intervalDataGridViewTextBoxColumn
+            // 
+            this.intervalDataGridViewTextBoxColumn.DataPropertyName = "Interval";
+            this.intervalDataGridViewTextBoxColumn.HeaderText = "Interval";
+            this.intervalDataGridViewTextBoxColumn.Name = "intervalDataGridViewTextBoxColumn";
+            this.intervalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // s1NameDataGridViewTextBoxColumn
+            // 
+            this.s1NameDataGridViewTextBoxColumn.DataPropertyName = "S1Name";
+            this.s1NameDataGridViewTextBoxColumn.HeaderText = "S1Name";
+            this.s1NameDataGridViewTextBoxColumn.Name = "s1NameDataGridViewTextBoxColumn";
+            this.s1NameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // s2NameDataGridViewTextBoxColumn
+            // 
+            this.s2NameDataGridViewTextBoxColumn.DataPropertyName = "S2Name";
+            this.s2NameDataGridViewTextBoxColumn.HeaderText = "S2Name";
+            this.s2NameDataGridViewTextBoxColumn.Name = "s2NameDataGridViewTextBoxColumn";
+            this.s2NameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // s3NameDataGridViewTextBoxColumn
+            // 
+            this.s3NameDataGridViewTextBoxColumn.DataPropertyName = "S3Name";
+            this.s3NameDataGridViewTextBoxColumn.HeaderText = "S3Name";
+            this.s3NameDataGridViewTextBoxColumn.Name = "s3NameDataGridViewTextBoxColumn";
+            this.s3NameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // s4NameDataGridViewTextBoxColumn
+            // 
+            this.s4NameDataGridViewTextBoxColumn.DataPropertyName = "S4Name";
+            this.s4NameDataGridViewTextBoxColumn.HeaderText = "S4Name";
+            this.s4NameDataGridViewTextBoxColumn.Name = "s4NameDataGridViewTextBoxColumn";
+            this.s4NameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isActiveDataGridViewCheckBoxColumn
+            // 
+            this.isActiveDataGridViewCheckBoxColumn.DataPropertyName = "IsActive";
+            this.isActiveDataGridViewCheckBoxColumn.HeaderText = "IsActive";
+            this.isActiveDataGridViewCheckBoxColumn.Name = "isActiveDataGridViewCheckBoxColumn";
+            this.isActiveDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // createdDateDataGridViewTextBoxColumn
+            // 
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loggerMasterBindingSource
+            // 
+            this.loggerMasterBindingSource.DataMember = "LoggerMaster";
+            this.loggerMasterBindingSource.DataSource = this.med_PreserveDataSet;
             // 
             // med_PreserveDataSet
             // 
@@ -280,16 +369,16 @@
             this.rb_humidity.Text = "Humidity";
             this.rb_humidity.UseVisualStyleBackColor = true;
             // 
-            // rd_both
+            // rb_both
             // 
-            this.rd_both.AutoSize = true;
-            this.rd_both.Location = new System.Drawing.Point(613, 176);
-            this.rd_both.Name = "rd_both";
-            this.rd_both.Size = new System.Drawing.Size(47, 17);
-            this.rd_both.TabIndex = 46;
-            this.rd_both.TabStop = true;
-            this.rd_both.Text = "Both";
-            this.rd_both.UseVisualStyleBackColor = true;
+            this.rb_both.AutoSize = true;
+            this.rb_both.Location = new System.Drawing.Point(613, 176);
+            this.rb_both.Name = "rb_both";
+            this.rb_both.Size = new System.Drawing.Size(47, 17);
+            this.rb_both.TabIndex = 46;
+            this.rb_both.TabStop = true;
+            this.rb_both.Text = "Both";
+            this.rb_both.UseVisualStyleBackColor = true;
             // 
             // cmb_AssignTo
             // 
@@ -324,95 +413,6 @@
             this.tb_CreatedDate.Name = "tb_CreatedDate";
             this.tb_CreatedDate.Size = new System.Drawing.Size(118, 20);
             this.tb_CreatedDate.TabIndex = 49;
-            // 
-            // loggerMasterBindingSource
-            // 
-            this.loggerMasterBindingSource.DataMember = "LoggerMaster";
-            this.loggerMasterBindingSource.DataSource = this.med_PreserveDataSet;
-            // 
-            // loggerIDDataGridViewTextBoxColumn
-            // 
-            this.loggerIDDataGridViewTextBoxColumn.DataPropertyName = "LoggerID";
-            this.loggerIDDataGridViewTextBoxColumn.HeaderText = "LoggerID";
-            this.loggerIDDataGridViewTextBoxColumn.Name = "loggerIDDataGridViewTextBoxColumn";
-            this.loggerIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loggerNameDataGridViewTextBoxColumn
-            // 
-            this.loggerNameDataGridViewTextBoxColumn.DataPropertyName = "LoggerName";
-            this.loggerNameDataGridViewTextBoxColumn.HeaderText = "LoggerName";
-            this.loggerNameDataGridViewTextBoxColumn.Name = "loggerNameDataGridViewTextBoxColumn";
-            this.loggerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loggerTypeDataGridViewTextBoxColumn
-            // 
-            this.loggerTypeDataGridViewTextBoxColumn.DataPropertyName = "LoggerType";
-            this.loggerTypeDataGridViewTextBoxColumn.HeaderText = "LoggerType";
-            this.loggerTypeDataGridViewTextBoxColumn.Name = "loggerTypeDataGridViewTextBoxColumn";
-            this.loggerTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // noOfSensorsDataGridViewTextBoxColumn
-            // 
-            this.noOfSensorsDataGridViewTextBoxColumn.DataPropertyName = "NoOfSensors";
-            this.noOfSensorsDataGridViewTextBoxColumn.HeaderText = "NoOfSensors";
-            this.noOfSensorsDataGridViewTextBoxColumn.Name = "noOfSensorsDataGridViewTextBoxColumn";
-            this.noOfSensorsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // assignToDataGridViewTextBoxColumn
-            // 
-            this.assignToDataGridViewTextBoxColumn.DataPropertyName = "AssignTo";
-            this.assignToDataGridViewTextBoxColumn.HeaderText = "AssignTo";
-            this.assignToDataGridViewTextBoxColumn.Name = "assignToDataGridViewTextBoxColumn";
-            this.assignToDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // intervalDataGridViewTextBoxColumn
-            // 
-            this.intervalDataGridViewTextBoxColumn.DataPropertyName = "Interval";
-            this.intervalDataGridViewTextBoxColumn.HeaderText = "Interval";
-            this.intervalDataGridViewTextBoxColumn.Name = "intervalDataGridViewTextBoxColumn";
-            this.intervalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // s1NameDataGridViewTextBoxColumn
-            // 
-            this.s1NameDataGridViewTextBoxColumn.DataPropertyName = "S1Name";
-            this.s1NameDataGridViewTextBoxColumn.HeaderText = "S1Name";
-            this.s1NameDataGridViewTextBoxColumn.Name = "s1NameDataGridViewTextBoxColumn";
-            this.s1NameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // s2NameDataGridViewTextBoxColumn
-            // 
-            this.s2NameDataGridViewTextBoxColumn.DataPropertyName = "S2Name";
-            this.s2NameDataGridViewTextBoxColumn.HeaderText = "S2Name";
-            this.s2NameDataGridViewTextBoxColumn.Name = "s2NameDataGridViewTextBoxColumn";
-            this.s2NameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // s3NameDataGridViewTextBoxColumn
-            // 
-            this.s3NameDataGridViewTextBoxColumn.DataPropertyName = "S3Name";
-            this.s3NameDataGridViewTextBoxColumn.HeaderText = "S3Name";
-            this.s3NameDataGridViewTextBoxColumn.Name = "s3NameDataGridViewTextBoxColumn";
-            this.s3NameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // s4NameDataGridViewTextBoxColumn
-            // 
-            this.s4NameDataGridViewTextBoxColumn.DataPropertyName = "S4Name";
-            this.s4NameDataGridViewTextBoxColumn.HeaderText = "S4Name";
-            this.s4NameDataGridViewTextBoxColumn.Name = "s4NameDataGridViewTextBoxColumn";
-            this.s4NameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isActiveDataGridViewCheckBoxColumn
-            // 
-            this.isActiveDataGridViewCheckBoxColumn.DataPropertyName = "IsActive";
-            this.isActiveDataGridViewCheckBoxColumn.HeaderText = "IsActive";
-            this.isActiveDataGridViewCheckBoxColumn.Name = "isActiveDataGridViewCheckBoxColumn";
-            this.isActiveDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // createdDateDataGridViewTextBoxColumn
-            // 
-            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
-            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // bt_Add
             // 
@@ -492,7 +492,7 @@
             this.Controls.Add(this.tb_CreatedDate);
             this.Controls.Add(this.lb_CreatedDate);
             this.Controls.Add(this.cmb_AssignTo);
-            this.Controls.Add(this.rd_both);
+            this.Controls.Add(this.rb_both);
             this.Controls.Add(this.rb_humidity);
             this.Controls.Add(this.rb_Temp);
             this.Controls.Add(this.cmb_NoOfSensors);
@@ -517,8 +517,8 @@
             this.Text = "Logger Master";
             this.Load += new System.EventHandler(this.LoggerMaster_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loggerMasterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,7 +547,7 @@
         private System.Windows.Forms.ComboBox cmb_NoOfSensors;
         private System.Windows.Forms.RadioButton rb_Temp;
         private System.Windows.Forms.RadioButton rb_humidity;
-        private System.Windows.Forms.RadioButton rd_both;
+        private System.Windows.Forms.RadioButton rb_both;
         private System.Windows.Forms.ComboBox cmb_AssignTo;
         private System.Windows.Forms.Label lb_CreatedDate;
         private System.Windows.Forms.TextBox tb_CreatedDate;
