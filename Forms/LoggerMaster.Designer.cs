@@ -83,7 +83,7 @@
             // lb_LogID
             // 
             this.lb_LogID.AutoSize = true;
-            this.lb_LogID.Location = new System.Drawing.Point(27, 181);
+            this.lb_LogID.Location = new System.Drawing.Point(24, 11);
             this.lb_LogID.Name = "lb_LogID";
             this.lb_LogID.Size = new System.Drawing.Size(54, 13);
             this.lb_LogID.TabIndex = 1;
@@ -110,7 +110,7 @@
             this.isActiveDataGridViewCheckBoxColumn,
             this.createdDateDataGridViewTextBoxColumn});
             this.dgv_LoggerMaster.DataSource = this.loggerMasterBindingSource;
-            this.dgv_LoggerMaster.Location = new System.Drawing.Point(12, 12);
+            this.dgv_LoggerMaster.Location = new System.Drawing.Point(12, 34);
             this.dgv_LoggerMaster.Name = "dgv_LoggerMaster";
             this.dgv_LoggerMaster.ReadOnly = true;
             this.dgv_LoggerMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -215,7 +215,7 @@
             // lb_LogType
             // 
             this.lb_LogType.AutoSize = true;
-            this.lb_LogType.Location = new System.Drawing.Point(382, 181);
+            this.lb_LogType.Location = new System.Drawing.Point(381, 208);
             this.lb_LogType.Name = "lb_LogType";
             this.lb_LogType.Size = new System.Drawing.Size(67, 13);
             this.lb_LogType.TabIndex = 3;
@@ -233,7 +233,7 @@
             // lb_AssignTo
             // 
             this.lb_AssignTo.AutoSize = true;
-            this.lb_AssignTo.Location = new System.Drawing.Point(383, 230);
+            this.lb_AssignTo.Location = new System.Drawing.Point(391, 234);
             this.lb_AssignTo.Name = "lb_AssignTo";
             this.lb_AssignTo.Size = new System.Drawing.Size(54, 13);
             this.lb_AssignTo.TabIndex = 5;
@@ -242,7 +242,7 @@
             // lb_Interval
             // 
             this.lb_Interval.AutoSize = true;
-            this.lb_Interval.Location = new System.Drawing.Point(383, 254);
+            this.lb_Interval.Location = new System.Drawing.Point(395, 267);
             this.lb_Interval.Name = "lb_Interval";
             this.lb_Interval.Size = new System.Drawing.Size(42, 13);
             this.lb_Interval.TabIndex = 6;
@@ -302,7 +302,7 @@
             // 
             // tb_LogID
             // 
-            this.tb_LogID.Location = new System.Drawing.Point(111, 178);
+            this.tb_LogID.Location = new System.Drawing.Point(84, 8);
             this.tb_LogID.Name = "tb_LogID";
             this.tb_LogID.Size = new System.Drawing.Size(118, 20);
             this.tb_LogID.TabIndex = 21;
@@ -310,9 +310,9 @@
             // 
             // tb_Interval
             // 
-            this.tb_Interval.Location = new System.Drawing.Point(451, 254);
+            this.tb_Interval.Location = new System.Drawing.Point(451, 264);
             this.tb_Interval.Name = "tb_Interval";
-            this.tb_Interval.Size = new System.Drawing.Size(100, 20);
+            this.tb_Interval.Size = new System.Drawing.Size(85, 20);
             this.tb_Interval.TabIndex = 23;
             // 
             // tb_S2_Name
@@ -353,7 +353,7 @@
             // rb_Temp
             // 
             this.rb_Temp.AutoSize = true;
-            this.rb_Temp.Location = new System.Drawing.Point(451, 176);
+            this.rb_Temp.Location = new System.Drawing.Point(450, 203);
             this.rb_Temp.Name = "rb_Temp";
             this.rb_Temp.Size = new System.Drawing.Size(85, 17);
             this.rb_Temp.TabIndex = 44;
@@ -364,7 +364,7 @@
             // rb_humidity
             // 
             this.rb_humidity.AutoSize = true;
-            this.rb_humidity.Location = new System.Drawing.Point(542, 176);
+            this.rb_humidity.Location = new System.Drawing.Point(541, 203);
             this.rb_humidity.Name = "rb_humidity";
             this.rb_humidity.Size = new System.Drawing.Size(65, 17);
             this.rb_humidity.TabIndex = 45;
@@ -375,7 +375,7 @@
             // rb_both
             // 
             this.rb_both.AutoSize = true;
-            this.rb_both.Location = new System.Drawing.Point(613, 176);
+            this.rb_both.Location = new System.Drawing.Point(612, 203);
             this.rb_both.Name = "rb_both";
             this.rb_both.Size = new System.Drawing.Size(47, 17);
             this.rb_both.TabIndex = 46;
@@ -391,7 +391,7 @@
             "2",
             "3",
             "4"});
-            this.cmb_AssignTo.Location = new System.Drawing.Point(443, 230);
+            this.cmb_AssignTo.Location = new System.Drawing.Point(451, 231);
             this.cmb_AssignTo.Name = "cmb_AssignTo";
             this.cmb_AssignTo.Size = new System.Drawing.Size(137, 21);
             this.cmb_AssignTo.TabIndex = 47;
