@@ -69,5 +69,19 @@ namespace Med_Preserve.Class
                 }
             }
         }
+        public bool IsLoggerName(string loggerName)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM LoggerMaster WHERE LoggerName = @LoggerName";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@LoggerName", loggerName);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
     }
 }

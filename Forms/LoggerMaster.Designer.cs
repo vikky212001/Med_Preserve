@@ -88,6 +88,7 @@
             this.lb_LogID.Size = new System.Drawing.Size(54, 13);
             this.lb_LogID.TabIndex = 1;
             this.lb_LogID.Text = "Logger ID";
+            this.lb_LogID.Visible = false;
             // 
             // dgv_LoggerMaster
             // 
@@ -305,6 +306,7 @@
             this.tb_LogID.Name = "tb_LogID";
             this.tb_LogID.Size = new System.Drawing.Size(118, 20);
             this.tb_LogID.TabIndex = 21;
+            this.tb_LogID.Visible = false;
             // 
             // tb_Interval
             // 
@@ -346,6 +348,7 @@
             this.cmb_NoOfSensors.Name = "cmb_NoOfSensors";
             this.cmb_NoOfSensors.Size = new System.Drawing.Size(77, 21);
             this.cmb_NoOfSensors.TabIndex = 43;
+            this.cmb_NoOfSensors.TextChanged += new System.EventHandler(this.cmb_NoOfSensors_TextChanged);
             // 
             // rb_Temp
             // 
@@ -388,7 +391,7 @@
             "2",
             "3",
             "4"});
-            this.cmb_AssignTo.Location = new System.Drawing.Point(451, 227);
+            this.cmb_AssignTo.Location = new System.Drawing.Point(443, 230);
             this.cmb_AssignTo.Name = "cmb_AssignTo";
             this.cmb_AssignTo.Size = new System.Drawing.Size(137, 21);
             this.cmb_AssignTo.TabIndex = 47;
@@ -460,6 +463,7 @@
             this.bt_Close.TabIndex = 54;
             this.bt_Close.Text = "CLOSE";
             this.bt_Close.UseVisualStyleBackColor = true;
+            this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
             // 
             // tb_LogName
             // 
