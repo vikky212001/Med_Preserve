@@ -22,7 +22,9 @@ namespace Med_Preserve.Forms
             RefreshData();
             dgv_LoggerMaster.Columns[0].Visible = false;
             dgv_LoggerMaster.Columns[10].Visible = false;
+            dgv_LoggerMaster.Columns[12].Visible = false;
             cmb_NoOfSensors.Text = "-SELECT-";
+            cmb_IntervalType.Text = "-SELECT-";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -51,6 +53,7 @@ namespace Med_Preserve.Forms
             }
             cmb_AssignTo.Text = "-SELECT-";
             cmb_NoOfSensors.Text = "-SELECT-";
+            cmb_IntervalType.Text = "-SELECT-";
         }
         private void RefreshData()
         {
@@ -75,12 +78,13 @@ namespace Med_Preserve.Forms
         {
             string logName = tb_LogName.Text;
             string assign = cmb_AssignTo.Text;
-            string interval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300000" : tb_Interval.Text;
+            string interval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300" : tb_Interval.Text;
             object sensor_1 = DBNull.Value;
             object sensor_2 = DBNull.Value;
             object sensor_3 = DBNull.Value;
             object sensor_4 = DBNull.Value;
             string logType = "Default";
+            string intervalType = cmb_IntervalType.Text;
             int noOfSensors;
             if (!int.TryParse(cmb_NoOfSensors.Text, out noOfSensors))
             {
@@ -89,11 +93,7 @@ namespace Med_Preserve.Forms
             }
             if (cmb_IntervalType.Text == "min")
             {
-                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60000);
-            }
-            if (cmb_IntervalType.Text == "sec")
-            {
-                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 1000);
+                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60);
             }
             if (noOfSensors >= 1)
             {
@@ -141,8 +141,8 @@ namespace Med_Preserve.Forms
                         MessageBox.Show("Logger Name is already taken. Please choose a different one.", "Prompt");
                         return;
                     }
-                    string addQuery = "INSERT INTO LoggerMaster (LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate)" +
-                    "VALUES (@LoggerName , @LoggerType , @NoOfSensors , @AssignTo , @Interval , @S1Name , @S2Name , @S3Name , @S4Name , @IsActive , @Date );";
+                    string addQuery = "INSERT INTO LoggerMaster (LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType)" +
+                    "VALUES (@LoggerName , @LoggerType , @NoOfSensors , @AssignTo , @Interval , @S1Name , @S2Name , @S3Name , @S4Name , @IsActive , @Date, @IntervalType);";
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         command.Parameters.AddWithValue("@LoggerName", logName);
@@ -156,6 +156,7 @@ namespace Med_Preserve.Forms
                         command.Parameters.AddWithValue("@S4Name", sensor_4);
                         command.Parameters.AddWithValue("@IsActive", true);
                         command.Parameters.AddWithValue("@Date", FDateTime);
+                        command.Parameters.AddWithValue("@IntervalType", intervalType);
                         command.ExecuteNonQuery();
                         MessageBox.Show("Logger created successfully.", "Prompt");
                         RefreshData();
@@ -187,12 +188,13 @@ namespace Med_Preserve.Forms
             string logType = row.Cells[2].Value.ToString();
             cmb_NoOfSensors.Text = row.Cells[3].Value.ToString();
             cmb_AssignTo.Text = row.Cells[4].Value.ToString();
-            tb_Interval.Text = row.Cells[5].Value.ToString();
+            tb_Interval.Text =row.Cells[5].Value.ToString();
             tb_S1_Name.Text = row.Cells[6].Value.ToString();
             tb_S2_Name.Text = row.Cells[7].Value.ToString();
             tb_S3_Name.Text = row.Cells[8].Value.ToString();
             tb_S4_Name.Text = row.Cells[9].Value.ToString();
             tb_CreatedDate.Text = row.Cells[11].Value.ToString();
+            cmb_IntervalType.Text = row.Cells[12].Value.ToString();
             switch (logType)
             {
                 case "Temperature":
@@ -244,19 +246,12 @@ namespace Med_Preserve.Forms
             }
             string newLogType = "Default";
             string newAssign = cmb_AssignTo.Text;
-            string newInterval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300000" : tb_Interval.Text;
+            string newInterval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300" : tb_Interval.Text;
+            string newIntervalType = cmb_IntervalType.Text;
             object newSensor_1 = DBNull.Value;
             object newSensor_2 = DBNull.Value;
             object newSensor_3 = DBNull.Value;
             object newSensor_4 = DBNull.Value;
-            if (cmb_IntervalType.Text == "min")
-            {
-                newInterval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60000);
-            }
-            if (cmb_IntervalType.Text == "sec")
-            {
-                newInterval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 1000);
-            }
             if (newNoOfSensors >= 1)
             {
                 newSensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
@@ -307,7 +302,7 @@ namespace Med_Preserve.Forms
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string selectQuery = "SELECT LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name FROM LoggerMaster WHERE LoggerID = @LogID";
+                    string selectQuery = "SELECT LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IntervalType FROM LoggerMaster WHERE LoggerID = @LogID";
                     using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@LogID", logID);
@@ -324,13 +319,14 @@ namespace Med_Preserve.Forms
                                 string oldS2Name = reader["S2Name"].ToString();
                                 string oldS3Name = reader["S3Name"].ToString();
                                 string oldS4Name = reader["S4Name"].ToString();
-                                if (string.Equals(oldLogName, newLogName) && string.Equals(oldLogType, newLogType) && oldNoOfSensors == newNoOfSensors && string.Equals(oldAssign, newAssign) && string.Equals(oldInterval, newInterval) && string.Equals(oldS1Name, newSensor_1) && string.Equals(oldS2Name, newSensor_2) && string.Equals(oldS3Name, newSensor_3) && string.Equals(oldS4Name, newSensor_4))
+                                string oldIntervalType = reader["IntervalType"].ToString();
+                                if (string.Equals(oldLogName, newLogName) && string.Equals(oldLogType, newLogType) && oldNoOfSensors == newNoOfSensors && string.Equals(oldAssign, newAssign) && string.Equals(oldInterval, newInterval) && string.Equals(oldS1Name, newSensor_1) && string.Equals(oldS2Name, newSensor_2) && string.Equals(oldS3Name, newSensor_3) && string.Equals(oldS4Name, newSensor_4) && string.Equals(oldIntervalType, newIntervalType))
                                 {
                                     MessageBox.Show("No Changes Found.", "Prompt");
                                 }
                                 else
                                 {
-                                    string updateQuery = "UPDATE LoggerMaster SET LoggerName = @LoggerName , LoggerType = @LoggerType, NoOfSensors = @NoOfSensors, AssignTo = @AssignTo, Interval = @Interval, S1Name = @S1Name, S2Name = @S2Name, S3Name = @S3Name, S4Name = @S4Name  WHERE LoggerID = @LogID";
+                                    string updateQuery = "UPDATE LoggerMaster SET LoggerName = @LoggerName , LoggerType = @LoggerType, NoOfSensors = @NoOfSensors, AssignTo = @AssignTo, Interval = @Interval, S1Name = @S1Name, S2Name = @S2Name, S3Name = @S3Name, S4Name = @S4Name, IntervalType = @IntervalType  WHERE LoggerID = @LogID";
                                     reader.Close();
                                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                     {
@@ -343,6 +339,7 @@ namespace Med_Preserve.Forms
                                         updateCommand.Parameters.AddWithValue("@S2Name", newSensor_2);
                                         updateCommand.Parameters.AddWithValue("@S3Name", newSensor_3);
                                         updateCommand.Parameters.AddWithValue("@S4Name", newSensor_4);
+                                        updateCommand.Parameters.AddWithValue("@IntervalType", newIntervalType);
                                         updateCommand.Parameters.AddWithValue("@LogID", logID);
 
                                         int rowsAffected = updateCommand.ExecuteNonQuery();
@@ -401,6 +398,18 @@ namespace Med_Preserve.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
+        }
+
+        private void cmb_IntervalType_TextChanged(object sender, EventArgs e)
+        {
+            if (cmb_IntervalType.Text == "min")
+            {
+                tb_Interval.Text = Convert.ToString(Convert.ToDouble(tb_Interval.Text) / 60);
+            }
+            else if (cmb_IntervalType.Text == "sec")
+            {
+                tb_Interval.Text = Convert.ToString(Convert.ToDouble(tb_Interval.Text) * 60);
             }
         }
     }

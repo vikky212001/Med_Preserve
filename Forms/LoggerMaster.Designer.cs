@@ -358,8 +358,9 @@
             "sec"});
             this.cmb_IntervalType.Location = new System.Drawing.Point(542, 263);
             this.cmb_IntervalType.Name = "cmb_IntervalType";
-            this.cmb_IntervalType.Size = new System.Drawing.Size(45, 21);
+            this.cmb_IntervalType.Size = new System.Drawing.Size(64, 21);
             this.cmb_IntervalType.TabIndex = 57;
+            this.cmb_IntervalType.TextChanged += new System.EventHandler(this.cmb_IntervalType_TextChanged);
             // 
             // med_PreserveDataSet
             // 
