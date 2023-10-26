@@ -19,7 +19,7 @@ namespace Med_Preserve.Forms
         }
         private void LoggerMaster_Load(object sender, EventArgs e)
         {
-            this.loggerMasterTableAdapter.Fill(this.med_PreserveDataSet.LoggerMaster);
+            RefreshData();
             dgv_LoggerMaster.Columns[0].Visible = false;
             dgv_LoggerMaster.Columns[10].Visible = false;
             cmb_NoOfSensors.Text = "-SELECT-";
@@ -59,7 +59,7 @@ namespace Med_Preserve.Forms
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM LoggerMaster Where IsActive = 1";
+                    string query = "SELECT * FROM LoggerMaster WHERE IsActive = 1";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
@@ -74,18 +74,27 @@ namespace Med_Preserve.Forms
         private void bt_Add_Click(object sender, EventArgs e)
         {
             string logName = tb_LogName.Text;
-            int noOfSensors;
-            if (!int.TryParse(cmb_NoOfSensors.Text, out noOfSensors))
-            {
-                MessageBox.Show("Please select a valid number of sensors.", "Prompt");
-                return;
-            }
             string assign = cmb_AssignTo.Text;
             string interval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300000" : tb_Interval.Text;
             object sensor_1 = DBNull.Value;
             object sensor_2 = DBNull.Value;
             object sensor_3 = DBNull.Value;
             object sensor_4 = DBNull.Value;
+            string logType = "Default";
+            int noOfSensors;
+            if (!int.TryParse(cmb_NoOfSensors.Text, out noOfSensors))
+            {
+                MessageBox.Show("Please select a valid number of sensors.", "Prompt");
+                return;
+            }
+            if (cmb_IntervalType.Text == "min")
+            {
+                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60000);
+            }
+            if (cmb_IntervalType.Text == "sec")
+            {
+                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 1000);
+            }
             if (noOfSensors >= 1)
             {
                 sensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
@@ -102,7 +111,6 @@ namespace Med_Preserve.Forms
             {
                 sensor_4 = string.IsNullOrWhiteSpace(tb_S4_Name.Text) ? "Sensor 4" : tb_S4_Name.Text;
             }
-            string logType = "Default";
             if (rb_Temp.Checked)
             {
                 logType = "Temperature";
@@ -222,6 +230,177 @@ namespace Med_Preserve.Forms
                 tb_S2_Name.Enabled = selectedSensors >= 2;
                 tb_S3_Name.Enabled = selectedSensors >= 3;
                 tb_S4_Name.Enabled = selectedSensors == 4;
+            }
+        }
+        private void bt_Update_Click(object sender, EventArgs e)
+        {
+            string logID = tb_LogID.Text;
+            string newLogName = tb_LogName.Text;
+            int newNoOfSensors;
+            if (!int.TryParse(cmb_NoOfSensors.Text, out newNoOfSensors))
+            {
+                MessageBox.Show("Please select a Logger From Data Grid View to Update.", "Prompt");
+                return;
+            }
+            string newLogType = "Default";
+            string newAssign = cmb_AssignTo.Text;
+            string newInterval = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "300000" : tb_Interval.Text;
+            object newSensor_1 = DBNull.Value;
+            object newSensor_2 = DBNull.Value;
+            object newSensor_3 = DBNull.Value;
+            object newSensor_4 = DBNull.Value;
+            if (cmb_IntervalType.Text == "min")
+            {
+                newInterval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60000);
+            }
+            if (cmb_IntervalType.Text == "sec")
+            {
+                newInterval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 1000);
+            }
+            if (newNoOfSensors >= 1)
+            {
+                newSensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
+                newSensor_2 = "";
+                newSensor_3 = "";
+                newSensor_4 = "";
+            }
+            if (newNoOfSensors >= 2)
+            {
+                newSensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
+                newSensor_2 = string.IsNullOrWhiteSpace(tb_S2_Name.Text) ? "Sensor 2" : tb_S2_Name.Text;
+                newSensor_3 = "";
+                newSensor_4 = "";
+            }
+            if (newNoOfSensors >= 3)
+            {
+                newSensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
+                newSensor_2 = string.IsNullOrWhiteSpace(tb_S2_Name.Text) ? "Sensor 2" : tb_S2_Name.Text;
+                newSensor_3 = string.IsNullOrWhiteSpace(tb_S3_Name.Text) ? "Sensor 3" : tb_S3_Name.Text;
+                newSensor_4 = "";
+            }
+            if (newNoOfSensors >= 4)
+            {
+                newSensor_1 = string.IsNullOrWhiteSpace(tb_S1_Name.Text) ? "Sensor 1" : tb_S1_Name.Text;
+                newSensor_2 = string.IsNullOrWhiteSpace(tb_S2_Name.Text) ? "Sensor 2" : tb_S2_Name.Text;
+                newSensor_3 = string.IsNullOrWhiteSpace(tb_S3_Name.Text) ? "Sensor 3" : tb_S3_Name.Text;
+                newSensor_4 = string.IsNullOrWhiteSpace(tb_S4_Name.Text) ? "Sensor 4" : tb_S4_Name.Text;
+            }
+            if (rb_Temp.Checked)
+            {
+                newLogType = "Temperature";
+            }
+            else if (rb_humidity.Checked)
+            {
+                newLogType = "Humidity";
+            }
+            else if (rb_both.Checked)
+            {
+                newLogType = "Both";
+            }
+            if (string.IsNullOrWhiteSpace(newLogName) || newNoOfSensors <= 0 || string.IsNullOrWhiteSpace(newAssign) || newLogType == "Default")
+            {
+                MessageBox.Show("Select any Record from Datagrid View.", "Prompt");
+                return;
+            }
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string selectQuery = "SELECT LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name FROM LoggerMaster WHERE LoggerID = @LogID";
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@LogID", logID);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string oldLogName = reader["LoggerName"].ToString();
+                                string oldLogType = reader["LoggerType"].ToString();
+                                int oldNoOfSensors = Convert.ToInt32(reader["NoOfSensors"].ToString());
+                                string oldAssign = reader["AssignTo"].ToString();
+                                string oldInterval = reader["Interval"].ToString();
+                                string oldS1Name = reader["S1Name"].ToString();
+                                string oldS2Name = reader["S2Name"].ToString();
+                                string oldS3Name = reader["S3Name"].ToString();
+                                string oldS4Name = reader["S4Name"].ToString();
+                                if (string.Equals(oldLogName, newLogName) && string.Equals(oldLogType, newLogType) && oldNoOfSensors == newNoOfSensors && string.Equals(oldAssign, newAssign) && string.Equals(oldInterval, newInterval) && string.Equals(oldS1Name, newSensor_1) && string.Equals(oldS2Name, newSensor_2) && string.Equals(oldS3Name, newSensor_3) && string.Equals(oldS4Name, newSensor_4))
+                                {
+                                    MessageBox.Show("No Changes Found.", "Prompt");
+                                }
+                                else
+                                {
+                                    string updateQuery = "UPDATE LoggerMaster SET LoggerName = @LoggerName , LoggerType = @LoggerType, NoOfSensors = @NoOfSensors, AssignTo = @AssignTo, Interval = @Interval, S1Name = @S1Name, S2Name = @S2Name, S3Name = @S3Name, S4Name = @S4Name  WHERE LoggerID = @LogID";
+                                    reader.Close();
+                                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                    {
+                                        updateCommand.Parameters.AddWithValue("@LoggerName", newLogName);
+                                        updateCommand.Parameters.AddWithValue("@LoggerType", newLogType);
+                                        updateCommand.Parameters.AddWithValue("@NoOfSensors", newNoOfSensors);
+                                        updateCommand.Parameters.AddWithValue("@AssignTo", newAssign);
+                                        updateCommand.Parameters.AddWithValue("@Interval", newInterval);
+                                        updateCommand.Parameters.AddWithValue("@S1Name", newSensor_1);
+                                        updateCommand.Parameters.AddWithValue("@S2Name", newSensor_2);
+                                        updateCommand.Parameters.AddWithValue("@S3Name", newSensor_3);
+                                        updateCommand.Parameters.AddWithValue("@S4Name", newSensor_4);
+                                        updateCommand.Parameters.AddWithValue("@LogID", logID);
+
+                                        int rowsAffected = updateCommand.ExecuteNonQuery();
+                                        if (rowsAffected > 0)
+                                        {
+                                            MessageBox.Show("Record updated successfully.", "Success");
+                                            RefreshData();
+                                            Clear();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
+        }
+        private void bt_Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string logID = tb_LogID.Text;
+                if (string.IsNullOrEmpty(logID)) { MessageBox.Show("Select the Data which you want to Delete from the Data Grid View.", "Prompt"); }
+                else
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string deleteQuery = "UPDATE LoggerMaster SET IsActive = 0 WHERE LoggerID = @LogID";
+                        using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection))
+                        {
+                            deleteCommand.Parameters.AddWithValue("@LogID", logID);
+                            int rowsAffected = deleteCommand.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Record Deleted successfully.", "Success");
+                                RefreshData();
+                                Clear();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
             }
         }
     }

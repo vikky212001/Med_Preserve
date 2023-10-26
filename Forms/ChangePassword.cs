@@ -140,5 +140,12 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("Fill in all required fields.", "Prompt"); //Suggestion
             }
         }
+
+        private void ChangePassword_Load(object sender, EventArgs e)
+        {
+            tb_ConPass.PasswordChar = '●';
+            tb_CurrPass.PasswordChar = '●';
+            tb_NewPass.PasswordChar = '●';
+        }
     }
 }

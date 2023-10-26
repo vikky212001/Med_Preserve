@@ -121,6 +121,7 @@
             this.Controls.Add(this.tb_CurrPass);
             this.Name = "ChangePassword";
             this.Text = "Change Password";
+            this.Load += new System.EventHandler(this.ChangePassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -303,6 +303,12 @@ namespace Med_Preserve.Forms
 
             try
             {
+                if (string.IsNullOrWhiteSpace(newName) || string.IsNullOrWhiteSpace(newEmail) ||
+                        string.IsNullOrWhiteSpace(newMobile) || string.IsNullOrWhiteSpace(newUserName))
+                {
+                    MessageBox.Show("Select any Record from Datagrid View.", "Prompt");
+                    return;
+                }
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
