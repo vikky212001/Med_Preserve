@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Med_Preserve]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Database [Med_Preserve]    Script Date: 10/26/2023 7:57:51 PM ******/
 CREATE DATABASE [Med_Preserve]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [Med_Preserve] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEA
 GO
 USE [Med_Preserve]
 GO
-/****** Object:  Table [dbo].[CompanyMaster]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[CompanyMaster]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -101,7 +101,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LoggerConfig]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[LoggerConfig]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,10 +140,14 @@ CREATE TABLE [dbo].[LoggerConfig](
 	[S1_Humi] [numeric](5, 2) NULL,
 	[S2_Humi] [numeric](5, 2) NULL,
 	[S3_Humi] [numeric](5, 2) NULL,
-	[S4_Humi] [numeric](5, 2) NULL
+	[S4_Humi] [numeric](5, 2) NULL,
+ CONSTRAINT [PK_LoggerConfig] PRIMARY KEY CLUSTERED 
+(
+	[SrNo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LoggerMaster]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[LoggerMaster]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +171,7 @@ CREATE TABLE [dbo].[LoggerMaster](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -181,7 +185,7 @@ CREATE TABLE [dbo].[Role](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SensorData]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[SensorData]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +208,7 @@ CREATE TABLE [dbo].[SensorData](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserData]    Script Date: 10/26/2023 2:40:45 AM ******/
+/****** Object:  Table [dbo].[UserData]    Script Date: 10/26/2023 7:57:51 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -225,6 +229,16 @@ CREATE TABLE [dbo].[UserData](
 	[UserID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[LoggerConfig]  WITH CHECK ADD  CONSTRAINT [FK_LoggerConfig_LoggerMaster] FOREIGN KEY([LoggerID])
+REFERENCES [dbo].[LoggerMaster] ([LoggerID])
+GO
+ALTER TABLE [dbo].[LoggerConfig] CHECK CONSTRAINT [FK_LoggerConfig_LoggerMaster]
+GO
+ALTER TABLE [dbo].[SensorData]  WITH CHECK ADD  CONSTRAINT [FK_SensorData_LoggerMaster] FOREIGN KEY([LoggerID])
+REFERENCES [dbo].[LoggerMaster] ([LoggerID])
+GO
+ALTER TABLE [dbo].[SensorData] CHECK CONSTRAINT [FK_SensorData_LoggerMaster]
 GO
 ALTER TABLE [dbo].[UserData]  WITH CHECK ADD  CONSTRAINT [FK_UserData_Role] FOREIGN KEY([RoleID])
 REFERENCES [dbo].[Role] ([RoleID])
