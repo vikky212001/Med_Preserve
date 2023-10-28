@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Med_Preserve.Forms
 {
@@ -84,7 +85,7 @@ namespace Med_Preserve.Forms
             object sensor_3 = DBNull.Value;
             object sensor_4 = DBNull.Value;
             string logType = "Default";
-            string intervalType = cmb_IntervalType.Text;
+            string intervalType = string.IsNullOrWhiteSpace(tb_Interval.Text) ? "sec" : cmb_IntervalType.Text;
             int noOfSensors;
             if (!int.TryParse(cmb_NoOfSensors.Text, out noOfSensors))
             {
@@ -93,7 +94,7 @@ namespace Med_Preserve.Forms
             }
             if (cmb_IntervalType.Text == "min")
             {
-                interval = Convert.ToString(Convert.ToInt32(tb_Interval.Text) * 60);
+                interval = $"{interval:D2}:{0:D2}";
             }
             if (noOfSensors >= 1)
             {
@@ -403,9 +404,41 @@ namespace Med_Preserve.Forms
 
         private void cmb_IntervalType_TextChanged(object sender, EventArgs e)
         {
-            if (tb_Interval.Text != "")
+            if (tb_LogID.Text != "") 
             {
-                
+                string interval = tb_Interval.Text;
+                if (interval != "")
+                {
+                    if (cmb_IntervalType.Text == "sec")
+                    {
+                        string[] delay = interval.Split(':');
+                        if (delay.Length == 2)
+                        {
+                            int min = Convert.ToInt32(delay[0]);
+                            int sec = Convert.ToInt32(delay[1]);
+                            tb_Interval.Text = Convert.ToString((min * 60) + sec);
+                        }
+                    }
+                    if (cmb_IntervalType.Text == "min")
+                    {
+                        int min = 0;
+                        if (interval.Contains(":"))
+                        {
+                            tb_Interval.Text = interval;
+                        }
+                        else
+                        {
+                            int time = Convert.ToInt32(interval);
+                            while (time >= 60)
+                            {
+                                time -= 60;
+                                min++;
+                            }
+                            string formatTime = $"{min:D2}:{time:D2}";
+                            tb_Interval.Text = formatTime;
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
@@ -145,41 +139,92 @@ namespace Med_Preserve.Forms
 
         private void bt_Add_Click(object sender, EventArgs e)
         {
-            string s1Temp = tb_S1_Temp.Text;
-            string s2Temp = tb_S2_Temp.Text;
-            string s3Temp = tb_S3_Temp.Text;
-            string s4Temp = tb_S4_Temp.Text;
-            string s1Humi = tb_S1_Humidity.Text;
-            string s2Humi = tb_S2_Humidity.Text;
-            string s3Humi = tb_S3_Humidity.Text;
-            string s4Humi = tb_S4_Humidity.Text;
-            string s1_T_UL = tb_TS1_UL.Text;
-            string s2_T_UL = tb_TS2_UL.Text;
-            string s3_T_UL = tb_TS3_UL.Text;
-            string s4_T_UL = tb_TS4_UL.Text;
-            string s1_T_LL = tb_TS1_LL.Text;
-            string s2_T_LL = tb_TS2_LL.Text;
-            string s3_T_LL = tb_TS3_LL.Text;
-            string s4_T_LL = tb_TS4_LL.Text;
-            string s1_H_UL = tb_HS1_UL.Text;
-            string s2_H_UL = tb_HS2_UL.Text;
-            string s3_H_UL = tb_HS3_UL.Text;
-            string s4_H_UL = tb_HS4_UL.Text;
-            string s1_H_LL = tb_HS1_LL.Text;
-            string s2_H_LL = tb_HS2_LL.Text;
-            string s3_H_LL = tb_HS3_LL.Text;
-            string s4_H_LL = tb_HS4_LL.Text;
-            string s1_T_Cali = tb_TS1_Calibrate.Text;
-            string s2_T_Cali = tb_TS2_Calibrate.Text;
-            string s3_T_Cali = tb_TS3_Calibrate.Text;
-            string s4_T_Cali = tb_TS4_Calibrate.Text;
-            string s1_H_Cali = tb_HS1_Calibrate.Text;
-            string s2_H_Cali = tb_HS2_Calibrate.Text;
-            string s3_H_Cali = tb_HS3_Calibrate.Text;
-            string s4_H_Cali = tb_HS4_Calibrate.Text;
+            try
+            {
+                string s1Temp = tb_S1_Temp.Text;
+                string s2Temp = tb_S2_Temp.Text;
+                string s3Temp = tb_S3_Temp.Text;
+                string s4Temp = tb_S4_Temp.Text;
+                string s1Humi = tb_S1_Humidity.Text;
+                string s2Humi = tb_S2_Humidity.Text;
+                string s3Humi = tb_S3_Humidity.Text;
+                string s4Humi = tb_S4_Humidity.Text;
+                string s1_T_UL = tb_TS1_UL.Text;
+                string s2_T_UL = tb_TS2_UL.Text;
+                string s3_T_UL = tb_TS3_UL.Text;
+                string s4_T_UL = tb_TS4_UL.Text;
+                string s1_T_LL = tb_TS1_LL.Text;
+                string s2_T_LL = tb_TS2_LL.Text;
+                string s3_T_LL = tb_TS3_LL.Text;
+                string s4_T_LL = tb_TS4_LL.Text;
+                string s1_H_UL = tb_HS1_UL.Text;
+                string s2_H_UL = tb_HS2_UL.Text;
+                string s3_H_UL = tb_HS3_UL.Text;
+                string s4_H_UL = tb_HS4_UL.Text;
+                string s1_H_LL = tb_HS1_LL.Text;
+                string s2_H_LL = tb_HS2_LL.Text;
+                string s3_H_LL = tb_HS3_LL.Text;
+                string s4_H_LL = tb_HS4_LL.Text;
+                string s1_T_Cali = tb_TS1_Calibrate.Text;
+                string s2_T_Cali = tb_TS2_Calibrate.Text;
+                string s3_T_Cali = tb_TS3_Calibrate.Text;
+                string s4_T_Cali = tb_TS4_Calibrate.Text;
+                string s1_H_Cali = tb_HS1_Calibrate.Text;
+                string s2_H_Cali = tb_HS2_Calibrate.Text;
+                string s3_H_Cali = tb_HS3_Calibrate.Text;
+                string s4_H_Cali = tb_HS4_Calibrate.Text;
 
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate)" +
+    "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate);";
+                    using (SqlCommand command = new SqlCommand(configQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@S1_Temp", s1Temp);
+                        command.Parameters.AddWithValue("@S2_Temp", s2Temp);
+                        command.Parameters.AddWithValue("@S3_Temp", s3Temp);
+                        command.Parameters.AddWithValue("@S4_Temp", s4Temp);
+                        command.Parameters.AddWithValue("@S1_Humi", s1Humi);
+                        command.Parameters.AddWithValue("@S2_Humi", s2Humi);
+                        command.Parameters.AddWithValue("@S3_Humi", s3Humi);
+                        command.Parameters.AddWithValue("@S4_Humi", s4Humi);
+                        command.Parameters.AddWithValue("@S1_T_Low", s1_T_LL);
+                        command.Parameters.AddWithValue("@S1_T_High", s1_T_UL);
+                        command.Parameters.AddWithValue("@S1_H_Low", s1_H_LL);
+                        command.Parameters.AddWithValue("@S1_H_High", s1_H_UL);
+                        command.Parameters.AddWithValue("@S2_T_Low", s2_T_LL);
+                        command.Parameters.AddWithValue("@S2_T_High", s2_T_UL);
+                        command.Parameters.AddWithValue("@S2_H_Low", s2_H_LL);
+                        command.Parameters.AddWithValue("@S2_H_High", s2_H_UL);
+                        command.Parameters.AddWithValue("@S3_T_Low", s3_T_LL);
+                        command.Parameters.AddWithValue("@S3_T_High", s3_T_UL);
+                        command.Parameters.AddWithValue("@S3_H_Low", s3_H_LL);
+                        command.Parameters.AddWithValue("@S3_H_High", s3_H_UL);
+                        command.Parameters.AddWithValue("@S4_T_Low", s4_T_LL);
+                        command.Parameters.AddWithValue("@S4_T_High", s4_T_UL);
+                        command.Parameters.AddWithValue("@S4_H_Low", s4_H_LL);
+                        command.Parameters.AddWithValue("@S4_H_High", s4_H_UL);
+                        command.Parameters.AddWithValue("@S1_T_Calibrate", s1_T_Cali);
+                        command.Parameters.AddWithValue("@S2_T_Calibrate", s2_T_Cali);
+                        command.Parameters.AddWithValue("@S3_T_Calibrate", s3_T_Cali);
+                        command.Parameters.AddWithValue("@S4_T_Calibrate", s4_T_Cali);
+                        command.Parameters.AddWithValue("@S1_H_Calibrate", s1_H_Cali);
+                        command.Parameters.AddWithValue("@S2_H_Calibrate", s2_H_Cali);
+                        command.Parameters.AddWithValue("@S3_H_Calibrate", s3_H_Cali);
+                        command.Parameters.AddWithValue("@S4_H_Calibrate", s4_H_Cali);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Logger created successfully.", "Prompt");
+                        RefreshData();
+                        Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while Configuring a new Logger: " + ex.Message, "Error");
+            }
         }
-
         private void tb_NoOfSensors_TextChanged(object sender, EventArgs e)
         {
             int selectedSensors;
