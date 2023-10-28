@@ -405,6 +405,7 @@
             this.tb_NoOfSensors.Name = "tb_NoOfSensors";
             this.tb_NoOfSensors.Size = new System.Drawing.Size(98, 20);
             this.tb_NoOfSensors.TabIndex = 83;
+            this.tb_NoOfSensors.TextChanged += new System.EventHandler(this.tb_NoOfSensors_TextChanged);
             // 
             // tb_LogType
             // 
@@ -473,6 +474,7 @@
             this.bt_Add.TabIndex = 87;
             this.bt_Add.Text = "ADD";
             this.bt_Add.UseVisualStyleBackColor = true;
+            this.bt_Add.Click += new System.EventHandler(this.bt_Add_Click);
             // 
             // lb_LoggerName
             // 

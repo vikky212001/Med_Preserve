@@ -42,7 +42,7 @@ namespace Med_Preserve.Forms
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
                         cmb_LoggerName.DataSource = dataTable;
-                        cmb_LoggerName.DisplayMember = "CompanyName";
+                        cmb_LoggerName.DisplayMember = "LoggerName";
                         cmb_LoggerName.Text = "-SELECT-";
                     }
                 }
@@ -141,6 +141,87 @@ namespace Med_Preserve.Forms
         private void bt_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void bt_Add_Click(object sender, EventArgs e)
+        {
+            string s1Temp = tb_S1_Temp.Text;
+            string s2Temp = tb_S2_Temp.Text;
+            string s3Temp = tb_S3_Temp.Text;
+            string s4Temp = tb_S4_Temp.Text;
+            string s1Humi = tb_S1_Humidity.Text;
+            string s2Humi = tb_S2_Humidity.Text;
+            string s3Humi = tb_S3_Humidity.Text;
+            string s4Humi = tb_S4_Humidity.Text;
+            string s1_T_UL = tb_TS1_UL.Text;
+            string s2_T_UL = tb_TS2_UL.Text;
+            string s3_T_UL = tb_TS3_UL.Text;
+            string s4_T_UL = tb_TS4_UL.Text;
+            string s1_T_LL = tb_TS1_LL.Text;
+            string s2_T_LL = tb_TS2_LL.Text;
+            string s3_T_LL = tb_TS3_LL.Text;
+            string s4_T_LL = tb_TS4_LL.Text;
+            string s1_H_UL = tb_HS1_UL.Text;
+            string s2_H_UL = tb_HS2_UL.Text;
+            string s3_H_UL = tb_HS3_UL.Text;
+            string s4_H_UL = tb_HS4_UL.Text;
+            string s1_H_LL = tb_HS1_LL.Text;
+            string s2_H_LL = tb_HS2_LL.Text;
+            string s3_H_LL = tb_HS3_LL.Text;
+            string s4_H_LL = tb_HS4_LL.Text;
+            string s1_T_Cali = tb_TS1_Calibrate.Text;
+            string s2_T_Cali = tb_TS2_Calibrate.Text;
+            string s3_T_Cali = tb_TS3_Calibrate.Text;
+            string s4_T_Cali = tb_TS4_Calibrate.Text;
+            string s1_H_Cali = tb_HS1_Calibrate.Text;
+            string s2_H_Cali = tb_HS2_Calibrate.Text;
+            string s3_H_Cali = tb_HS3_Calibrate.Text;
+            string s4_H_Cali = tb_HS4_Calibrate.Text;
+
+        }
+
+        private void tb_NoOfSensors_TextChanged(object sender, EventArgs e)
+        {
+            int selectedSensors;
+            if (int.TryParse(tb_NoOfSensors.Text, out selectedSensors) && selectedSensors >= 1 && selectedSensors <= 4)
+            {
+                tb_S1_Name.Enabled = true;
+                tb_S2_Name.Enabled = selectedSensors >= 2;
+                tb_S3_Name.Enabled = selectedSensors >= 3;
+                tb_S4_Name.Enabled = selectedSensors == 4;
+                tb_S1_Temp.Enabled = true;
+                tb_S2_Temp.Enabled = selectedSensors >= 2;
+                tb_S3_Temp.Enabled = selectedSensors >= 3;
+                tb_S4_Temp.Enabled = selectedSensors == 4;
+                tb_S1_Humidity.Enabled = true;
+                tb_S2_Humidity.Enabled = selectedSensors >= 2;
+                tb_S3_Humidity.Enabled = selectedSensors >= 3;
+                tb_S4_Humidity.Enabled = selectedSensors == 4;
+                tb_TS1_UL.Enabled = true;
+                tb_TS2_UL.Enabled = selectedSensors >= 2;
+                tb_TS3_UL.Enabled = selectedSensors >= 3;
+                tb_TS4_UL.Enabled = selectedSensors == 4;
+                tb_TS1_LL.Enabled = true;
+                tb_TS2_LL.Enabled = selectedSensors >= 2;
+                tb_TS3_LL.Enabled = selectedSensors >= 3;
+                tb_TS4_LL.Enabled = selectedSensors == 4;
+                tb_HS1_UL.Enabled = true;
+                tb_HS2_UL.Enabled = selectedSensors >= 2;
+                tb_HS3_UL.Enabled = selectedSensors >= 3;
+                tb_HS4_UL.Enabled = selectedSensors == 4;
+                tb_HS1_LL.Enabled = true;
+                tb_HS2_LL.Enabled = selectedSensors >= 2;
+                tb_HS3_LL.Enabled = selectedSensors >= 3;
+                tb_HS4_LL.Enabled = selectedSensors == 4;
+                tb_TS1_Calibrate.Enabled = true;
+                tb_TS2_Calibrate.Enabled = selectedSensors >= 2;
+                tb_TS3_Calibrate.Enabled = selectedSensors >= 3;
+                tb_TS4_Calibrate.Enabled = selectedSensors == 4;
+                tb_HS1_Calibrate.Enabled = true;
+                tb_HS2_Calibrate.Enabled = selectedSensors >= 2;
+                tb_HS3_Calibrate.Enabled = selectedSensors >= 3;
+                tb_HS4_Calibrate.Enabled = selectedSensors == 4;
+            }
         }
     }
 }

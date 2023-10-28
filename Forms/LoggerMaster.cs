@@ -188,7 +188,7 @@ namespace Med_Preserve.Forms
             string logType = row.Cells[2].Value.ToString();
             cmb_NoOfSensors.Text = row.Cells[3].Value.ToString();
             cmb_AssignTo.Text = row.Cells[4].Value.ToString();
-            tb_Interval.Text =row.Cells[5].Value.ToString();
+            tb_Interval.Text = row.Cells[5].Value.ToString();
             tb_S1_Name.Text = row.Cells[6].Value.ToString();
             tb_S2_Name.Text = row.Cells[7].Value.ToString();
             tb_S3_Name.Text = row.Cells[8].Value.ToString();
@@ -403,13 +403,9 @@ namespace Med_Preserve.Forms
 
         private void cmb_IntervalType_TextChanged(object sender, EventArgs e)
         {
-            if (cmb_IntervalType.Text == "min")
+            if (tb_Interval.Text != "")
             {
-                tb_Interval.Text = Convert.ToString(Convert.ToDouble(tb_Interval.Text) / 60);
-            }
-            else if (cmb_IntervalType.Text == "sec")
-            {
-                tb_Interval.Text = Convert.ToString(Convert.ToDouble(tb_Interval.Text) * 60);
+                
             }
         }
     }
