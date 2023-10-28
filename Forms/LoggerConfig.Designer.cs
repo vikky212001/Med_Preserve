@@ -492,6 +492,7 @@
             this.cmb_LoggerName.Name = "cmb_LoggerName";
             this.cmb_LoggerName.Size = new System.Drawing.Size(121, 21);
             this.cmb_LoggerName.TabIndex = 93;
+            this.cmb_LoggerName.TextChanged += new System.EventHandler(this.cmb_LoggerName_TextChanged);
             // 
             // tb_HS4_LL
             // 

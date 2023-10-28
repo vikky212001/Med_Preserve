@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Med_Preserve.Forms
 {
@@ -404,7 +403,7 @@ namespace Med_Preserve.Forms
 
         private void cmb_IntervalType_TextChanged(object sender, EventArgs e)
         {
-            if (tb_LogID.Text != "") 
+            if (tb_LogID.Text != "")
             {
                 string interval = tb_Interval.Text;
                 if (interval != "")
