@@ -200,59 +200,6 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("An error occurred while configuring a new Logger: " + ex.Message, "Error");
             }
         }
-        private void tb_NoOfSensors_TextChanged(object sender, EventArgs e)
-        {
-            int selectedSensors;
-            if (tb_NoOfSensors.Text == "")
-            {
-                foreach (Control control in Controls)
-                {
-                    if (control is TextBox textBox)
-                    {
-                        textBox.Enabled = true;
-                    }
-                }
-            }
-            else if (int.TryParse(tb_NoOfSensors.Text, out selectedSensors) && selectedSensors >= 1 && selectedSensors <= 4)
-            {
-                tb_S1_Name.Enabled = true;
-                tb_S2_Name.Enabled = selectedSensors >= 2;
-                tb_S3_Name.Enabled = selectedSensors >= 3;
-                tb_S4_Name.Enabled = selectedSensors >= 4;
-                tb_S1_Temp.Enabled = true;
-                tb_S2_Temp.Enabled = selectedSensors >= 2;
-                tb_S3_Temp.Enabled = selectedSensors >= 3;
-                tb_S4_Temp.Enabled = selectedSensors >= 4;
-                tb_S1_Humidity.Enabled = true;
-                tb_S2_Humidity.Enabled = selectedSensors >= 2;
-                tb_S3_Humidity.Enabled = selectedSensors >= 3;
-                tb_S4_Humidity.Enabled = selectedSensors >= 4;
-                tb_TS1_UL.Enabled = true;
-                tb_TS2_UL.Enabled = selectedSensors >= 2;
-                tb_TS3_UL.Enabled = selectedSensors >= 3;
-                tb_TS4_UL.Enabled = selectedSensors >= 4;
-                tb_TS1_LL.Enabled = true;
-                tb_TS2_LL.Enabled = selectedSensors >= 2;
-                tb_TS3_LL.Enabled = selectedSensors >= 3;
-                tb_TS4_LL.Enabled = selectedSensors >= 4;
-                tb_HS1_UL.Enabled = true;
-                tb_HS2_UL.Enabled = selectedSensors >= 2;
-                tb_HS3_UL.Enabled = selectedSensors >= 3;
-                tb_HS4_UL.Enabled = selectedSensors >= 4;
-                tb_HS1_LL.Enabled = true;
-                tb_HS2_LL.Enabled = selectedSensors >= 2;
-                tb_HS3_LL.Enabled = selectedSensors >= 3;
-                tb_HS4_LL.Enabled = selectedSensors >= 4;
-                tb_TS1_Calibrate.Enabled = true;
-                tb_TS2_Calibrate.Enabled = selectedSensors >= 2;
-                tb_TS3_Calibrate.Enabled = selectedSensors >= 3;
-                tb_TS4_Calibrate.Enabled = selectedSensors >= 4;
-                tb_HS1_Calibrate.Enabled = true;
-                tb_HS2_Calibrate.Enabled = selectedSensors >= 2;
-                tb_HS3_Calibrate.Enabled = selectedSensors >= 3;
-                tb_HS4_Calibrate.Enabled = selectedSensors >= 4;
-            }
-        }
         private void cmb_LoggerName_TextChanged(object sender, EventArgs e)
         {
             string logName = cmb_LoggerName.Text;
@@ -331,10 +278,58 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("An error occurred." + ex.Message, "Error");
             }
         }
+        private void UpdateControlEnabledStatus()
+        {
+            string logType = tb_LogType.Text;
+            int selectedSensors;
 
+            if (int.TryParse(tb_NoOfSensors.Text, out selectedSensors) && selectedSensors >= 1 && selectedSensors <= 4)
+            {
+                bool isTemperature = logType == "Temperature" || logType == "Both";
+                bool isHumidity = logType == "Humidity" || logType == "Both";
+
+                tb_S1_Temp.Enabled = isTemperature;
+                tb_S2_Temp.Enabled = isTemperature && selectedSensors >= 2;
+                tb_S3_Temp.Enabled = isTemperature && selectedSensors >= 3;
+                tb_S4_Temp.Enabled = isTemperature && selectedSensors >= 4;
+                tb_S1_Humidity.Enabled = isHumidity;
+                tb_S2_Humidity.Enabled = isHumidity && selectedSensors >= 2;
+                tb_S3_Humidity.Enabled = isHumidity && selectedSensors >= 3;
+                tb_S4_Humidity.Enabled = isHumidity && selectedSensors >= 4;
+
+                tb_TS1_UL.Enabled = isTemperature;
+                tb_TS2_UL.Enabled = isTemperature && selectedSensors >= 2;
+                tb_TS3_UL.Enabled = isTemperature && selectedSensors >= 3;
+                tb_TS4_UL.Enabled = isTemperature && selectedSensors >= 4;
+                tb_TS1_LL.Enabled = isTemperature;
+                tb_TS2_LL.Enabled = isTemperature && selectedSensors >= 2;
+                tb_TS3_LL.Enabled = isTemperature && selectedSensors >= 3;
+                tb_TS4_LL.Enabled = isTemperature && selectedSensors >= 4;
+                tb_HS1_UL.Enabled = isHumidity;
+                tb_HS2_UL.Enabled = isHumidity && selectedSensors >= 2;
+                tb_HS3_UL.Enabled = isHumidity && selectedSensors >= 3;
+                tb_HS4_UL.Enabled = isHumidity && selectedSensors >= 4;
+                tb_HS1_LL.Enabled = isHumidity;
+                tb_HS2_LL.Enabled = isHumidity && selectedSensors >= 2;
+                tb_HS3_LL.Enabled = isHumidity && selectedSensors >= 3;
+                tb_HS4_LL.Enabled = isHumidity && selectedSensors >= 4;
+                tb_TS1_Calibrate.Enabled = isTemperature;
+                tb_TS2_Calibrate.Enabled = isTemperature && selectedSensors >= 2;
+                tb_TS3_Calibrate.Enabled = isTemperature && selectedSensors >= 3;
+                tb_TS4_Calibrate.Enabled = isTemperature && selectedSensors >= 4;
+                tb_HS1_Calibrate.Enabled = isHumidity;
+                tb_HS2_Calibrate.Enabled = isHumidity && selectedSensors >= 2;
+                tb_HS3_Calibrate.Enabled = isHumidity && selectedSensors >= 3;
+                tb_HS4_Calibrate.Enabled = isHumidity && selectedSensors >= 4;
+            }
+        }
+        private void tb_NoOfSensors_TextChanged(object sender, EventArgs e)
+        {
+            UpdateControlEnabledStatus();
+        }
         private void tb_LogType_TextChanged(object sender, EventArgs e)
         {
-
+            UpdateControlEnabledStatus();
         }
     }
 }
