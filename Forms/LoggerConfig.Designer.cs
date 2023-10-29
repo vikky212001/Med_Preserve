@@ -323,6 +323,7 @@
             // 
             this.tb_S1_Name.Location = new System.Drawing.Point(13, 286);
             this.tb_S1_Name.Name = "tb_S1_Name";
+            this.tb_S1_Name.ReadOnly = true;
             this.tb_S1_Name.Size = new System.Drawing.Size(98, 20);
             this.tb_S1_Name.TabIndex = 73;
             // 
@@ -330,6 +331,7 @@
             // 
             this.tb_S2_Name.Location = new System.Drawing.Point(13, 312);
             this.tb_S2_Name.Name = "tb_S2_Name";
+            this.tb_S2_Name.ReadOnly = true;
             this.tb_S2_Name.Size = new System.Drawing.Size(98, 20);
             this.tb_S2_Name.TabIndex = 74;
             // 
@@ -337,6 +339,7 @@
             // 
             this.tb_S3_Name.Location = new System.Drawing.Point(13, 338);
             this.tb_S3_Name.Name = "tb_S3_Name";
+            this.tb_S3_Name.ReadOnly = true;
             this.tb_S3_Name.Size = new System.Drawing.Size(98, 20);
             this.tb_S3_Name.TabIndex = 75;
             // 
@@ -344,6 +347,7 @@
             // 
             this.tb_S4_Name.Location = new System.Drawing.Point(13, 364);
             this.tb_S4_Name.Name = "tb_S4_Name";
+            this.tb_S4_Name.ReadOnly = true;
             this.tb_S4_Name.Size = new System.Drawing.Size(98, 20);
             this.tb_S4_Name.TabIndex = 76;
             // 
@@ -403,6 +407,7 @@
             // 
             this.tb_NoOfSensors.Location = new System.Drawing.Point(379, 205);
             this.tb_NoOfSensors.Name = "tb_NoOfSensors";
+            this.tb_NoOfSensors.ReadOnly = true;
             this.tb_NoOfSensors.Size = new System.Drawing.Size(98, 20);
             this.tb_NoOfSensors.TabIndex = 83;
             this.tb_NoOfSensors.TextChanged += new System.EventHandler(this.tb_NoOfSensors_TextChanged);
@@ -411,13 +416,16 @@
             // 
             this.tb_LogType.Location = new System.Drawing.Point(379, 179);
             this.tb_LogType.Name = "tb_LogType";
+            this.tb_LogType.ReadOnly = true;
             this.tb_LogType.Size = new System.Drawing.Size(98, 20);
             this.tb_LogType.TabIndex = 84;
+            this.tb_LogType.TextChanged += new System.EventHandler(this.tb_LogType_TextChanged);
             // 
             // tb_Assign
             // 
             this.tb_Assign.Location = new System.Drawing.Point(620, 205);
             this.tb_Assign.Name = "tb_Assign";
+            this.tb_Assign.ReadOnly = true;
             this.tb_Assign.Size = new System.Drawing.Size(98, 20);
             this.tb_Assign.TabIndex = 85;
             // 
@@ -425,6 +433,7 @@
             // 
             this.tb_Interval.Location = new System.Drawing.Point(620, 179);
             this.tb_Interval.Name = "tb_Interval";
+            this.tb_Interval.ReadOnly = true;
             this.tb_Interval.Size = new System.Drawing.Size(98, 20);
             this.tb_Interval.TabIndex = 86;
             // 
@@ -487,6 +496,8 @@
             // 
             // cmb_LoggerName
             // 
+            this.cmb_LoggerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmb_LoggerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_LoggerName.FormattingEnabled = true;
             this.cmb_LoggerName.Location = new System.Drawing.Point(87, 208);
             this.cmb_LoggerName.Name = "cmb_LoggerName";
