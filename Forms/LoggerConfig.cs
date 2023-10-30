@@ -135,9 +135,32 @@ namespace Med_Preserve.Forms
         }
         private void bt_Add_Click(object sender, EventArgs e)
         {
-            try
+            bool foundEmptyActiveTextbox = false;
+
+            foreach (Control control in this.Controls)
             {
-                string[] textBoxValues = {
+                if (control is TextBox)
+                {
+                    TextBox textbox = (TextBox)control;
+                    if (textbox.Enabled)
+                    {
+                        if (string.IsNullOrWhiteSpace(textbox.Text))
+                        {
+                            foundEmptyActiveTextbox = true;
+                        }
+                    }
+                }
+            }
+
+            if (foundEmptyActiveTextbox)
+            {
+                MessageBox.Show("Please Fill all the active Textboxes. If You Want the TextBox to Be Empty then Insert 0 in the TextBoxes", "Prompt");
+            }
+            else
+            {
+                try
+                {
+                    string[] textBoxValues = {
             tb_S1_Temp.Text, tb_S2_Temp.Text, tb_S3_Temp.Text, tb_S4_Temp.Text,
             tb_S1_Humidity.Text, tb_S2_Humidity.Text, tb_S3_Humidity.Text, tb_S4_Humidity.Text,
             tb_TS1_UL.Text, tb_TS2_UL.Text, tb_TS3_UL.Text, tb_TS4_UL.Text,
@@ -148,7 +171,7 @@ namespace Med_Preserve.Forms
             tb_HS1_Calibrate.Text, tb_HS2_Calibrate.Text, tb_HS3_Calibrate.Text, tb_HS4_Calibrate.Text, tb_LogID.Text
         };
 
-                string[] parameterNames = {
+                    string[] parameterNames = {
             "@S1_Temp", "@S2_Temp", "@S3_Temp", "@S4_Temp",
             "@S1_Humi", "@S2_Humi", "@S3_Humi", "@S4_Humi",
             "@S1_T_High", "@S2_T_High", "@S3_T_High", "@S4_T_High",
@@ -159,45 +182,46 @@ namespace Med_Preserve.Forms
             "@S1_H_Calibrate", "@S2_H_Calibrate", "@S3_H_Calibrate", "@S4_H_Calibrate", "@LogID"
         };
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID) " +
-                        "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID);";
-
-                    using (SqlCommand command = new SqlCommand(configQuery, connection))
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        for (int i = 0; i < parameterNames.Length; i++)
+                        connection.Open();
+                        string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID) " +
+                            "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID);";
+
+                        using (SqlCommand command = new SqlCommand(configQuery, connection))
                         {
-                            if (string.IsNullOrEmpty(textBoxValues[i]))
+                            for (int i = 0; i < parameterNames.Length; i++)
                             {
-                                command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
-                            }
-                            else
-                            {
-                                // Attempt to convert the string to a numeric data type (e.g., int)
-                                if (int.TryParse(textBoxValues[i], out int numericValue))
+                                if (string.IsNullOrEmpty(textBoxValues[i]))
                                 {
-                                    command.Parameters.AddWithValue(parameterNames[i], numericValue);
+                                    command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
                                 }
                                 else
                                 {
-                                    // Handle the case where the string cannot be converted to a numeric value
-                                    command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
+                                    // Attempt to convert the string to a numeric data type (e.g., int)
+                                    if (int.TryParse(textBoxValues[i], out int numericValue))
+                                    {
+                                        command.Parameters.AddWithValue(parameterNames[i], numericValue);
+                                    }
+                                    else
+                                    {
+                                        // Handle the case where the string cannot be converted to a numeric value
+                                        command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
+                                    }
                                 }
                             }
-                        }
 
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Logger created successfully.", "Prompt");
-                        RefreshData();
-                        Clear();
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Logger created successfully.", "Prompt");
+                            RefreshData();
+                            Clear();
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while configuring a new Logger: " + ex.Message, "Error");
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while configuring a new Logger: " + ex.Message, "Error");
+                }
             }
         }
         private void cmb_LoggerName_TextChanged(object sender, EventArgs e)
@@ -296,7 +320,10 @@ namespace Med_Preserve.Forms
                 tb_S2_Humidity.Enabled = isHumidity && selectedSensors >= 2;
                 tb_S3_Humidity.Enabled = isHumidity && selectedSensors >= 3;
                 tb_S4_Humidity.Enabled = isHumidity && selectedSensors >= 4;
-
+                tb_S1_Name.Enabled = true;
+                tb_S2_Name.Enabled = selectedSensors >= 2;
+                tb_S3_Name.Enabled = selectedSensors >= 3;
+                tb_S4_Name.Enabled = selectedSensors >= 4;
                 tb_TS1_UL.Enabled = isTemperature;
                 tb_TS2_UL.Enabled = isTemperature && selectedSensors >= 2;
                 tb_TS3_UL.Enabled = isTemperature && selectedSensors >= 3;
