@@ -359,6 +359,7 @@
             this.lb_LogID.Size = new System.Drawing.Size(54, 13);
             this.lb_LogID.TabIndex = 77;
             this.lb_LogID.Text = "Logger ID";
+            this.lb_LogID.Visible = false;
             // 
             // lb_LogType
             // 
@@ -402,6 +403,7 @@
             this.tb_LogID.Name = "tb_LogID";
             this.tb_LogID.Size = new System.Drawing.Size(98, 20);
             this.tb_LogID.TabIndex = 82;
+            this.tb_LogID.Visible = false;
             // 
             // tb_NoOfSensors
             // 
