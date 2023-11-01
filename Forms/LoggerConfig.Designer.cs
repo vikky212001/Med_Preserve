@@ -100,56 +100,56 @@
             // 
             // tb_TS4_LL
             // 
-            this.tb_TS4_LL.Location = new System.Drawing.Point(379, 364);
+            this.tb_TS4_LL.Location = new System.Drawing.Point(309, 364);
             this.tb_TS4_LL.Name = "tb_TS4_LL";
             this.tb_TS4_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS4_LL.TabIndex = 64;
             // 
             // tb_TS4_UL
             // 
-            this.tb_TS4_UL.Location = new System.Drawing.Point(309, 364);
+            this.tb_TS4_UL.Location = new System.Drawing.Point(379, 364);
             this.tb_TS4_UL.Name = "tb_TS4_UL";
             this.tb_TS4_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS4_UL.TabIndex = 63;
             // 
             // tb_TS3_LL
             // 
-            this.tb_TS3_LL.Location = new System.Drawing.Point(379, 338);
+            this.tb_TS3_LL.Location = new System.Drawing.Point(309, 338);
             this.tb_TS3_LL.Name = "tb_TS3_LL";
             this.tb_TS3_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS3_LL.TabIndex = 62;
             // 
             // tb_TS3_UL
             // 
-            this.tb_TS3_UL.Location = new System.Drawing.Point(309, 338);
+            this.tb_TS3_UL.Location = new System.Drawing.Point(379, 338);
             this.tb_TS3_UL.Name = "tb_TS3_UL";
             this.tb_TS3_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS3_UL.TabIndex = 61;
             // 
             // tb_TS2_LL
             // 
-            this.tb_TS2_LL.Location = new System.Drawing.Point(379, 312);
+            this.tb_TS2_LL.Location = new System.Drawing.Point(309, 312);
             this.tb_TS2_LL.Name = "tb_TS2_LL";
             this.tb_TS2_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS2_LL.TabIndex = 60;
             // 
             // tb_TS2_UL
             // 
-            this.tb_TS2_UL.Location = new System.Drawing.Point(309, 312);
+            this.tb_TS2_UL.Location = new System.Drawing.Point(379, 312);
             this.tb_TS2_UL.Name = "tb_TS2_UL";
             this.tb_TS2_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS2_UL.TabIndex = 59;
             // 
             // tb_TS1_LL
             // 
-            this.tb_TS1_LL.Location = new System.Drawing.Point(379, 286);
+            this.tb_TS1_LL.Location = new System.Drawing.Point(309, 286);
             this.tb_TS1_LL.Name = "tb_TS1_LL";
             this.tb_TS1_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS1_LL.TabIndex = 58;
             // 
             // tb_TS1_UL
             // 
-            this.tb_TS1_UL.Location = new System.Drawing.Point(309, 286);
+            this.tb_TS1_UL.Location = new System.Drawing.Point(379, 286);
             this.tb_TS1_UL.Name = "tb_TS1_UL";
             this.tb_TS1_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS1_UL.TabIndex = 57;
@@ -213,7 +213,7 @@
             // lb_T_LowThreshold
             // 
             this.lb_T_LowThreshold.AutoSize = true;
-            this.lb_T_LowThreshold.Location = new System.Drawing.Point(380, 269);
+            this.lb_T_LowThreshold.Location = new System.Drawing.Point(310, 269);
             this.lb_T_LowThreshold.Name = "lb_T_LowThreshold";
             this.lb_T_LowThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_T_LowThreshold.TabIndex = 48;
@@ -222,7 +222,7 @@
             // lb_T_UpThreshold
             // 
             this.lb_T_UpThreshold.AutoSize = true;
-            this.lb_T_UpThreshold.Location = new System.Drawing.Point(314, 269);
+            this.lb_T_UpThreshold.Location = new System.Drawing.Point(384, 269);
             this.lb_T_UpThreshold.Name = "lb_T_UpThreshold";
             this.lb_T_UpThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_T_UpThreshold.TabIndex = 47;
@@ -509,56 +509,56 @@
             // 
             // tb_HS4_LL
             // 
-            this.tb_HS4_LL.Location = new System.Drawing.Point(538, 364);
+            this.tb_HS4_LL.Location = new System.Drawing.Point(470, 364);
             this.tb_HS4_LL.Name = "tb_HS4_LL";
             this.tb_HS4_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS4_LL.TabIndex = 104;
             // 
             // tb_HS4_UL
             // 
-            this.tb_HS4_UL.Location = new System.Drawing.Point(468, 364);
+            this.tb_HS4_UL.Location = new System.Drawing.Point(541, 364);
             this.tb_HS4_UL.Name = "tb_HS4_UL";
             this.tb_HS4_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS4_UL.TabIndex = 103;
             // 
             // tb_HS3_LL
             // 
-            this.tb_HS3_LL.Location = new System.Drawing.Point(538, 338);
+            this.tb_HS3_LL.Location = new System.Drawing.Point(470, 338);
             this.tb_HS3_LL.Name = "tb_HS3_LL";
             this.tb_HS3_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS3_LL.TabIndex = 102;
             // 
             // tb_HS3_UL
             // 
-            this.tb_HS3_UL.Location = new System.Drawing.Point(468, 338);
+            this.tb_HS3_UL.Location = new System.Drawing.Point(541, 338);
             this.tb_HS3_UL.Name = "tb_HS3_UL";
             this.tb_HS3_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS3_UL.TabIndex = 101;
             // 
             // tb_HS2_LL
             // 
-            this.tb_HS2_LL.Location = new System.Drawing.Point(538, 312);
+            this.tb_HS2_LL.Location = new System.Drawing.Point(470, 312);
             this.tb_HS2_LL.Name = "tb_HS2_LL";
             this.tb_HS2_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS2_LL.TabIndex = 100;
             // 
             // tb_HS2_UL
             // 
-            this.tb_HS2_UL.Location = new System.Drawing.Point(468, 312);
+            this.tb_HS2_UL.Location = new System.Drawing.Point(541, 312);
             this.tb_HS2_UL.Name = "tb_HS2_UL";
             this.tb_HS2_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS2_UL.TabIndex = 99;
             // 
             // tb_HS1_LL
             // 
-            this.tb_HS1_LL.Location = new System.Drawing.Point(538, 286);
+            this.tb_HS1_LL.Location = new System.Drawing.Point(470, 286);
             this.tb_HS1_LL.Name = "tb_HS1_LL";
             this.tb_HS1_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS1_LL.TabIndex = 98;
             // 
             // tb_HS1_UL
             // 
-            this.tb_HS1_UL.Location = new System.Drawing.Point(468, 286);
+            this.tb_HS1_UL.Location = new System.Drawing.Point(541, 286);
             this.tb_HS1_UL.Name = "tb_HS1_UL";
             this.tb_HS1_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS1_UL.TabIndex = 97;
@@ -566,7 +566,7 @@
             // lb_H_LowThreshold
             // 
             this.lb_H_LowThreshold.AutoSize = true;
-            this.lb_H_LowThreshold.Location = new System.Drawing.Point(539, 269);
+            this.lb_H_LowThreshold.Location = new System.Drawing.Point(471, 269);
             this.lb_H_LowThreshold.Name = "lb_H_LowThreshold";
             this.lb_H_LowThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_H_LowThreshold.TabIndex = 96;
@@ -575,7 +575,7 @@
             // lb_H_UpThreshold
             // 
             this.lb_H_UpThreshold.AutoSize = true;
-            this.lb_H_UpThreshold.Location = new System.Drawing.Point(473, 269);
+            this.lb_H_UpThreshold.Location = new System.Drawing.Point(545, 270);
             this.lb_H_UpThreshold.Name = "lb_H_UpThreshold";
             this.lb_H_UpThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_H_UpThreshold.TabIndex = 95;
@@ -640,7 +640,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 450);
+            this.ClientSize = new System.Drawing.Size(798, 447);
             this.Controls.Add(this.lb_Calibrate);
             this.Controls.Add(this.tb_HS4_Calibrate);
             this.Controls.Add(this.tb_HS3_Calibrate);

@@ -151,7 +151,6 @@ namespace Med_Preserve.Forms
                     }
                 }
             }
-
             if (foundEmptyActiveTextbox)
             {
                 MessageBox.Show("Please Fill all the active Textboxes. If You Want the TextBox to Be Empty then Insert 0 in the TextBoxes", "Prompt");
