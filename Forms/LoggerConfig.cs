@@ -137,6 +137,26 @@ namespace Med_Preserve.Forms
         {
             bool foundEmptyActiveTextbox = false;
 
+            TextBox[] tb_Calibrate = new TextBox[]
+{
+    tb_TS1_Calibrate,
+    tb_TS2_Calibrate,
+    tb_TS3_Calibrate,
+    tb_TS4_Calibrate,
+    tb_HS1_Calibrate,
+    tb_HS2_Calibrate,
+    tb_HS3_Calibrate,
+    tb_HS4_Calibrate
+};
+
+            foreach (var textBox in tb_Calibrate)
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = "0";
+                }
+            }
+
             foreach (Control control in this.Controls)
             {
                 if (control is TextBox)
@@ -356,6 +376,11 @@ namespace Med_Preserve.Forms
         private void tb_LogType_TextChanged(object sender, EventArgs e)
         {
             UpdateControlEnabledStatus();
+        }
+
+        private void bt_Update_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

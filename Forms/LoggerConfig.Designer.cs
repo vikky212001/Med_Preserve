@@ -476,6 +476,7 @@
             this.bt_Update.TabIndex = 88;
             this.bt_Update.Text = "UPDATE";
             this.bt_Update.UseVisualStyleBackColor = true;
+            this.bt_Update.Click += new System.EventHandler(this.bt_Update_Click);
             // 
             // bt_Add
             // 
