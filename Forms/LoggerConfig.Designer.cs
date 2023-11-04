@@ -95,6 +95,7 @@
             this.tb_HS1_Calibrate = new System.Windows.Forms.TextBox();
             this.lb_Humi_Calibrate = new System.Windows.Forms.Label();
             this.lb_Calibrate = new System.Windows.Forms.Label();
+            this.tb_IsConfig = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerConfig)).BeginInit();
             this.SuspendLayout();
             // 
@@ -637,11 +638,19 @@
             this.lb_Calibrate.TabIndex = 110;
             this.lb_Calibrate.Text = "Calibrate";
             // 
+            // tb_IsConfig
+            // 
+            this.tb_IsConfig.Location = new System.Drawing.Point(740, 415);
+            this.tb_IsConfig.Name = "tb_IsConfig";
+            this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
+            this.tb_IsConfig.TabIndex = 111;
+            // 
             // LoggerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 447);
+            this.Controls.Add(this.tb_IsConfig);
             this.Controls.Add(this.lb_Calibrate);
             this.Controls.Add(this.tb_HS4_Calibrate);
             this.Controls.Add(this.tb_HS3_Calibrate);
@@ -807,5 +816,6 @@
         private System.Windows.Forms.TextBox tb_HS1_Calibrate;
         private System.Windows.Forms.Label lb_Humi_Calibrate;
         private System.Windows.Forms.Label lb_Calibrate;
+        private System.Windows.Forms.TextBox tb_IsConfig;
     }
 }

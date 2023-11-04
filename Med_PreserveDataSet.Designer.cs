@@ -38,6 +38,10 @@ namespace Med_Preserve {
         
         private global::System.Data.DataRelation relationFK_UserData_Role;
         
+        private global::System.Data.DataRelation relationFK_LoggerConfig_LoggerMaster;
+        
+        private global::System.Data.DataRelation relationFK_SensorData_LoggerMaster;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -317,6 +321,8 @@ namespace Med_Preserve {
                 }
             }
             this.relationFK_UserData_Role = this.Relations["FK_UserData_Role"];
+            this.relationFK_LoggerConfig_LoggerMaster = this.Relations["FK_LoggerConfig_LoggerMaster"];
+            this.relationFK_SensorData_LoggerMaster = this.Relations["FK_SensorData_LoggerMaster"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -343,6 +349,14 @@ namespace Med_Preserve {
                         this.tableRole.RoleIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableUserData.RoleIDColumn}, false);
             this.Relations.Add(this.relationFK_UserData_Role);
+            this.relationFK_LoggerConfig_LoggerMaster = new global::System.Data.DataRelation("FK_LoggerConfig_LoggerMaster", new global::System.Data.DataColumn[] {
+                        this.tableLoggerMaster.LoggerIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableLoggerConfig.LoggerIDColumn}, false);
+            this.Relations.Add(this.relationFK_LoggerConfig_LoggerMaster);
+            this.relationFK_SensorData_LoggerMaster = new global::System.Data.DataRelation("FK_SensorData_LoggerMaster", new global::System.Data.DataColumn[] {
+                        this.tableLoggerMaster.LoggerIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSensorData.LoggerIDColumn}, false);
+            this.Relations.Add(this.relationFK_SensorData_LoggerMaster);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -851,13 +865,39 @@ namespace Med_Preserve {
             
             private global::System.Data.DataColumn columnS4_H_High;
             
-            private global::System.Data.DataColumn columnS1_Calibrate;
+            private global::System.Data.DataColumn columnS1_T_Calibrate;
             
-            private global::System.Data.DataColumn columnS2_Calibrate;
+            private global::System.Data.DataColumn columnS2_T_Calibrate;
             
-            private global::System.Data.DataColumn columnS3_Calibrate;
+            private global::System.Data.DataColumn columnS3_T_Calibrate;
             
-            private global::System.Data.DataColumn columnS4_Calibrate;
+            private global::System.Data.DataColumn columnS4_T_Calibrate;
+            
+            private global::System.Data.DataColumn columnS1_H_Calibrate;
+            
+            private global::System.Data.DataColumn columnS2_H_Calibrate;
+            
+            private global::System.Data.DataColumn columnS3_H_Calibrate;
+            
+            private global::System.Data.DataColumn columnS4_H_Calibrate;
+            
+            private global::System.Data.DataColumn columnS1_Temp;
+            
+            private global::System.Data.DataColumn columnS2_Temp;
+            
+            private global::System.Data.DataColumn columnS3_Temp;
+            
+            private global::System.Data.DataColumn columnS4_Temp;
+            
+            private global::System.Data.DataColumn columnS1_Humi;
+            
+            private global::System.Data.DataColumn columnS2_Humi;
+            
+            private global::System.Data.DataColumn columnS3_Humi;
+            
+            private global::System.Data.DataColumn columnS4_Humi;
+            
+            private global::System.Data.DataColumn columnIsConfig;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -1038,33 +1078,137 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn S1_CalibrateColumn {
+            public global::System.Data.DataColumn S1_T_CalibrateColumn {
                 get {
-                    return this.columnS1_Calibrate;
+                    return this.columnS1_T_Calibrate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn S2_CalibrateColumn {
+            public global::System.Data.DataColumn S2_T_CalibrateColumn {
                 get {
-                    return this.columnS2_Calibrate;
+                    return this.columnS2_T_Calibrate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn S3_CalibrateColumn {
+            public global::System.Data.DataColumn S3_T_CalibrateColumn {
                 get {
-                    return this.columnS3_Calibrate;
+                    return this.columnS3_T_Calibrate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn S4_CalibrateColumn {
+            public global::System.Data.DataColumn S4_T_CalibrateColumn {
                 get {
-                    return this.columnS4_Calibrate;
+                    return this.columnS4_T_Calibrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S1_H_CalibrateColumn {
+                get {
+                    return this.columnS1_H_Calibrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S2_H_CalibrateColumn {
+                get {
+                    return this.columnS2_H_Calibrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S3_H_CalibrateColumn {
+                get {
+                    return this.columnS3_H_Calibrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S4_H_CalibrateColumn {
+                get {
+                    return this.columnS4_H_Calibrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S1_TempColumn {
+                get {
+                    return this.columnS1_Temp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S2_TempColumn {
+                get {
+                    return this.columnS2_Temp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S3_TempColumn {
+                get {
+                    return this.columnS3_Temp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S4_TempColumn {
+                get {
+                    return this.columnS4_Temp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S1_HumiColumn {
+                get {
+                    return this.columnS1_Humi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S2_HumiColumn {
+                get {
+                    return this.columnS2_Humi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S3_HumiColumn {
+                get {
+                    return this.columnS3_Humi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn S4_HumiColumn {
+                get {
+                    return this.columnS4_Humi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IsConfigColumn {
+                get {
+                    return this.columnIsConfig;
                 }
             }
             
@@ -1107,7 +1251,7 @@ namespace Med_Preserve {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoggerConfigRow AddLoggerConfigRow(
                         int SrNo, 
-                        int LoggerID, 
+                        LoggerMasterRow parentLoggerMasterRowByFK_LoggerConfig_LoggerMaster, 
                         decimal S1_T_Low, 
                         decimal S1_T_High, 
                         decimal S1_H_Low, 
@@ -1124,14 +1268,27 @@ namespace Med_Preserve {
                         decimal S4_T_High, 
                         decimal S4_H_Low, 
                         decimal S4_H_High, 
-                        decimal S1_Calibrate, 
-                        decimal S2_Calibrate, 
-                        decimal S3_Calibrate, 
-                        decimal S4_Calibrate) {
+                        decimal S1_T_Calibrate, 
+                        decimal S2_T_Calibrate, 
+                        decimal S3_T_Calibrate, 
+                        decimal S4_T_Calibrate, 
+                        decimal S1_H_Calibrate, 
+                        decimal S2_H_Calibrate, 
+                        decimal S3_H_Calibrate, 
+                        decimal S4_H_Calibrate, 
+                        decimal S1_Temp, 
+                        decimal S2_Temp, 
+                        decimal S3_Temp, 
+                        decimal S4_Temp, 
+                        decimal S1_Humi, 
+                        decimal S2_Humi, 
+                        decimal S3_Humi, 
+                        decimal S4_Humi, 
+                        bool IsConfig) {
                 LoggerConfigRow rowLoggerConfigRow = ((LoggerConfigRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SrNo,
-                        LoggerID,
+                        null,
                         S1_T_Low,
                         S1_T_High,
                         S1_H_Low,
@@ -1148,13 +1305,36 @@ namespace Med_Preserve {
                         S4_T_High,
                         S4_H_Low,
                         S4_H_High,
-                        S1_Calibrate,
-                        S2_Calibrate,
-                        S3_Calibrate,
-                        S4_Calibrate};
+                        S1_T_Calibrate,
+                        S2_T_Calibrate,
+                        S3_T_Calibrate,
+                        S4_T_Calibrate,
+                        S1_H_Calibrate,
+                        S2_H_Calibrate,
+                        S3_H_Calibrate,
+                        S4_H_Calibrate,
+                        S1_Temp,
+                        S2_Temp,
+                        S3_Temp,
+                        S4_Temp,
+                        S1_Humi,
+                        S2_Humi,
+                        S3_Humi,
+                        S4_Humi,
+                        IsConfig};
+                if ((parentLoggerMasterRowByFK_LoggerConfig_LoggerMaster != null)) {
+                    columnValuesArray[1] = parentLoggerMasterRowByFK_LoggerConfig_LoggerMaster[0];
+                }
                 rowLoggerConfigRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLoggerConfigRow);
                 return rowLoggerConfigRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public LoggerConfigRow FindBySrNo(int SrNo) {
+                return ((LoggerConfigRow)(this.Rows.Find(new object[] {
+                            SrNo})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1192,10 +1372,23 @@ namespace Med_Preserve {
                 this.columnS4_T_High = base.Columns["S4_T_High"];
                 this.columnS4_H_Low = base.Columns["S4_H_Low"];
                 this.columnS4_H_High = base.Columns["S4_H_High"];
-                this.columnS1_Calibrate = base.Columns["S1_Calibrate"];
-                this.columnS2_Calibrate = base.Columns["S2_Calibrate"];
-                this.columnS3_Calibrate = base.Columns["S3_Calibrate"];
-                this.columnS4_Calibrate = base.Columns["S4_Calibrate"];
+                this.columnS1_T_Calibrate = base.Columns["S1_T_Calibrate"];
+                this.columnS2_T_Calibrate = base.Columns["S2_T_Calibrate"];
+                this.columnS3_T_Calibrate = base.Columns["S3_T_Calibrate"];
+                this.columnS4_T_Calibrate = base.Columns["S4_T_Calibrate"];
+                this.columnS1_H_Calibrate = base.Columns["S1_H_Calibrate"];
+                this.columnS2_H_Calibrate = base.Columns["S2_H_Calibrate"];
+                this.columnS3_H_Calibrate = base.Columns["S3_H_Calibrate"];
+                this.columnS4_H_Calibrate = base.Columns["S4_H_Calibrate"];
+                this.columnS1_Temp = base.Columns["S1_Temp"];
+                this.columnS2_Temp = base.Columns["S2_Temp"];
+                this.columnS3_Temp = base.Columns["S3_Temp"];
+                this.columnS4_Temp = base.Columns["S4_Temp"];
+                this.columnS1_Humi = base.Columns["S1_Humi"];
+                this.columnS2_Humi = base.Columns["S2_Humi"];
+                this.columnS3_Humi = base.Columns["S3_Humi"];
+                this.columnS4_Humi = base.Columns["S4_Humi"];
+                this.columnIsConfig = base.Columns["IsConfig"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1237,16 +1430,46 @@ namespace Med_Preserve {
                 base.Columns.Add(this.columnS4_H_Low);
                 this.columnS4_H_High = new global::System.Data.DataColumn("S4_H_High", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnS4_H_High);
-                this.columnS1_Calibrate = new global::System.Data.DataColumn("S1_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnS1_Calibrate);
-                this.columnS2_Calibrate = new global::System.Data.DataColumn("S2_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnS2_Calibrate);
-                this.columnS3_Calibrate = new global::System.Data.DataColumn("S3_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnS3_Calibrate);
-                this.columnS4_Calibrate = new global::System.Data.DataColumn("S4_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnS4_Calibrate);
+                this.columnS1_T_Calibrate = new global::System.Data.DataColumn("S1_T_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS1_T_Calibrate);
+                this.columnS2_T_Calibrate = new global::System.Data.DataColumn("S2_T_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS2_T_Calibrate);
+                this.columnS3_T_Calibrate = new global::System.Data.DataColumn("S3_T_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS3_T_Calibrate);
+                this.columnS4_T_Calibrate = new global::System.Data.DataColumn("S4_T_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS4_T_Calibrate);
+                this.columnS1_H_Calibrate = new global::System.Data.DataColumn("S1_H_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS1_H_Calibrate);
+                this.columnS2_H_Calibrate = new global::System.Data.DataColumn("S2_H_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS2_H_Calibrate);
+                this.columnS3_H_Calibrate = new global::System.Data.DataColumn("S3_H_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS3_H_Calibrate);
+                this.columnS4_H_Calibrate = new global::System.Data.DataColumn("S4_H_Calibrate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS4_H_Calibrate);
+                this.columnS1_Temp = new global::System.Data.DataColumn("S1_Temp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS1_Temp);
+                this.columnS2_Temp = new global::System.Data.DataColumn("S2_Temp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS2_Temp);
+                this.columnS3_Temp = new global::System.Data.DataColumn("S3_Temp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS3_Temp);
+                this.columnS4_Temp = new global::System.Data.DataColumn("S4_Temp", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS4_Temp);
+                this.columnS1_Humi = new global::System.Data.DataColumn("S1_Humi", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS1_Humi);
+                this.columnS2_Humi = new global::System.Data.DataColumn("S2_Humi", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS2_Humi);
+                this.columnS3_Humi = new global::System.Data.DataColumn("S3_Humi", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS3_Humi);
+                this.columnS4_Humi = new global::System.Data.DataColumn("S4_Humi", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnS4_Humi);
+                this.columnIsConfig = new global::System.Data.DataColumn("IsConfig", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIsConfig);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnSrNo}, true));
                 this.columnSrNo.AllowDBNull = false;
+                this.columnSrNo.Unique = true;
                 this.columnLoggerID.AllowDBNull = false;
+                this.columnIsConfig.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1404,6 +1627,8 @@ namespace Med_Preserve {
             
             private global::System.Data.DataColumn columnCreatedDate;
             
+            private global::System.Data.DataColumn columnIntervalType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public LoggerMasterDataTable() {
@@ -1535,6 +1760,14 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IntervalTypeColumn {
+                get {
+                    return this.columnIntervalType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1570,7 +1803,7 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public LoggerMasterRow AddLoggerMasterRow(string LoggerName, string LoggerType, int NoOfSensors, string AssignTo, int Interval, string S1Name, string S2Name, string S3Name, string S4Name, bool IsActive, System.DateTime CreatedDate) {
+            public LoggerMasterRow AddLoggerMasterRow(string LoggerName, string LoggerType, int NoOfSensors, string AssignTo, int Interval, string S1Name, string S2Name, string S3Name, string S4Name, bool IsActive, System.DateTime CreatedDate, string IntervalType) {
                 LoggerMasterRow rowLoggerMasterRow = ((LoggerMasterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1584,7 +1817,8 @@ namespace Med_Preserve {
                         S3Name,
                         S4Name,
                         IsActive,
-                        CreatedDate};
+                        CreatedDate,
+                        IntervalType};
                 rowLoggerMasterRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLoggerMasterRow);
                 return rowLoggerMasterRow;
@@ -1626,6 +1860,7 @@ namespace Med_Preserve {
                 this.columnS4Name = base.Columns["S4Name"];
                 this.columnIsActive = base.Columns["IsActive"];
                 this.columnCreatedDate = base.Columns["CreatedDate"];
+                this.columnIntervalType = base.Columns["IntervalType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1655,6 +1890,8 @@ namespace Med_Preserve {
                 base.Columns.Add(this.columnIsActive);
                 this.columnCreatedDate = new global::System.Data.DataColumn("CreatedDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreatedDate);
+                this.columnIntervalType = new global::System.Data.DataColumn("IntervalType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIntervalType);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnLoggerID}, true));
                 this.columnLoggerID.AutoIncrement = true;
@@ -1676,6 +1913,7 @@ namespace Med_Preserve {
                 this.columnS4Name.MaxLength = 25;
                 this.columnIsActive.AllowDBNull = false;
                 this.columnCreatedDate.AllowDBNull = false;
+                this.columnIntervalType.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2263,11 +2501,11 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public SensorDataRow AddSensorDataRow(int SrNO, int LoggerID, int S1_T, int S1_H, int S2_T, int S2_H, int S3_T, int S3_H, int S4_T, int S4_H, System.DateTime TimeStamp) {
+            public SensorDataRow AddSensorDataRow(int SrNO, LoggerMasterRow parentLoggerMasterRowByFK_SensorData_LoggerMaster, int S1_T, int S1_H, int S2_T, int S2_H, int S3_T, int S3_H, int S4_T, int S4_H, System.DateTime TimeStamp) {
                 SensorDataRow rowSensorDataRow = ((SensorDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SrNO,
-                        LoggerID,
+                        null,
                         S1_T,
                         S1_H,
                         S2_T,
@@ -2277,6 +2515,9 @@ namespace Med_Preserve {
                         S4_T,
                         S4_H,
                         TimeStamp};
+                if ((parentLoggerMasterRowByFK_SensorData_LoggerMaster != null)) {
+                    columnValuesArray[1] = parentLoggerMasterRowByFK_SensorData_LoggerMaster[0];
+                }
                 rowSensorDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSensorDataRow);
                 return rowSensorDataRow;
@@ -3298,65 +3539,279 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal S1_Calibrate {
+            public decimal S1_T_Calibrate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLoggerConfig.S1_CalibrateColumn]));
+                        return ((decimal)(this[this.tableLoggerConfig.S1_T_CalibrateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'S1_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'S1_T_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLoggerConfig.S1_CalibrateColumn] = value;
+                    this[this.tableLoggerConfig.S1_T_CalibrateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal S2_Calibrate {
+            public decimal S2_T_Calibrate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLoggerConfig.S2_CalibrateColumn]));
+                        return ((decimal)(this[this.tableLoggerConfig.S2_T_CalibrateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'S2_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'S2_T_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLoggerConfig.S2_CalibrateColumn] = value;
+                    this[this.tableLoggerConfig.S2_T_CalibrateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal S3_Calibrate {
+            public decimal S3_T_Calibrate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLoggerConfig.S3_CalibrateColumn]));
+                        return ((decimal)(this[this.tableLoggerConfig.S3_T_CalibrateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'S3_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'S3_T_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLoggerConfig.S3_CalibrateColumn] = value;
+                    this[this.tableLoggerConfig.S3_T_CalibrateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal S4_Calibrate {
+            public decimal S4_T_Calibrate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableLoggerConfig.S4_CalibrateColumn]));
+                        return ((decimal)(this[this.tableLoggerConfig.S4_T_CalibrateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'S4_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'S4_T_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLoggerConfig.S4_CalibrateColumn] = value;
+                    this[this.tableLoggerConfig.S4_T_CalibrateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S1_H_Calibrate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S1_H_CalibrateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S1_H_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S1_H_CalibrateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S2_H_Calibrate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S2_H_CalibrateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S2_H_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S2_H_CalibrateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S3_H_Calibrate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S3_H_CalibrateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S3_H_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S3_H_CalibrateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S4_H_Calibrate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S4_H_CalibrateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S4_H_Calibrate\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S4_H_CalibrateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S1_Temp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S1_TempColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S1_Temp\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S1_TempColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S2_Temp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S2_TempColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S2_Temp\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S2_TempColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S3_Temp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S3_TempColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S3_Temp\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S3_TempColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S4_Temp {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S4_TempColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S4_Temp\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S4_TempColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S1_Humi {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S1_HumiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S1_Humi\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S1_HumiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S2_Humi {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S2_HumiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S2_Humi\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S2_HumiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S3_Humi {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S3_HumiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S3_Humi\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S3_HumiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal S4_Humi {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableLoggerConfig.S4_HumiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'S4_Humi\' in table \'LoggerConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerConfig.S4_HumiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsConfig {
+                get {
+                    return ((bool)(this[this.tableLoggerConfig.IsConfigColumn]));
+                }
+                set {
+                    this[this.tableLoggerConfig.IsConfigColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public LoggerMasterRow LoggerMasterRow {
+                get {
+                    return ((LoggerMasterRow)(this.GetParentRow(this.Table.ParentRelations["FK_LoggerConfig_LoggerMaster"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_LoggerConfig_LoggerMaster"]);
                 }
             }
             
@@ -3554,50 +4009,194 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsS1_CalibrateNull() {
-                return this.IsNull(this.tableLoggerConfig.S1_CalibrateColumn);
+            public bool IsS1_T_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S1_T_CalibrateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetS1_CalibrateNull() {
-                this[this.tableLoggerConfig.S1_CalibrateColumn] = global::System.Convert.DBNull;
+            public void SetS1_T_CalibrateNull() {
+                this[this.tableLoggerConfig.S1_T_CalibrateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsS2_CalibrateNull() {
-                return this.IsNull(this.tableLoggerConfig.S2_CalibrateColumn);
+            public bool IsS2_T_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S2_T_CalibrateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetS2_CalibrateNull() {
-                this[this.tableLoggerConfig.S2_CalibrateColumn] = global::System.Convert.DBNull;
+            public void SetS2_T_CalibrateNull() {
+                this[this.tableLoggerConfig.S2_T_CalibrateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsS3_CalibrateNull() {
-                return this.IsNull(this.tableLoggerConfig.S3_CalibrateColumn);
+            public bool IsS3_T_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S3_T_CalibrateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetS3_CalibrateNull() {
-                this[this.tableLoggerConfig.S3_CalibrateColumn] = global::System.Convert.DBNull;
+            public void SetS3_T_CalibrateNull() {
+                this[this.tableLoggerConfig.S3_T_CalibrateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsS4_CalibrateNull() {
-                return this.IsNull(this.tableLoggerConfig.S4_CalibrateColumn);
+            public bool IsS4_T_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S4_T_CalibrateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetS4_CalibrateNull() {
-                this[this.tableLoggerConfig.S4_CalibrateColumn] = global::System.Convert.DBNull;
+            public void SetS4_T_CalibrateNull() {
+                this[this.tableLoggerConfig.S4_T_CalibrateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS1_H_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S1_H_CalibrateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS1_H_CalibrateNull() {
+                this[this.tableLoggerConfig.S1_H_CalibrateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS2_H_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S2_H_CalibrateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS2_H_CalibrateNull() {
+                this[this.tableLoggerConfig.S2_H_CalibrateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS3_H_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S3_H_CalibrateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS3_H_CalibrateNull() {
+                this[this.tableLoggerConfig.S3_H_CalibrateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS4_H_CalibrateNull() {
+                return this.IsNull(this.tableLoggerConfig.S4_H_CalibrateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS4_H_CalibrateNull() {
+                this[this.tableLoggerConfig.S4_H_CalibrateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS1_TempNull() {
+                return this.IsNull(this.tableLoggerConfig.S1_TempColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS1_TempNull() {
+                this[this.tableLoggerConfig.S1_TempColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS2_TempNull() {
+                return this.IsNull(this.tableLoggerConfig.S2_TempColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS2_TempNull() {
+                this[this.tableLoggerConfig.S2_TempColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS3_TempNull() {
+                return this.IsNull(this.tableLoggerConfig.S3_TempColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS3_TempNull() {
+                this[this.tableLoggerConfig.S3_TempColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS4_TempNull() {
+                return this.IsNull(this.tableLoggerConfig.S4_TempColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS4_TempNull() {
+                this[this.tableLoggerConfig.S4_TempColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS1_HumiNull() {
+                return this.IsNull(this.tableLoggerConfig.S1_HumiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS1_HumiNull() {
+                this[this.tableLoggerConfig.S1_HumiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS2_HumiNull() {
+                return this.IsNull(this.tableLoggerConfig.S2_HumiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS2_HumiNull() {
+                this[this.tableLoggerConfig.S2_HumiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS3_HumiNull() {
+                return this.IsNull(this.tableLoggerConfig.S3_HumiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS3_HumiNull() {
+                this[this.tableLoggerConfig.S3_HumiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsS4_HumiNull() {
+                return this.IsNull(this.tableLoggerConfig.S4_HumiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetS4_HumiNull() {
+                this[this.tableLoggerConfig.S4_HumiColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3774,6 +4373,22 @@ namespace Med_Preserve {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string IntervalType {
+                get {
+                    try {
+                        return ((string)(this[this.tableLoggerMaster.IntervalTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IntervalType\' in table \'LoggerMaster\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLoggerMaster.IntervalTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsIntervalNull() {
                 return this.IsNull(this.tableLoggerMaster.IntervalColumn);
             }
@@ -3830,6 +4445,40 @@ namespace Med_Preserve {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetS4NameNull() {
                 this[this.tableLoggerMaster.S4NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIntervalTypeNull() {
+                return this.IsNull(this.tableLoggerMaster.IntervalTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIntervalTypeNull() {
+                this[this.tableLoggerMaster.IntervalTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public LoggerConfigRow[] GetLoggerConfigRows() {
+                if ((this.Table.ChildRelations["FK_LoggerConfig_LoggerMaster"] == null)) {
+                    return new LoggerConfigRow[0];
+                }
+                else {
+                    return ((LoggerConfigRow[])(base.GetChildRows(this.Table.ChildRelations["FK_LoggerConfig_LoggerMaster"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SensorDataRow[] GetSensorDataRows() {
+                if ((this.Table.ChildRelations["FK_SensorData_LoggerMaster"] == null)) {
+                    return new SensorDataRow[0];
+                }
+                else {
+                    return ((SensorDataRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SensorData_LoggerMaster"])));
+                }
             }
         }
         
@@ -4058,6 +4707,17 @@ namespace Med_Preserve {
                 }
                 set {
                     this[this.tableSensorData.TimeStampColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public LoggerMasterRow LoggerMasterRow {
+                get {
+                    return ((LoggerMasterRow)(this.GetParentRow(this.Table.ParentRelations["FK_SensorData_LoggerMaster"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SensorData_LoggerMaster"]);
                 }
             }
             
@@ -5158,16 +5818,139 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             tableMapping.ColumnMappings.Add("S4_T_High", "S4_T_High");
             tableMapping.ColumnMappings.Add("S4_H_Low", "S4_H_Low");
             tableMapping.ColumnMappings.Add("S4_H_High", "S4_H_High");
-            tableMapping.ColumnMappings.Add("S1_Calibrate", "S1_Calibrate");
-            tableMapping.ColumnMappings.Add("S2_Calibrate", "S2_Calibrate");
-            tableMapping.ColumnMappings.Add("S3_Calibrate", "S3_Calibrate");
-            tableMapping.ColumnMappings.Add("S4_Calibrate", "S4_Calibrate");
+            tableMapping.ColumnMappings.Add("S1_T_Calibrate", "S1_T_Calibrate");
+            tableMapping.ColumnMappings.Add("S2_T_Calibrate", "S2_T_Calibrate");
+            tableMapping.ColumnMappings.Add("S3_T_Calibrate", "S3_T_Calibrate");
+            tableMapping.ColumnMappings.Add("S4_T_Calibrate", "S4_T_Calibrate");
+            tableMapping.ColumnMappings.Add("S1_H_Calibrate", "S1_H_Calibrate");
+            tableMapping.ColumnMappings.Add("S2_H_Calibrate", "S2_H_Calibrate");
+            tableMapping.ColumnMappings.Add("S3_H_Calibrate", "S3_H_Calibrate");
+            tableMapping.ColumnMappings.Add("S4_H_Calibrate", "S4_H_Calibrate");
+            tableMapping.ColumnMappings.Add("S1_Temp", "S1_Temp");
+            tableMapping.ColumnMappings.Add("S2_Temp", "S2_Temp");
+            tableMapping.ColumnMappings.Add("S3_Temp", "S3_Temp");
+            tableMapping.ColumnMappings.Add("S4_Temp", "S4_Temp");
+            tableMapping.ColumnMappings.Add("S1_Humi", "S1_Humi");
+            tableMapping.ColumnMappings.Add("S2_Humi", "S2_Humi");
+            tableMapping.ColumnMappings.Add("S3_Humi", "S3_Humi");
+            tableMapping.ColumnMappings.Add("S4_Humi", "S4_Humi");
+            tableMapping.ColumnMappings.Add("IsConfig", "IsConfig");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [LoggerConfig] WHERE (([SrNo] = @Original_SrNo) AND ([LoggerID] = @Or" +
+                "iginal_LoggerID) AND ((@IsNull_S1_T_Low = 1 AND [S1_T_Low] IS NULL) OR ([S1_T_Lo" +
+                "w] = @Original_S1_T_Low)) AND ((@IsNull_S1_T_High = 1 AND [S1_T_High] IS NULL) O" +
+                "R ([S1_T_High] = @Original_S1_T_High)) AND ((@IsNull_S1_H_Low = 1 AND [S1_H_Low]" +
+                " IS NULL) OR ([S1_H_Low] = @Original_S1_H_Low)) AND ((@IsNull_S1_H_High = 1 AND " +
+                "[S1_H_High] IS NULL) OR ([S1_H_High] = @Original_S1_H_High)) AND ((@IsNull_S2_T_" +
+                "Low = 1 AND [S2_T_Low] IS NULL) OR ([S2_T_Low] = @Original_S2_T_Low)) AND ((@IsN" +
+                "ull_S2_T_High = 1 AND [S2_T_High] IS NULL) OR ([S2_T_High] = @Original_S2_T_High" +
+                ")) AND ((@IsNull_S2_H_Low = 1 AND [S2_H_Low] IS NULL) OR ([S2_H_Low] = @Original" +
+                "_S2_H_Low)) AND ((@IsNull_S2_H_High = 1 AND [S2_H_High] IS NULL) OR ([S2_H_High]" +
+                " = @Original_S2_H_High)) AND ((@IsNull_S3_T_Low = 1 AND [S3_T_Low] IS NULL) OR (" +
+                "[S3_T_Low] = @Original_S3_T_Low)) AND ((@IsNull_S3_T_High = 1 AND [S3_T_High] IS" +
+                " NULL) OR ([S3_T_High] = @Original_S3_T_High)) AND ((@IsNull_S3_H_Low = 1 AND [S" +
+                "3_H_Low] IS NULL) OR ([S3_H_Low] = @Original_S3_H_Low)) AND ((@IsNull_S3_H_High " +
+                "= 1 AND [S3_H_High] IS NULL) OR ([S3_H_High] = @Original_S3_H_High)) AND ((@IsNu" +
+                "ll_S4_T_Low = 1 AND [S4_T_Low] IS NULL) OR ([S4_T_Low] = @Original_S4_T_Low)) AN" +
+                "D ((@IsNull_S4_T_High = 1 AND [S4_T_High] IS NULL) OR ([S4_T_High] = @Original_S" +
+                "4_T_High)) AND ((@IsNull_S4_H_Low = 1 AND [S4_H_Low] IS NULL) OR ([S4_H_Low] = @" +
+                "Original_S4_H_Low)) AND ((@IsNull_S4_H_High = 1 AND [S4_H_High] IS NULL) OR ([S4" +
+                "_H_High] = @Original_S4_H_High)) AND ([IsConfig] = @Original_IsConfig) AND ((@Is" +
+                "Null_S1_H_Calibrate = 1 AND [S1_H_Calibrate] IS NULL) OR ([S1_H_Calibrate] = @Or" +
+                "iginal_S1_H_Calibrate)) AND ((@IsNull_S1_Humi = 1 AND [S1_Humi] IS NULL) OR ([S1" +
+                "_Humi] = @Original_S1_Humi)) AND ((@IsNull_S1_T_Calibrate = 1 AND [S1_T_Calibrat" +
+                "e] IS NULL) OR ([S1_T_Calibrate] = @Original_S1_T_Calibrate)) AND ((@IsNull_S1_T" +
+                "emp = 1 AND [S1_Temp] IS NULL) OR ([S1_Temp] = @Original_S1_Temp)) AND ((@IsNull" +
+                "_S2_H_Calibrate = 1 AND [S2_H_Calibrate] IS NULL) OR ([S2_H_Calibrate] = @Origin" +
+                "al_S2_H_Calibrate)) AND ((@IsNull_S2_Humi = 1 AND [S2_Humi] IS NULL) OR ([S2_Hum" +
+                "i] = @Original_S2_Humi)) AND ((@IsNull_S2_T_Calibrate = 1 AND [S2_T_Calibrate] I" +
+                "S NULL) OR ([S2_T_Calibrate] = @Original_S2_T_Calibrate)) AND ((@IsNull_S2_Temp " +
+                "= 1 AND [S2_Temp] IS NULL) OR ([S2_Temp] = @Original_S2_Temp)) AND ((@IsNull_S3_" +
+                "H_Calibrate = 1 AND [S3_H_Calibrate] IS NULL) OR ([S3_H_Calibrate] = @Original_S" +
+                "3_H_Calibrate)) AND ((@IsNull_S3_Humi = 1 AND [S3_Humi] IS NULL) OR ([S3_Humi] =" +
+                " @Original_S3_Humi)) AND ((@IsNull_S3_T_Calibrate = 1 AND [S3_T_Calibrate] IS NU" +
+                "LL) OR ([S3_T_Calibrate] = @Original_S3_T_Calibrate)) AND ((@IsNull_S3_Temp = 1 " +
+                "AND [S3_Temp] IS NULL) OR ([S3_Temp] = @Original_S3_Temp)) AND ((@IsNull_S4_H_Ca" +
+                "librate = 1 AND [S4_H_Calibrate] IS NULL) OR ([S4_H_Calibrate] = @Original_S4_H_" +
+                "Calibrate)) AND ((@IsNull_S4_Humi = 1 AND [S4_Humi] IS NULL) OR ([S4_Humi] = @Or" +
+                "iginal_S4_Humi)) AND ((@IsNull_S4_T_Calibrate = 1 AND [S4_T_Calibrate] IS NULL) " +
+                "OR ([S4_T_Calibrate] = @Original_S4_T_Calibrate)) AND ((@IsNull_S4_Temp = 1 AND " +
+                "[S4_Temp] IS NULL) OR ([S4_Temp] = @Original_S4_Temp)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SrNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SrNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsConfig", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsConfig", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[LoggerConfig] ([SrNo], [LoggerID], [S1_T_Low], [S1_T_High], [S1_H_Low], [S1_H_High], [S2_T_Low], [S2_T_High], [S2_H_Low], [S2_H_High], [S3_T_Low], [S3_T_High], [S3_H_Low], [S3_H_High], [S4_T_Low], [S4_T_High], [S4_H_Low], [S4_H_High], [S1_Calibrate], [S2_Calibrate], [S3_Calibrate], [S4_Calibrate]) VALUES (@SrNo, @LoggerID, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_Calibrate, @S2_Calibrate, @S3_Calibrate, @S4_Calibrate)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [LoggerConfig] ([LoggerID], [S1_T_Low], [S1_T_High], [S1_H_Low], [S1_H_High], [S2_T_Low], [S2_T_High], [S2_H_Low], [S2_H_High], [S3_T_Low], [S3_T_High], [S3_H_Low], [S3_H_High], [S4_T_Low], [S4_T_High], [S4_H_Low], [S4_H_High], [IsConfig], [S1_H_Calibrate], [S1_Humi], [S1_T_Calibrate], [S1_Temp], [S2_H_Calibrate], [S2_Humi], [S2_T_Calibrate], [S2_Temp], [S3_H_Calibrate], [S3_Humi], [S3_T_Calibrate], [S3_Temp], [S4_H_Calibrate], [S4_Humi], [S4_T_Calibrate], [S4_Temp]) VALUES (@LoggerID, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @IsConfig, @S1_H_Calibrate, @S1_Humi, @S1_T_Calibrate, @S1_Temp, @S2_H_Calibrate, @S2_Humi, @S2_T_Calibrate, @S2_Temp, @S3_H_Calibrate, @S3_Humi, @S3_T_Calibrate, @S3_Temp, @S4_H_Calibrate, @S4_Humi, @S4_T_Calibrate, @S4_Temp);
+SELECT SrNo, LoggerID, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, IsConfig, S1_H_Calibrate, S1_Humi, S1_T_Calibrate, S1_Temp, S2_H_Calibrate, S2_Humi, S2_T_Calibrate, S2_Temp, S3_H_Calibrate, S3_Humi, S3_T_Calibrate, S3_Temp, S4_H_Calibrate, S4_Humi, S4_T_Calibrate, S4_Temp FROM LoggerConfig WHERE (SrNo = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SrNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SrNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5185,10 +5968,185 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsConfig", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsConfig", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [LoggerConfig] SET [LoggerID] = @LoggerID, [S1_T_Low] = @S1_T_Low, [S1_T_H" +
+                "igh] = @S1_T_High, [S1_H_Low] = @S1_H_Low, [S1_H_High] = @S1_H_High, [S2_T_Low] " +
+                "= @S2_T_Low, [S2_T_High] = @S2_T_High, [S2_H_Low] = @S2_H_Low, [S2_H_High] = @S2" +
+                "_H_High, [S3_T_Low] = @S3_T_Low, [S3_T_High] = @S3_T_High, [S3_H_Low] = @S3_H_Lo" +
+                "w, [S3_H_High] = @S3_H_High, [S4_T_Low] = @S4_T_Low, [S4_T_High] = @S4_T_High, [" +
+                "S4_H_Low] = @S4_H_Low, [S4_H_High] = @S4_H_High, [IsConfig] = @IsConfig, [S1_H_C" +
+                "alibrate] = @S1_H_Calibrate, [S1_Humi] = @S1_Humi, [S1_T_Calibrate] = @S1_T_Cali" +
+                "brate, [S1_Temp] = @S1_Temp, [S2_H_Calibrate] = @S2_H_Calibrate, [S2_Humi] = @S2" +
+                "_Humi, [S2_T_Calibrate] = @S2_T_Calibrate, [S2_Temp] = @S2_Temp, [S3_H_Calibrate" +
+                "] = @S3_H_Calibrate, [S3_Humi] = @S3_Humi, [S3_T_Calibrate] = @S3_T_Calibrate, [" +
+                "S3_Temp] = @S3_Temp, [S4_H_Calibrate] = @S4_H_Calibrate, [S4_Humi] = @S4_Humi, [" +
+                "S4_T_Calibrate] = @S4_T_Calibrate, [S4_Temp] = @S4_Temp WHERE (([SrNo] = @Origin" +
+                "al_SrNo) AND ([LoggerID] = @Original_LoggerID) AND ((@IsNull_S1_T_Low = 1 AND [S" +
+                "1_T_Low] IS NULL) OR ([S1_T_Low] = @Original_S1_T_Low)) AND ((@IsNull_S1_T_High " +
+                "= 1 AND [S1_T_High] IS NULL) OR ([S1_T_High] = @Original_S1_T_High)) AND ((@IsNu" +
+                "ll_S1_H_Low = 1 AND [S1_H_Low] IS NULL) OR ([S1_H_Low] = @Original_S1_H_Low)) AN" +
+                "D ((@IsNull_S1_H_High = 1 AND [S1_H_High] IS NULL) OR ([S1_H_High] = @Original_S" +
+                "1_H_High)) AND ((@IsNull_S2_T_Low = 1 AND [S2_T_Low] IS NULL) OR ([S2_T_Low] = @" +
+                "Original_S2_T_Low)) AND ((@IsNull_S2_T_High = 1 AND [S2_T_High] IS NULL) OR ([S2" +
+                "_T_High] = @Original_S2_T_High)) AND ((@IsNull_S2_H_Low = 1 AND [S2_H_Low] IS NU" +
+                "LL) OR ([S2_H_Low] = @Original_S2_H_Low)) AND ((@IsNull_S2_H_High = 1 AND [S2_H_" +
+                "High] IS NULL) OR ([S2_H_High] = @Original_S2_H_High)) AND ((@IsNull_S3_T_Low = " +
+                "1 AND [S3_T_Low] IS NULL) OR ([S3_T_Low] = @Original_S3_T_Low)) AND ((@IsNull_S3" +
+                "_T_High = 1 AND [S3_T_High] IS NULL) OR ([S3_T_High] = @Original_S3_T_High)) AND" +
+                " ((@IsNull_S3_H_Low = 1 AND [S3_H_Low] IS NULL) OR ([S3_H_Low] = @Original_S3_H_" +
+                "Low)) AND ((@IsNull_S3_H_High = 1 AND [S3_H_High] IS NULL) OR ([S3_H_High] = @Or" +
+                "iginal_S3_H_High)) AND ((@IsNull_S4_T_Low = 1 AND [S4_T_Low] IS NULL) OR ([S4_T_" +
+                "Low] = @Original_S4_T_Low)) AND ((@IsNull_S4_T_High = 1 AND [S4_T_High] IS NULL)" +
+                " OR ([S4_T_High] = @Original_S4_T_High)) AND ((@IsNull_S4_H_Low = 1 AND [S4_H_Lo" +
+                "w] IS NULL) OR ([S4_H_Low] = @Original_S4_H_Low)) AND ((@IsNull_S4_H_High = 1 AN" +
+                "D [S4_H_High] IS NULL) OR ([S4_H_High] = @Original_S4_H_High)) AND ([IsConfig] =" +
+                " @Original_IsConfig) AND ((@IsNull_S1_H_Calibrate = 1 AND [S1_H_Calibrate] IS NU" +
+                "LL) OR ([S1_H_Calibrate] = @Original_S1_H_Calibrate)) AND ((@IsNull_S1_Humi = 1 " +
+                "AND [S1_Humi] IS NULL) OR ([S1_Humi] = @Original_S1_Humi)) AND ((@IsNull_S1_T_Ca" +
+                "librate = 1 AND [S1_T_Calibrate] IS NULL) OR ([S1_T_Calibrate] = @Original_S1_T_" +
+                "Calibrate)) AND ((@IsNull_S1_Temp = 1 AND [S1_Temp] IS NULL) OR ([S1_Temp] = @Or" +
+                "iginal_S1_Temp)) AND ((@IsNull_S2_H_Calibrate = 1 AND [S2_H_Calibrate] IS NULL) " +
+                "OR ([S2_H_Calibrate] = @Original_S2_H_Calibrate)) AND ((@IsNull_S2_Humi = 1 AND " +
+                "[S2_Humi] IS NULL) OR ([S2_Humi] = @Original_S2_Humi)) AND ((@IsNull_S2_T_Calibr" +
+                "ate = 1 AND [S2_T_Calibrate] IS NULL) OR ([S2_T_Calibrate] = @Original_S2_T_Cali" +
+                "brate)) AND ((@IsNull_S2_Temp = 1 AND [S2_Temp] IS NULL) OR ([S2_Temp] = @Origin" +
+                "al_S2_Temp)) AND ((@IsNull_S3_H_Calibrate = 1 AND [S3_H_Calibrate] IS NULL) OR (" +
+                "[S3_H_Calibrate] = @Original_S3_H_Calibrate)) AND ((@IsNull_S3_Humi = 1 AND [S3_" +
+                "Humi] IS NULL) OR ([S3_Humi] = @Original_S3_Humi)) AND ((@IsNull_S3_T_Calibrate " +
+                "= 1 AND [S3_T_Calibrate] IS NULL) OR ([S3_T_Calibrate] = @Original_S3_T_Calibrat" +
+                "e)) AND ((@IsNull_S3_Temp = 1 AND [S3_Temp] IS NULL) OR ([S3_Temp] = @Original_S" +
+                "3_Temp)) AND ((@IsNull_S4_H_Calibrate = 1 AND [S4_H_Calibrate] IS NULL) OR ([S4_" +
+                "H_Calibrate] = @Original_S4_H_Calibrate)) AND ((@IsNull_S4_Humi = 1 AND [S4_Humi" +
+                "] IS NULL) OR ([S4_Humi] = @Original_S4_Humi)) AND ((@IsNull_S4_T_Calibrate = 1 " +
+                "AND [S4_T_Calibrate] IS NULL) OR ([S4_T_Calibrate] = @Original_S4_T_Calibrate)) " +
+                "AND ((@IsNull_S4_Temp = 1 AND [S4_Temp] IS NULL) OR ([S4_Temp] = @Original_S4_Te" +
+                "mp)));\r\nSELECT SrNo, LoggerID, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Lo" +
+                "w, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_" +
+                "T_Low, S4_T_High, S4_H_Low, S4_H_High, IsConfig, S1_H_Calibrate, S1_Humi, S1_T_C" +
+                "alibrate, S1_Temp, S2_H_Calibrate, S2_Humi, S2_T_Calibrate, S2_Temp, S3_H_Calibr" +
+                "ate, S3_Humi, S3_T_Calibrate, S3_Temp, S4_H_Calibrate, S4_Humi, S4_T_Calibrate, " +
+                "S4_Temp FROM LoggerConfig WHERE (SrNo = @SrNo)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Low", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_High", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsConfig", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsConfig", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Humi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Calibrate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Temp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SrNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SrNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_Low", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_Low", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_Low", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Low", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_High", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_High", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_High", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_High", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsConfig", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsConfig", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S1_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S2_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S2_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S3_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S3_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S3_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_H_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_H_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_H_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_H_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_Humi", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_Humi", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_Humi", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Humi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_T_Calibrate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_T_Calibrate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_T_Calibrate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_T_Calibrate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S4_Temp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4_Temp", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4_Temp", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 5, 2, "S4_Temp", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SrNo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SrNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5204,7 +6162,7 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT SrNo, LoggerID, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_Calibrate, S2_Calibrate, S3_Calibrate, S4_Calibrate FROM dbo.LoggerConfig";
+            this._commandCollection[0].CommandText = @"SELECT SrNo, LoggerID, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, IsConfig, S1_H_Calibrate, S1_Humi, S1_T_Calibrate, S1_Temp, S2_H_Calibrate, S2_Humi, S2_T_Calibrate, S2_Temp, S3_H_Calibrate, S3_Humi, S3_T_Calibrate, S3_Temp, S4_H_Calibrate, S4_Humi, S4_T_Calibrate, S4_Temp FROM LoggerConfig";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5264,9 +6222,323 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(
+                    int Original_SrNo, 
+                    int Original_LoggerID, 
+                    global::System.Nullable<decimal> Original_S1_T_Low, 
+                    global::System.Nullable<decimal> Original_S1_T_High, 
+                    global::System.Nullable<decimal> Original_S1_H_Low, 
+                    global::System.Nullable<decimal> Original_S1_H_High, 
+                    global::System.Nullable<decimal> Original_S2_T_Low, 
+                    global::System.Nullable<decimal> Original_S2_T_High, 
+                    global::System.Nullable<decimal> Original_S2_H_Low, 
+                    global::System.Nullable<decimal> Original_S2_H_High, 
+                    global::System.Nullable<decimal> Original_S3_T_Low, 
+                    global::System.Nullable<decimal> Original_S3_T_High, 
+                    global::System.Nullable<decimal> Original_S3_H_Low, 
+                    global::System.Nullable<decimal> Original_S3_H_High, 
+                    global::System.Nullable<decimal> Original_S4_T_Low, 
+                    global::System.Nullable<decimal> Original_S4_T_High, 
+                    global::System.Nullable<decimal> Original_S4_H_Low, 
+                    global::System.Nullable<decimal> Original_S4_H_High, 
+                    bool Original_IsConfig, 
+                    global::System.Nullable<decimal> Original_S1_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Humi, 
+                    global::System.Nullable<decimal> Original_S1_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Temp, 
+                    global::System.Nullable<decimal> Original_S2_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Humi, 
+                    global::System.Nullable<decimal> Original_S2_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Temp, 
+                    global::System.Nullable<decimal> Original_S3_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Humi, 
+                    global::System.Nullable<decimal> Original_S3_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Temp, 
+                    global::System.Nullable<decimal> Original_S4_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Humi, 
+                    global::System.Nullable<decimal> Original_S4_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Temp) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SrNo));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_LoggerID));
+            if ((Original_S1_T_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((decimal)(Original_S1_T_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_T_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_S1_T_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_H_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_S1_H_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_H_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((decimal)(Original_S1_H_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((decimal)(Original_S2_T_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_S2_T_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((decimal)(Original_S2_H_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((decimal)(Original_S2_H_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((decimal)(Original_S3_T_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((decimal)(Original_S3_T_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((decimal)(Original_S3_H_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[25].Value = ((decimal)(Original_S3_H_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[27].Value = ((decimal)(Original_S4_T_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[26].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[29].Value = ((decimal)(Original_S4_T_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[28].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_Low.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[31].Value = ((decimal)(Original_S4_H_Low.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_High.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[32].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[33].Value = ((decimal)(Original_S4_H_High.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[32].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[34].Value = ((bool)(Original_IsConfig));
+            if ((Original_S1_H_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[36].Value = ((decimal)(Original_S1_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[36].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_Humi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[38].Value = ((decimal)(Original_S1_Humi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[38].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_T_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[40].Value = ((decimal)(Original_S1_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_Temp.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[42].Value = ((decimal)(Original_S1_Temp.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[42].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[44].Value = ((decimal)(Original_S2_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[44].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_Humi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[46].Value = ((decimal)(Original_S2_Humi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[46].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[48].Value = ((decimal)(Original_S2_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[48].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_Temp.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[50].Value = ((decimal)(Original_S2_Temp.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[50].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[52].Value = ((decimal)(Original_S3_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[52].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_Humi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[54].Value = ((decimal)(Original_S3_Humi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[54].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[55].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[56].Value = ((decimal)(Original_S3_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[55].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[56].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_Temp.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[58].Value = ((decimal)(Original_S3_Temp.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[58].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[60].Value = ((decimal)(Original_S4_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[60].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_Humi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[62].Value = ((decimal)(Original_S4_Humi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[62].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_Calibrate.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[64].Value = ((decimal)(Original_S4_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[64].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_Temp.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[66].Value = ((decimal)(Original_S4_Temp.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[66].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
-                    int SrNo, 
                     int LoggerID, 
                     global::System.Nullable<decimal> S1_T_Low, 
                     global::System.Nullable<decimal> S1_T_High, 
@@ -5284,131 +6556,216 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
                     global::System.Nullable<decimal> S4_T_High, 
                     global::System.Nullable<decimal> S4_H_Low, 
                     global::System.Nullable<decimal> S4_H_High, 
-                    global::System.Nullable<decimal> S1_Calibrate, 
-                    global::System.Nullable<decimal> S2_Calibrate, 
-                    global::System.Nullable<decimal> S3_Calibrate, 
-                    global::System.Nullable<decimal> S4_Calibrate) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SrNo));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(LoggerID));
+                    bool IsConfig, 
+                    global::System.Nullable<decimal> S1_H_Calibrate, 
+                    global::System.Nullable<decimal> S1_Humi, 
+                    global::System.Nullable<decimal> S1_T_Calibrate, 
+                    global::System.Nullable<decimal> S1_Temp, 
+                    global::System.Nullable<decimal> S2_H_Calibrate, 
+                    global::System.Nullable<decimal> S2_Humi, 
+                    global::System.Nullable<decimal> S2_T_Calibrate, 
+                    global::System.Nullable<decimal> S2_Temp, 
+                    global::System.Nullable<decimal> S3_H_Calibrate, 
+                    global::System.Nullable<decimal> S3_Humi, 
+                    global::System.Nullable<decimal> S3_T_Calibrate, 
+                    global::System.Nullable<decimal> S3_Temp, 
+                    global::System.Nullable<decimal> S4_H_Calibrate, 
+                    global::System.Nullable<decimal> S4_Humi, 
+                    global::System.Nullable<decimal> S4_T_Calibrate, 
+                    global::System.Nullable<decimal> S4_Temp) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(LoggerID));
             if ((S1_T_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(S1_T_Low.Value));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(S1_T_Low.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((S1_T_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(S1_T_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((S1_T_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(S1_T_High.Value));
+            if ((S1_H_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(S1_H_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((S1_H_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(S1_H_Low.Value));
+            if ((S1_H_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(S1_H_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((S1_H_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(S1_H_High.Value));
+            if ((S2_T_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(S2_T_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((S2_T_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(S2_T_Low.Value));
+            if ((S2_T_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(S2_T_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((S2_T_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(S2_T_High.Value));
+            if ((S2_H_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(S2_H_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((S2_H_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(S2_H_Low.Value));
+            if ((S2_H_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(S2_H_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((S2_H_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(S2_H_High.Value));
+            if ((S3_T_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(S3_T_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((S3_T_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(S3_T_Low.Value));
+            if ((S3_T_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(S3_T_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((S3_T_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(S3_T_High.Value));
+            if ((S3_H_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((decimal)(S3_H_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((S3_H_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(S3_H_Low.Value));
+            if ((S3_H_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(S3_H_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((S3_H_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(S3_H_High.Value));
+            if ((S4_T_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((decimal)(S4_T_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((S4_T_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(S4_T_Low.Value));
+            if ((S4_T_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(S4_T_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((S4_T_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(S4_T_High.Value));
+            if ((S4_H_Low.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(S4_H_Low.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((S4_H_Low.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(S4_H_Low.Value));
+            if ((S4_H_High.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((decimal)(S4_H_High.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((S4_H_High.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((decimal)(S4_H_High.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((S1_Calibrate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(S1_Calibrate.Value));
+            this.Adapter.InsertCommand.Parameters[17].Value = ((bool)(IsConfig));
+            if ((S1_H_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(S1_H_Calibrate.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((S2_Calibrate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((decimal)(S2_Calibrate.Value));
+            if ((S1_Humi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((decimal)(S1_Humi.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
-            if ((S3_Calibrate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(S3_Calibrate.Value));
+            if ((S1_T_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[20].Value = ((decimal)(S1_T_Calibrate.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((S4_Calibrate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[21].Value = ((decimal)(S4_Calibrate.Value));
+            if ((S1_Temp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[21].Value = ((decimal)(S1_Temp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            if ((S2_H_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[22].Value = ((decimal)(S2_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((S2_Humi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[23].Value = ((decimal)(S2_Humi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            if ((S2_T_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[24].Value = ((decimal)(S2_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((S2_Temp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[25].Value = ((decimal)(S2_Temp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            if ((S3_H_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[26].Value = ((decimal)(S3_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((S3_Humi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[27].Value = ((decimal)(S3_Humi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            if ((S3_T_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[28].Value = ((decimal)(S3_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((S3_Temp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[29].Value = ((decimal)(S3_Temp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            if ((S4_H_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[30].Value = ((decimal)(S4_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            if ((S4_Humi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[31].Value = ((decimal)(S4_Humi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            if ((S4_T_Calibrate.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[32].Value = ((decimal)(S4_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            if ((S4_Temp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[33].Value = ((decimal)(S4_Temp.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[33].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5424,6 +6781,628 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int LoggerID, 
+                    global::System.Nullable<decimal> S1_T_Low, 
+                    global::System.Nullable<decimal> S1_T_High, 
+                    global::System.Nullable<decimal> S1_H_Low, 
+                    global::System.Nullable<decimal> S1_H_High, 
+                    global::System.Nullable<decimal> S2_T_Low, 
+                    global::System.Nullable<decimal> S2_T_High, 
+                    global::System.Nullable<decimal> S2_H_Low, 
+                    global::System.Nullable<decimal> S2_H_High, 
+                    global::System.Nullable<decimal> S3_T_Low, 
+                    global::System.Nullable<decimal> S3_T_High, 
+                    global::System.Nullable<decimal> S3_H_Low, 
+                    global::System.Nullable<decimal> S3_H_High, 
+                    global::System.Nullable<decimal> S4_T_Low, 
+                    global::System.Nullable<decimal> S4_T_High, 
+                    global::System.Nullable<decimal> S4_H_Low, 
+                    global::System.Nullable<decimal> S4_H_High, 
+                    bool IsConfig, 
+                    global::System.Nullable<decimal> S1_H_Calibrate, 
+                    global::System.Nullable<decimal> S1_Humi, 
+                    global::System.Nullable<decimal> S1_T_Calibrate, 
+                    global::System.Nullable<decimal> S1_Temp, 
+                    global::System.Nullable<decimal> S2_H_Calibrate, 
+                    global::System.Nullable<decimal> S2_Humi, 
+                    global::System.Nullable<decimal> S2_T_Calibrate, 
+                    global::System.Nullable<decimal> S2_Temp, 
+                    global::System.Nullable<decimal> S3_H_Calibrate, 
+                    global::System.Nullable<decimal> S3_Humi, 
+                    global::System.Nullable<decimal> S3_T_Calibrate, 
+                    global::System.Nullable<decimal> S3_Temp, 
+                    global::System.Nullable<decimal> S4_H_Calibrate, 
+                    global::System.Nullable<decimal> S4_Humi, 
+                    global::System.Nullable<decimal> S4_T_Calibrate, 
+                    global::System.Nullable<decimal> S4_Temp, 
+                    int Original_SrNo, 
+                    int Original_LoggerID, 
+                    global::System.Nullable<decimal> Original_S1_T_Low, 
+                    global::System.Nullable<decimal> Original_S1_T_High, 
+                    global::System.Nullable<decimal> Original_S1_H_Low, 
+                    global::System.Nullable<decimal> Original_S1_H_High, 
+                    global::System.Nullable<decimal> Original_S2_T_Low, 
+                    global::System.Nullable<decimal> Original_S2_T_High, 
+                    global::System.Nullable<decimal> Original_S2_H_Low, 
+                    global::System.Nullable<decimal> Original_S2_H_High, 
+                    global::System.Nullable<decimal> Original_S3_T_Low, 
+                    global::System.Nullable<decimal> Original_S3_T_High, 
+                    global::System.Nullable<decimal> Original_S3_H_Low, 
+                    global::System.Nullable<decimal> Original_S3_H_High, 
+                    global::System.Nullable<decimal> Original_S4_T_Low, 
+                    global::System.Nullable<decimal> Original_S4_T_High, 
+                    global::System.Nullable<decimal> Original_S4_H_Low, 
+                    global::System.Nullable<decimal> Original_S4_H_High, 
+                    bool Original_IsConfig, 
+                    global::System.Nullable<decimal> Original_S1_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Humi, 
+                    global::System.Nullable<decimal> Original_S1_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Temp, 
+                    global::System.Nullable<decimal> Original_S2_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Humi, 
+                    global::System.Nullable<decimal> Original_S2_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Temp, 
+                    global::System.Nullable<decimal> Original_S3_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Humi, 
+                    global::System.Nullable<decimal> Original_S3_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Temp, 
+                    global::System.Nullable<decimal> Original_S4_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Humi, 
+                    global::System.Nullable<decimal> Original_S4_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Temp, 
+                    int SrNo) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(LoggerID));
+            if ((S1_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(S1_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((S1_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(S1_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((S1_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(S1_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((S1_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(S1_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((S2_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(S2_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((S2_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(S2_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((S2_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((decimal)(S2_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((S2_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(S2_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((S3_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(S3_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((S3_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(S3_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((S3_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((decimal)(S3_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((S3_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(S3_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            if ((S4_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(S4_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            if ((S4_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(S4_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((S4_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(S4_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((S4_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((decimal)(S4_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(IsConfig));
+            if ((S1_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(S1_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            if ((S1_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((decimal)(S1_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            if ((S1_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((decimal)(S1_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            if ((S1_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(S1_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            if ((S2_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((decimal)(S2_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((S2_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((decimal)(S2_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            if ((S2_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((decimal)(S2_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            if ((S2_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(S2_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            if ((S3_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((decimal)(S3_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((S3_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((decimal)(S3_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+            }
+            if ((S3_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((decimal)(S3_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((S3_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((decimal)(S3_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+            }
+            if ((S4_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((decimal)(S4_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            if ((S4_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((decimal)(S4_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+            }
+            if ((S4_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((decimal)(S4_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
+            }
+            if ((S4_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((decimal)(S4_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(Original_SrNo));
+            this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(Original_LoggerID));
+            if ((Original_S1_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((decimal)(Original_S1_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(Original_S1_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((decimal)(Original_S1_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((decimal)(Original_S1_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[43].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((decimal)(Original_S2_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((decimal)(Original_S2_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[47].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((decimal)(Original_S2_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((decimal)(Original_S2_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((decimal)(Original_S3_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((decimal)(Original_S3_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((decimal)(Original_S3_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((decimal)(Original_S3_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[59].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[61].Value = ((decimal)(Original_S4_T_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[61].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[63].Value = ((decimal)(Original_S4_T_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[63].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_Low.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[65].Value = ((decimal)(Original_S4_H_Low.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[64].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[65].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_High.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[67].Value = ((decimal)(Original_S4_H_High.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[66].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[67].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[68].Value = ((bool)(Original_IsConfig));
+            if ((Original_S1_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[70].Value = ((decimal)(Original_S1_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[70].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[72].Value = ((decimal)(Original_S1_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[72].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[74].Value = ((decimal)(Original_S1_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[74].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S1_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[76].Value = ((decimal)(Original_S1_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[76].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[78].Value = ((decimal)(Original_S2_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[78].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[80].Value = ((decimal)(Original_S2_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[80].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[82].Value = ((decimal)(Original_S2_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[82].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S2_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[84].Value = ((decimal)(Original_S2_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[84].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[86].Value = ((decimal)(Original_S3_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[86].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[88].Value = ((decimal)(Original_S3_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[88].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[90].Value = ((decimal)(Original_S3_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S3_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[92].Value = ((decimal)(Original_S3_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_H_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[94].Value = ((decimal)(Original_S4_H_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[94].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_Humi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[96].Value = ((decimal)(Original_S4_Humi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_T_Calibrate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[98].Value = ((decimal)(Original_S4_T_Calibrate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
+            }
+            if ((Original_S4_Temp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[100].Value = ((decimal)(Original_S4_Temp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[101].Value = ((int)(SrNo));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int LoggerID, 
+                    global::System.Nullable<decimal> S1_T_Low, 
+                    global::System.Nullable<decimal> S1_T_High, 
+                    global::System.Nullable<decimal> S1_H_Low, 
+                    global::System.Nullable<decimal> S1_H_High, 
+                    global::System.Nullable<decimal> S2_T_Low, 
+                    global::System.Nullable<decimal> S2_T_High, 
+                    global::System.Nullable<decimal> S2_H_Low, 
+                    global::System.Nullable<decimal> S2_H_High, 
+                    global::System.Nullable<decimal> S3_T_Low, 
+                    global::System.Nullable<decimal> S3_T_High, 
+                    global::System.Nullable<decimal> S3_H_Low, 
+                    global::System.Nullable<decimal> S3_H_High, 
+                    global::System.Nullable<decimal> S4_T_Low, 
+                    global::System.Nullable<decimal> S4_T_High, 
+                    global::System.Nullable<decimal> S4_H_Low, 
+                    global::System.Nullable<decimal> S4_H_High, 
+                    bool IsConfig, 
+                    global::System.Nullable<decimal> S1_H_Calibrate, 
+                    global::System.Nullable<decimal> S1_Humi, 
+                    global::System.Nullable<decimal> S1_T_Calibrate, 
+                    global::System.Nullable<decimal> S1_Temp, 
+                    global::System.Nullable<decimal> S2_H_Calibrate, 
+                    global::System.Nullable<decimal> S2_Humi, 
+                    global::System.Nullable<decimal> S2_T_Calibrate, 
+                    global::System.Nullable<decimal> S2_Temp, 
+                    global::System.Nullable<decimal> S3_H_Calibrate, 
+                    global::System.Nullable<decimal> S3_Humi, 
+                    global::System.Nullable<decimal> S3_T_Calibrate, 
+                    global::System.Nullable<decimal> S3_Temp, 
+                    global::System.Nullable<decimal> S4_H_Calibrate, 
+                    global::System.Nullable<decimal> S4_Humi, 
+                    global::System.Nullable<decimal> S4_T_Calibrate, 
+                    global::System.Nullable<decimal> S4_Temp, 
+                    int Original_SrNo, 
+                    int Original_LoggerID, 
+                    global::System.Nullable<decimal> Original_S1_T_Low, 
+                    global::System.Nullable<decimal> Original_S1_T_High, 
+                    global::System.Nullable<decimal> Original_S1_H_Low, 
+                    global::System.Nullable<decimal> Original_S1_H_High, 
+                    global::System.Nullable<decimal> Original_S2_T_Low, 
+                    global::System.Nullable<decimal> Original_S2_T_High, 
+                    global::System.Nullable<decimal> Original_S2_H_Low, 
+                    global::System.Nullable<decimal> Original_S2_H_High, 
+                    global::System.Nullable<decimal> Original_S3_T_Low, 
+                    global::System.Nullable<decimal> Original_S3_T_High, 
+                    global::System.Nullable<decimal> Original_S3_H_Low, 
+                    global::System.Nullable<decimal> Original_S3_H_High, 
+                    global::System.Nullable<decimal> Original_S4_T_Low, 
+                    global::System.Nullable<decimal> Original_S4_T_High, 
+                    global::System.Nullable<decimal> Original_S4_H_Low, 
+                    global::System.Nullable<decimal> Original_S4_H_High, 
+                    bool Original_IsConfig, 
+                    global::System.Nullable<decimal> Original_S1_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Humi, 
+                    global::System.Nullable<decimal> Original_S1_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S1_Temp, 
+                    global::System.Nullable<decimal> Original_S2_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Humi, 
+                    global::System.Nullable<decimal> Original_S2_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S2_Temp, 
+                    global::System.Nullable<decimal> Original_S3_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Humi, 
+                    global::System.Nullable<decimal> Original_S3_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S3_Temp, 
+                    global::System.Nullable<decimal> Original_S4_H_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Humi, 
+                    global::System.Nullable<decimal> Original_S4_T_Calibrate, 
+                    global::System.Nullable<decimal> Original_S4_Temp) {
+            return this.Update(LoggerID, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, IsConfig, S1_H_Calibrate, S1_Humi, S1_T_Calibrate, S1_Temp, S2_H_Calibrate, S2_Humi, S2_T_Calibrate, S2_Temp, S3_H_Calibrate, S3_Humi, S3_T_Calibrate, S3_Temp, S4_H_Calibrate, S4_Humi, S4_T_Calibrate, S4_Temp, Original_SrNo, Original_LoggerID, Original_S1_T_Low, Original_S1_T_High, Original_S1_H_Low, Original_S1_H_High, Original_S2_T_Low, Original_S2_T_High, Original_S2_H_Low, Original_S2_H_High, Original_S3_T_Low, Original_S3_T_High, Original_S3_H_Low, Original_S3_H_High, Original_S4_T_Low, Original_S4_T_High, Original_S4_H_Low, Original_S4_H_High, Original_IsConfig, Original_S1_H_Calibrate, Original_S1_Humi, Original_S1_T_Calibrate, Original_S1_Temp, Original_S2_H_Calibrate, Original_S2_Humi, Original_S2_T_Calibrate, Original_S2_Temp, Original_S3_H_Calibrate, Original_S3_Humi, Original_S3_T_Calibrate, Original_S3_Temp, Original_S4_H_Calibrate, Original_S4_Humi, Original_S4_T_Calibrate, Original_S4_Temp, Original_SrNo);
         }
     }
     
@@ -5560,10 +7539,11 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             tableMapping.ColumnMappings.Add("S4Name", "S4Name");
             tableMapping.ColumnMappings.Add("IsActive", "IsActive");
             tableMapping.ColumnMappings.Add("CreatedDate", "CreatedDate");
+            tableMapping.ColumnMappings.Add("IntervalType", "IntervalType");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[LoggerMaster] WHERE (([LoggerID] = @Original_LoggerID) AND ([LoggerName] = @Original_LoggerName) AND ([LoggerType] = @Original_LoggerType) AND ([NoOfSensors] = @Original_NoOfSensors) AND ([AssignTo] = @Original_AssignTo) AND ((@IsNull_Interval = 1 AND [Interval] IS NULL) OR ([Interval] = @Original_Interval)) AND ((@IsNull_S1Name = 1 AND [S1Name] IS NULL) OR ([S1Name] = @Original_S1Name)) AND ((@IsNull_S2Name = 1 AND [S2Name] IS NULL) OR ([S2Name] = @Original_S2Name)) AND ((@IsNull_S3Name = 1 AND [S3Name] IS NULL) OR ([S3Name] = @Original_S3Name)) AND ((@IsNull_S4Name = 1 AND [S4Name] IS NULL) OR ([S4Name] = @Original_S4Name)) AND ([IsActive] = @Original_IsActive) AND ([CreatedDate] = @Original_CreatedDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [LoggerMaster] WHERE (([LoggerID] = @Original_LoggerID) AND ([LoggerName] = @Original_LoggerName) AND ([LoggerType] = @Original_LoggerType) AND ([NoOfSensors] = @Original_NoOfSensors) AND ([AssignTo] = @Original_AssignTo) AND ((@IsNull_Interval = 1 AND [Interval] IS NULL) OR ([Interval] = @Original_Interval)) AND ((@IsNull_S1Name = 1 AND [S1Name] IS NULL) OR ([S1Name] = @Original_S1Name)) AND ((@IsNull_S2Name = 1 AND [S2Name] IS NULL) OR ([S2Name] = @Original_S2Name)) AND ((@IsNull_S3Name = 1 AND [S3Name] IS NULL) OR ([S3Name] = @Original_S3Name)) AND ((@IsNull_S4Name = 1 AND [S4Name] IS NULL) OR ([S4Name] = @Original_S4Name)) AND ([IsActive] = @Original_IsActive) AND ([CreatedDate] = @Original_CreatedDate) AND ((@IsNull_IntervalType = 1 AND [IntervalType] IS NULL) OR ([IntervalType] = @Original_IntervalType)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5571,7 +7551,7 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfSensors", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfSensors", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssignTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssignTo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Interval", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5582,45 +7562,49 @@ SELECT SrNo, CompanyName, Address, ContactNo, Email, Logo, CreatedDate FROM Comp
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreatedDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IntervalType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IntervalType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[LoggerMaster] ([LoggerName], [LoggerType], [NoOfSensors], [AssignTo], [Interval], [S1Name], [S2Name], [S3Name], [S4Name], [IsActive], [CreatedDate]) VALUES (@LoggerName, @LoggerType, @NoOfSensors, @AssignTo, @Interval, @S1Name, @S2Name, @S3Name, @S4Name, @IsActive, @CreatedDate);
-SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate FROM LoggerMaster WHERE (LoggerID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [LoggerMaster] ([LoggerName], [LoggerType], [NoOfSensors], [AssignTo], [Interval], [S1Name], [S2Name], [S3Name], [S4Name], [IsActive], [CreatedDate], [IntervalType]) VALUES (@LoggerName, @LoggerType, @NoOfSensors, @AssignTo, @Interval, @S1Name, @S2Name, @S3Name, @S4Name, @IsActive, @CreatedDate, @IntervalType);
+SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType FROM LoggerMaster WHERE (LoggerID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfSensors", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfSensors", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssignTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Interval", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreatedDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IntervalType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[LoggerMaster] SET [LoggerName] = @LoggerName, [LoggerType] = @LoggerType, [NoOfSensors] = @NoOfSensors, [AssignTo] = @AssignTo, [Interval] = @Interval, [S1Name] = @S1Name, [S2Name] = @S2Name, [S3Name] = @S3Name, [S4Name] = @S4Name, [IsActive] = @IsActive, [CreatedDate] = @CreatedDate WHERE (([LoggerID] = @Original_LoggerID) AND ([LoggerName] = @Original_LoggerName) AND ([LoggerType] = @Original_LoggerType) AND ([NoOfSensors] = @Original_NoOfSensors) AND ([AssignTo] = @Original_AssignTo) AND ((@IsNull_Interval = 1 AND [Interval] IS NULL) OR ([Interval] = @Original_Interval)) AND ((@IsNull_S1Name = 1 AND [S1Name] IS NULL) OR ([S1Name] = @Original_S1Name)) AND ((@IsNull_S2Name = 1 AND [S2Name] IS NULL) OR ([S2Name] = @Original_S2Name)) AND ((@IsNull_S3Name = 1 AND [S3Name] IS NULL) OR ([S3Name] = @Original_S3Name)) AND ((@IsNull_S4Name = 1 AND [S4Name] IS NULL) OR ([S4Name] = @Original_S4Name)) AND ([IsActive] = @Original_IsActive) AND ([CreatedDate] = @Original_CreatedDate));
-SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate FROM LoggerMaster WHERE (LoggerID = @LoggerID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [LoggerMaster] SET [LoggerName] = @LoggerName, [LoggerType] = @LoggerType, [NoOfSensors] = @NoOfSensors, [AssignTo] = @AssignTo, [Interval] = @Interval, [S1Name] = @S1Name, [S2Name] = @S2Name, [S3Name] = @S3Name, [S4Name] = @S4Name, [IsActive] = @IsActive, [CreatedDate] = @CreatedDate, [IntervalType] = @IntervalType WHERE (([LoggerID] = @Original_LoggerID) AND ([LoggerName] = @Original_LoggerName) AND ([LoggerType] = @Original_LoggerType) AND ([NoOfSensors] = @Original_NoOfSensors) AND ([AssignTo] = @Original_AssignTo) AND ((@IsNull_Interval = 1 AND [Interval] IS NULL) OR ([Interval] = @Original_Interval)) AND ((@IsNull_S1Name = 1 AND [S1Name] IS NULL) OR ([S1Name] = @Original_S1Name)) AND ((@IsNull_S2Name = 1 AND [S2Name] IS NULL) OR ([S2Name] = @Original_S2Name)) AND ((@IsNull_S3Name = 1 AND [S3Name] IS NULL) OR ([S3Name] = @Original_S3Name)) AND ((@IsNull_S4Name = 1 AND [S4Name] IS NULL) OR ([S4Name] = @Original_S4Name)) AND ([IsActive] = @Original_IsActive) AND ([CreatedDate] = @Original_CreatedDate) AND ((@IsNull_IntervalType = 1 AND [IntervalType] IS NULL) OR ([IntervalType] = @Original_IntervalType)));
+SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType FROM LoggerMaster WHERE (LoggerID = @LoggerID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NoOfSensors", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfSensors", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AssignTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssignTo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Interval", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S1Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S2Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S3Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S3Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@S4Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreatedDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IntervalType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LoggerType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NoOfSensors", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NoOfSensors", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AssignTo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AssignTo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Interval", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Interval", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Interval", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S1Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S1Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S1Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_S2Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S2Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5631,6 +7615,8 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_S4Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "S4Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IsActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IsActive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreatedDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreatedDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_IntervalType", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IntervalType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IntervalType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoggerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LoggerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5648,7 +7634,7 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name," +
-                " S2Name, S3Name, S4Name, IsActive, CreatedDate FROM dbo.LoggerMaster";
+                " S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType FROM LoggerMaster";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5709,7 +7695,7 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_LoggerID, string Original_LoggerName, string Original_LoggerType, int Original_NoOfSensors, string Original_AssignTo, global::System.Nullable<int> Original_Interval, string Original_S1Name, string Original_S2Name, string Original_S3Name, string Original_S4Name, bool Original_IsActive, System.DateTime Original_CreatedDate) {
+        public virtual int Delete(int Original_LoggerID, string Original_LoggerName, string Original_LoggerType, int Original_NoOfSensors, string Original_AssignTo, string Original_Interval, string Original_S1Name, string Original_S2Name, string Original_S3Name, string Original_S4Name, bool Original_IsActive, System.DateTime Original_CreatedDate, string Original_IntervalType) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_LoggerID));
             if ((Original_LoggerName == null)) {
                 throw new global::System.ArgumentNullException("Original_LoggerName");
@@ -5730,13 +7716,13 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_AssignTo));
             }
-            if ((Original_Interval.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_Interval.Value));
-            }
-            else {
+            if ((Original_Interval == null)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Interval));
             }
             if ((Original_S1Name == null)) {
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
@@ -5772,6 +7758,14 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             }
             this.Adapter.DeleteCommand.Parameters[15].Value = ((bool)(Original_IsActive));
             this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_CreatedDate));
+            if ((Original_IntervalType == null)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_IntervalType));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5792,7 +7786,7 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string LoggerName, string LoggerType, int NoOfSensors, string AssignTo, global::System.Nullable<int> Interval, string S1Name, string S2Name, string S3Name, string S4Name, bool IsActive, System.DateTime CreatedDate) {
+        public virtual int Insert(string LoggerName, string LoggerType, int NoOfSensors, string AssignTo, string Interval, string S1Name, string S2Name, string S3Name, string S4Name, bool IsActive, System.DateTime CreatedDate, string IntervalType) {
             if ((LoggerName == null)) {
                 throw new global::System.ArgumentNullException("LoggerName");
             }
@@ -5812,11 +7806,11 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(AssignTo));
             }
-            if ((Interval.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Interval.Value));
+            if ((Interval == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Interval));
             }
             if ((S1Name == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
@@ -5844,6 +7838,12 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             }
             this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(IsActive));
             this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(CreatedDate));
+            if ((IntervalType == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(IntervalType));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5869,25 +7869,27 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
                     string LoggerType, 
                     int NoOfSensors, 
                     string AssignTo, 
-                    global::System.Nullable<int> Interval, 
+                    string Interval, 
                     string S1Name, 
                     string S2Name, 
                     string S3Name, 
                     string S4Name, 
                     bool IsActive, 
                     System.DateTime CreatedDate, 
+                    string IntervalType, 
                     int Original_LoggerID, 
                     string Original_LoggerName, 
                     string Original_LoggerType, 
                     int Original_NoOfSensors, 
                     string Original_AssignTo, 
-                    global::System.Nullable<int> Original_Interval, 
+                    string Original_Interval, 
                     string Original_S1Name, 
                     string Original_S2Name, 
                     string Original_S3Name, 
                     string Original_S4Name, 
                     bool Original_IsActive, 
                     System.DateTime Original_CreatedDate, 
+                    string Original_IntervalType, 
                     int LoggerID) {
             if ((LoggerName == null)) {
                 throw new global::System.ArgumentNullException("LoggerName");
@@ -5908,11 +7910,11 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(AssignTo));
             }
-            if ((Interval.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Interval.Value));
+            if ((Interval == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Interval));
             }
             if ((S1Name == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
@@ -5940,69 +7942,83 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
             }
             this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(IsActive));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(CreatedDate));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_LoggerID));
+            if ((IntervalType == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(IntervalType));
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_LoggerID));
             if ((Original_LoggerName == null)) {
                 throw new global::System.ArgumentNullException("Original_LoggerName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_LoggerName));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_LoggerName));
             }
             if ((Original_LoggerType == null)) {
                 throw new global::System.ArgumentNullException("Original_LoggerType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_LoggerType));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_LoggerType));
             }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_NoOfSensors));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_NoOfSensors));
             if ((Original_AssignTo == null)) {
                 throw new global::System.ArgumentNullException("Original_AssignTo");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_AssignTo));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_AssignTo));
             }
-            if ((Original_Interval.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_Interval.Value));
+            if ((Original_Interval == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Interval));
             }
             if ((Original_S1Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_S1Name));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_S1Name));
             }
             if ((Original_S2Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_S2Name));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_S2Name));
             }
             if ((Original_S3Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_S3Name));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_S3Name));
             }
             if ((Original_S4Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_S4Name));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_S4Name));
             }
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_IsActive));
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((System.DateTime)(Original_CreatedDate));
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(LoggerID));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((bool)(Original_IsActive));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((System.DateTime)(Original_CreatedDate));
+            if ((Original_IntervalType == null)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((string)(Original_IntervalType));
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(LoggerID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6028,26 +8044,28 @@ SELECT LoggerID, LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name
                     string LoggerType, 
                     int NoOfSensors, 
                     string AssignTo, 
-                    global::System.Nullable<int> Interval, 
+                    string Interval, 
                     string S1Name, 
                     string S2Name, 
                     string S3Name, 
                     string S4Name, 
                     bool IsActive, 
                     System.DateTime CreatedDate, 
+                    string IntervalType, 
                     int Original_LoggerID, 
                     string Original_LoggerName, 
                     string Original_LoggerType, 
                     int Original_NoOfSensors, 
                     string Original_AssignTo, 
-                    global::System.Nullable<int> Original_Interval, 
+                    string Original_Interval, 
                     string Original_S1Name, 
                     string Original_S2Name, 
                     string Original_S3Name, 
                     string Original_S4Name, 
                     bool Original_IsActive, 
-                    System.DateTime Original_CreatedDate) {
-            return this.Update(LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, Original_LoggerID, Original_LoggerName, Original_LoggerType, Original_NoOfSensors, Original_AssignTo, Original_Interval, Original_S1Name, Original_S2Name, Original_S3Name, Original_S4Name, Original_IsActive, Original_CreatedDate, Original_LoggerID);
+                    System.DateTime Original_CreatedDate, 
+                    string Original_IntervalType) {
+            return this.Update(LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType, Original_LoggerID, Original_LoggerName, Original_LoggerType, Original_NoOfSensors, Original_AssignTo, Original_Interval, Original_S1Name, Original_S2Name, Original_S3Name, Original_S4Name, Original_IsActive, Original_CreatedDate, Original_IntervalType, Original_LoggerID);
         }
     }
     
@@ -7822,6 +9840,15 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(Med_PreserveDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._loggerMasterTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._loggerMasterTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._roleTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -7846,15 +9873,6 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._loggerConfigTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._loggerMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._loggerMasterTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7886,6 +9904,14 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(Med_PreserveDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._loggerMasterTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._loggerMasterTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._roleTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Role.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -7907,14 +9933,6 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._loggerConfigTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._loggerMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._loggerMasterTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7960,14 +9978,6 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._loggerMasterTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._loggerMasterTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._loggerConfigTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.LoggerConfig.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -7989,6 +9999,14 @@ SELECT UserID, Name, Email, Mobile, UserName, Password, IsDeleted, Reason, RoleI
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._roleTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._loggerMasterTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.LoggerMaster.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._loggerMasterTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
