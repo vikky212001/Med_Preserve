@@ -640,7 +640,7 @@
             // 
             // tb_IsConfig
             // 
-            this.tb_IsConfig.Location = new System.Drawing.Point(740, 415);
+            this.tb_IsConfig.Location = new System.Drawing.Point(728, 415);
             this.tb_IsConfig.Name = "tb_IsConfig";
             this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
             this.tb_IsConfig.TabIndex = 111;

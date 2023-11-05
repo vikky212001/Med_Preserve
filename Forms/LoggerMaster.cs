@@ -141,8 +141,8 @@ namespace Med_Preserve.Forms
                         MessageBox.Show("Logger Name is already taken. Please choose a different one.", "Prompt");
                         return;
                     }
-                    string addQuery = "INSERT INTO LoggerMaster (LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType)" +
-                    "VALUES (@LoggerName , @LoggerType , @NoOfSensors , @AssignTo , @Interval , @S1Name , @S2Name , @S3Name , @S4Name , @IsActive , @Date, @IntervalType);";
+                    string addQuery = "INSERT INTO LoggerMaster (LoggerName, LoggerType, NoOfSensors, AssignTo, Interval, S1Name, S2Name, S3Name, S4Name, IsActive, CreatedDate, IntervalType, IsConfig)" +
+                    "VALUES (@LoggerName , @LoggerType , @NoOfSensors , @AssignTo , @Interval , @S1Name , @S2Name , @S3Name , @S4Name , @IsActive , @Date, @IntervalType, @IsConfig);";
                     using (SqlCommand command = new SqlCommand(addQuery, connection))
                     {
                         command.Parameters.AddWithValue("@LoggerName", logName);
@@ -157,6 +157,7 @@ namespace Med_Preserve.Forms
                         command.Parameters.AddWithValue("@IsActive", true);
                         command.Parameters.AddWithValue("@Date", FDateTime);
                         command.Parameters.AddWithValue("@IntervalType", intervalType);
+                        command.Parameters.AddWithValue("@IsConfig", false);
                         command.ExecuteNonQuery();
                         MessageBox.Show("Logger created successfully.", "Prompt");
                         RefreshData();
