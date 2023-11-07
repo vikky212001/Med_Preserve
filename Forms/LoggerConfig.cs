@@ -25,22 +25,6 @@ namespace Med_Preserve.Forms
             dgv_LoggerConfig.Columns[8].Visible = false;
             dgv_LoggerConfig.Columns[9].Visible = false;
             dgv_LoggerConfig.Columns[42].Visible = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT LoggerName FROM LoggerMaster WHERE IsActive = 1 AND IsConfig = 0";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
-                        cmb_LoggerName.DataSource = dataTable;
-                        cmb_LoggerName.DisplayMember = "LoggerName";
-
-                    }
-                }
-            }
             cmb_LoggerName.Text = "-SELECT-";
         }
         private void RefreshData()
@@ -55,6 +39,17 @@ namespace Med_Preserve.Forms
                     dataTable.Clear();
                     adapter.Fill(dataTable);
                     dgv_LoggerConfig.DataSource = dataTable;
+                    string queryLogName = "SELECT LoggerName FROM LoggerMaster WHERE IsActive = 1 AND IsConfig = 0";
+                    using (SqlCommand command = new SqlCommand(queryLogName, connection))
+                    {
+                        using (SqlDataAdapter logAdapter = new SqlDataAdapter(command))
+                        {
+                            DataTable logDataTable = new DataTable();
+                            logAdapter.Fill(logDataTable);
+                            cmb_LoggerName.DataSource = logDataTable;
+                            cmb_LoggerName.DisplayMember = "LoggerName";
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -168,7 +163,7 @@ namespace Med_Preserve.Forms
                     {
                         if (string.IsNullOrWhiteSpace(textbox.Text))
                         {
-                            if(textbox == tb_IsConfig)
+                            if (textbox == tb_IsConfig)
                             {
                                 continue;
                             }
@@ -210,43 +205,55 @@ namespace Med_Preserve.Forms
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID) " +
-                            "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID);";
-                        string updateConfigQuery = "UPDATE LoggerMaster SET IsConfig = @IsConfig WHERE LoggerId = @LogID";
-                        using (SqlCommand command = new SqlCommand(configQuery, connection))
+                        using (SqlTransaction trans = connection.BeginTransaction())
                         {
-                            for (int i = 0; i < parameterNames.Length; i++)
+                            try
                             {
-                                if (string.IsNullOrEmpty(textBoxValues[i]))
+                                string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID) " +
+                                    "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID);";
+                                string updateConfigQuery = "UPDATE LoggerMaster SET IsConfig = @IsConfig WHERE LoggerId = @LogID";
+                                using (SqlCommand command = new SqlCommand(configQuery, connection, trans))
                                 {
-                                    command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
-                                }
-                                else
-                                {
-                                    // Attempt to convert the string to a numeric data type (e.g., int)
-                                    if (int.TryParse(textBoxValues[i], out int numericValue))
+                                    for (int i = 0; i < parameterNames.Length; i++)
                                     {
-                                        command.Parameters.AddWithValue(parameterNames[i], numericValue);
+                                        if (string.IsNullOrEmpty(textBoxValues[i]))
+                                        {
+                                            command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
+                                        }
+                                        else
+                                        {
+                                            // Attempt to convert the string to a numeric data type (e.g., int)
+                                            if (int.TryParse(textBoxValues[i], out int numericValue))
+                                            {
+                                                command.Parameters.AddWithValue(parameterNames[i], numericValue);
+                                            }
+                                            else
+                                            {
+                                                // Handle the case where the string cannot be converted to a numeric value
+                                                command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
+                                            }
+                                        }
                                     }
-                                    else
-                                    {
-                                        // Handle the case where the string cannot be converted to a numeric value
-                                        command.Parameters.AddWithValue(parameterNames[i], DBNull.Value);
-                                    }
-                                }
-                            }
 
-                            command.ExecuteNonQuery();
-                            MessageBox.Show("Logger created successfully.", "Prompt");
-                            RefreshData();
-                            Clear();
+                                    command.ExecuteNonQuery();
+                                    MessageBox.Show("Logger created successfully.", "Prompt");
+                                }
+                                using (SqlCommand updateConfig = new SqlCommand(updateConfigQuery, connection, trans))
+                                {
+                                    updateConfig.Parameters.AddWithValue("@IsConfig", "True");
+                                    updateConfig.Parameters.AddWithValue("@LogID", tb_LogID.Text);
+                                    updateConfig.ExecuteNonQuery();
+                                }
+                                trans.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                trans.Rollback();
+                                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                            }
                         }
-                        using (SqlCommand updateConfig = new SqlCommand(updateConfigQuery, connection))
-                        {
-                            updateConfig.Parameters.AddWithValue("@IsConfig", 1);
-                            updateConfig.Parameters.AddWithValue("@LogID", tb_LogID.Text);
-                            updateConfig.ExecuteNonQuery();
-                        }
+                        RefreshData();
+                        Clear();
                     }
                 }
                 catch (Exception ex)
@@ -390,10 +397,239 @@ namespace Med_Preserve.Forms
         {
             UpdateControlEnabledStatus();
         }
+        private void tb_IsConfig_TextChanged(object sender, EventArgs e)
+        {
+            string IsConfig = tb_IsConfig.Text;
+            if (IsConfig == "True")
+            {
+                bt_Add.Enabled = false;
+                bt_Update.Enabled = true;
+            }
+            else if (IsConfig == "False")
+            {
+                bt_Add.Enabled = true;
+                bt_Update.Enabled = false;
+            }
+        }
+        private bool AreEqual(object oldValue, string newValue)
+        {
+            if (oldValue is DBNull || oldValue == null)
+            {
+                return string.IsNullOrEmpty(newValue);
+            }
+
+            return oldValue.ToString() == newValue;
+        }
 
         private void bt_Update_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(tb_LogID.Text))
+            {
+                MessageBox.Show("Select the Data you want to update from the Data Grid View.", "Prompt");
+                return;
+            }
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    {
+                        try
+                        {
+                            bool changesFound = false;
+                            string selectQuery = "SELECT S1_Temp, S2_Temp, S3_Temp, S4_Temp, " +
+                                         "S1_Humi, S2_Humi, S3_Humi, S4_Humi, " +
+                                         "S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, " +
+                                         "S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, " +
+                                         "S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, " +
+                                         "S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, " +
+                                         "S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, " +
+                                         "S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate " +
+                                         "FROM LoggerConfig WHERE LoggerID = @LogID";
 
+                            using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
+                            {
+                                selectCommand.Parameters.AddWithValue("@LogID", tb_LogID.Text);
+
+                                using (SqlDataReader reader = selectCommand.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        if (!AreEqual(reader["S1_Temp"], tb_S1_Temp.Text)
+                                    || !AreEqual(reader["S2_Temp"], tb_S2_Temp.Text)
+                                    || !AreEqual(reader["S3_Temp"], tb_S3_Temp.Text)
+                                    || !AreEqual(reader["S4_Temp"], tb_S4_Temp.Text)
+                                    || !AreEqual(reader["S1_Humi"], tb_S1_Humidity.Text)
+                                    || !AreEqual(reader["S2_Humi"], tb_S2_Humidity.Text)
+                                    || !AreEqual(reader["S3_Humi"], tb_S3_Humidity.Text)
+                                    || !AreEqual(reader["S4_Humi"], tb_S4_Humidity.Text)
+                                    || !AreEqual(reader["S1_T_Low"], tb_TS1_LL.Text)
+                                    || !AreEqual(reader["S1_T_High"], tb_TS1_UL.Text)
+                                    || !AreEqual(reader["S1_H_Low"], tb_HS1_LL.Text)
+                                    || !AreEqual(reader["S1_H_High"], tb_HS1_UL.Text)
+                                    || !AreEqual(reader["S2_T_Low"], tb_TS2_LL.Text)
+                                    || !AreEqual(reader["S2_T_High"], tb_TS2_UL.Text)
+                                    || !AreEqual(reader["S2_H_Low"], tb_HS2_LL.Text)
+                                    || !AreEqual(reader["S2_H_High"], tb_HS2_UL.Text)
+                                    || !AreEqual(reader["S3_T_Low"], tb_TS3_LL.Text)
+                                    || !AreEqual(reader["S3_T_High"], tb_TS3_UL.Text)
+                                    || !AreEqual(reader["S3_H_Low"], tb_HS3_LL.Text)
+                                    || !AreEqual(reader["S3_H_High"], tb_HS3_UL.Text)
+                                    || !AreEqual(reader["S4_T_Low"], tb_TS4_LL.Text)
+                                    || !AreEqual(reader["S4_T_High"], tb_TS4_UL.Text)
+                                    || !AreEqual(reader["S4_H_Low"], tb_HS4_LL.Text)
+                                    || !AreEqual(reader["S4_H_High"], tb_HS4_UL.Text)
+                                    || !AreEqual(reader["S1_T_Calibrate"], tb_TS1_Calibrate.Text)
+                                    || !AreEqual(reader["S2_T_Calibrate"], tb_TS2_Calibrate.Text)
+                                    || !AreEqual(reader["S3_T_Calibrate"], tb_TS3_Calibrate.Text)
+                                    || !AreEqual(reader["S4_T_Calibrate"], tb_TS4_Calibrate.Text)
+                                    || !AreEqual(reader["S1_H_Calibrate"], tb_HS1_Calibrate.Text)
+                                    || !AreEqual(reader["S2_H_Calibrate"], tb_HS2_Calibrate.Text)
+                                    || !AreEqual(reader["S3_H_Calibrate"], tb_HS3_Calibrate.Text)
+                                    || !AreEqual(reader["S4_H_Calibrate"], tb_HS4_Calibrate.Text)
+                                        )
+                                        {
+                                            changesFound = true;
+                                        }
+                                        if (!changesFound)
+                                        {
+                                            MessageBox.Show("No changes found.", "Prompt");
+                                            return;
+                                        }
+                                    }
+                                }
+                                if (changesFound)
+                                {
+                                    string updateQuery = "UPDATE LoggerConfig " +
+                                                     "SET S1_Temp = @S1_Temp, S2_Temp = @S2_Temp, S3_Temp = @S3_Temp, S4_Temp = @S4_Temp, " +
+                                                     "S1_Humi = @S1_Humi, S2_Humi = @S2_Humi, S3_Humi = @S3_Humi, S4_Humi = @S4_Humi, " +
+                                                     "S1_T_Low = @S1_T_Low, S1_T_High = @S1_T_High, S1_H_Low = @S1_H_Low, S1_H_High = @S1_H_High, " +
+                                                     "S2_T_Low = @S2_T_Low, S2_T_High = @S2_T_High, S2_H_Low = @S2_H_Low, S2_H_High = @S2_H_High, " +
+                                                     "S3_T_Low = @S3_T_Low, S3_T_High = @S3_T_High, S3_H_Low = @S3_H_Low, S3_H_High = @S3_H_High, " +
+                                                     "S4_T_Low = @S4_T_Low, S4_T_High = @S4_T_High, S4_H_Low = @S4_H_Low, S4_H_High = @S4_H_High, " +
+                                                     "S1_T_Calibrate = @S1_T_Calibrate, S2_T_Calibrate = @S2_T_Calibrate, S3_T_Calibrate = @S3_T_Calibrate, S4_T_Calibrate = @S4_T_Calibrate, " +
+                                                     "S1_H_Calibrate = @S1_H_Calibrate, S2_H_Calibrate = @S2_H_Calibrate, S3_H_Calibrate = @S3_H_Calibrate, S4_H_Calibrate = @S4_H_Calibrate " +
+                                                     "WHERE LoggerID = @LogID";
+
+                                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                    {
+                                        // Set parameter values from your form controls
+                                        updateCommand.Parameters.AddWithValue("@S1_Temp", double.Parse(tb_S1_Temp.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_Temp", tb_S2_Temp.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_Temp", tb_S3_Temp.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_Temp", tb_S4_Temp.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_Humi", tb_S1_Humidity.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_Humi", tb_S2_Humidity.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_Humi", tb_S3_Humidity.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_Humi", tb_S4_Humidity.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_T_Low", tb_TS1_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_T_High", tb_TS1_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_H_Low", tb_HS1_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_H_High", tb_HS1_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_T_Low", tb_TS2_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_T_High", tb_TS2_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_H_Low", tb_HS2_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_H_High", tb_HS2_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_T_Low", tb_TS3_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_T_High", tb_TS3_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_H_Low", tb_HS3_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_H_High", tb_HS3_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_T_Low", tb_TS4_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_T_High", tb_TS4_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_H_Low", tb_HS4_LL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_H_High", tb_HS4_UL.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_T_Calibrate", tb_TS1_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_T_Calibrate", tb_TS2_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_T_Calibrate", tb_TS3_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_T_Calibrate", tb_TS4_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_H_Calibrate", tb_HS1_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S2_H_Calibrate", tb_HS2_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S3_H_Calibrate", tb_HS3_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@S4_H_Calibrate", tb_HS4_Calibrate.Text);
+                                        updateCommand.Parameters.AddWithValue("@LogID", tb_LogID.Text);
+
+                                        int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                                        if (rowsAffected > 0)
+                                        {
+                                            MessageBox.Show("Record updated successfully.", "Success");
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                        }
+                                    }
+                                    RefreshData();
+                                    Clear();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
+        }
+
+        private void bt_Delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string logID = tb_LogID.Text;
+                if (string.IsNullOrEmpty(logID)) { MessageBox.Show("Select the Data which you want to Delete from the Data Grid View.", "Prompt"); }
+                else
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqlTransaction transaction = connection.BeginTransaction())
+                        {
+                            try
+                            {
+                                string deleteQuery = "DELETE FROM LoggerConfig WHERE LoggerID = @LogID";
+                                using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction))
+                                {
+                                    deleteCommand.Parameters.AddWithValue("@LogID", logID);
+                                    int rowsAffected = deleteCommand.ExecuteNonQuery();
+                                    if (rowsAffected > 0)
+                                    {
+                                        MessageBox.Show("Record Deleted successfully.", "Success");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                    }
+                                }
+                                string updateQuery = "UPDATE LoggerMaster SET IsConfig = @IsConfig WHERE LoggerId = @LogID";
+                                using (SqlCommand updateDConfig = new SqlCommand(updateQuery, connection, transaction))
+                                {
+                                    updateDConfig.Parameters.AddWithValue("@IsConfig", "False");
+                                    updateDConfig.Parameters.AddWithValue("@LogID", tb_LogID.Text);
+                                    updateDConfig.ExecuteNonQuery();
+                                }
+                                transaction.Commit();
+                                RefreshData();
+                                Clear();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                                transaction.Rollback();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
         }
     }
 }

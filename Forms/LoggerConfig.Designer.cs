@@ -468,6 +468,7 @@
             this.bt_Delete.TabIndex = 89;
             this.bt_Delete.Text = "DELETE";
             this.bt_Delete.UseVisualStyleBackColor = true;
+            this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
             // 
             // bt_Update
             // 
@@ -644,6 +645,8 @@
             this.tb_IsConfig.Name = "tb_IsConfig";
             this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
             this.tb_IsConfig.TabIndex = 111;
+            this.tb_IsConfig.Visible = false;
+            this.tb_IsConfig.TextChanged += new System.EventHandler(this.tb_IsConfig_TextChanged);
             // 
             // LoggerConfig
             // 
