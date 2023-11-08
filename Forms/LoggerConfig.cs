@@ -514,39 +514,39 @@ namespace Med_Preserve.Forms
                                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                     {
                                         // Set parameter values from your form controls
-                                        updateCommand.Parameters.AddWithValue("@S1_Temp", double.Parse(tb_S1_Temp.Text));
-                                        updateCommand.Parameters.AddWithValue("@S2_Temp", tb_S2_Temp.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_Temp", tb_S3_Temp.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_Temp", tb_S4_Temp.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_Humi", tb_S1_Humidity.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_Humi", tb_S2_Humidity.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_Humi", tb_S3_Humidity.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_Humi", tb_S4_Humidity.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_T_Low", tb_TS1_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_T_High", tb_TS1_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_H_Low", tb_HS1_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_H_High", tb_HS1_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_T_Low", tb_TS2_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_T_High", tb_TS2_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_H_Low", tb_HS2_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_H_High", tb_HS2_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_T_Low", tb_TS3_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_T_High", tb_TS3_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_H_Low", tb_HS3_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_H_High", tb_HS3_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_T_Low", tb_TS4_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_T_High", tb_TS4_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_H_Low", tb_HS4_LL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_H_High", tb_HS4_UL.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_T_Calibrate", tb_TS1_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_T_Calibrate", tb_TS2_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_T_Calibrate", tb_TS3_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_T_Calibrate", tb_TS4_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S1_H_Calibrate", tb_HS1_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S2_H_Calibrate", tb_HS2_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S3_H_Calibrate", tb_HS3_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@S4_H_Calibrate", tb_HS4_Calibrate.Text);
-                                        updateCommand.Parameters.AddWithValue("@LogID", tb_LogID.Text);
+                                        updateCommand.Parameters.AddWithValue("@S1_Temp", string.IsNullOrEmpty(tb_S1_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S1_Temp.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_Temp", string.IsNullOrEmpty(tb_S2_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S2_Temp.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_Temp", string.IsNullOrEmpty(tb_S3_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S3_Temp.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_Temp", string.IsNullOrEmpty(tb_S4_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S4_Temp.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_Humi", string.IsNullOrEmpty(tb_S1_Humidity.Text) ? DBNull.Value : (object)double.Parse(tb_S1_Humidity.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_Humi", string.IsNullOrEmpty(tb_S2_Humidity.Text) ? DBNull.Value : (object)double.Parse(tb_S2_Humidity.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_Humi", string.IsNullOrEmpty(tb_S3_Humidity.Text) ? DBNull.Value : (object)double.Parse(tb_S3_Humidity.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_Humi", string.IsNullOrEmpty(tb_S4_Humidity.Text) ? DBNull.Value : (object)double.Parse(tb_S4_Humidity.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_T_Low", string.IsNullOrEmpty(tb_TS1_LL.Text) ? DBNull.Value : (object)double.Parse(tb_TS1_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_T_High", string.IsNullOrEmpty(tb_TS1_UL.Text) ? DBNull.Value : (object)double.Parse(tb_TS1_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_H_Low", string.IsNullOrEmpty(tb_HS1_LL.Text) ? DBNull.Value : (object)double.Parse(tb_HS1_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_H_High", string.IsNullOrEmpty(tb_HS1_UL.Text) ? DBNull.Value : (object)double.Parse(tb_HS1_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_T_Low", string.IsNullOrEmpty(tb_TS2_LL.Text) ? DBNull.Value : (object)double.Parse(tb_TS2_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_T_High", string.IsNullOrEmpty(tb_TS2_UL.Text) ? DBNull.Value : (object)double.Parse(tb_TS2_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_H_Low", string.IsNullOrEmpty(tb_HS2_LL.Text) ? DBNull.Value : (object)double.Parse(tb_HS2_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_H_High", string.IsNullOrEmpty(tb_HS2_UL.Text) ? DBNull.Value : (object)double.Parse(tb_HS2_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_T_Low", string.IsNullOrEmpty(tb_TS3_LL.Text) ? DBNull.Value : (object)double.Parse(tb_TS3_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_T_High", string.IsNullOrEmpty(tb_TS3_UL.Text) ? DBNull.Value : (object)double.Parse(tb_TS3_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_H_Low", string.IsNullOrEmpty(tb_HS3_LL.Text) ? DBNull.Value : (object)double.Parse(tb_HS3_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_H_High", string.IsNullOrEmpty(tb_HS3_UL.Text) ? DBNull.Value : (object)double.Parse(tb_HS3_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_T_Low", string.IsNullOrEmpty(tb_TS4_LL.Text) ? DBNull.Value : (object)double.Parse(tb_TS4_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_T_High", string.IsNullOrEmpty(tb_TS4_UL.Text) ? DBNull.Value : (object)double.Parse(tb_TS4_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_H_Low", string.IsNullOrEmpty(tb_HS4_LL.Text) ? DBNull.Value : (object)double.Parse(tb_HS4_LL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_H_High", string.IsNullOrEmpty(tb_HS4_UL.Text) ? DBNull.Value : (object)double.Parse(tb_HS4_UL.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_T_Calibrate", string.IsNullOrEmpty(tb_TS1_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_TS1_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_T_Calibrate", string.IsNullOrEmpty(tb_TS2_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_TS2_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_T_Calibrate", string.IsNullOrEmpty(tb_TS3_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_TS3_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_T_Calibrate", string.IsNullOrEmpty(tb_TS4_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_TS4_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S1_H_Calibrate", string.IsNullOrEmpty(tb_HS1_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS1_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S2_H_Calibrate", string.IsNullOrEmpty(tb_HS2_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS2_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S3_H_Calibrate", string.IsNullOrEmpty(tb_HS3_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS3_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@S4_H_Calibrate", string.IsNullOrEmpty(tb_HS4_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS4_Calibrate.Text));
+                                        updateCommand.Parameters.AddWithValue("@LogID", int.Parse(tb_LogID.Text));
 
                                         int rowsAffected = updateCommand.ExecuteNonQuery();
 
@@ -629,6 +629,17 @@ namespace Med_Preserve.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error");
+            }
+        }
+
+        private void tb_Search_TextChanged(object sender, EventArgs e)
+        {
+            if (dataTable != null)
+            {
+                string searchQuery = tb_Search.Text.Trim();
+                DataView dva = dataTable.DefaultView;
+                dva.RowFilter = $"LoggerName LIKE '%{searchQuery}%' OR AssignTo LIKE '%{searchQuery}%'";
+                dgv_LoggerConfig.DataSource = dva.ToTable();
             }
         }
     }

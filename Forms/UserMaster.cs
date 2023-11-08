@@ -384,13 +384,17 @@ namespace Med_Preserve.Forms
         {
             if (tb_UID.Text != "")
             {
+                bt_Add.Enabled = false;
                 tb_R_Pass.Enabled = false;
                 tb_R_ConPass.Enabled = false;
+                bt_Update.Enabled = true;
             }
             else
             {
+                bt_Add.Enabled = true;
                 tb_R_Pass.Enabled = true;
                 tb_R_ConPass.Enabled = true;
+                bt_Update.Enabled = false;
             }
         }
     }

@@ -90,13 +90,20 @@ namespace Med_Preserve.Forms
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = dgv_CompanyMaster.Rows[e.RowIndex];
-                byte[] selectImageData = (byte[])selectedRow.Cells[5].Value;
-
-                if (selectImageData != null)
+                object selectImageDataObj = selectedRow.Cells[5].Value;
+                if (selectImageDataObj != DBNull.Value)
                 {
-                    using (MemoryStream ms = new MemoryStream(selectImageData))
+                    byte[] selectImageData = (byte[])selectImageDataObj;
+                    if (selectImageData != null)
                     {
-                        pb_Logo.Image = Image.FromStream(ms);
+                        using (MemoryStream ms = new MemoryStream(selectImageData))
+                        {
+                            pb_Logo.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        pb_Logo.Image = null;
                     }
                 }
                 else
@@ -218,7 +225,7 @@ namespace Med_Preserve.Forms
                 return;
             }
 
-            string selectedCompanyID = dgv_CompanyMaster.SelectedRows[0].Cells[0].Value.ToString();
+            string selectedCompanyID = tb_SrNo.Text;
             DialogResult result = MessageBox.Show("Are you sure you want to delete this company?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
@@ -284,14 +291,13 @@ namespace Med_Preserve.Forms
                                     string oldAddress = reader["Address"].ToString();
                                     byte[] oldImageData = reader["Logo"] as byte[];
 
-                                    if (oldCompanyName == newCompanyName && oldEmail == newEmail && oldContact == newContact && oldAddress == newAddress && oldImageData == imageData)
+                                    if (oldCompanyName == newCompanyName && oldEmail == newEmail && oldContact == newContact && oldAddress == newAddress && imageData == null)
                                     {
                                         MessageBox.Show("No Changes Found.", "Prompt");
                                     }
                                     else
                                     {
                                         string updateQuery = "UPDATE CompanyMaster SET CompanyName = @CompanyName, Email = @Email, ContactNo = @ContactNo, Address = @Address, Logo = @Logo WHERE SrNo = @CompanyID";
-
                                         reader.Close();
 
                                         using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
@@ -301,8 +307,14 @@ namespace Med_Preserve.Forms
                                             updateCommand.Parameters.AddWithValue("@Email", newEmail);
                                             updateCommand.Parameters.AddWithValue("@ContactNo", newContact);
                                             updateCommand.Parameters.AddWithValue("@Address", newAddress);
-                                            updateCommand.Parameters.AddWithValue("@Logo", imageData);
-
+                                            if (imageData == null)
+                                            {
+                                                updateCommand.Parameters.Add(new SqlParameter("@Logo", SqlDbType.VarBinary, -1) { Value = DBNull.Value });
+                                            }
+                                            else
+                                            {
+                                                updateCommand.Parameters.Add(new SqlParameter("@Logo", SqlDbType.VarBinary, -1) { Value = imageData });
+                                            }
                                             int rowsAffected = updateCommand.ExecuteNonQuery();
                                             if (rowsAffected > 0)
                                             {

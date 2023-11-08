@@ -441,5 +441,16 @@ namespace Med_Preserve.Forms
                 }
             }
         }
+
+        private void tb_Search_TextChanged(object sender, EventArgs e)
+        {
+            if (dataTable != null)
+            {
+                string searchQuery = tb_Search.Text.Trim();
+                DataView dva = dataTable.DefaultView;
+                dva.RowFilter = $"LoggerName LIKE '%{searchQuery}%' OR AssignTo LIKE '%{searchQuery}%'";
+                dgv_LoggerMaster.DataSource = dva.ToTable();
+            }
+        }
     }
 }

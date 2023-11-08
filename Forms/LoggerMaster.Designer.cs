@@ -61,6 +61,8 @@
             this.lb_LogName = new System.Windows.Forms.Label();
             this.cmb_IntervalType = new System.Windows.Forms.ComboBox();
             this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
+            this.tb_Search = new System.Windows.Forms.TextBox();
+            this.lb_Search = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
             this.SuspendLayout();
@@ -367,11 +369,30 @@
             this.med_PreserveDataSet.DataSetName = "Med_PreserveDataSet";
             this.med_PreserveDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // tb_Search
+            // 
+            this.tb_Search.Location = new System.Drawing.Point(583, 8);
+            this.tb_Search.Name = "tb_Search";
+            this.tb_Search.Size = new System.Drawing.Size(205, 20);
+            this.tb_Search.TabIndex = 115;
+            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
+            // 
+            // lb_Search
+            // 
+            this.lb_Search.AutoSize = true;
+            this.lb_Search.Location = new System.Drawing.Point(522, 12);
+            this.lb_Search.Name = "lb_Search";
+            this.lb_Search.Size = new System.Drawing.Size(41, 13);
+            this.lb_Search.TabIndex = 114;
+            this.lb_Search.Text = "Search";
+            // 
             // LoggerMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 414);
+            this.Controls.Add(this.tb_Search);
+            this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.cmb_IntervalType);
             this.Controls.Add(this.tb_LogName);
             this.Controls.Add(this.lb_LogName);
@@ -448,5 +469,7 @@
         private System.Windows.Forms.Label lb_LogName;
         private System.Windows.Forms.ComboBox cmb_IntervalType;
         private Med_PreserveDataSet med_PreserveDataSet;
+        private System.Windows.Forms.TextBox tb_Search;
+        private System.Windows.Forms.Label lb_Search;
     }
 }

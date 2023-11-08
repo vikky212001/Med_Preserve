@@ -96,117 +96,119 @@
             this.lb_Humi_Calibrate = new System.Windows.Forms.Label();
             this.lb_Calibrate = new System.Windows.Forms.Label();
             this.tb_IsConfig = new System.Windows.Forms.TextBox();
+            this.tb_Search = new System.Windows.Forms.TextBox();
+            this.lb_Search = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerConfig)).BeginInit();
             this.SuspendLayout();
             // 
             // tb_TS4_LL
             // 
-            this.tb_TS4_LL.Location = new System.Drawing.Point(309, 364);
+            this.tb_TS4_LL.Location = new System.Drawing.Point(309, 401);
             this.tb_TS4_LL.Name = "tb_TS4_LL";
             this.tb_TS4_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS4_LL.TabIndex = 64;
             // 
             // tb_TS4_UL
             // 
-            this.tb_TS4_UL.Location = new System.Drawing.Point(379, 364);
+            this.tb_TS4_UL.Location = new System.Drawing.Point(379, 401);
             this.tb_TS4_UL.Name = "tb_TS4_UL";
             this.tb_TS4_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS4_UL.TabIndex = 63;
             // 
             // tb_TS3_LL
             // 
-            this.tb_TS3_LL.Location = new System.Drawing.Point(309, 338);
+            this.tb_TS3_LL.Location = new System.Drawing.Point(309, 375);
             this.tb_TS3_LL.Name = "tb_TS3_LL";
             this.tb_TS3_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS3_LL.TabIndex = 62;
             // 
             // tb_TS3_UL
             // 
-            this.tb_TS3_UL.Location = new System.Drawing.Point(379, 338);
+            this.tb_TS3_UL.Location = new System.Drawing.Point(379, 375);
             this.tb_TS3_UL.Name = "tb_TS3_UL";
             this.tb_TS3_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS3_UL.TabIndex = 61;
             // 
             // tb_TS2_LL
             // 
-            this.tb_TS2_LL.Location = new System.Drawing.Point(309, 312);
+            this.tb_TS2_LL.Location = new System.Drawing.Point(309, 349);
             this.tb_TS2_LL.Name = "tb_TS2_LL";
             this.tb_TS2_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS2_LL.TabIndex = 60;
             // 
             // tb_TS2_UL
             // 
-            this.tb_TS2_UL.Location = new System.Drawing.Point(379, 312);
+            this.tb_TS2_UL.Location = new System.Drawing.Point(379, 349);
             this.tb_TS2_UL.Name = "tb_TS2_UL";
             this.tb_TS2_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS2_UL.TabIndex = 59;
             // 
             // tb_TS1_LL
             // 
-            this.tb_TS1_LL.Location = new System.Drawing.Point(309, 286);
+            this.tb_TS1_LL.Location = new System.Drawing.Point(309, 323);
             this.tb_TS1_LL.Name = "tb_TS1_LL";
             this.tb_TS1_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS1_LL.TabIndex = 58;
             // 
             // tb_TS1_UL
             // 
-            this.tb_TS1_UL.Location = new System.Drawing.Point(379, 286);
+            this.tb_TS1_UL.Location = new System.Drawing.Point(379, 323);
             this.tb_TS1_UL.Name = "tb_TS1_UL";
             this.tb_TS1_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_TS1_UL.TabIndex = 57;
             // 
             // tb_S4_Humidity
             // 
-            this.tb_S4_Humidity.Location = new System.Drawing.Point(216, 364);
+            this.tb_S4_Humidity.Location = new System.Drawing.Point(216, 401);
             this.tb_S4_Humidity.Name = "tb_S4_Humidity";
             this.tb_S4_Humidity.Size = new System.Drawing.Size(64, 20);
             this.tb_S4_Humidity.TabIndex = 56;
             // 
             // tb_S4_Temp
             // 
-            this.tb_S4_Temp.Location = new System.Drawing.Point(146, 364);
+            this.tb_S4_Temp.Location = new System.Drawing.Point(146, 401);
             this.tb_S4_Temp.Name = "tb_S4_Temp";
             this.tb_S4_Temp.Size = new System.Drawing.Size(64, 20);
             this.tb_S4_Temp.TabIndex = 55;
             // 
             // tb_S3_Humidity
             // 
-            this.tb_S3_Humidity.Location = new System.Drawing.Point(216, 338);
+            this.tb_S3_Humidity.Location = new System.Drawing.Point(216, 375);
             this.tb_S3_Humidity.Name = "tb_S3_Humidity";
             this.tb_S3_Humidity.Size = new System.Drawing.Size(64, 20);
             this.tb_S3_Humidity.TabIndex = 54;
             // 
             // tb_S3_Temp
             // 
-            this.tb_S3_Temp.Location = new System.Drawing.Point(146, 338);
+            this.tb_S3_Temp.Location = new System.Drawing.Point(146, 375);
             this.tb_S3_Temp.Name = "tb_S3_Temp";
             this.tb_S3_Temp.Size = new System.Drawing.Size(64, 20);
             this.tb_S3_Temp.TabIndex = 53;
             // 
             // tb_S2_Humidity
             // 
-            this.tb_S2_Humidity.Location = new System.Drawing.Point(216, 312);
+            this.tb_S2_Humidity.Location = new System.Drawing.Point(216, 349);
             this.tb_S2_Humidity.Name = "tb_S2_Humidity";
             this.tb_S2_Humidity.Size = new System.Drawing.Size(64, 20);
             this.tb_S2_Humidity.TabIndex = 52;
             // 
             // tb_S2_Temp
             // 
-            this.tb_S2_Temp.Location = new System.Drawing.Point(146, 312);
+            this.tb_S2_Temp.Location = new System.Drawing.Point(146, 349);
             this.tb_S2_Temp.Name = "tb_S2_Temp";
             this.tb_S2_Temp.Size = new System.Drawing.Size(64, 20);
             this.tb_S2_Temp.TabIndex = 51;
             // 
             // tb_S1_Humidity
             // 
-            this.tb_S1_Humidity.Location = new System.Drawing.Point(216, 286);
+            this.tb_S1_Humidity.Location = new System.Drawing.Point(216, 323);
             this.tb_S1_Humidity.Name = "tb_S1_Humidity";
             this.tb_S1_Humidity.Size = new System.Drawing.Size(64, 20);
             this.tb_S1_Humidity.TabIndex = 50;
             // 
             // tb_S1_Temp
             // 
-            this.tb_S1_Temp.Location = new System.Drawing.Point(146, 286);
+            this.tb_S1_Temp.Location = new System.Drawing.Point(146, 323);
             this.tb_S1_Temp.Name = "tb_S1_Temp";
             this.tb_S1_Temp.Size = new System.Drawing.Size(64, 20);
             this.tb_S1_Temp.TabIndex = 49;
@@ -214,7 +216,7 @@
             // lb_T_LowThreshold
             // 
             this.lb_T_LowThreshold.AutoSize = true;
-            this.lb_T_LowThreshold.Location = new System.Drawing.Point(310, 269);
+            this.lb_T_LowThreshold.Location = new System.Drawing.Point(310, 306);
             this.lb_T_LowThreshold.Name = "lb_T_LowThreshold";
             this.lb_T_LowThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_T_LowThreshold.TabIndex = 48;
@@ -223,7 +225,7 @@
             // lb_T_UpThreshold
             // 
             this.lb_T_UpThreshold.AutoSize = true;
-            this.lb_T_UpThreshold.Location = new System.Drawing.Point(384, 269);
+            this.lb_T_UpThreshold.Location = new System.Drawing.Point(384, 306);
             this.lb_T_UpThreshold.Name = "lb_T_UpThreshold";
             this.lb_T_UpThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_T_UpThreshold.TabIndex = 47;
@@ -232,7 +234,7 @@
             // lb_Temp_Threshold
             // 
             this.lb_Temp_Threshold.AutoSize = true;
-            this.lb_Temp_Threshold.Location = new System.Drawing.Point(317, 253);
+            this.lb_Temp_Threshold.Location = new System.Drawing.Point(317, 290);
             this.lb_Temp_Threshold.Name = "lb_Temp_Threshold";
             this.lb_Temp_Threshold.Size = new System.Drawing.Size(117, 13);
             this.lb_Temp_Threshold.TabIndex = 46;
@@ -241,7 +243,7 @@
             // lb_Humidity
             // 
             this.lb_Humidity.AutoSize = true;
-            this.lb_Humidity.Location = new System.Drawing.Point(218, 267);
+            this.lb_Humidity.Location = new System.Drawing.Point(218, 304);
             this.lb_Humidity.Name = "lb_Humidity";
             this.lb_Humidity.Size = new System.Drawing.Size(47, 13);
             this.lb_Humidity.TabIndex = 45;
@@ -250,7 +252,7 @@
             // lb_Temp
             // 
             this.lb_Temp.AutoSize = true;
-            this.lb_Temp.Location = new System.Drawing.Point(143, 267);
+            this.lb_Temp.Location = new System.Drawing.Point(143, 304);
             this.lb_Temp.Name = "lb_Temp";
             this.lb_Temp.Size = new System.Drawing.Size(67, 13);
             this.lb_Temp.TabIndex = 44;
@@ -259,7 +261,7 @@
             // lb_SetValue
             // 
             this.lb_SetValue.AutoSize = true;
-            this.lb_SetValue.Location = new System.Drawing.Point(179, 253);
+            this.lb_SetValue.Location = new System.Drawing.Point(179, 290);
             this.lb_SetValue.Name = "lb_SetValue";
             this.lb_SetValue.Size = new System.Drawing.Size(53, 13);
             this.lb_SetValue.TabIndex = 43;
@@ -268,7 +270,7 @@
             // lb_Sensors
             // 
             this.lb_Sensors.AutoSize = true;
-            this.lb_Sensors.Location = new System.Drawing.Point(27, 267);
+            this.lb_Sensors.Location = new System.Drawing.Point(27, 304);
             this.lb_Sensors.Name = "lb_Sensors";
             this.lb_Sensors.Size = new System.Drawing.Size(45, 13);
             this.lb_Sensors.TabIndex = 66;
@@ -277,7 +279,7 @@
             // lb_Temp_Calibrate
             // 
             this.lb_Temp_Calibrate.AutoSize = true;
-            this.lb_Temp_Calibrate.Location = new System.Drawing.Point(635, 269);
+            this.lb_Temp_Calibrate.Location = new System.Drawing.Point(635, 306);
             this.lb_Temp_Calibrate.Name = "lb_Temp_Calibrate";
             this.lb_Temp_Calibrate.Size = new System.Drawing.Size(67, 13);
             this.lb_Temp_Calibrate.TabIndex = 67;
@@ -285,28 +287,28 @@
             // 
             // tb_TS1_Calibrate
             // 
-            this.tb_TS1_Calibrate.Location = new System.Drawing.Point(638, 286);
+            this.tb_TS1_Calibrate.Location = new System.Drawing.Point(638, 323);
             this.tb_TS1_Calibrate.Name = "tb_TS1_Calibrate";
             this.tb_TS1_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_TS1_Calibrate.TabIndex = 68;
             // 
             // tb_TS2_Calibrate
             // 
-            this.tb_TS2_Calibrate.Location = new System.Drawing.Point(638, 312);
+            this.tb_TS2_Calibrate.Location = new System.Drawing.Point(638, 349);
             this.tb_TS2_Calibrate.Name = "tb_TS2_Calibrate";
             this.tb_TS2_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_TS2_Calibrate.TabIndex = 69;
             // 
             // tb_TS3_Calibrate
             // 
-            this.tb_TS3_Calibrate.Location = new System.Drawing.Point(638, 338);
+            this.tb_TS3_Calibrate.Location = new System.Drawing.Point(638, 375);
             this.tb_TS3_Calibrate.Name = "tb_TS3_Calibrate";
             this.tb_TS3_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_TS3_Calibrate.TabIndex = 70;
             // 
             // tb_TS4_Calibrate
             // 
-            this.tb_TS4_Calibrate.Location = new System.Drawing.Point(638, 364);
+            this.tb_TS4_Calibrate.Location = new System.Drawing.Point(638, 401);
             this.tb_TS4_Calibrate.Name = "tb_TS4_Calibrate";
             this.tb_TS4_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_TS4_Calibrate.TabIndex = 71;
@@ -314,7 +316,7 @@
             // dgv_LoggerConfig
             // 
             this.dgv_LoggerConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_LoggerConfig.Location = new System.Drawing.Point(13, 13);
+            this.dgv_LoggerConfig.Location = new System.Drawing.Point(13, 50);
             this.dgv_LoggerConfig.Name = "dgv_LoggerConfig";
             this.dgv_LoggerConfig.Size = new System.Drawing.Size(771, 150);
             this.dgv_LoggerConfig.TabIndex = 72;
@@ -322,7 +324,7 @@
             // 
             // tb_S1_Name
             // 
-            this.tb_S1_Name.Location = new System.Drawing.Point(13, 286);
+            this.tb_S1_Name.Location = new System.Drawing.Point(13, 323);
             this.tb_S1_Name.Name = "tb_S1_Name";
             this.tb_S1_Name.ReadOnly = true;
             this.tb_S1_Name.Size = new System.Drawing.Size(98, 20);
@@ -330,7 +332,7 @@
             // 
             // tb_S2_Name
             // 
-            this.tb_S2_Name.Location = new System.Drawing.Point(13, 312);
+            this.tb_S2_Name.Location = new System.Drawing.Point(13, 349);
             this.tb_S2_Name.Name = "tb_S2_Name";
             this.tb_S2_Name.ReadOnly = true;
             this.tb_S2_Name.Size = new System.Drawing.Size(98, 20);
@@ -338,7 +340,7 @@
             // 
             // tb_S3_Name
             // 
-            this.tb_S3_Name.Location = new System.Drawing.Point(13, 338);
+            this.tb_S3_Name.Location = new System.Drawing.Point(13, 375);
             this.tb_S3_Name.Name = "tb_S3_Name";
             this.tb_S3_Name.ReadOnly = true;
             this.tb_S3_Name.Size = new System.Drawing.Size(98, 20);
@@ -346,7 +348,7 @@
             // 
             // tb_S4_Name
             // 
-            this.tb_S4_Name.Location = new System.Drawing.Point(13, 364);
+            this.tb_S4_Name.Location = new System.Drawing.Point(13, 401);
             this.tb_S4_Name.Name = "tb_S4_Name";
             this.tb_S4_Name.ReadOnly = true;
             this.tb_S4_Name.Size = new System.Drawing.Size(98, 20);
@@ -355,7 +357,7 @@
             // lb_LogID
             // 
             this.lb_LogID.AutoSize = true;
-            this.lb_LogID.Location = new System.Drawing.Point(27, 177);
+            this.lb_LogID.Location = new System.Drawing.Point(12, 12);
             this.lb_LogID.Name = "lb_LogID";
             this.lb_LogID.Size = new System.Drawing.Size(54, 13);
             this.lb_LogID.TabIndex = 77;
@@ -365,7 +367,7 @@
             // lb_LogType
             // 
             this.lb_LogType.AutoSize = true;
-            this.lb_LogType.Location = new System.Drawing.Point(297, 182);
+            this.lb_LogType.Location = new System.Drawing.Point(297, 219);
             this.lb_LogType.Name = "lb_LogType";
             this.lb_LogType.Size = new System.Drawing.Size(67, 13);
             this.lb_LogType.TabIndex = 78;
@@ -374,7 +376,7 @@
             // lb_NoOfSensors
             // 
             this.lb_NoOfSensors.AutoSize = true;
-            this.lb_NoOfSensors.Location = new System.Drawing.Point(299, 208);
+            this.lb_NoOfSensors.Location = new System.Drawing.Point(299, 245);
             this.lb_NoOfSensors.Name = "lb_NoOfSensors";
             this.lb_NoOfSensors.Size = new System.Drawing.Size(74, 13);
             this.lb_NoOfSensors.TabIndex = 79;
@@ -383,7 +385,7 @@
             // lb_Assign
             // 
             this.lb_Assign.AutoSize = true;
-            this.lb_Assign.Location = new System.Drawing.Point(568, 209);
+            this.lb_Assign.Location = new System.Drawing.Point(568, 246);
             this.lb_Assign.Name = "lb_Assign";
             this.lb_Assign.Size = new System.Drawing.Size(38, 13);
             this.lb_Assign.TabIndex = 80;
@@ -392,7 +394,7 @@
             // lb_Interval
             // 
             this.lb_Interval.AutoSize = true;
-            this.lb_Interval.Location = new System.Drawing.Point(572, 181);
+            this.lb_Interval.Location = new System.Drawing.Point(572, 218);
             this.lb_Interval.Name = "lb_Interval";
             this.lb_Interval.Size = new System.Drawing.Size(42, 13);
             this.lb_Interval.TabIndex = 81;
@@ -400,7 +402,7 @@
             // 
             // tb_LogID
             // 
-            this.tb_LogID.Location = new System.Drawing.Point(87, 174);
+            this.tb_LogID.Location = new System.Drawing.Point(72, 9);
             this.tb_LogID.Name = "tb_LogID";
             this.tb_LogID.Size = new System.Drawing.Size(98, 20);
             this.tb_LogID.TabIndex = 82;
@@ -408,7 +410,7 @@
             // 
             // tb_NoOfSensors
             // 
-            this.tb_NoOfSensors.Location = new System.Drawing.Point(379, 205);
+            this.tb_NoOfSensors.Location = new System.Drawing.Point(379, 242);
             this.tb_NoOfSensors.Name = "tb_NoOfSensors";
             this.tb_NoOfSensors.ReadOnly = true;
             this.tb_NoOfSensors.Size = new System.Drawing.Size(98, 20);
@@ -417,7 +419,7 @@
             // 
             // tb_LogType
             // 
-            this.tb_LogType.Location = new System.Drawing.Point(379, 179);
+            this.tb_LogType.Location = new System.Drawing.Point(379, 216);
             this.tb_LogType.Name = "tb_LogType";
             this.tb_LogType.ReadOnly = true;
             this.tb_LogType.Size = new System.Drawing.Size(98, 20);
@@ -426,7 +428,7 @@
             // 
             // tb_Assign
             // 
-            this.tb_Assign.Location = new System.Drawing.Point(620, 205);
+            this.tb_Assign.Location = new System.Drawing.Point(620, 242);
             this.tb_Assign.Name = "tb_Assign";
             this.tb_Assign.ReadOnly = true;
             this.tb_Assign.Size = new System.Drawing.Size(98, 20);
@@ -434,7 +436,7 @@
             // 
             // tb_Interval
             // 
-            this.tb_Interval.Location = new System.Drawing.Point(620, 179);
+            this.tb_Interval.Location = new System.Drawing.Point(620, 216);
             this.tb_Interval.Name = "tb_Interval";
             this.tb_Interval.ReadOnly = true;
             this.tb_Interval.Size = new System.Drawing.Size(98, 20);
@@ -442,7 +444,7 @@
             // 
             // bt_Close
             // 
-            this.bt_Close.Location = new System.Drawing.Point(539, 403);
+            this.bt_Close.Location = new System.Drawing.Point(539, 440);
             this.bt_Close.Name = "bt_Close";
             this.bt_Close.Size = new System.Drawing.Size(75, 23);
             this.bt_Close.TabIndex = 91;
@@ -452,7 +454,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(440, 403);
+            this.bt_Clear.Location = new System.Drawing.Point(440, 440);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 90;
@@ -462,7 +464,7 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(331, 403);
+            this.bt_Delete.Location = new System.Drawing.Point(331, 440);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
             this.bt_Delete.TabIndex = 89;
@@ -472,7 +474,7 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(216, 403);
+            this.bt_Update.Location = new System.Drawing.Point(216, 440);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(75, 23);
             this.bt_Update.TabIndex = 88;
@@ -482,7 +484,7 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(108, 403);
+            this.bt_Add.Location = new System.Drawing.Point(108, 440);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(75, 23);
             this.bt_Add.TabIndex = 87;
@@ -493,7 +495,7 @@
             // lb_LoggerName
             // 
             this.lb_LoggerName.AutoSize = true;
-            this.lb_LoggerName.Location = new System.Drawing.Point(10, 208);
+            this.lb_LoggerName.Location = new System.Drawing.Point(12, 219);
             this.lb_LoggerName.Name = "lb_LoggerName";
             this.lb_LoggerName.Size = new System.Drawing.Size(71, 13);
             this.lb_LoggerName.TabIndex = 92;
@@ -504,7 +506,7 @@
             this.cmb_LoggerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmb_LoggerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmb_LoggerName.FormattingEnabled = true;
-            this.cmb_LoggerName.Location = new System.Drawing.Point(87, 208);
+            this.cmb_LoggerName.Location = new System.Drawing.Point(89, 219);
             this.cmb_LoggerName.Name = "cmb_LoggerName";
             this.cmb_LoggerName.Size = new System.Drawing.Size(121, 21);
             this.cmb_LoggerName.TabIndex = 93;
@@ -512,56 +514,56 @@
             // 
             // tb_HS4_LL
             // 
-            this.tb_HS4_LL.Location = new System.Drawing.Point(470, 364);
+            this.tb_HS4_LL.Location = new System.Drawing.Point(470, 401);
             this.tb_HS4_LL.Name = "tb_HS4_LL";
             this.tb_HS4_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS4_LL.TabIndex = 104;
             // 
             // tb_HS4_UL
             // 
-            this.tb_HS4_UL.Location = new System.Drawing.Point(541, 364);
+            this.tb_HS4_UL.Location = new System.Drawing.Point(541, 401);
             this.tb_HS4_UL.Name = "tb_HS4_UL";
             this.tb_HS4_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS4_UL.TabIndex = 103;
             // 
             // tb_HS3_LL
             // 
-            this.tb_HS3_LL.Location = new System.Drawing.Point(470, 338);
+            this.tb_HS3_LL.Location = new System.Drawing.Point(470, 375);
             this.tb_HS3_LL.Name = "tb_HS3_LL";
             this.tb_HS3_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS3_LL.TabIndex = 102;
             // 
             // tb_HS3_UL
             // 
-            this.tb_HS3_UL.Location = new System.Drawing.Point(541, 338);
+            this.tb_HS3_UL.Location = new System.Drawing.Point(541, 375);
             this.tb_HS3_UL.Name = "tb_HS3_UL";
             this.tb_HS3_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS3_UL.TabIndex = 101;
             // 
             // tb_HS2_LL
             // 
-            this.tb_HS2_LL.Location = new System.Drawing.Point(470, 312);
+            this.tb_HS2_LL.Location = new System.Drawing.Point(470, 349);
             this.tb_HS2_LL.Name = "tb_HS2_LL";
             this.tb_HS2_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS2_LL.TabIndex = 100;
             // 
             // tb_HS2_UL
             // 
-            this.tb_HS2_UL.Location = new System.Drawing.Point(541, 312);
+            this.tb_HS2_UL.Location = new System.Drawing.Point(541, 349);
             this.tb_HS2_UL.Name = "tb_HS2_UL";
             this.tb_HS2_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS2_UL.TabIndex = 99;
             // 
             // tb_HS1_LL
             // 
-            this.tb_HS1_LL.Location = new System.Drawing.Point(470, 286);
+            this.tb_HS1_LL.Location = new System.Drawing.Point(470, 323);
             this.tb_HS1_LL.Name = "tb_HS1_LL";
             this.tb_HS1_LL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS1_LL.TabIndex = 98;
             // 
             // tb_HS1_UL
             // 
-            this.tb_HS1_UL.Location = new System.Drawing.Point(541, 286);
+            this.tb_HS1_UL.Location = new System.Drawing.Point(541, 323);
             this.tb_HS1_UL.Name = "tb_HS1_UL";
             this.tb_HS1_UL.Size = new System.Drawing.Size(64, 20);
             this.tb_HS1_UL.TabIndex = 97;
@@ -569,7 +571,7 @@
             // lb_H_LowThreshold
             // 
             this.lb_H_LowThreshold.AutoSize = true;
-            this.lb_H_LowThreshold.Location = new System.Drawing.Point(471, 269);
+            this.lb_H_LowThreshold.Location = new System.Drawing.Point(471, 306);
             this.lb_H_LowThreshold.Name = "lb_H_LowThreshold";
             this.lb_H_LowThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_H_LowThreshold.TabIndex = 96;
@@ -578,7 +580,7 @@
             // lb_H_UpThreshold
             // 
             this.lb_H_UpThreshold.AutoSize = true;
-            this.lb_H_UpThreshold.Location = new System.Drawing.Point(545, 270);
+            this.lb_H_UpThreshold.Location = new System.Drawing.Point(545, 307);
             this.lb_H_UpThreshold.Name = "lb_H_UpThreshold";
             this.lb_H_UpThreshold.Size = new System.Drawing.Size(60, 13);
             this.lb_H_UpThreshold.TabIndex = 95;
@@ -587,7 +589,7 @@
             // lb_Humi_Threshold
             // 
             this.lb_Humi_Threshold.AutoSize = true;
-            this.lb_Humi_Threshold.Location = new System.Drawing.Point(488, 253);
+            this.lb_Humi_Threshold.Location = new System.Drawing.Point(488, 290);
             this.lb_Humi_Threshold.Name = "lb_Humi_Threshold";
             this.lb_Humi_Threshold.Size = new System.Drawing.Size(97, 13);
             this.lb_Humi_Threshold.TabIndex = 94;
@@ -595,28 +597,28 @@
             // 
             // tb_HS4_Calibrate
             // 
-            this.tb_HS4_Calibrate.Location = new System.Drawing.Point(708, 364);
+            this.tb_HS4_Calibrate.Location = new System.Drawing.Point(708, 401);
             this.tb_HS4_Calibrate.Name = "tb_HS4_Calibrate";
             this.tb_HS4_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_HS4_Calibrate.TabIndex = 109;
             // 
             // tb_HS3_Calibrate
             // 
-            this.tb_HS3_Calibrate.Location = new System.Drawing.Point(708, 338);
+            this.tb_HS3_Calibrate.Location = new System.Drawing.Point(708, 375);
             this.tb_HS3_Calibrate.Name = "tb_HS3_Calibrate";
             this.tb_HS3_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_HS3_Calibrate.TabIndex = 108;
             // 
             // tb_HS2_Calibrate
             // 
-            this.tb_HS2_Calibrate.Location = new System.Drawing.Point(708, 312);
+            this.tb_HS2_Calibrate.Location = new System.Drawing.Point(708, 349);
             this.tb_HS2_Calibrate.Name = "tb_HS2_Calibrate";
             this.tb_HS2_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_HS2_Calibrate.TabIndex = 107;
             // 
             // tb_HS1_Calibrate
             // 
-            this.tb_HS1_Calibrate.Location = new System.Drawing.Point(708, 286);
+            this.tb_HS1_Calibrate.Location = new System.Drawing.Point(708, 323);
             this.tb_HS1_Calibrate.Name = "tb_HS1_Calibrate";
             this.tb_HS1_Calibrate.Size = new System.Drawing.Size(64, 20);
             this.tb_HS1_Calibrate.TabIndex = 106;
@@ -624,7 +626,7 @@
             // lb_Humi_Calibrate
             // 
             this.lb_Humi_Calibrate.AutoSize = true;
-            this.lb_Humi_Calibrate.Location = new System.Drawing.Point(714, 269);
+            this.lb_Humi_Calibrate.Location = new System.Drawing.Point(714, 306);
             this.lb_Humi_Calibrate.Name = "lb_Humi_Calibrate";
             this.lb_Humi_Calibrate.Size = new System.Drawing.Size(47, 13);
             this.lb_Humi_Calibrate.TabIndex = 105;
@@ -633,7 +635,7 @@
             // lb_Calibrate
             // 
             this.lb_Calibrate.AutoSize = true;
-            this.lb_Calibrate.Location = new System.Drawing.Point(671, 253);
+            this.lb_Calibrate.Location = new System.Drawing.Point(671, 290);
             this.lb_Calibrate.Name = "lb_Calibrate";
             this.lb_Calibrate.Size = new System.Drawing.Size(48, 13);
             this.lb_Calibrate.TabIndex = 110;
@@ -641,18 +643,37 @@
             // 
             // tb_IsConfig
             // 
-            this.tb_IsConfig.Location = new System.Drawing.Point(728, 415);
+            this.tb_IsConfig.Location = new System.Drawing.Point(182, 12);
             this.tb_IsConfig.Name = "tb_IsConfig";
             this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
             this.tb_IsConfig.TabIndex = 111;
             this.tb_IsConfig.Visible = false;
             this.tb_IsConfig.TextChanged += new System.EventHandler(this.tb_IsConfig_TextChanged);
             // 
+            // tb_Search
+            // 
+            this.tb_Search.Location = new System.Drawing.Point(579, 12);
+            this.tb_Search.Name = "tb_Search";
+            this.tb_Search.Size = new System.Drawing.Size(205, 20);
+            this.tb_Search.TabIndex = 113;
+            this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
+            // 
+            // lb_Search
+            // 
+            this.lb_Search.AutoSize = true;
+            this.lb_Search.Location = new System.Drawing.Point(518, 16);
+            this.lb_Search.Name = "lb_Search";
+            this.lb_Search.Size = new System.Drawing.Size(41, 13);
+            this.lb_Search.TabIndex = 112;
+            this.lb_Search.Text = "Search";
+            // 
             // LoggerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 447);
+            this.ClientSize = new System.Drawing.Size(798, 493);
+            this.Controls.Add(this.tb_Search);
+            this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.tb_IsConfig);
             this.Controls.Add(this.lb_Calibrate);
             this.Controls.Add(this.tb_HS4_Calibrate);
@@ -820,5 +841,7 @@
         private System.Windows.Forms.Label lb_Humi_Calibrate;
         private System.Windows.Forms.Label lb_Calibrate;
         private System.Windows.Forms.TextBox tb_IsConfig;
+        private System.Windows.Forms.TextBox tb_Search;
+        private System.Windows.Forms.Label lb_Search;
     }
 }
