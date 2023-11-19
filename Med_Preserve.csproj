@@ -201,6 +201,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Med_PreserveDataSet.xsc">
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
@@ -240,6 +241,48 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Audit Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Change Password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Company Master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Data Download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Data Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Device Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logger Config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logger Master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logger Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Real-Time Data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reports.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User Master.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

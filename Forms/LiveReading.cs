@@ -18,7 +18,6 @@ namespace Med_Preserve.Forms
             InitializeComponent();
             PopulateComPort();
         }
-
         private void PopulateComPort()
         {
             string[] ports = SerialPort.GetPortNames();
@@ -34,6 +33,11 @@ namespace Med_Preserve.Forms
             {
                 cmb_SerialPort.Text = "No COM ports found";
             }
+        }
+
+        private void LiveReading_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

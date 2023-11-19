@@ -5,6 +5,7 @@ namespace Med_Preserve.Forms
 {
     public partial class Home : Form
     {
+        private Form currentForm;
         public Home()
         {
             InitializeComponent();
@@ -17,14 +18,30 @@ namespace Med_Preserve.Forms
 
         private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
             UserMaster userMaster = new UserMaster();
-            userMaster.ShowDialog();
+            userMaster.TopLevel = false;
+            userMaster.Parent = p_MainScreen;
+            userMaster.Dock = DockStyle.Fill;
+            currentForm = userMaster;
+            userMaster.Show();
         }
 
         private void deletedUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
             DeletedUser deletedUser = new DeletedUser();
-            deletedUser.ShowDialog();
+            deletedUser.TopLevel = false;
+            deletedUser.Parent = p_MainScreen;
+            deletedUser.Dock = DockStyle.Fill;
+            currentForm = deletedUser;
+            deletedUser.Show();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,5 +74,7 @@ namespace Med_Preserve.Forms
             LiveReading liveReading = new LiveReading();
             liveReading.ShowDialog();
         }
+
+        
     }
 }
