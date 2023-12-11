@@ -1,43 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
 {
     public partial class LiveReading : Form
     {
-        public LiveReading()
+        private string selectedComPort;
+        private string receivedDataBuffer = string.Empty;
+
+        public LiveReading(string comPort)
         {
             InitializeComponent();
-            PopulateComPort();
+            selectedComPort = comPort;
+            InitializeForm();
         }
-        private void PopulateComPort()
+        private void InitializeForm()
         {
-            string[] ports = SerialPort.GetPortNames();
-            foreach (string port in ports)
-            {
-                cmb_SerialPort.Items.Add(port);
-            }
-            if (cmb_SerialPort.Items.Count > 0)
-            {
-                cmb_SerialPort.SelectedIndex = 0;
-            }
-            else
-            {
-                cmb_SerialPort.Text = "No COM ports found";
-            }
-        }
-
-        private void LiveReading_Load(object sender, EventArgs e)
-        {
-
+            tb_SerialPort.Text = selectedComPort;
         }
     }
 }

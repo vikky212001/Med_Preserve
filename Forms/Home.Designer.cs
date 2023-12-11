@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,9 +67,12 @@
             this.bt_UserManagement = new System.Windows.Forms.Button();
             this.med_PreserveDataSet1 = new Med_Preserve.Med_PreserveDataSet();
             this.p_RightPanel = new System.Windows.Forms.Panel();
+            this.lb_COM = new System.Windows.Forms.Label();
+            this.cmb_COMPort = new System.Windows.Forms.ComboBox();
             this.p_Title = new System.Windows.Forms.Panel();
-            this.p_MainScreen = new System.Windows.Forms.Panel();
             this.lb_Title = new System.Windows.Forms.Label();
+            this.p_MainScreen = new System.Windows.Forms.Panel();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1.SuspendLayout();
             this.p_MenuPanel.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -76,6 +80,7 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet1)).BeginInit();
+            this.p_RightPanel.SuspendLayout();
             this.p_Title.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -522,11 +527,30 @@
             // p_RightPanel
             // 
             this.p_RightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.p_RightPanel.Controls.Add(this.lb_COM);
+            this.p_RightPanel.Controls.Add(this.cmb_COMPort);
             this.p_RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.p_RightPanel.Location = new System.Drawing.Point(738, 24);
             this.p_RightPanel.Name = "p_RightPanel";
             this.p_RightPanel.Size = new System.Drawing.Size(200, 659);
             this.p_RightPanel.TabIndex = 4;
+            // 
+            // lb_COM
+            // 
+            this.lb_COM.AutoSize = true;
+            this.lb_COM.Location = new System.Drawing.Point(63, 19);
+            this.lb_COM.Name = "lb_COM";
+            this.lb_COM.Size = new System.Drawing.Size(86, 13);
+            this.lb_COM.TabIndex = 1;
+            this.lb_COM.Text = "Select COM Port";
+            // 
+            // cmb_COMPort
+            // 
+            this.cmb_COMPort.FormattingEnabled = true;
+            this.cmb_COMPort.Location = new System.Drawing.Point(49, 36);
+            this.cmb_COMPort.Name = "cmb_COMPort";
+            this.cmb_COMPort.Size = new System.Drawing.Size(121, 21);
+            this.cmb_COMPort.TabIndex = 0;
             // 
             // p_Title
             // 
@@ -538,14 +562,6 @@
             this.p_Title.Size = new System.Drawing.Size(538, 100);
             this.p_Title.TabIndex = 5;
             // 
-            // p_MainScreen
-            // 
-            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_MainScreen.Location = new System.Drawing.Point(200, 124);
-            this.p_MainScreen.Name = "p_MainScreen";
-            this.p_MainScreen.Size = new System.Drawing.Size(538, 559);
-            this.p_MainScreen.TabIndex = 6;
-            // 
             // lb_Title
             // 
             this.lb_Title.AutoSize = true;
@@ -553,6 +569,14 @@
             this.lb_Title.Name = "lb_Title";
             this.lb_Title.Size = new System.Drawing.Size(0, 13);
             this.lb_Title.TabIndex = 0;
+            // 
+            // p_MainScreen
+            // 
+            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p_MainScreen.Location = new System.Drawing.Point(200, 124);
+            this.p_MainScreen.Name = "p_MainScreen";
+            this.p_MainScreen.Size = new System.Drawing.Size(538, 559);
+            this.p_MainScreen.TabIndex = 6;
             // 
             // Home
             // 
@@ -568,7 +592,6 @@
             this.Name = "Home";
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Home_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.p_MenuPanel.ResumeLayout(false);
@@ -577,6 +600,8 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet1)).EndInit();
+            this.p_RightPanel.ResumeLayout(false);
+            this.p_RightPanel.PerformLayout();
             this.p_Title.ResumeLayout(false);
             this.p_Title.PerformLayout();
             this.ResumeLayout(false);
@@ -627,5 +652,8 @@
         private System.Windows.Forms.Panel p_Title;
         private System.Windows.Forms.Panel p_MainScreen;
         private System.Windows.Forms.Label lb_Title;
+        private System.Windows.Forms.Label lb_COM;
+        private System.Windows.Forms.ComboBox cmb_COMPort;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }

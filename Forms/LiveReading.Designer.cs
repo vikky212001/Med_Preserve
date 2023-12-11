@@ -37,7 +37,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LiveReading));
             this.cmb_LogName = new System.Windows.Forms.ComboBox();
-            this.cmb_SerialPort = new System.Windows.Forms.ComboBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.lb_LogName = new System.Windows.Forms.Label();
             this.lb_SerialPort = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.gb_S4 = new System.Windows.Forms.GroupBox();
             this.lb_S4_Humi = new System.Windows.Forms.Label();
             this.lb_S4_Temp = new System.Windows.Forms.Label();
+            this.tb_SerialPort = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ch_Humi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ch_Temp)).BeginInit();
             this.gb_S1.SuspendLayout();
@@ -78,14 +78,6 @@
             this.cmb_LogName.Name = "cmb_LogName";
             this.cmb_LogName.Size = new System.Drawing.Size(121, 21);
             this.cmb_LogName.TabIndex = 1;
-            // 
-            // cmb_SerialPort
-            // 
-            this.cmb_SerialPort.FormattingEnabled = true;
-            this.cmb_SerialPort.Location = new System.Drawing.Point(511, 27);
-            this.cmb_SerialPort.Name = "cmb_SerialPort";
-            this.cmb_SerialPort.Size = new System.Drawing.Size(142, 21);
-            this.cmb_SerialPort.TabIndex = 2;
             // 
             // lb_LogName
             // 
@@ -325,11 +317,19 @@
             this.lb_S4_Temp.TabIndex = 7;
             this.lb_S4_Temp.Text = "Temperature";
             // 
+            // tb_SerialPort
+            // 
+            this.tb_SerialPort.Location = new System.Drawing.Point(511, 28);
+            this.tb_SerialPort.Name = "tb_SerialPort";
+            this.tb_SerialPort.Size = new System.Drawing.Size(100, 20);
+            this.tb_SerialPort.TabIndex = 18;
+            // 
             // LiveReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 714);
+            this.Controls.Add(this.tb_SerialPort);
             this.Controls.Add(this.gb_S4);
             this.Controls.Add(this.gb_S3);
             this.Controls.Add(this.gb_S2);
@@ -338,14 +338,12 @@
             this.Controls.Add(this.ch_Humi);
             this.Controls.Add(this.lb_SerialPort);
             this.Controls.Add(this.lb_LogName);
-            this.Controls.Add(this.cmb_SerialPort);
             this.Controls.Add(this.cmb_LogName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LiveReading";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Live Reading";
-            this.Load += new System.EventHandler(this.LiveReading_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ch_Humi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ch_Temp)).EndInit();
             this.gb_S1.ResumeLayout(false);
@@ -363,7 +361,6 @@
 
         #endregion
         private System.Windows.Forms.ComboBox cmb_LogName;
-        private System.Windows.Forms.ComboBox cmb_SerialPort;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Label lb_LogName;
         private System.Windows.Forms.Label lb_SerialPort;
@@ -389,5 +386,6 @@
         private System.Windows.Forms.GroupBox gb_S4;
         private System.Windows.Forms.Label lb_S4_Humi;
         private System.Windows.Forms.Label lb_S4_Temp;
+        private System.Windows.Forms.TextBox tb_SerialPort;
     }
 }

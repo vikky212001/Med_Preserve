@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Ports;
 using System.Windows.Forms;
 
 namespace Med_Preserve.Forms
@@ -9,11 +10,24 @@ namespace Med_Preserve.Forms
         public Home()
         {
             InitializeComponent();
+            PopulateComPort();
         }
 
-        private void Home_Load(object sender, EventArgs e)
+        private void PopulateComPort()
         {
-
+            string[] ports = SerialPort.GetPortNames();
+            foreach (string port in ports)
+            {
+                cmb_COMPort.Items.Add(port);
+            }
+            if (cmb_COMPort.Items.Count > 0)
+            {
+                cmb_COMPort.SelectedIndex = 0;
+            }
+            else
+            {
+                cmb_COMPort.Text = "No COM ports found";
+            }
         }
 
         private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,16 +79,22 @@ namespace Med_Preserve.Forms
 
         private void loggerConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoggerConfig loggerConfig = new LoggerConfig();
+            LoggerConfig loggerConfig = new LoggerConfig(SelectedComPort);
             loggerConfig.ShowDialog();
         }
 
         private void liveReadingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LiveReading liveReading = new LiveReading();
+            LiveReading liveReading = new LiveReading(SelectedComPort);
             liveReading.ShowDialog();
         }
 
-        
+        public string SelectedComPort
+        {
+            get
+            {
+                return cmb_COMPort.SelectedItem?.ToString();
+            }
+        }
     }
 }
