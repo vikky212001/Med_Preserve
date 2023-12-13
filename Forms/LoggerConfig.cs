@@ -85,6 +85,8 @@ namespace Med_Preserve.Forms
                 }
             }
             cmb_LoggerName.Text = "-SELECT-";
+            rb_Celcius.Checked = true;
+            rb_farenheit.Checked = false;
         }
         private void dgv_LoggerConfig_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -140,7 +142,27 @@ namespace Med_Preserve.Forms
             tb_HS4_Calibrate.Text = row.Cells[41].Value.ToString();
             tb_IsConfig.Text = row.Cells[42].Value.ToString();
             string sync = row.Cells[43].Value.ToString();
-            string unit = row.Cells[44].Value.ToString(); //Working here 
+            if (sync == "True")
+            {
+                tb_SyncStatus.Text = "Synced";
+                bt_SyncNow.Enabled = false;
+            }
+            else if (sync == "False")
+            {
+                tb_SyncStatus.Text = "Out of Sync";
+                bt_SyncNow.Enabled = true;
+            }
+            string unit = row.Cells[44].Value.ToString();
+            if (unit == "C")
+            {
+                rb_Celcius.Checked = true;
+                rb_farenheit.Checked = false;
+            }
+            else if (unit == "F")
+            {
+                rb_farenheit.Checked = true;
+                rb_Celcius.Checked = false;
+            }
         }
         private void bt_Clear_Click(object sender, EventArgs e)
         {
@@ -153,7 +175,12 @@ namespace Med_Preserve.Forms
         private void bt_Add_Click(object sender, EventArgs e)
         {
             bool foundEmptyActiveTextbox = false;
-            bool comAvailable = false;  
+            bool comAvailable = false;
+            string unit = "C";
+            if (rb_farenheit.Checked)
+            {
+                unit = "F"; 
+            }
 
             TextBox[] tb_Calibrate = new TextBox[]
 {
@@ -184,7 +211,7 @@ namespace Med_Preserve.Forms
                     {
                         if (string.IsNullOrWhiteSpace(textbox.Text))
                         {
-                            if (textbox == tb_IsConfig)
+                            if (textbox == tb_IsConfig || textbox == tb_SyncStatus || textbox == tb_Search)
                             {
                                 continue;
                             }
@@ -205,59 +232,8 @@ namespace Med_Preserve.Forms
 
                     if (result == DialogResult.Yes)
                     {
-                        comAvailable = true; 
-                        InitializeForm();
-                        if (serialPort != null && serialPort.IsOpen)
-                        {
-                            try
-                            {
-                                if (tb_LogType.Text == "Temperature")
-                                {
-                                    if (tb_NoOfSensors.Text == "1")
-                                    {
-                                        string data_t1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text ;   
-                                    }
-                                    else if (tb_NoOfSensors.Text == "2")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "3")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "4")
-                                    { }
-                                }
-                                else if (tb_LogType.Text == "Humidity")
-                                {
-                                    if (tb_NoOfSensors.Text == "1")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "2")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "3")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "4")
-                                    { }
-                                }
-                                else if (tb_LogType.Text == "Both")
-                                {
-                                    if (tb_NoOfSensors.Text == "1")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "2")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "3")
-                                    { }
-                                    else if (tb_NoOfSensors.Text == "4")
-                                    { }
-                                }
-                                string data = "sad";
-                                serialPort.Write(data);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Error writing to serial port: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Serial port is not open.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        comAvailable = true;
+                        SerialWrite(unit);
                     }
                 }
                 try
@@ -270,7 +246,7 @@ namespace Med_Preserve.Forms
             tb_HS1_UL.Text, tb_HS2_UL.Text, tb_HS3_UL.Text, tb_HS4_UL.Text,
             tb_HS1_LL.Text, tb_HS2_LL.Text, tb_HS3_LL.Text, tb_HS4_LL.Text,
             tb_TS1_Calibrate.Text, tb_TS2_Calibrate.Text, tb_TS3_Calibrate.Text, tb_TS4_Calibrate.Text,
-            tb_HS1_Calibrate.Text, tb_HS2_Calibrate.Text, tb_HS3_Calibrate.Text, tb_HS4_Calibrate.Text, tb_LogID.Text, Convert.ToString(comAvailable)
+            tb_HS1_Calibrate.Text, tb_HS2_Calibrate.Text, tb_HS3_Calibrate.Text, tb_HS4_Calibrate.Text, tb_LogID.Text
         };
 
                     string[] parameterNames = {
@@ -281,7 +257,7 @@ namespace Med_Preserve.Forms
             "@S1_H_High", "@S2_H_High", "@S3_H_High", "@S4_H_High",
             "@S1_H_Low", "@S2_H_Low", "@S3_H_Low", "@S4_H_Low",
             "@S1_T_Calibrate", "@S2_T_Calibrate", "@S3_T_Calibrate", "@S4_T_Calibrate",
-            "@S1_H_Calibrate", "@S2_H_Calibrate", "@S3_H_Calibrate", "@S4_H_Calibrate", "@LogID", "@Sync"
+            "@S1_H_Calibrate", "@S2_H_Calibrate", "@S3_H_Calibrate", "@S4_H_Calibrate", "@LogID"
         };
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -291,8 +267,8 @@ namespace Med_Preserve.Forms
                         {
                             try
                             {
-                                string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID, Sync) " +
-                                    "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID, @Sync);";
+                                string configQuery = "INSERT INTO LoggerConfig (S1_Temp, S2_Temp, S3_Temp, S4_Temp, S1_Humi, S2_Humi, S3_Humi, S4_Humi, S1_T_Low, S1_T_High, S1_H_Low, S1_H_High, S2_T_Low, S2_T_High, S2_H_Low, S2_H_High, S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, LoggerID, Sync, Unit) " +
+                                    "VALUES (@S1_Temp, @S2_Temp, @S3_Temp, @S4_Temp, @S1_Humi, @S2_Humi, @S3_Humi, @S4_Humi, @S1_T_Low, @S1_T_High, @S1_H_Low, @S1_H_High, @S2_T_Low, @S2_T_High, @S2_H_Low, @S2_H_High, @S3_T_Low, @S3_T_High, @S3_H_Low, @S3_H_High, @S4_T_Low, @S4_T_High, @S4_H_Low, @S4_H_High, @S1_T_Calibrate, @S2_T_Calibrate, @S3_T_Calibrate, @S4_T_Calibrate, @S1_H_Calibrate, @S2_H_Calibrate, @S3_H_Calibrate, @S4_H_Calibrate, @LogID, @Sync, @Unit);";
                                 string updateConfigQuery = "UPDATE LoggerMaster SET IsConfig = @IsConfig WHERE LoggerId = @LogID";
                                 using (SqlCommand command = new SqlCommand(configQuery, connection, trans))
                                 {
@@ -314,7 +290,8 @@ namespace Med_Preserve.Forms
                                             }
                                         }
                                     }
-
+                                    command.Parameters.AddWithValue("@Sync", comAvailable);
+                                    command.Parameters.AddWithValue("@Unit", unit);
                                     command.ExecuteNonQuery();
                                     MessageBox.Show("Logger created successfully.", "Prompt");
                                 }
@@ -515,6 +492,11 @@ namespace Med_Preserve.Forms
                     {
                         try
                         {
+                            string unit_u = "C";
+                            if (rb_farenheit.Checked)
+                            {
+                                unit_u = "F";
+                            }
                             bool changesFound = false;
                             string selectQuery = "SELECT S1_Temp, S2_Temp, S3_Temp, S4_Temp, " +
                                          "S1_Humi, S2_Humi, S3_Humi, S4_Humi, " +
@@ -523,7 +505,7 @@ namespace Med_Preserve.Forms
                                          "S3_T_Low, S3_T_High, S3_H_Low, S3_H_High, " +
                                          "S4_T_Low, S4_T_High, S4_H_Low, S4_H_High, " +
                                          "S1_T_Calibrate, S2_T_Calibrate, S3_T_Calibrate, S4_T_Calibrate, " +
-                                         "S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate " +
+                                         "S1_H_Calibrate, S2_H_Calibrate, S3_H_Calibrate, S4_H_Calibrate, Unit " +
                                          "FROM LoggerConfig WHERE LoggerID = @LogID";
 
                             using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
@@ -566,6 +548,7 @@ namespace Med_Preserve.Forms
                                     || !AreEqual(reader["S2_H_Calibrate"], tb_HS2_Calibrate.Text)
                                     || !AreEqual(reader["S3_H_Calibrate"], tb_HS3_Calibrate.Text)
                                     || !AreEqual(reader["S4_H_Calibrate"], tb_HS4_Calibrate.Text)
+                                    || !AreEqual(reader["Unit"], unit_u )
                                         )
                                         {
                                             changesFound = true;
@@ -587,12 +570,11 @@ namespace Med_Preserve.Forms
                                                      "S3_T_Low = @S3_T_Low, S3_T_High = @S3_T_High, S3_H_Low = @S3_H_Low, S3_H_High = @S3_H_High, " +
                                                      "S4_T_Low = @S4_T_Low, S4_T_High = @S4_T_High, S4_H_Low = @S4_H_Low, S4_H_High = @S4_H_High, " +
                                                      "S1_T_Calibrate = @S1_T_Calibrate, S2_T_Calibrate = @S2_T_Calibrate, S3_T_Calibrate = @S3_T_Calibrate, S4_T_Calibrate = @S4_T_Calibrate, " +
-                                                     "S1_H_Calibrate = @S1_H_Calibrate, S2_H_Calibrate = @S2_H_Calibrate, S3_H_Calibrate = @S3_H_Calibrate, S4_H_Calibrate = @S4_H_Calibrate " +
+                                                     "S1_H_Calibrate = @S1_H_Calibrate, S2_H_Calibrate = @S2_H_Calibrate, S3_H_Calibrate = @S3_H_Calibrate, S4_H_Calibrate = @S4_H_Calibrate, Unit = @unit " +
                                                      "WHERE LoggerID = @LogID";
 
                                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                     {
-                                        // Set parameter values from your form controls
                                         updateCommand.Parameters.AddWithValue("@S1_Temp", string.IsNullOrEmpty(tb_S1_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S1_Temp.Text));
                                         updateCommand.Parameters.AddWithValue("@S2_Temp", string.IsNullOrEmpty(tb_S2_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S2_Temp.Text));
                                         updateCommand.Parameters.AddWithValue("@S3_Temp", string.IsNullOrEmpty(tb_S3_Temp.Text) ? DBNull.Value : (object)double.Parse(tb_S3_Temp.Text));
@@ -626,6 +608,7 @@ namespace Med_Preserve.Forms
                                         updateCommand.Parameters.AddWithValue("@S3_H_Calibrate", string.IsNullOrEmpty(tb_HS3_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS3_Calibrate.Text));
                                         updateCommand.Parameters.AddWithValue("@S4_H_Calibrate", string.IsNullOrEmpty(tb_HS4_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS4_Calibrate.Text));
                                         updateCommand.Parameters.AddWithValue("@LogID", int.Parse(tb_LogID.Text));
+                                        updateCommand.Parameters.AddWithValue("@Unit", unit_u);
 
                                         int rowsAffected = updateCommand.ExecuteNonQuery();
 
@@ -719,12 +702,152 @@ namespace Med_Preserve.Forms
                 dgv_LoggerConfig.DataSource = dva.ToTable();
             }
         }
+        private void SerialWrite(string unit)
+        {
+            InitializeForm();
+            if (serialPort != null && serialPort.IsOpen)
+            {
+                try
+                {
+                    if (tb_LogType.Text == "Temperature")
+                    {
+                        if (tb_NoOfSensors.Text == "1")
+                        {
+                            string data_t1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text;
+                            serialPort.Write(data_t1);
+                        }
+                        else if (tb_NoOfSensors.Text == "2")
+                        {
+                            string data_t2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text;
+                            serialPort.Write(data_t2);
+                        }
+                        else if (tb_NoOfSensors.Text == "3")
+                        {
+                            string data_t3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text;
+                            serialPort.Write(data_t3);
+                        }
+                        else if (tb_NoOfSensors.Text == "4")
+                        {
+                            string data_t4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text;
+                            serialPort.Write(data_t4);
+                        }
+                    }
+                    else if (tb_LogType.Text == "Humidity")
+                    {
+                        if (tb_NoOfSensors.Text == "1")
+                        {
+                            string data_h1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text;
+                            serialPort.Write(data_h1);
+                        }
+                        else if (tb_NoOfSensors.Text == "2")
+                        {
+                            string data_h2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text;
+                            serialPort.Write(data_h2);
+                        }
+                        else if (tb_NoOfSensors.Text == "3")
+                        {
+                            string data_h3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text;
+                            serialPort.Write(data_h3);
+                        }
+                        else if (tb_NoOfSensors.Text == "4")
+                        {
+                            string data_h4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text;
+                            serialPort.Write(data_h4);
+                        }
+                    }
+                    else if (tb_LogType.Text == "Both")
+                    {
+                        if (tb_NoOfSensors.Text == "1")
+                        {
+                            string data_b1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text;
+                            serialPort.Write(data_b1);
+                        }
+                        else if (tb_NoOfSensors.Text == "2")
+                        {
+                            string data_b2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text;
+                            serialPort.Write(data_b2);
+                        }
+                        else if (tb_NoOfSensors.Text == "3")
+                        {
+                            string data_b3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text;
+                            serialPort.Write(data_b3);
+                        }
+                        else if (tb_NoOfSensors.Text == "4")
+                        {
+                            string data_b4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text;
+                            serialPort.Write(data_b4);
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error writing to serial port: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Serial port is not open.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
             if (serialPort != null && serialPort.IsOpen)
             {
                 serialPort.Close();
+            }
+        }
+
+        private void bt_SyncNow_Click(object sender, EventArgs e)
+        {
+            bool comAvailable = false;
+            string unit = "C";
+            if (rb_farenheit.Checked)
+            {
+                unit = "F";
+            }
+            if (selectedComPort != null)
+            {
+                DialogResult result = MessageBox.Show("Do you want to Sync this data to Logger Now?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    comAvailable = true;
+                    SerialWrite(unit);
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        {
+                            try
+                            {
+                                string updateQuery = "UPDATE LoggerConfig SET Sync = @Sync WHERE LoggerID = @LogID";
+
+                                using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                                {
+                                    updateCommand.Parameters.AddWithValue("@LogID", int.Parse(tb_LogID.Text));
+                                    updateCommand.Parameters.AddWithValue("@Sync", comAvailable);
+                                    int rowsAffected = updateCommand.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Record updated successfully.", "Success");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                }
+                            }
+                                    RefreshData();
+                            Clear();
+                        }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("An error occurred: " + ex.Message, "Error");
+                            }
+                        }
+                    }
+                }
             }
         }
     }

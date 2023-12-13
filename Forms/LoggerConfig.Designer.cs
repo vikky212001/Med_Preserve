@@ -103,6 +103,9 @@
             this.rb_Celcius = new System.Windows.Forms.RadioButton();
             this.rb_farenheit = new System.Windows.Forms.RadioButton();
             this.gb_Unit = new System.Windows.Forms.GroupBox();
+            this.tb_SyncStatus = new System.Windows.Forms.TextBox();
+            this.lb_Sync = new System.Windows.Forms.Label();
+            this.bt_SyncNow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerConfig)).BeginInit();
             this.gb_Unit.SuspendLayout();
             this.SuspendLayout();
@@ -450,7 +453,7 @@
             // 
             // bt_Close
             // 
-            this.bt_Close.Location = new System.Drawing.Point(539, 453);
+            this.bt_Close.Location = new System.Drawing.Point(495, 453);
             this.bt_Close.Name = "bt_Close";
             this.bt_Close.Size = new System.Drawing.Size(75, 23);
             this.bt_Close.TabIndex = 91;
@@ -460,7 +463,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(440, 453);
+            this.bt_Clear.Location = new System.Drawing.Point(396, 453);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 90;
@@ -470,7 +473,7 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(331, 453);
+            this.bt_Delete.Location = new System.Drawing.Point(287, 453);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
             this.bt_Delete.TabIndex = 89;
@@ -480,7 +483,7 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(216, 453);
+            this.bt_Update.Location = new System.Drawing.Point(172, 453);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(75, 23);
             this.bt_Update.TabIndex = 88;
@@ -490,7 +493,7 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(108, 453);
+            this.bt_Add.Location = new System.Drawing.Point(64, 453);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(75, 23);
             this.bt_Add.TabIndex = 87;
@@ -653,7 +656,6 @@
             this.tb_IsConfig.Name = "tb_IsConfig";
             this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
             this.tb_IsConfig.TabIndex = 111;
-            this.tb_IsConfig.Visible = false;
             this.tb_IsConfig.TextChanged += new System.EventHandler(this.tb_IsConfig_TextChanged);
             // 
             // tb_Search
@@ -680,7 +682,6 @@
             this.rb_Celcius.Name = "rb_Celcius";
             this.rb_Celcius.Size = new System.Drawing.Size(59, 17);
             this.rb_Celcius.TabIndex = 114;
-            this.rb_Celcius.TabStop = true;
             this.rb_Celcius.Text = "Celcius";
             this.rb_Celcius.UseVisualStyleBackColor = true;
             // 
@@ -691,7 +692,6 @@
             this.rb_farenheit.Name = "rb_farenheit";
             this.rb_farenheit.Size = new System.Drawing.Size(69, 17);
             this.rb_farenheit.TabIndex = 115;
-            this.rb_farenheit.TabStop = true;
             this.rb_farenheit.Text = "Farenheit";
             this.rb_farenheit.UseVisualStyleBackColor = true;
             // 
@@ -706,11 +706,41 @@
             this.gb_Unit.TabStop = false;
             this.gb_Unit.Text = "Temperature Unit";
             // 
+            // tb_SyncStatus
+            // 
+            this.tb_SyncStatus.Location = new System.Drawing.Point(620, 267);
+            this.tb_SyncStatus.Name = "tb_SyncStatus";
+            this.tb_SyncStatus.ReadOnly = true;
+            this.tb_SyncStatus.Size = new System.Drawing.Size(98, 20);
+            this.tb_SyncStatus.TabIndex = 118;
+            // 
+            // lb_Sync
+            // 
+            this.lb_Sync.AutoSize = true;
+            this.lb_Sync.Location = new System.Drawing.Point(550, 270);
+            this.lb_Sync.Name = "lb_Sync";
+            this.lb_Sync.Size = new System.Drawing.Size(64, 13);
+            this.lb_Sync.TabIndex = 117;
+            this.lb_Sync.Text = "Sync Status";
+            // 
+            // bt_SyncNow
+            // 
+            this.bt_SyncNow.Location = new System.Drawing.Point(594, 453);
+            this.bt_SyncNow.Name = "bt_SyncNow";
+            this.bt_SyncNow.Size = new System.Drawing.Size(75, 23);
+            this.bt_SyncNow.TabIndex = 119;
+            this.bt_SyncNow.Text = "SYNC NOW";
+            this.bt_SyncNow.UseVisualStyleBackColor = true;
+            this.bt_SyncNow.Click += new System.EventHandler(this.bt_SyncNow_Click);
+            // 
             // LoggerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 493);
+            this.Controls.Add(this.bt_SyncNow);
+            this.Controls.Add(this.tb_SyncStatus);
+            this.Controls.Add(this.lb_Sync);
             this.Controls.Add(this.gb_Unit);
             this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.lb_Search);
@@ -889,5 +919,8 @@
         private System.Windows.Forms.RadioButton rb_Celcius;
         private System.Windows.Forms.RadioButton rb_farenheit;
         private System.Windows.Forms.GroupBox gb_Unit;
+        private System.Windows.Forms.TextBox tb_SyncStatus;
+        private System.Windows.Forms.Label lb_Sync;
+        private System.Windows.Forms.Button bt_SyncNow;
     }
 }

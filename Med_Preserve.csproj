@@ -203,6 +203,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Temp_1.rdlc" />
     <None Include="Med_PreserveDataSet.xsc">
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
     </None>
@@ -227,9 +228,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
