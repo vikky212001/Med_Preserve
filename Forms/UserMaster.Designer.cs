@@ -56,6 +56,7 @@
             this.dgv_UserMaster = new System.Windows.Forms.DataGridView();
             this.med_PreserveDataSet = new Med_Preserve.Med_PreserveDataSet();
             this.userDataTableAdapter = new Med_Preserve.Med_PreserveDataSetTableAdapters.UserDataTableAdapter();
+            this.lb_Title = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_UserMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet)).BeginInit();
@@ -64,18 +65,21 @@
             // lb_UserID
             // 
             this.lb_UserID.AutoSize = true;
-            this.lb_UserID.Location = new System.Drawing.Point(422, 295);
+            this.lb_UserID.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_UserID.Location = new System.Drawing.Point(135, 102);
             this.lb_UserID.Name = "lb_UserID";
-            this.lb_UserID.Size = new System.Drawing.Size(52, 13);
+            this.lb_UserID.Size = new System.Drawing.Size(71, 21);
             this.lb_UserID.TabIndex = 36;
             this.lb_UserID.Text = "User ID : ";
             this.lb_UserID.Visible = false;
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(609, 274);
+            this.bt_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Clear.Font = new System.Drawing.Font("Comfortaa SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Clear.Location = new System.Drawing.Point(448, 451);
             this.bt_Clear.Name = "bt_Clear";
-            this.bt_Clear.Size = new System.Drawing.Size(75, 23);
+            this.bt_Clear.Size = new System.Drawing.Size(70, 30);
             this.bt_Clear.TabIndex = 35;
             this.bt_Clear.Text = "Clear";
             this.bt_Clear.UseVisualStyleBackColor = true;
@@ -83,9 +87,11 @@
             // 
             // bt_Delete
             // 
-            this.bt_Delete.Location = new System.Drawing.Point(609, 310);
+            this.bt_Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Delete.Font = new System.Drawing.Font("Comfortaa SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Delete.Location = new System.Drawing.Point(569, 451);
             this.bt_Delete.Name = "bt_Delete";
-            this.bt_Delete.Size = new System.Drawing.Size(75, 23);
+            this.bt_Delete.Size = new System.Drawing.Size(70, 30);
             this.bt_Delete.TabIndex = 34;
             this.bt_Delete.Text = "Delete";
             this.bt_Delete.UseVisualStyleBackColor = true;
@@ -93,9 +99,11 @@
             // 
             // bt_Update
             // 
-            this.bt_Update.Location = new System.Drawing.Point(609, 236);
+            this.bt_Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Update.Font = new System.Drawing.Font("Comfortaa SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Update.Location = new System.Drawing.Point(329, 451);
             this.bt_Update.Name = "bt_Update";
-            this.bt_Update.Size = new System.Drawing.Size(75, 23);
+            this.bt_Update.Size = new System.Drawing.Size(70, 30);
             this.bt_Update.TabIndex = 33;
             this.bt_Update.Text = "Update";
             this.bt_Update.UseVisualStyleBackColor = true;
@@ -103,9 +111,11 @@
             // 
             // bt_Add
             // 
-            this.bt_Add.Location = new System.Drawing.Point(609, 196);
+            this.bt_Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Add.Font = new System.Drawing.Font("Comfortaa SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Add.Location = new System.Drawing.Point(213, 451);
             this.bt_Add.Name = "bt_Add";
-            this.bt_Add.Size = new System.Drawing.Size(75, 23);
+            this.bt_Add.Size = new System.Drawing.Size(70, 30);
             this.bt_Add.TabIndex = 32;
             this.bt_Add.Text = "Add";
             this.bt_Add.UseVisualStyleBackColor = true;
@@ -114,100 +124,112 @@
             // lb_R_ConPass
             // 
             this.lb_R_ConPass.AutoSize = true;
-            this.lb_R_ConPass.Location = new System.Drawing.Point(288, 295);
+            this.lb_R_ConPass.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_R_ConPass.Location = new System.Drawing.Point(581, 369);
             this.lb_R_ConPass.Name = "lb_R_ConPass";
-            this.lb_R_ConPass.Size = new System.Drawing.Size(91, 13);
+            this.lb_R_ConPass.Size = new System.Drawing.Size(131, 21);
             this.lb_R_ConPass.TabIndex = 31;
             this.lb_R_ConPass.Text = "Confirm Password";
             // 
             // tb_R_ConPass
             // 
-            this.tb_R_ConPass.Location = new System.Drawing.Point(291, 323);
+            this.tb_R_ConPass.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_R_ConPass.Location = new System.Drawing.Point(585, 390);
             this.tb_R_ConPass.Name = "tb_R_ConPass";
-            this.tb_R_ConPass.Size = new System.Drawing.Size(100, 20);
+            this.tb_R_ConPass.Size = new System.Drawing.Size(150, 22);
             this.tb_R_ConPass.TabIndex = 30;
             // 
             // tb_R_Pass
             // 
-            this.tb_R_Pass.Location = new System.Drawing.Point(156, 323);
+            this.tb_R_Pass.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_R_Pass.Location = new System.Drawing.Point(402, 390);
             this.tb_R_Pass.Name = "tb_R_Pass";
-            this.tb_R_Pass.Size = new System.Drawing.Size(100, 20);
+            this.tb_R_Pass.Size = new System.Drawing.Size(150, 22);
             this.tb_R_Pass.TabIndex = 29;
             // 
             // tb_R_UName
             // 
-            this.tb_R_UName.Location = new System.Drawing.Point(27, 323);
+            this.tb_R_UName.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_R_UName.Location = new System.Drawing.Point(232, 390);
             this.tb_R_UName.Name = "tb_R_UName";
-            this.tb_R_UName.Size = new System.Drawing.Size(100, 20);
+            this.tb_R_UName.Size = new System.Drawing.Size(100, 22);
             this.tb_R_UName.TabIndex = 28;
             // 
             // tb_Mobile
             // 
-            this.tb_Mobile.Location = new System.Drawing.Point(291, 233);
+            this.tb_Mobile.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_Mobile.Location = new System.Drawing.Point(555, 316);
             this.tb_Mobile.MaxLength = 10;
             this.tb_Mobile.Name = "tb_Mobile";
-            this.tb_Mobile.Size = new System.Drawing.Size(100, 20);
+            this.tb_Mobile.Size = new System.Drawing.Size(100, 22);
             this.tb_Mobile.TabIndex = 27;
             this.tb_Mobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_Mobile_KeyPress);
             // 
             // tb_Email
             // 
-            this.tb_Email.Location = new System.Drawing.Point(156, 233);
+            this.tb_Email.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_Email.Location = new System.Drawing.Point(303, 316);
             this.tb_Email.Name = "tb_Email";
-            this.tb_Email.Size = new System.Drawing.Size(100, 20);
+            this.tb_Email.Size = new System.Drawing.Size(173, 22);
             this.tb_Email.TabIndex = 26;
             this.tb_Email.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Email_Validating);
             // 
             // tb_Name
             // 
-            this.tb_Name.Location = new System.Drawing.Point(27, 233);
+            this.tb_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_Name.Location = new System.Drawing.Point(133, 316);
             this.tb_Name.Name = "tb_Name";
-            this.tb_Name.Size = new System.Drawing.Size(100, 20);
+            this.tb_Name.Size = new System.Drawing.Size(100, 22);
             this.tb_Name.TabIndex = 25;
             this.tb_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_Name_KeyPress);
             // 
             // lb_R_Pass
             // 
             this.lb_R_Pass.AutoSize = true;
-            this.lb_R_Pass.Location = new System.Drawing.Point(153, 295);
+            this.lb_R_Pass.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_R_Pass.Location = new System.Drawing.Point(398, 371);
             this.lb_R_Pass.Name = "lb_R_Pass";
-            this.lb_R_Pass.Size = new System.Drawing.Size(53, 13);
+            this.lb_R_Pass.Size = new System.Drawing.Size(74, 21);
             this.lb_R_Pass.TabIndex = 24;
             this.lb_R_Pass.Text = "Password";
             // 
             // lb_R_UName
             // 
             this.lb_R_UName.AutoSize = true;
-            this.lb_R_UName.Location = new System.Drawing.Point(24, 295);
+            this.lb_R_UName.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_R_UName.Location = new System.Drawing.Point(228, 371);
             this.lb_R_UName.Name = "lb_R_UName";
-            this.lb_R_UName.Size = new System.Drawing.Size(60, 13);
+            this.lb_R_UName.Size = new System.Drawing.Size(86, 21);
             this.lb_R_UName.TabIndex = 23;
             this.lb_R_UName.Text = "User Name";
             // 
             // lb_Mobile
             // 
             this.lb_Mobile.AutoSize = true;
-            this.lb_Mobile.Location = new System.Drawing.Point(288, 207);
+            this.lb_Mobile.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_Mobile.Location = new System.Drawing.Point(551, 296);
             this.lb_Mobile.Name = "lb_Mobile";
-            this.lb_Mobile.Size = new System.Drawing.Size(38, 13);
+            this.lb_Mobile.Size = new System.Drawing.Size(57, 21);
             this.lb_Mobile.TabIndex = 22;
             this.lb_Mobile.Text = "Mobile";
             // 
             // lb_Email
             // 
             this.lb_Email.AutoSize = true;
-            this.lb_Email.Location = new System.Drawing.Point(153, 207);
+            this.lb_Email.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_Email.Location = new System.Drawing.Point(299, 296);
             this.lb_Email.Name = "lb_Email";
-            this.lb_Email.Size = new System.Drawing.Size(32, 13);
+            this.lb_Email.Size = new System.Drawing.Size(48, 21);
             this.lb_Email.TabIndex = 21;
             this.lb_Email.Text = "Email";
             // 
             // lb_Name
             // 
             this.lb_Name.AutoSize = true;
-            this.lb_Name.Location = new System.Drawing.Point(24, 207);
+            this.lb_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_Name.Location = new System.Drawing.Point(129, 296);
             this.lb_Name.Name = "lb_Name";
-            this.lb_Name.Size = new System.Drawing.Size(35, 13);
+            this.lb_Name.Size = new System.Drawing.Size(50, 21);
             this.lb_Name.TabIndex = 20;
             this.lb_Name.Text = "Name";
             // 
@@ -218,23 +240,25 @@
             // lb_Search
             // 
             this.lb_Search.AutoSize = true;
-            this.lb_Search.Location = new System.Drawing.Point(496, 14);
+            this.lb_Search.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_Search.Location = new System.Drawing.Point(610, 102);
             this.lb_Search.Name = "lb_Search";
-            this.lb_Search.Size = new System.Drawing.Size(41, 13);
+            this.lb_Search.Size = new System.Drawing.Size(58, 21);
             this.lb_Search.TabIndex = 39;
             this.lb_Search.Text = "Search";
             // 
             // tb_Search
             // 
-            this.tb_Search.Location = new System.Drawing.Point(543, 11);
+            this.tb_Search.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tb_Search.Location = new System.Drawing.Point(673, 104);
             this.tb_Search.Name = "tb_Search";
-            this.tb_Search.Size = new System.Drawing.Size(182, 20);
+            this.tb_Search.Size = new System.Drawing.Size(182, 22);
             this.tb_Search.TabIndex = 40;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
             // tb_UID
             // 
-            this.tb_UID.Location = new System.Drawing.Point(425, 323);
+            this.tb_UID.Location = new System.Drawing.Point(212, 105);
             this.tb_UID.Name = "tb_UID";
             this.tb_UID.Size = new System.Drawing.Size(71, 20);
             this.tb_UID.TabIndex = 41;
@@ -243,9 +267,11 @@
             // 
             // bt_Close
             // 
-            this.bt_Close.Location = new System.Drawing.Point(609, 342);
+            this.bt_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Close.Font = new System.Drawing.Font("Comfortaa SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_Close.Location = new System.Drawing.Point(686, 451);
             this.bt_Close.Name = "bt_Close";
-            this.bt_Close.Size = new System.Drawing.Size(75, 23);
+            this.bt_Close.Size = new System.Drawing.Size(70, 30);
             this.bt_Close.TabIndex = 42;
             this.bt_Close.Text = "Close";
             this.bt_Close.UseVisualStyleBackColor = true;
@@ -254,18 +280,20 @@
             // lb_Role
             // 
             this.lb_Role.AutoSize = true;
-            this.lb_Role.Location = new System.Drawing.Point(429, 207);
+            this.lb_Role.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_Role.Location = new System.Drawing.Point(712, 296);
             this.lb_Role.Name = "lb_Role";
-            this.lb_Role.Size = new System.Drawing.Size(29, 13);
+            this.lb_Role.Size = new System.Drawing.Size(39, 21);
             this.lb_Role.TabIndex = 43;
             this.lb_Role.Text = "Role";
             // 
             // cmb_Role
             // 
+            this.cmb_Role.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.cmb_Role.FormattingEnabled = true;
-            this.cmb_Role.Location = new System.Drawing.Point(425, 232);
+            this.cmb_Role.Location = new System.Drawing.Point(716, 315);
             this.cmb_Role.Name = "cmb_Role";
-            this.cmb_Role.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Role.Size = new System.Drawing.Size(121, 29);
             this.cmb_Role.TabIndex = 45;
             this.cmb_Role.Text = "-SELECT-";
             // 
@@ -273,12 +301,13 @@
             // 
             this.dgv_UserMaster.AllowUserToAddRows = false;
             this.dgv_UserMaster.AllowUserToDeleteRows = false;
+            this.dgv_UserMaster.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgv_UserMaster.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_UserMaster.Location = new System.Drawing.Point(13, 37);
+            this.dgv_UserMaster.Location = new System.Drawing.Point(112, 130);
             this.dgv_UserMaster.Name = "dgv_UserMaster";
             this.dgv_UserMaster.ReadOnly = true;
             this.dgv_UserMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_UserMaster.Size = new System.Drawing.Size(712, 150);
+            this.dgv_UserMaster.Size = new System.Drawing.Size(743, 150);
             this.dgv_UserMaster.TabIndex = 46;
             this.dgv_UserMaster.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_UserMaster_CellFormatting);
             // 
@@ -291,11 +320,23 @@
             // 
             this.userDataTableAdapter.ClearBeforeFill = true;
             // 
+            // lb_Title
+            // 
+            this.lb_Title.AutoSize = true;
+            this.lb_Title.Font = new System.Drawing.Font("Comfortaa", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_Title.Location = new System.Drawing.Point(384, 15);
+            this.lb_Title.Name = "lb_Title";
+            this.lb_Title.Size = new System.Drawing.Size(198, 39);
+            this.lb_Title.TabIndex = 125;
+            this.lb_Title.Text = "USER MASTER";
+            // 
             // UserMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 594);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(966, 633);
+            this.Controls.Add(this.lb_Title);
             this.Controls.Add(this.dgv_UserMaster);
             this.Controls.Add(this.cmb_Role);
             this.Controls.Add(this.lb_Role);
@@ -320,6 +361,7 @@
             this.Controls.Add(this.lb_Mobile);
             this.Controls.Add(this.lb_Email);
             this.Controls.Add(this.lb_Name);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UserMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " User Master";
@@ -360,5 +402,6 @@
         private System.Windows.Forms.DataGridView dgv_UserMaster;
         private Med_PreserveDataSet med_PreserveDataSet;
         private Med_PreserveDataSetTableAdapters.UserDataTableAdapter userDataTableAdapter;
+        private System.Windows.Forms.Label lb_Title;
     }
 }

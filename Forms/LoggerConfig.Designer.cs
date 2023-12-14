@@ -121,114 +121,130 @@
             // 
             // tb_TS4_LL
             // 
+            this.tb_TS4_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS4_LL.Location = new System.Drawing.Point(20, 121);
             this.tb_TS4_LL.Name = "tb_TS4_LL";
-            this.tb_TS4_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS4_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS4_LL.TabIndex = 64;
             // 
             // tb_TS4_UL
             // 
+            this.tb_TS4_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS4_UL.Location = new System.Drawing.Point(114, 121);
             this.tb_TS4_UL.Name = "tb_TS4_UL";
-            this.tb_TS4_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS4_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS4_UL.TabIndex = 63;
             // 
             // tb_TS3_LL
             // 
+            this.tb_TS3_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS3_LL.Location = new System.Drawing.Point(20, 95);
             this.tb_TS3_LL.Name = "tb_TS3_LL";
-            this.tb_TS3_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS3_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS3_LL.TabIndex = 62;
             // 
             // tb_TS3_UL
             // 
+            this.tb_TS3_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS3_UL.Location = new System.Drawing.Point(114, 95);
             this.tb_TS3_UL.Name = "tb_TS3_UL";
-            this.tb_TS3_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS3_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS3_UL.TabIndex = 61;
             // 
             // tb_TS2_LL
             // 
+            this.tb_TS2_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS2_LL.Location = new System.Drawing.Point(20, 69);
             this.tb_TS2_LL.Name = "tb_TS2_LL";
-            this.tb_TS2_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS2_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS2_LL.TabIndex = 60;
             // 
             // tb_TS2_UL
             // 
+            this.tb_TS2_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS2_UL.Location = new System.Drawing.Point(114, 69);
             this.tb_TS2_UL.Name = "tb_TS2_UL";
-            this.tb_TS2_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS2_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS2_UL.TabIndex = 59;
             // 
             // tb_TS1_LL
             // 
+            this.tb_TS1_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS1_LL.Location = new System.Drawing.Point(20, 43);
             this.tb_TS1_LL.Name = "tb_TS1_LL";
-            this.tb_TS1_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS1_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS1_LL.TabIndex = 58;
             // 
             // tb_TS1_UL
             // 
+            this.tb_TS1_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS1_UL.Location = new System.Drawing.Point(114, 43);
             this.tb_TS1_UL.Name = "tb_TS1_UL";
-            this.tb_TS1_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS1_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_TS1_UL.TabIndex = 57;
             // 
             // tb_S4_Humidity
             // 
+            this.tb_S4_Humidity.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S4_Humidity.Location = new System.Drawing.Point(119, 121);
             this.tb_S4_Humidity.Name = "tb_S4_Humidity";
-            this.tb_S4_Humidity.Size = new System.Drawing.Size(64, 20);
+            this.tb_S4_Humidity.Size = new System.Drawing.Size(64, 22);
             this.tb_S4_Humidity.TabIndex = 56;
             // 
             // tb_S4_Temp
             // 
+            this.tb_S4_Temp.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S4_Temp.Location = new System.Drawing.Point(20, 121);
             this.tb_S4_Temp.Name = "tb_S4_Temp";
-            this.tb_S4_Temp.Size = new System.Drawing.Size(64, 20);
+            this.tb_S4_Temp.Size = new System.Drawing.Size(64, 22);
             this.tb_S4_Temp.TabIndex = 55;
             // 
             // tb_S3_Humidity
             // 
+            this.tb_S3_Humidity.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S3_Humidity.Location = new System.Drawing.Point(119, 95);
             this.tb_S3_Humidity.Name = "tb_S3_Humidity";
-            this.tb_S3_Humidity.Size = new System.Drawing.Size(64, 20);
+            this.tb_S3_Humidity.Size = new System.Drawing.Size(64, 22);
             this.tb_S3_Humidity.TabIndex = 54;
             // 
             // tb_S3_Temp
             // 
+            this.tb_S3_Temp.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S3_Temp.Location = new System.Drawing.Point(20, 95);
             this.tb_S3_Temp.Name = "tb_S3_Temp";
-            this.tb_S3_Temp.Size = new System.Drawing.Size(64, 20);
+            this.tb_S3_Temp.Size = new System.Drawing.Size(64, 22);
             this.tb_S3_Temp.TabIndex = 53;
             // 
             // tb_S2_Humidity
             // 
+            this.tb_S2_Humidity.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S2_Humidity.Location = new System.Drawing.Point(119, 69);
             this.tb_S2_Humidity.Name = "tb_S2_Humidity";
-            this.tb_S2_Humidity.Size = new System.Drawing.Size(64, 20);
+            this.tb_S2_Humidity.Size = new System.Drawing.Size(64, 22);
             this.tb_S2_Humidity.TabIndex = 52;
             // 
             // tb_S2_Temp
             // 
+            this.tb_S2_Temp.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S2_Temp.Location = new System.Drawing.Point(20, 69);
             this.tb_S2_Temp.Name = "tb_S2_Temp";
-            this.tb_S2_Temp.Size = new System.Drawing.Size(64, 20);
+            this.tb_S2_Temp.Size = new System.Drawing.Size(64, 22);
             this.tb_S2_Temp.TabIndex = 51;
             // 
             // tb_S1_Humidity
             // 
+            this.tb_S1_Humidity.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S1_Humidity.Location = new System.Drawing.Point(119, 43);
             this.tb_S1_Humidity.Name = "tb_S1_Humidity";
-            this.tb_S1_Humidity.Size = new System.Drawing.Size(64, 20);
+            this.tb_S1_Humidity.Size = new System.Drawing.Size(64, 22);
             this.tb_S1_Humidity.TabIndex = 50;
             // 
             // tb_S1_Temp
             // 
+            this.tb_S1_Temp.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S1_Temp.Location = new System.Drawing.Point(20, 43);
             this.tb_S1_Temp.Name = "tb_S1_Temp";
-            this.tb_S1_Temp.Size = new System.Drawing.Size(64, 20);
+            this.tb_S1_Temp.Size = new System.Drawing.Size(64, 22);
             this.tb_S1_Temp.TabIndex = 49;
             // 
             // lb_T_LowThreshold
@@ -293,34 +309,39 @@
             // 
             // tb_TS1_Calibrate
             // 
+            this.tb_TS1_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS1_Calibrate.Location = new System.Drawing.Point(25, 43);
             this.tb_TS1_Calibrate.Name = "tb_TS1_Calibrate";
-            this.tb_TS1_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS1_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_TS1_Calibrate.TabIndex = 68;
             // 
             // tb_TS2_Calibrate
             // 
+            this.tb_TS2_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS2_Calibrate.Location = new System.Drawing.Point(25, 69);
             this.tb_TS2_Calibrate.Name = "tb_TS2_Calibrate";
-            this.tb_TS2_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS2_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_TS2_Calibrate.TabIndex = 69;
             // 
             // tb_TS3_Calibrate
             // 
+            this.tb_TS3_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS3_Calibrate.Location = new System.Drawing.Point(25, 95);
             this.tb_TS3_Calibrate.Name = "tb_TS3_Calibrate";
-            this.tb_TS3_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS3_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_TS3_Calibrate.TabIndex = 70;
             // 
             // tb_TS4_Calibrate
             // 
+            this.tb_TS4_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_TS4_Calibrate.Location = new System.Drawing.Point(25, 121);
             this.tb_TS4_Calibrate.Name = "tb_TS4_Calibrate";
-            this.tb_TS4_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_TS4_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_TS4_Calibrate.TabIndex = 71;
             // 
             // dgv_LoggerConfig
             // 
+            this.dgv_LoggerConfig.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgv_LoggerConfig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_LoggerConfig.Location = new System.Drawing.Point(19, 112);
             this.dgv_LoggerConfig.Name = "dgv_LoggerConfig";
@@ -331,34 +352,42 @@
             // 
             // tb_S1_Name
             // 
+            this.tb_S1_Name.Enabled = false;
+            this.tb_S1_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S1_Name.Location = new System.Drawing.Point(31, 425);
             this.tb_S1_Name.Name = "tb_S1_Name";
             this.tb_S1_Name.ReadOnly = true;
-            this.tb_S1_Name.Size = new System.Drawing.Size(98, 20);
+            this.tb_S1_Name.Size = new System.Drawing.Size(98, 22);
             this.tb_S1_Name.TabIndex = 73;
             // 
             // tb_S2_Name
             // 
+            this.tb_S2_Name.Enabled = false;
+            this.tb_S2_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S2_Name.Location = new System.Drawing.Point(30, 451);
             this.tb_S2_Name.Name = "tb_S2_Name";
             this.tb_S2_Name.ReadOnly = true;
-            this.tb_S2_Name.Size = new System.Drawing.Size(98, 20);
+            this.tb_S2_Name.Size = new System.Drawing.Size(98, 22);
             this.tb_S2_Name.TabIndex = 74;
             // 
             // tb_S3_Name
             // 
+            this.tb_S3_Name.Enabled = false;
+            this.tb_S3_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S3_Name.Location = new System.Drawing.Point(30, 477);
             this.tb_S3_Name.Name = "tb_S3_Name";
             this.tb_S3_Name.ReadOnly = true;
-            this.tb_S3_Name.Size = new System.Drawing.Size(98, 20);
+            this.tb_S3_Name.Size = new System.Drawing.Size(98, 22);
             this.tb_S3_Name.TabIndex = 75;
             // 
             // tb_S4_Name
             // 
+            this.tb_S4_Name.Enabled = false;
+            this.tb_S4_Name.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_S4_Name.Location = new System.Drawing.Point(30, 503);
             this.tb_S4_Name.Name = "tb_S4_Name";
             this.tb_S4_Name.ReadOnly = true;
-            this.tb_S4_Name.Size = new System.Drawing.Size(98, 20);
+            this.tb_S4_Name.Size = new System.Drawing.Size(98, 22);
             this.tb_S4_Name.TabIndex = 76;
             // 
             // lb_LogID
@@ -421,36 +450,44 @@
             // 
             // tb_NoOfSensors
             // 
+            this.tb_NoOfSensors.Enabled = false;
+            this.tb_NoOfSensors.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_NoOfSensors.Location = new System.Drawing.Point(607, 332);
             this.tb_NoOfSensors.Name = "tb_NoOfSensors";
             this.tb_NoOfSensors.ReadOnly = true;
-            this.tb_NoOfSensors.Size = new System.Drawing.Size(98, 20);
+            this.tb_NoOfSensors.Size = new System.Drawing.Size(98, 22);
             this.tb_NoOfSensors.TabIndex = 83;
             this.tb_NoOfSensors.TextChanged += new System.EventHandler(this.tb_NoOfSensors_TextChanged);
             // 
             // tb_LogType
             // 
+            this.tb_LogType.Enabled = false;
+            this.tb_LogType.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_LogType.Location = new System.Drawing.Point(607, 308);
             this.tb_LogType.Name = "tb_LogType";
             this.tb_LogType.ReadOnly = true;
-            this.tb_LogType.Size = new System.Drawing.Size(98, 20);
+            this.tb_LogType.Size = new System.Drawing.Size(98, 22);
             this.tb_LogType.TabIndex = 84;
             this.tb_LogType.TextChanged += new System.EventHandler(this.tb_LogType_TextChanged);
             // 
             // tb_Assign
             // 
+            this.tb_Assign.Enabled = false;
+            this.tb_Assign.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_Assign.Location = new System.Drawing.Point(843, 333);
             this.tb_Assign.Name = "tb_Assign";
             this.tb_Assign.ReadOnly = true;
-            this.tb_Assign.Size = new System.Drawing.Size(98, 20);
+            this.tb_Assign.Size = new System.Drawing.Size(98, 22);
             this.tb_Assign.TabIndex = 85;
             // 
             // tb_Interval
             // 
+            this.tb_Interval.Enabled = false;
+            this.tb_Interval.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_Interval.Location = new System.Drawing.Point(843, 307);
             this.tb_Interval.Name = "tb_Interval";
             this.tb_Interval.ReadOnly = true;
-            this.tb_Interval.Size = new System.Drawing.Size(98, 20);
+            this.tb_Interval.Size = new System.Drawing.Size(98, 22);
             this.tb_Interval.TabIndex = 86;
             // 
             // bt_Close
@@ -533,67 +570,76 @@
             // 
             this.cmb_LoggerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmb_LoggerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmb_LoggerName.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.cmb_LoggerName.FormattingEnabled = true;
             this.cmb_LoggerName.Location = new System.Drawing.Point(126, 305);
             this.cmb_LoggerName.Name = "cmb_LoggerName";
-            this.cmb_LoggerName.Size = new System.Drawing.Size(121, 21);
+            this.cmb_LoggerName.Size = new System.Drawing.Size(121, 29);
             this.cmb_LoggerName.TabIndex = 93;
             this.cmb_LoggerName.TextChanged += new System.EventHandler(this.cmb_LoggerName_TextChanged);
             // 
             // tb_HS4_LL
             // 
+            this.tb_HS4_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS4_LL.Location = new System.Drawing.Point(17, 121);
             this.tb_HS4_LL.Name = "tb_HS4_LL";
-            this.tb_HS4_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS4_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS4_LL.TabIndex = 104;
             // 
             // tb_HS4_UL
             // 
+            this.tb_HS4_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS4_UL.Location = new System.Drawing.Point(103, 121);
             this.tb_HS4_UL.Name = "tb_HS4_UL";
-            this.tb_HS4_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS4_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS4_UL.TabIndex = 103;
             // 
             // tb_HS3_LL
             // 
+            this.tb_HS3_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS3_LL.Location = new System.Drawing.Point(17, 95);
             this.tb_HS3_LL.Name = "tb_HS3_LL";
-            this.tb_HS3_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS3_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS3_LL.TabIndex = 102;
             // 
             // tb_HS3_UL
             // 
+            this.tb_HS3_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS3_UL.Location = new System.Drawing.Point(103, 95);
             this.tb_HS3_UL.Name = "tb_HS3_UL";
-            this.tb_HS3_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS3_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS3_UL.TabIndex = 101;
             // 
             // tb_HS2_LL
             // 
+            this.tb_HS2_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS2_LL.Location = new System.Drawing.Point(17, 69);
             this.tb_HS2_LL.Name = "tb_HS2_LL";
-            this.tb_HS2_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS2_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS2_LL.TabIndex = 100;
             // 
             // tb_HS2_UL
             // 
+            this.tb_HS2_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS2_UL.Location = new System.Drawing.Point(103, 69);
             this.tb_HS2_UL.Name = "tb_HS2_UL";
-            this.tb_HS2_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS2_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS2_UL.TabIndex = 99;
             // 
             // tb_HS1_LL
             // 
+            this.tb_HS1_LL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS1_LL.Location = new System.Drawing.Point(17, 43);
             this.tb_HS1_LL.Name = "tb_HS1_LL";
-            this.tb_HS1_LL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS1_LL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS1_LL.TabIndex = 98;
             // 
             // tb_HS1_UL
             // 
+            this.tb_HS1_UL.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS1_UL.Location = new System.Drawing.Point(103, 43);
             this.tb_HS1_UL.Name = "tb_HS1_UL";
-            this.tb_HS1_UL.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS1_UL.Size = new System.Drawing.Size(64, 22);
             this.tb_HS1_UL.TabIndex = 97;
             // 
             // lb_H_LowThreshold
@@ -618,30 +664,34 @@
             // 
             // tb_HS4_Calibrate
             // 
+            this.tb_HS4_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS4_Calibrate.Location = new System.Drawing.Point(108, 121);
             this.tb_HS4_Calibrate.Name = "tb_HS4_Calibrate";
-            this.tb_HS4_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS4_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_HS4_Calibrate.TabIndex = 109;
             // 
             // tb_HS3_Calibrate
             // 
+            this.tb_HS3_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS3_Calibrate.Location = new System.Drawing.Point(108, 95);
             this.tb_HS3_Calibrate.Name = "tb_HS3_Calibrate";
-            this.tb_HS3_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS3_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_HS3_Calibrate.TabIndex = 108;
             // 
             // tb_HS2_Calibrate
             // 
+            this.tb_HS2_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS2_Calibrate.Location = new System.Drawing.Point(108, 69);
             this.tb_HS2_Calibrate.Name = "tb_HS2_Calibrate";
-            this.tb_HS2_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS2_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_HS2_Calibrate.TabIndex = 107;
             // 
             // tb_HS1_Calibrate
             // 
+            this.tb_HS1_Calibrate.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_HS1_Calibrate.Location = new System.Drawing.Point(108, 43);
             this.tb_HS1_Calibrate.Name = "tb_HS1_Calibrate";
-            this.tb_HS1_Calibrate.Size = new System.Drawing.Size(64, 20);
+            this.tb_HS1_Calibrate.Size = new System.Drawing.Size(64, 22);
             this.tb_HS1_Calibrate.TabIndex = 106;
             // 
             // lb_Humi_Calibrate
@@ -665,9 +715,10 @@
             // 
             // tb_Search
             // 
+            this.tb_Search.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_Search.Location = new System.Drawing.Point(741, 83);
             this.tb_Search.Name = "tb_Search";
-            this.tb_Search.Size = new System.Drawing.Size(205, 20);
+            this.tb_Search.Size = new System.Drawing.Size(205, 22);
             this.tb_Search.TabIndex = 113;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
@@ -717,10 +768,12 @@
             // 
             // tb_SyncStatus
             // 
+            this.tb_SyncStatus.Enabled = false;
+            this.tb_SyncStatus.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.tb_SyncStatus.Location = new System.Drawing.Point(126, 338);
             this.tb_SyncStatus.Name = "tb_SyncStatus";
             this.tb_SyncStatus.ReadOnly = true;
-            this.tb_SyncStatus.Size = new System.Drawing.Size(121, 20);
+            this.tb_SyncStatus.Size = new System.Drawing.Size(121, 22);
             this.tb_SyncStatus.TabIndex = 118;
             // 
             // lb_Sync
@@ -874,7 +927,7 @@
             // 
             this.lb_Title.AutoSize = true;
             this.lb_Title.Font = new System.Drawing.Font("Comfortaa", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Title.Location = new System.Drawing.Point(310, 13);
+            this.lb_Title.Location = new System.Drawing.Point(310, 15);
             this.lb_Title.Name = "lb_Title";
             this.lb_Title.Size = new System.Drawing.Size(346, 39);
             this.lb_Title.TabIndex = 124;

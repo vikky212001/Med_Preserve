@@ -452,5 +452,10 @@ namespace Med_Preserve.Forms
                 dgv_LoggerMaster.DataSource = dva.ToTable();
             }
         }
+
+        private void rb_humidity_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

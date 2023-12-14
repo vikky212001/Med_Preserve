@@ -184,5 +184,12 @@ namespace Med_Preserve.Forms
             deletedUser.Show();
         }
 
+        private void Home_Load(object sender, EventArgs e)
+        {
+            p_UserManagement.Visible = false;
+            p_Reports.Visible = false;
+            p_DataManagement.Visible = false;
+            p_Devices.Visible = false;
+        }
     }
 }
