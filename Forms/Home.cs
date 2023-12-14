@@ -30,7 +30,15 @@ namespace Med_Preserve.Forms
             }
         }
 
-        private void userMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        public string SelectedComPort
+        {
+            get
+            {
+                return cmb_COMPort.SelectedItem?.ToString();
+            }
+        }
+
+        private void bt_UserMaster_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
             {
@@ -44,7 +52,125 @@ namespace Med_Preserve.Forms
             userMaster.Show();
         }
 
-        private void deletedUserToolStripMenuItem_Click(object sender, EventArgs e)
+        private void bt_CompanyMaster_Click(object sender, EventArgs e)
+        {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
+            CompanyMaster companyMaster = new CompanyMaster();
+            companyMaster.TopLevel = false;
+            companyMaster.Parent = p_MainScreen;
+            companyMaster.Dock = DockStyle.Fill;
+            currentForm = companyMaster;
+            companyMaster.Show();
+        }
+
+        private void bt_ChangePassword_Click(object sender, EventArgs e)
+        {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
+            ChangePassword changePassword = new ChangePassword();
+            changePassword.TopLevel = false;
+            changePassword.Parent = p_MainScreen;
+            changePassword.Dock = DockStyle.Fill;
+            currentForm = changePassword;
+            changePassword.Show();
+        }
+
+        private void bt_LoggerMaster_Click(object sender, EventArgs e)
+        {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
+            LoggerMaster loggerMaster = new LoggerMaster();
+            loggerMaster.TopLevel = false;  
+            loggerMaster.Parent = p_MainScreen;
+            loggerMaster.Dock = DockStyle.Fill;
+            currentForm = loggerMaster;
+            loggerMaster.Show();
+        }
+
+        private void bt_LoggerConfig_Click(object sender, EventArgs e)
+        {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
+            LoggerConfig loggerConfig = new LoggerConfig(SelectedComPort);
+            loggerConfig.TopLevel = false;
+            loggerConfig.Parent = p_MainScreen;
+            loggerConfig.Dock = DockStyle.Fill;
+            currentForm = loggerConfig;
+            loggerConfig.Show();
+        }
+
+        private void bt_RealTimeData_Click(object sender, EventArgs e)
+        {
+            if (currentForm != null)
+            {
+                currentForm.Close();
+            }
+            LiveReading liveReading = new LiveReading(SelectedComPort);
+            liveReading.TopLevel = false;
+            liveReading.Parent = p_MainScreen;
+            liveReading.Dock = DockStyle.Fill;
+            currentForm = liveReading;
+            liveReading.Show();
+        }
+
+        private void bt_UserManagement_Click(object sender, EventArgs e)
+        {
+            if (p_UserManagement.Visible)
+            {
+                p_UserManagement.Visible = false;
+            }
+            else if (!p_UserManagement.Visible)
+            {
+                p_UserManagement.Visible = true;
+            }
+        }
+
+        private void bt_Devices_Click(object sender, EventArgs e)
+        {
+            if (p_Devices.Visible)
+            {
+                p_Devices.Visible = false;
+            }
+            else if (!p_Devices.Visible)
+            {
+                p_Devices.Visible = true;
+            }
+        }
+
+        private void bt_DataManagement_Click(object sender, EventArgs e)
+        {
+            if (p_DataManagement.Visible)
+            {
+                p_DataManagement.Visible = false;
+            }
+            else if (!p_DataManagement.Visible)
+            {
+                p_DataManagement.Visible = true;
+            }
+        }
+
+        private void bt_Reports_Click(object sender, EventArgs e)
+        {
+            if (p_Reports.Visible)
+            {
+                p_Reports.Visible = false;
+            }
+            else if (!p_Reports.Visible)
+            {
+                p_Reports.Visible = true;
+            }
+        }
+
+        private void bt_DeletedUser_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
             {
@@ -58,43 +184,5 @@ namespace Med_Preserve.Forms
             deletedUser.Show();
         }
 
-        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ChangePassword changePassword = new ChangePassword();
-            changePassword.ShowDialog();
-        }
-
-        private void companyMasterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            CompanyMaster companyMaster = new CompanyMaster();
-            companyMaster.ShowDialog();
-        }
-
-        private void loggerMasterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoggerMaster loggerMaster = new LoggerMaster();
-            loggerMaster.ShowDialog();
-        }
-
-        private void loggerConfigToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoggerConfig loggerConfig = new LoggerConfig(SelectedComPort);
-            loggerConfig.ShowDialog();
-        }
-
-        private void liveReadingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LiveReading liveReading = new LiveReading(SelectedComPort);
-            liveReading.ShowDialog();
-        }
-
-        public string SelectedComPort
-        {
-            get
-            {
-                return cmb_COMPort.SelectedItem?.ToString();
-            }
-        }
     }
 }

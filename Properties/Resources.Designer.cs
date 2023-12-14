@@ -73,6 +73,16 @@ namespace Med_Preserve.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Banner {
+            get {
+                object obj = ResourceManager.GetObject("Banner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Change_Password {
             get {
                 object obj = ResourceManager.GetObject("Change Password", resourceCulture);
@@ -113,9 +123,29 @@ namespace Med_Preserve.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_user {
+            get {
+                object obj = ResourceManager.GetObject("delete-user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Device_Management {
             get {
                 object obj = ResourceManager.GetObject("Device Management", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Health_in_Harmony {
+            get {
+                object obj = ResourceManager.GetObject("Health in Harmony", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +186,16 @@ namespace Med_Preserve.Properties {
         internal static System.Drawing.Bitmap Login_Report {
             get {
                 object obj = ResourceManager.GetObject("Login Report", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MED_Preserve_T {
+            get {
+                object obj = ResourceManager.GetObject("MED-Preserve_T", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

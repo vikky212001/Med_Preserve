@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 193);
+            this.ClientSize = new System.Drawing.Size(950, 594);
             this.Controls.Add(this.bt_Cancel);
             this.Controls.Add(this.bt_ChangePass);
             this.Controls.Add(this.lb_ConPass);

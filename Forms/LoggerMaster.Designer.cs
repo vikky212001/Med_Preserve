@@ -390,7 +390,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 414);
+            this.ClientSize = new System.Drawing.Size(950, 594);
             this.Controls.Add(this.tb_Search);
             this.Controls.Add(this.lb_Search);
             this.Controls.Add(this.cmb_IntervalType);

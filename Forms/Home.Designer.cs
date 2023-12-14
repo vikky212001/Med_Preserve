@@ -29,38 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletedUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loggerMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loggerConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.liveDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.liveReadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doenloadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loggerReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.auditReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.p_MenuPanel = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.p_Reports = new System.Windows.Forms.Panel();
             this.bt_AuditReport = new System.Windows.Forms.Button();
             this.bt_LoggerReport = new System.Windows.Forms.Button();
             this.bt_LoginReport = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bt_Reports = new System.Windows.Forms.Button();
+            this.p_DataManagement = new System.Windows.Forms.Panel();
+            this.bt_DownloadData = new System.Windows.Forms.Button();
+            this.bt_RealTimeData = new System.Windows.Forms.Button();
+            this.bt_DataManagement = new System.Windows.Forms.Button();
+            this.p_Devices = new System.Windows.Forms.Panel();
+            this.bt_LoggerConfig = new System.Windows.Forms.Button();
+            this.bt_LoggerMaster = new System.Windows.Forms.Button();
             this.bt_Devices = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.p_UserManagement = new System.Windows.Forms.Panel();
+            this.bt_DeletedUser = new System.Windows.Forms.Button();
             this.bt_ChangePassword = new System.Windows.Forms.Button();
             this.bt_CompanyMaster = new System.Windows.Forms.Button();
             this.bt_UserMaster = new System.Windows.Forms.Button();
@@ -69,149 +54,22 @@
             this.p_RightPanel = new System.Windows.Forms.Panel();
             this.lb_COM = new System.Windows.Forms.Label();
             this.cmb_COMPort = new System.Windows.Forms.ComboBox();
-            this.p_Title = new System.Windows.Forms.Panel();
-            this.lb_Title = new System.Windows.Forms.Label();
-            this.p_MainScreen = new System.Windows.Forms.Panel();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.menuStrip1.SuspendLayout();
+            this.p_MainScreen = new System.Windows.Forms.Panel();
+            this.p_Title = new System.Windows.Forms.Panel();
             this.p_MenuPanel.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.p_Reports.SuspendLayout();
+            this.p_DataManagement.SuspendLayout();
+            this.p_Devices.SuspendLayout();
+            this.p_UserManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet1)).BeginInit();
             this.p_RightPanel.SuspendLayout();
-            this.p_Title.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.masterToolStripMenuItem,
-            this.devicesToolStripMenuItem,
-            this.liveDataToolStripMenuItem,
-            this.reportToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(938, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // masterToolStripMenuItem
-            // 
-            this.masterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userMasterToolStripMenuItem,
-            this.changePasswordToolStripMenuItem,
-            this.deletedUserToolStripMenuItem,
-            this.companyMasterToolStripMenuItem});
-            this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
-            this.masterToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.masterToolStripMenuItem.Text = "Master";
-            // 
-            // userMasterToolStripMenuItem
-            // 
-            this.userMasterToolStripMenuItem.Name = "userMasterToolStripMenuItem";
-            this.userMasterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.userMasterToolStripMenuItem.Text = "User Master";
-            this.userMasterToolStripMenuItem.Click += new System.EventHandler(this.userMasterToolStripMenuItem_Click);
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // deletedUserToolStripMenuItem
-            // 
-            this.deletedUserToolStripMenuItem.Name = "deletedUserToolStripMenuItem";
-            this.deletedUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.deletedUserToolStripMenuItem.Text = "Deleted User";
-            this.deletedUserToolStripMenuItem.Click += new System.EventHandler(this.deletedUserToolStripMenuItem_Click);
-            // 
-            // companyMasterToolStripMenuItem
-            // 
-            this.companyMasterToolStripMenuItem.Name = "companyMasterToolStripMenuItem";
-            this.companyMasterToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.companyMasterToolStripMenuItem.Text = "Company Master";
-            this.companyMasterToolStripMenuItem.Click += new System.EventHandler(this.companyMasterToolStripMenuItem_Click);
-            // 
-            // devicesToolStripMenuItem
-            // 
-            this.devicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loggerMasterToolStripMenuItem,
-            this.loggerConfigToolStripMenuItem});
-            this.devicesToolStripMenuItem.Name = "devicesToolStripMenuItem";
-            this.devicesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.devicesToolStripMenuItem.Text = "Devices";
-            // 
-            // loggerMasterToolStripMenuItem
-            // 
-            this.loggerMasterToolStripMenuItem.Name = "loggerMasterToolStripMenuItem";
-            this.loggerMasterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.loggerMasterToolStripMenuItem.Text = "Logger Master";
-            this.loggerMasterToolStripMenuItem.Click += new System.EventHandler(this.loggerMasterToolStripMenuItem_Click);
-            // 
-            // loggerConfigToolStripMenuItem
-            // 
-            this.loggerConfigToolStripMenuItem.Name = "loggerConfigToolStripMenuItem";
-            this.loggerConfigToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.loggerConfigToolStripMenuItem.Text = "Logger Config";
-            this.loggerConfigToolStripMenuItem.Click += new System.EventHandler(this.loggerConfigToolStripMenuItem_Click);
-            // 
-            // liveDataToolStripMenuItem
-            // 
-            this.liveDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.liveReadingToolStripMenuItem,
-            this.doenloadDataToolStripMenuItem});
-            this.liveDataToolStripMenuItem.Name = "liveDataToolStripMenuItem";
-            this.liveDataToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.liveDataToolStripMenuItem.Text = "Readings";
-            // 
-            // liveReadingToolStripMenuItem
-            // 
-            this.liveReadingToolStripMenuItem.Name = "liveReadingToolStripMenuItem";
-            this.liveReadingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.liveReadingToolStripMenuItem.Text = "Live Reading";
-            this.liveReadingToolStripMenuItem.Click += new System.EventHandler(this.liveReadingToolStripMenuItem_Click);
-            // 
-            // doenloadDataToolStripMenuItem
-            // 
-            this.doenloadDataToolStripMenuItem.Name = "doenloadDataToolStripMenuItem";
-            this.doenloadDataToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.doenloadDataToolStripMenuItem.Text = "Download Data";
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginReportToolStripMenuItem,
-            this.loggerReportToolStripMenuItem,
-            this.auditReportToolStripMenuItem});
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.reportToolStripMenuItem.Text = "Report";
-            // 
-            // loginReportToolStripMenuItem
-            // 
-            this.loginReportToolStripMenuItem.Name = "loginReportToolStripMenuItem";
-            this.loginReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.loginReportToolStripMenuItem.Text = "Login Report";
-            // 
-            // loggerReportToolStripMenuItem
-            // 
-            this.loggerReportToolStripMenuItem.Name = "loggerReportToolStripMenuItem";
-            this.loggerReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.loggerReportToolStripMenuItem.Text = "Logger Report";
-            // 
-            // auditReportToolStripMenuItem
-            // 
-            this.auditReportToolStripMenuItem.Name = "auditReportToolStripMenuItem";
-            this.auditReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.auditReportToolStripMenuItem.Text = "Audit Report";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 683);
+            this.statusStrip1.BackColor = System.Drawing.Color.White;
+            this.statusStrip1.Location = new System.Drawing.Point(0, 727);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(938, 22);
             this.statusStrip1.TabIndex = 2;
@@ -221,31 +79,31 @@
             // 
             this.p_MenuPanel.AutoScroll = true;
             this.p_MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(217)))), ((int)(((byte)(85)))));
-            this.p_MenuPanel.Controls.Add(this.panel4);
-            this.p_MenuPanel.Controls.Add(this.button3);
-            this.p_MenuPanel.Controls.Add(this.panel3);
-            this.p_MenuPanel.Controls.Add(this.button10);
-            this.p_MenuPanel.Controls.Add(this.panel2);
+            this.p_MenuPanel.Controls.Add(this.p_Reports);
+            this.p_MenuPanel.Controls.Add(this.bt_Reports);
+            this.p_MenuPanel.Controls.Add(this.p_DataManagement);
+            this.p_MenuPanel.Controls.Add(this.bt_DataManagement);
+            this.p_MenuPanel.Controls.Add(this.p_Devices);
             this.p_MenuPanel.Controls.Add(this.bt_Devices);
-            this.p_MenuPanel.Controls.Add(this.panel1);
+            this.p_MenuPanel.Controls.Add(this.p_UserManagement);
             this.p_MenuPanel.Controls.Add(this.bt_UserManagement);
             this.p_MenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.p_MenuPanel.Location = new System.Drawing.Point(0, 24);
+            this.p_MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.p_MenuPanel.Name = "p_MenuPanel";
-            this.p_MenuPanel.Size = new System.Drawing.Size(200, 659);
+            this.p_MenuPanel.Size = new System.Drawing.Size(200, 727);
             this.p_MenuPanel.TabIndex = 3;
             // 
-            // panel4
+            // p_Reports
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel4.Controls.Add(this.bt_AuditReport);
-            this.panel4.Controls.Add(this.bt_LoggerReport);
-            this.panel4.Controls.Add(this.bt_LoginReport);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 492);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 122);
-            this.panel4.TabIndex = 10;
+            this.p_Reports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_Reports.Controls.Add(this.bt_AuditReport);
+            this.p_Reports.Controls.Add(this.bt_LoggerReport);
+            this.p_Reports.Controls.Add(this.bt_LoginReport);
+            this.p_Reports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_Reports.Location = new System.Drawing.Point(0, 524);
+            this.p_Reports.Name = "p_Reports";
+            this.p_Reports.Size = new System.Drawing.Size(200, 122);
+            this.p_Reports.TabIndex = 10;
             // 
             // bt_AuditReport
             // 
@@ -298,129 +156,134 @@
             this.bt_LoginReport.Text = "Login Report";
             this.bt_LoginReport.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // bt_Reports
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::Med_Preserve.Properties.Resources.Reports;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 442);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(200, 50);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Reports";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bt_Reports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_Reports.FlatAppearance.BorderSize = 0;
+            this.bt_Reports.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_Reports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_Reports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_Reports.Image = global::Med_Preserve.Properties.Resources.Reports;
+            this.bt_Reports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_Reports.Location = new System.Drawing.Point(0, 474);
+            this.bt_Reports.Name = "bt_Reports";
+            this.bt_Reports.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.bt_Reports.Size = new System.Drawing.Size(200, 50);
+            this.bt_Reports.TabIndex = 9;
+            this.bt_Reports.Text = "Reports";
+            this.bt_Reports.UseVisualStyleBackColor = true;
+            this.bt_Reports.Click += new System.EventHandler(this.bt_Reports_Click);
             // 
-            // panel3
+            // p_DataManagement
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button9);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 361);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 81);
-            this.panel3.TabIndex = 8;
+            this.p_DataManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_DataManagement.Controls.Add(this.bt_DownloadData);
+            this.p_DataManagement.Controls.Add(this.bt_RealTimeData);
+            this.p_DataManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_DataManagement.Location = new System.Drawing.Point(0, 393);
+            this.p_DataManagement.Name = "p_DataManagement";
+            this.p_DataManagement.Size = new System.Drawing.Size(200, 81);
+            this.p_DataManagement.TabIndex = 8;
             // 
-            // button8
+            // bt_DownloadData
             // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = global::Med_Preserve.Properties.Resources.Data_Download;
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(0, 40);
-            this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button8.Size = new System.Drawing.Size(200, 40);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Download Data";
-            this.button8.UseVisualStyleBackColor = true;
+            this.bt_DownloadData.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_DownloadData.FlatAppearance.BorderSize = 0;
+            this.bt_DownloadData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_DownloadData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_DownloadData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_DownloadData.Image = global::Med_Preserve.Properties.Resources.Data_Download;
+            this.bt_DownloadData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_DownloadData.Location = new System.Drawing.Point(0, 40);
+            this.bt_DownloadData.Name = "bt_DownloadData";
+            this.bt_DownloadData.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.bt_DownloadData.Size = new System.Drawing.Size(200, 40);
+            this.bt_DownloadData.TabIndex = 5;
+            this.bt_DownloadData.Text = "Download Data";
+            this.bt_DownloadData.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // bt_RealTimeData
             // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = global::Med_Preserve.Properties.Resources.Real_Time_Data;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(0, 0);
-            this.button9.Name = "button9";
-            this.button9.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button9.Size = new System.Drawing.Size(200, 40);
-            this.button9.TabIndex = 4;
-            this.button9.Text = "Real-time Data";
-            this.button9.UseVisualStyleBackColor = true;
+            this.bt_RealTimeData.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_RealTimeData.FlatAppearance.BorderSize = 0;
+            this.bt_RealTimeData.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_RealTimeData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_RealTimeData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_RealTimeData.Image = global::Med_Preserve.Properties.Resources.Real_Time_Data;
+            this.bt_RealTimeData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_RealTimeData.Location = new System.Drawing.Point(0, 0);
+            this.bt_RealTimeData.Name = "bt_RealTimeData";
+            this.bt_RealTimeData.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.bt_RealTimeData.Size = new System.Drawing.Size(200, 40);
+            this.bt_RealTimeData.TabIndex = 4;
+            this.bt_RealTimeData.Text = "Real-time Data";
+            this.bt_RealTimeData.UseVisualStyleBackColor = true;
+            this.bt_RealTimeData.Click += new System.EventHandler(this.bt_RealTimeData_Click);
             // 
-            // button10
+            // bt_DataManagement
             // 
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Image = global::Med_Preserve.Properties.Resources.Data_Management;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(0, 311);
-            this.button10.Name = "button10";
-            this.button10.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.button10.Size = new System.Drawing.Size(200, 50);
-            this.button10.TabIndex = 7;
-            this.button10.Text = "Data Management";
-            this.button10.UseVisualStyleBackColor = true;
+            this.bt_DataManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_DataManagement.FlatAppearance.BorderSize = 0;
+            this.bt_DataManagement.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_DataManagement.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_DataManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_DataManagement.Image = global::Med_Preserve.Properties.Resources.Data_Management;
+            this.bt_DataManagement.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_DataManagement.Location = new System.Drawing.Point(0, 343);
+            this.bt_DataManagement.Name = "bt_DataManagement";
+            this.bt_DataManagement.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.bt_DataManagement.Size = new System.Drawing.Size(200, 50);
+            this.bt_DataManagement.TabIndex = 7;
+            this.bt_DataManagement.Text = "Data Management";
+            this.bt_DataManagement.UseVisualStyleBackColor = true;
+            this.bt_DataManagement.Click += new System.EventHandler(this.bt_DataManagement_Click);
             // 
-            // panel2
+            // p_Devices
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 229);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 82);
-            this.panel2.TabIndex = 6;
+            this.p_Devices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_Devices.Controls.Add(this.bt_LoggerConfig);
+            this.p_Devices.Controls.Add(this.bt_LoggerMaster);
+            this.p_Devices.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_Devices.Location = new System.Drawing.Point(0, 261);
+            this.p_Devices.Name = "p_Devices";
+            this.p_Devices.Size = new System.Drawing.Size(200, 82);
+            this.p_Devices.TabIndex = 6;
             // 
-            // button7
+            // bt_LoggerConfig
             // 
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Image = global::Med_Preserve.Properties.Resources.Logger_Config;
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(0, 40);
-            this.button7.Name = "button7";
-            this.button7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button7.Size = new System.Drawing.Size(200, 40);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Logger Config";
-            this.button7.UseVisualStyleBackColor = true;
+            this.bt_LoggerConfig.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_LoggerConfig.FlatAppearance.BorderSize = 0;
+            this.bt_LoggerConfig.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_LoggerConfig.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_LoggerConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_LoggerConfig.Image = global::Med_Preserve.Properties.Resources.Logger_Config;
+            this.bt_LoggerConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_LoggerConfig.Location = new System.Drawing.Point(0, 40);
+            this.bt_LoggerConfig.Name = "bt_LoggerConfig";
+            this.bt_LoggerConfig.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.bt_LoggerConfig.Size = new System.Drawing.Size(200, 40);
+            this.bt_LoggerConfig.TabIndex = 5;
+            this.bt_LoggerConfig.Text = "Logger Config";
+            this.bt_LoggerConfig.UseVisualStyleBackColor = true;
+            this.bt_LoggerConfig.Click += new System.EventHandler(this.bt_LoggerConfig_Click);
             // 
-            // button6
+            // bt_LoggerMaster
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Image = global::Med_Preserve.Properties.Resources.Logger_Master;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(200, 40);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Logger Master";
-            this.button6.UseVisualStyleBackColor = true;
+            this.bt_LoggerMaster.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_LoggerMaster.FlatAppearance.BorderSize = 0;
+            this.bt_LoggerMaster.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_LoggerMaster.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_LoggerMaster.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_LoggerMaster.Image = global::Med_Preserve.Properties.Resources.Logger_Master;
+            this.bt_LoggerMaster.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_LoggerMaster.Location = new System.Drawing.Point(0, 0);
+            this.bt_LoggerMaster.Name = "bt_LoggerMaster";
+            this.bt_LoggerMaster.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.bt_LoggerMaster.Size = new System.Drawing.Size(200, 40);
+            this.bt_LoggerMaster.TabIndex = 4;
+            this.bt_LoggerMaster.Text = "Logger Master";
+            this.bt_LoggerMaster.UseVisualStyleBackColor = true;
+            this.bt_LoggerMaster.Click += new System.EventHandler(this.bt_LoggerMaster_Click);
             // 
             // bt_Devices
             // 
@@ -431,25 +294,45 @@
             this.bt_Devices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_Devices.Image = global::Med_Preserve.Properties.Resources.Device_Management;
             this.bt_Devices.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_Devices.Location = new System.Drawing.Point(0, 179);
+            this.bt_Devices.Location = new System.Drawing.Point(0, 211);
             this.bt_Devices.Name = "bt_Devices";
             this.bt_Devices.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.bt_Devices.Size = new System.Drawing.Size(200, 50);
             this.bt_Devices.TabIndex = 5;
             this.bt_Devices.Text = "Devices Management";
             this.bt_Devices.UseVisualStyleBackColor = true;
+            this.bt_Devices.Click += new System.EventHandler(this.bt_Devices_Click);
             // 
-            // panel1
+            // p_UserManagement
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel1.Controls.Add(this.bt_ChangePassword);
-            this.panel1.Controls.Add(this.bt_CompanyMaster);
-            this.panel1.Controls.Add(this.bt_UserMaster);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 129);
-            this.panel1.TabIndex = 4;
+            this.p_UserManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_UserManagement.Controls.Add(this.bt_DeletedUser);
+            this.p_UserManagement.Controls.Add(this.bt_ChangePassword);
+            this.p_UserManagement.Controls.Add(this.bt_CompanyMaster);
+            this.p_UserManagement.Controls.Add(this.bt_UserMaster);
+            this.p_UserManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_UserManagement.Location = new System.Drawing.Point(0, 50);
+            this.p_UserManagement.Name = "p_UserManagement";
+            this.p_UserManagement.Size = new System.Drawing.Size(200, 161);
+            this.p_UserManagement.TabIndex = 4;
+            // 
+            // bt_DeletedUser
+            // 
+            this.bt_DeletedUser.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bt_DeletedUser.FlatAppearance.BorderSize = 0;
+            this.bt_DeletedUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_DeletedUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.bt_DeletedUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_DeletedUser.Image = global::Med_Preserve.Properties.Resources.delete_user;
+            this.bt_DeletedUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_DeletedUser.Location = new System.Drawing.Point(0, 120);
+            this.bt_DeletedUser.Name = "bt_DeletedUser";
+            this.bt_DeletedUser.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.bt_DeletedUser.Size = new System.Drawing.Size(200, 40);
+            this.bt_DeletedUser.TabIndex = 4;
+            this.bt_DeletedUser.Text = "Deleted User";
+            this.bt_DeletedUser.UseVisualStyleBackColor = true;
+            this.bt_DeletedUser.Click += new System.EventHandler(this.bt_DeletedUser_Click);
             // 
             // bt_ChangePassword
             // 
@@ -467,6 +350,7 @@
             this.bt_ChangePassword.TabIndex = 3;
             this.bt_ChangePassword.Text = "Change Password";
             this.bt_ChangePassword.UseVisualStyleBackColor = true;
+            this.bt_ChangePassword.Click += new System.EventHandler(this.bt_ChangePassword_Click);
             // 
             // bt_CompanyMaster
             // 
@@ -484,6 +368,7 @@
             this.bt_CompanyMaster.TabIndex = 2;
             this.bt_CompanyMaster.Text = "Company Master";
             this.bt_CompanyMaster.UseVisualStyleBackColor = true;
+            this.bt_CompanyMaster.Click += new System.EventHandler(this.bt_CompanyMaster_Click);
             // 
             // bt_UserMaster
             // 
@@ -501,6 +386,7 @@
             this.bt_UserMaster.TabIndex = 1;
             this.bt_UserMaster.Text = "User Master";
             this.bt_UserMaster.UseVisualStyleBackColor = true;
+            this.bt_UserMaster.Click += new System.EventHandler(this.bt_UserMaster_Click);
             // 
             // bt_UserManagement
             // 
@@ -518,6 +404,7 @@
             this.bt_UserManagement.TabIndex = 0;
             this.bt_UserManagement.Text = "User Management";
             this.bt_UserManagement.UseVisualStyleBackColor = true;
+            this.bt_UserManagement.Click += new System.EventHandler(this.bt_UserManagement_Click);
             // 
             // med_PreserveDataSet1
             // 
@@ -530,9 +417,9 @@
             this.p_RightPanel.Controls.Add(this.lb_COM);
             this.p_RightPanel.Controls.Add(this.cmb_COMPort);
             this.p_RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.p_RightPanel.Location = new System.Drawing.Point(738, 24);
+            this.p_RightPanel.Location = new System.Drawing.Point(738, 0);
             this.p_RightPanel.Name = "p_RightPanel";
-            this.p_RightPanel.Size = new System.Drawing.Size(200, 659);
+            this.p_RightPanel.Size = new System.Drawing.Size(200, 727);
             this.p_RightPanel.TabIndex = 4;
             // 
             // lb_COM
@@ -552,108 +439,81 @@
             this.cmb_COMPort.Size = new System.Drawing.Size(121, 21);
             this.cmb_COMPort.TabIndex = 0;
             // 
+            // p_MainScreen
+            // 
+            this.p_MainScreen.BackColor = System.Drawing.Color.White;
+            this.p_MainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p_MainScreen.Location = new System.Drawing.Point(200, 90);
+            this.p_MainScreen.Name = "p_MainScreen";
+            this.p_MainScreen.Size = new System.Drawing.Size(538, 637);
+            this.p_MainScreen.TabIndex = 6;
+            // 
             // p_Title
             // 
             this.p_Title.BackColor = System.Drawing.Color.White;
-            this.p_Title.Controls.Add(this.lb_Title);
+            this.p_Title.BackgroundImage = global::Med_Preserve.Properties.Resources.Banner;
+            this.p_Title.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.p_Title.Dock = System.Windows.Forms.DockStyle.Top;
-            this.p_Title.Location = new System.Drawing.Point(200, 24);
+            this.p_Title.Location = new System.Drawing.Point(200, 0);
             this.p_Title.Name = "p_Title";
-            this.p_Title.Size = new System.Drawing.Size(538, 100);
+            this.p_Title.Size = new System.Drawing.Size(538, 90);
             this.p_Title.TabIndex = 5;
-            // 
-            // lb_Title
-            // 
-            this.lb_Title.AutoSize = true;
-            this.lb_Title.Location = new System.Drawing.Point(252, 44);
-            this.lb_Title.Name = "lb_Title";
-            this.lb_Title.Size = new System.Drawing.Size(0, 13);
-            this.lb_Title.TabIndex = 0;
-            // 
-            // p_MainScreen
-            // 
-            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_MainScreen.Location = new System.Drawing.Point(200, 124);
-            this.p_MainScreen.Name = "p_MainScreen";
-            this.p_MainScreen.Size = new System.Drawing.Size(538, 559);
-            this.p_MainScreen.TabIndex = 6;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 705);
+            this.ClientSize = new System.Drawing.Size(938, 749);
             this.Controls.Add(this.p_MainScreen);
             this.Controls.Add(this.p_Title);
             this.Controls.Add(this.p_RightPanel);
             this.Controls.Add(this.p_MenuPanel);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
             this.Name = "Home";
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.p_MenuPanel.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.p_Reports.ResumeLayout(false);
+            this.p_DataManagement.ResumeLayout(false);
+            this.p_Devices.ResumeLayout(false);
+            this.p_UserManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.med_PreserveDataSet1)).EndInit();
             this.p_RightPanel.ResumeLayout(false);
             this.p_RightPanel.PerformLayout();
-            this.p_Title.ResumeLayout(false);
-            this.p_Title.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem userMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loggerReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem liveDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deletedUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem liveReadingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem doenloadDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem auditReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem companyMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem devicesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loggerMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loggerConfigToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel p_MenuPanel;
         private Med_PreserveDataSet med_PreserveDataSet1;
         private System.Windows.Forms.Button bt_UserManagement;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel p_UserManagement;
         private System.Windows.Forms.Button bt_UserMaster;
         private System.Windows.Forms.Button bt_CompanyMaster;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel p_DataManagement;
+        private System.Windows.Forms.Button bt_DownloadData;
+        private System.Windows.Forms.Button bt_RealTimeData;
+        private System.Windows.Forms.Button bt_DataManagement;
+        private System.Windows.Forms.Panel p_Devices;
+        private System.Windows.Forms.Button bt_LoggerConfig;
+        private System.Windows.Forms.Button bt_LoggerMaster;
         private System.Windows.Forms.Button bt_Devices;
         private System.Windows.Forms.Button bt_ChangePassword;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel p_Reports;
         private System.Windows.Forms.Button bt_LoggerReport;
         private System.Windows.Forms.Button bt_LoginReport;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button bt_Reports;
         private System.Windows.Forms.Button bt_AuditReport;
         private System.Windows.Forms.Panel p_RightPanel;
         private System.Windows.Forms.Panel p_Title;
-        private System.Windows.Forms.Panel p_MainScreen;
-        private System.Windows.Forms.Label lb_Title;
         private System.Windows.Forms.Label lb_COM;
         private System.Windows.Forms.ComboBox cmb_COMPort;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Panel p_MainScreen;
+        private System.Windows.Forms.Button bt_DeletedUser;
     }
 }
