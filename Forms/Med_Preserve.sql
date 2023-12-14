@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Med_Preserve]    Script Date: 10/29/2023 12:46:28 AM ******/
+/****** Object:  Database [Med_Preserve]    Script Date: 12/14/2023 9:18:13 AM ******/
 CREATE DATABASE [Med_Preserve]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [Med_Preserve] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEA
 GO
 USE [Med_Preserve]
 GO
-/****** Object:  Table [dbo].[CompanyMaster]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[CompanyMaster]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -101,7 +101,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LoggerConfig]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[LoggerConfig]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -109,6 +109,7 @@ GO
 CREATE TABLE [dbo].[LoggerConfig](
 	[SrNo] [int] IDENTITY(1,1) NOT NULL,
 	[LoggerID] [int] NOT NULL,
+	[Unit] [varchar](10) NOT NULL,
 	[S1_T_Low] [numeric](5, 2) NULL,
 	[S1_T_High] [numeric](5, 2) NULL,
 	[S1_H_Low] [numeric](5, 2) NULL,
@@ -141,13 +142,14 @@ CREATE TABLE [dbo].[LoggerConfig](
 	[S2_Humi] [numeric](5, 2) NULL,
 	[S3_Humi] [numeric](5, 2) NULL,
 	[S4_Humi] [numeric](5, 2) NULL,
+	[Sync] [bit] NOT NULL,
  CONSTRAINT [PK_LoggerConfig] PRIMARY KEY CLUSTERED 
 (
 	[SrNo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[LoggerMaster]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[LoggerMaster]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,13 +168,14 @@ CREATE TABLE [dbo].[LoggerMaster](
 	[IsActive] [bit] NOT NULL,
 	[CreatedDate] [datetime] NOT NULL,
 	[IntervalType] [varchar](20) NULL,
+	[IsConfig] [bit] NOT NULL,
  CONSTRAINT [PK_LoggerMaster1] PRIMARY KEY CLUSTERED 
 (
 	[LoggerID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -186,7 +189,7 @@ CREATE TABLE [dbo].[Role](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SensorData]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[SensorData]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -209,7 +212,7 @@ CREATE TABLE [dbo].[SensorData](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserData]    Script Date: 10/29/2023 12:46:29 AM ******/
+/****** Object:  Table [dbo].[UserData]    Script Date: 12/14/2023 9:18:13 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
