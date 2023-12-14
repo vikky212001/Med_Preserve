@@ -179,7 +179,7 @@ namespace Med_Preserve.Forms
             string unit = "C";
             if (rb_farenheit.Checked)
             {
-                unit = "F"; 
+                unit = "F";
             }
 
             TextBox[] tb_Calibrate = new TextBox[]
@@ -486,13 +486,14 @@ namespace Med_Preserve.Forms
             }
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))  
                 {
                     connection.Open();
                     {
                         try
                         {
                             string unit_u = "C";
+                            bool comAvailable = false;
                             if (rb_farenheit.Checked)
                             {
                                 unit_u = "F";
@@ -548,7 +549,7 @@ namespace Med_Preserve.Forms
                                     || !AreEqual(reader["S2_H_Calibrate"], tb_HS2_Calibrate.Text)
                                     || !AreEqual(reader["S3_H_Calibrate"], tb_HS3_Calibrate.Text)
                                     || !AreEqual(reader["S4_H_Calibrate"], tb_HS4_Calibrate.Text)
-                                    || !AreEqual(reader["Unit"], unit_u )
+                                    || !AreEqual(reader["Unit"], unit_u)
                                         )
                                         {
                                             changesFound = true;
@@ -562,16 +563,28 @@ namespace Med_Preserve.Forms
                                 }
                                 if (changesFound)
                                 {
+                                    if (selectedComPort != null)
+                                    {
+                                        DialogResult result = MessageBox.Show("Do you want to Sync this data to Logger Now?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                        if (result == DialogResult.Yes)
+                                        {
+                                            comAvailable = true;
+                                            SerialWrite(unit_u);
+                                            
+                                        }
+                                    }
+
                                     string updateQuery = "UPDATE LoggerConfig " +
-                                                     "SET S1_Temp = @S1_Temp, S2_Temp = @S2_Temp, S3_Temp = @S3_Temp, S4_Temp = @S4_Temp, " +
-                                                     "S1_Humi = @S1_Humi, S2_Humi = @S2_Humi, S3_Humi = @S3_Humi, S4_Humi = @S4_Humi, " +
-                                                     "S1_T_Low = @S1_T_Low, S1_T_High = @S1_T_High, S1_H_Low = @S1_H_Low, S1_H_High = @S1_H_High, " +
-                                                     "S2_T_Low = @S2_T_Low, S2_T_High = @S2_T_High, S2_H_Low = @S2_H_Low, S2_H_High = @S2_H_High, " +
-                                                     "S3_T_Low = @S3_T_Low, S3_T_High = @S3_T_High, S3_H_Low = @S3_H_Low, S3_H_High = @S3_H_High, " +
-                                                     "S4_T_Low = @S4_T_Low, S4_T_High = @S4_T_High, S4_H_Low = @S4_H_Low, S4_H_High = @S4_H_High, " +
-                                                     "S1_T_Calibrate = @S1_T_Calibrate, S2_T_Calibrate = @S2_T_Calibrate, S3_T_Calibrate = @S3_T_Calibrate, S4_T_Calibrate = @S4_T_Calibrate, " +
-                                                     "S1_H_Calibrate = @S1_H_Calibrate, S2_H_Calibrate = @S2_H_Calibrate, S3_H_Calibrate = @S3_H_Calibrate, S4_H_Calibrate = @S4_H_Calibrate, Unit = @unit " +
-                                                     "WHERE LoggerID = @LogID";
+                                             "SET S1_Temp = @S1_Temp, S2_Temp = @S2_Temp, S3_Temp = @S3_Temp, S4_Temp = @S4_Temp, " +
+                                             "S1_Humi = @S1_Humi, S2_Humi = @S2_Humi, S3_Humi = @S3_Humi, S4_Humi = @S4_Humi, " +
+                                             "S1_T_Low = @S1_T_Low, S1_T_High = @S1_T_High, S1_H_Low = @S1_H_Low, S1_H_High = @S1_H_High, " +
+                                             "S2_T_Low = @S2_T_Low, S2_T_High = @S2_T_High, S2_H_Low = @S2_H_Low, S2_H_High = @S2_H_High, " +
+                                             "S3_T_Low = @S3_T_Low, S3_T_High = @S3_T_High, S3_H_Low = @S3_H_Low, S3_H_High = @S3_H_High, " +
+                                             "S4_T_Low = @S4_T_Low, S4_T_High = @S4_T_High, S4_H_Low = @S4_H_Low, S4_H_High = @S4_H_High, " +
+                                             "S1_T_Calibrate = @S1_T_Calibrate, S2_T_Calibrate = @S2_T_Calibrate, S3_T_Calibrate = @S3_T_Calibrate, S4_T_Calibrate = @S4_T_Calibrate, " +
+                                             "S1_H_Calibrate = @S1_H_Calibrate, S2_H_Calibrate = @S2_H_Calibrate, S3_H_Calibrate = @S3_H_Calibrate, S4_H_Calibrate = @S4_H_Calibrate, Unit = @unit, Sync = @Sync " +
+                                             "WHERE LoggerID = @LogID";
 
                                     using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                                     {
@@ -609,6 +622,7 @@ namespace Med_Preserve.Forms
                                         updateCommand.Parameters.AddWithValue("@S4_H_Calibrate", string.IsNullOrEmpty(tb_HS4_Calibrate.Text) ? DBNull.Value : (object)double.Parse(tb_HS4_Calibrate.Text));
                                         updateCommand.Parameters.AddWithValue("@LogID", int.Parse(tb_LogID.Text));
                                         updateCommand.Parameters.AddWithValue("@Unit", unit_u);
+                                        updateCommand.Parameters.AddWithValue("@Sync", comAvailable);
 
                                         int rowsAffected = updateCommand.ExecuteNonQuery();
 
@@ -829,18 +843,18 @@ namespace Med_Preserve.Forms
                                     updateCommand.Parameters.AddWithValue("@Sync", comAvailable);
                                     int rowsAffected = updateCommand.ExecuteNonQuery();
 
-                                if (rowsAffected > 0)
-                                {
-                                    MessageBox.Show("Record updated successfully.", "Success");
+                                    if (rowsAffected > 0)
+                                    {
+                                        MessageBox.Show("Record updated successfully.", "Success");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
+                                    }
                                 }
-                                else
-                                {
-                                    MessageBox.Show("Record not updated. Check your input or try again later.", "Error");
-                                }
+                                RefreshData();
+                                Clear();
                             }
-                                    RefreshData();
-                            Clear();
-                        }
                             catch (Exception ex)
                             {
                                 MessageBox.Show("An error occurred: " + ex.Message, "Error");

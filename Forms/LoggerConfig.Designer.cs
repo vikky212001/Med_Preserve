@@ -656,6 +656,7 @@
             this.tb_IsConfig.Name = "tb_IsConfig";
             this.tb_IsConfig.Size = new System.Drawing.Size(44, 20);
             this.tb_IsConfig.TabIndex = 111;
+            this.tb_IsConfig.Visible = false;
             this.tb_IsConfig.TextChanged += new System.EventHandler(this.tb_IsConfig_TextChanged);
             // 
             // tb_Search

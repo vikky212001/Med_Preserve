@@ -63,6 +63,30 @@
             this.lb_S4_Humi = new System.Windows.Forms.Label();
             this.lb_S4_Temp = new System.Windows.Forms.Label();
             this.tb_SerialPort = new System.Windows.Forms.TextBox();
+            this.tb_T1SV = new System.Windows.Forms.TextBox();
+            this.tb_T1LL = new System.Windows.Forms.TextBox();
+            this.tb_H1SV = new System.Windows.Forms.TextBox();
+            this.tb_H1LL = new System.Windows.Forms.TextBox();
+            this.tb_H1UL = new System.Windows.Forms.TextBox();
+            this.tb_T1UL = new System.Windows.Forms.TextBox();
+            this.tb_T2UL = new System.Windows.Forms.TextBox();
+            this.tb_H2UL = new System.Windows.Forms.TextBox();
+            this.tb_H2LL = new System.Windows.Forms.TextBox();
+            this.tb_H2SV = new System.Windows.Forms.TextBox();
+            this.tb_T2LL = new System.Windows.Forms.TextBox();
+            this.tb_T2SV = new System.Windows.Forms.TextBox();
+            this.tb_T3UL = new System.Windows.Forms.TextBox();
+            this.tb_H3UL = new System.Windows.Forms.TextBox();
+            this.tb_H3LL = new System.Windows.Forms.TextBox();
+            this.tb_H3SV = new System.Windows.Forms.TextBox();
+            this.tb_T3LL = new System.Windows.Forms.TextBox();
+            this.tb_T3SV = new System.Windows.Forms.TextBox();
+            this.tb_T4UL = new System.Windows.Forms.TextBox();
+            this.tb_H4UL = new System.Windows.Forms.TextBox();
+            this.tb_H4LL = new System.Windows.Forms.TextBox();
+            this.tb_H4SV = new System.Windows.Forms.TextBox();
+            this.tb_T4LL = new System.Windows.Forms.TextBox();
+            this.tb_T4SV = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ch_Humi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ch_Temp)).BeginInit();
             this.gb_S1.SuspendLayout();
@@ -78,6 +102,7 @@
             this.cmb_LogName.Name = "cmb_LogName";
             this.cmb_LogName.Size = new System.Drawing.Size(121, 21);
             this.cmb_LogName.TabIndex = 1;
+            this.cmb_LogName.TextChanged += new System.EventHandler(this.cmb_LogName_TextChanged);
             // 
             // lb_LogName
             // 
@@ -324,11 +349,227 @@
             this.tb_SerialPort.Size = new System.Drawing.Size(100, 20);
             this.tb_SerialPort.TabIndex = 18;
             // 
+            // tb_T1SV
+            // 
+            this.tb_T1SV.Location = new System.Drawing.Point(35, 40);
+            this.tb_T1SV.Name = "tb_T1SV";
+            this.tb_T1SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_T1SV.TabIndex = 19;
+            this.tb_T1SV.Visible = false;
+            // 
+            // tb_T1LL
+            // 
+            this.tb_T1LL.Location = new System.Drawing.Point(35, 66);
+            this.tb_T1LL.Name = "tb_T1LL";
+            this.tb_T1LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T1LL.TabIndex = 20;
+            this.tb_T1LL.Visible = false;
+            // 
+            // tb_H1SV
+            // 
+            this.tb_H1SV.Location = new System.Drawing.Point(87, 40);
+            this.tb_H1SV.Name = "tb_H1SV";
+            this.tb_H1SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_H1SV.TabIndex = 21;
+            this.tb_H1SV.Visible = false;
+            // 
+            // tb_H1LL
+            // 
+            this.tb_H1LL.Location = new System.Drawing.Point(87, 66);
+            this.tb_H1LL.Name = "tb_H1LL";
+            this.tb_H1LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H1LL.TabIndex = 22;
+            this.tb_H1LL.Visible = false;
+            // 
+            // tb_H1UL
+            // 
+            this.tb_H1UL.Location = new System.Drawing.Point(87, 92);
+            this.tb_H1UL.Name = "tb_H1UL";
+            this.tb_H1UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H1UL.TabIndex = 23;
+            this.tb_H1UL.Visible = false;
+            // 
+            // tb_T1UL
+            // 
+            this.tb_T1UL.Location = new System.Drawing.Point(35, 92);
+            this.tb_T1UL.Name = "tb_T1UL";
+            this.tb_T1UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T1UL.TabIndex = 24;
+            this.tb_T1UL.Visible = false;
+            // 
+            // tb_T2UL
+            // 
+            this.tb_T2UL.Location = new System.Drawing.Point(664, 87);
+            this.tb_T2UL.Name = "tb_T2UL";
+            this.tb_T2UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T2UL.TabIndex = 30;
+            this.tb_T2UL.Visible = false;
+            // 
+            // tb_H2UL
+            // 
+            this.tb_H2UL.Location = new System.Drawing.Point(716, 87);
+            this.tb_H2UL.Name = "tb_H2UL";
+            this.tb_H2UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H2UL.TabIndex = 29;
+            this.tb_H2UL.Visible = false;
+            // 
+            // tb_H2LL
+            // 
+            this.tb_H2LL.Location = new System.Drawing.Point(716, 61);
+            this.tb_H2LL.Name = "tb_H2LL";
+            this.tb_H2LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H2LL.TabIndex = 28;
+            this.tb_H2LL.Visible = false;
+            // 
+            // tb_H2SV
+            // 
+            this.tb_H2SV.Location = new System.Drawing.Point(716, 35);
+            this.tb_H2SV.Name = "tb_H2SV";
+            this.tb_H2SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_H2SV.TabIndex = 27;
+            this.tb_H2SV.Visible = false;
+            // 
+            // tb_T2LL
+            // 
+            this.tb_T2LL.Location = new System.Drawing.Point(664, 61);
+            this.tb_T2LL.Name = "tb_T2LL";
+            this.tb_T2LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T2LL.TabIndex = 26;
+            this.tb_T2LL.Visible = false;
+            // 
+            // tb_T2SV
+            // 
+            this.tb_T2SV.Location = new System.Drawing.Point(664, 35);
+            this.tb_T2SV.Name = "tb_T2SV";
+            this.tb_T2SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_T2SV.TabIndex = 25;
+            this.tb_T2SV.Visible = false;
+            // 
+            // tb_T3UL
+            // 
+            this.tb_T3UL.Location = new System.Drawing.Point(35, 203);
+            this.tb_T3UL.Name = "tb_T3UL";
+            this.tb_T3UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T3UL.TabIndex = 36;
+            this.tb_T3UL.Visible = false;
+            // 
+            // tb_H3UL
+            // 
+            this.tb_H3UL.Location = new System.Drawing.Point(87, 203);
+            this.tb_H3UL.Name = "tb_H3UL";
+            this.tb_H3UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H3UL.TabIndex = 35;
+            this.tb_H3UL.Visible = false;
+            // 
+            // tb_H3LL
+            // 
+            this.tb_H3LL.Location = new System.Drawing.Point(87, 177);
+            this.tb_H3LL.Name = "tb_H3LL";
+            this.tb_H3LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H3LL.TabIndex = 34;
+            this.tb_H3LL.Visible = false;
+            // 
+            // tb_H3SV
+            // 
+            this.tb_H3SV.Location = new System.Drawing.Point(87, 151);
+            this.tb_H3SV.Name = "tb_H3SV";
+            this.tb_H3SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_H3SV.TabIndex = 33;
+            this.tb_H3SV.Visible = false;
+            // 
+            // tb_T3LL
+            // 
+            this.tb_T3LL.Location = new System.Drawing.Point(35, 177);
+            this.tb_T3LL.Name = "tb_T3LL";
+            this.tb_T3LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T3LL.TabIndex = 32;
+            this.tb_T3LL.Visible = false;
+            // 
+            // tb_T3SV
+            // 
+            this.tb_T3SV.Location = new System.Drawing.Point(35, 151);
+            this.tb_T3SV.Name = "tb_T3SV";
+            this.tb_T3SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_T3SV.TabIndex = 31;
+            this.tb_T3SV.Visible = false;
+            // 
+            // tb_T4UL
+            // 
+            this.tb_T4UL.Location = new System.Drawing.Point(664, 203);
+            this.tb_T4UL.Name = "tb_T4UL";
+            this.tb_T4UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T4UL.TabIndex = 42;
+            this.tb_T4UL.Visible = false;
+            // 
+            // tb_H4UL
+            // 
+            this.tb_H4UL.Location = new System.Drawing.Point(716, 203);
+            this.tb_H4UL.Name = "tb_H4UL";
+            this.tb_H4UL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H4UL.TabIndex = 41;
+            this.tb_H4UL.Visible = false;
+            // 
+            // tb_H4LL
+            // 
+            this.tb_H4LL.Location = new System.Drawing.Point(716, 177);
+            this.tb_H4LL.Name = "tb_H4LL";
+            this.tb_H4LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_H4LL.TabIndex = 40;
+            this.tb_H4LL.Visible = false;
+            // 
+            // tb_H4SV
+            // 
+            this.tb_H4SV.Location = new System.Drawing.Point(716, 151);
+            this.tb_H4SV.Name = "tb_H4SV";
+            this.tb_H4SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_H4SV.TabIndex = 39;
+            this.tb_H4SV.Visible = false;
+            // 
+            // tb_T4LL
+            // 
+            this.tb_T4LL.Location = new System.Drawing.Point(664, 177);
+            this.tb_T4LL.Name = "tb_T4LL";
+            this.tb_T4LL.Size = new System.Drawing.Size(46, 20);
+            this.tb_T4LL.TabIndex = 38;
+            this.tb_T4LL.Visible = false;
+            // 
+            // tb_T4SV
+            // 
+            this.tb_T4SV.Location = new System.Drawing.Point(664, 151);
+            this.tb_T4SV.Name = "tb_T4SV";
+            this.tb_T4SV.Size = new System.Drawing.Size(46, 20);
+            this.tb_T4SV.TabIndex = 37;
+            this.tb_T4SV.Visible = false;
+            // 
             // LiveReading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 714);
+            this.Controls.Add(this.tb_T4UL);
+            this.Controls.Add(this.tb_H4UL);
+            this.Controls.Add(this.tb_H4LL);
+            this.Controls.Add(this.tb_H4SV);
+            this.Controls.Add(this.tb_T4LL);
+            this.Controls.Add(this.tb_T4SV);
+            this.Controls.Add(this.tb_T3UL);
+            this.Controls.Add(this.tb_H3UL);
+            this.Controls.Add(this.tb_H3LL);
+            this.Controls.Add(this.tb_H3SV);
+            this.Controls.Add(this.tb_T3LL);
+            this.Controls.Add(this.tb_T3SV);
+            this.Controls.Add(this.tb_T2UL);
+            this.Controls.Add(this.tb_H2UL);
+            this.Controls.Add(this.tb_H2LL);
+            this.Controls.Add(this.tb_H2SV);
+            this.Controls.Add(this.tb_T2LL);
+            this.Controls.Add(this.tb_T2SV);
+            this.Controls.Add(this.tb_T1UL);
+            this.Controls.Add(this.tb_H1UL);
+            this.Controls.Add(this.tb_H1LL);
+            this.Controls.Add(this.tb_H1SV);
+            this.Controls.Add(this.tb_T1LL);
+            this.Controls.Add(this.tb_T1SV);
             this.Controls.Add(this.tb_SerialPort);
             this.Controls.Add(this.gb_S4);
             this.Controls.Add(this.gb_S3);
@@ -387,5 +628,29 @@
         private System.Windows.Forms.Label lb_S4_Humi;
         private System.Windows.Forms.Label lb_S4_Temp;
         private System.Windows.Forms.TextBox tb_SerialPort;
+        private System.Windows.Forms.TextBox tb_T1SV;
+        private System.Windows.Forms.TextBox tb_T1LL;
+        private System.Windows.Forms.TextBox tb_H1SV;
+        private System.Windows.Forms.TextBox tb_H1LL;
+        private System.Windows.Forms.TextBox tb_H1UL;
+        private System.Windows.Forms.TextBox tb_T1UL;
+        private System.Windows.Forms.TextBox tb_T2UL;
+        private System.Windows.Forms.TextBox tb_H2UL;
+        private System.Windows.Forms.TextBox tb_H2LL;
+        private System.Windows.Forms.TextBox tb_H2SV;
+        private System.Windows.Forms.TextBox tb_T2LL;
+        private System.Windows.Forms.TextBox tb_T2SV;
+        private System.Windows.Forms.TextBox tb_T3UL;
+        private System.Windows.Forms.TextBox tb_H3UL;
+        private System.Windows.Forms.TextBox tb_H3LL;
+        private System.Windows.Forms.TextBox tb_H3SV;
+        private System.Windows.Forms.TextBox tb_T3LL;
+        private System.Windows.Forms.TextBox tb_T3SV;
+        private System.Windows.Forms.TextBox tb_T4UL;
+        private System.Windows.Forms.TextBox tb_H4UL;
+        private System.Windows.Forms.TextBox tb_H4LL;
+        private System.Windows.Forms.TextBox tb_H4SV;
+        private System.Windows.Forms.TextBox tb_T4LL;
+        private System.Windows.Forms.TextBox tb_T4SV;
     }
 }
