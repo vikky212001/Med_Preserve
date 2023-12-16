@@ -512,7 +512,7 @@
             // 
             // tb_T4UL
             // 
-            this.tb_T4UL.Location = new System.Drawing.Point(828, 533);
+            this.tb_T4UL.Location = new System.Drawing.Point(932, 611);
             this.tb_T4UL.Name = "tb_T4UL";
             this.tb_T4UL.Size = new System.Drawing.Size(46, 20);
             this.tb_T4UL.TabIndex = 42;
@@ -520,7 +520,7 @@
             // 
             // tb_H4UL
             // 
-            this.tb_H4UL.Location = new System.Drawing.Point(880, 533);
+            this.tb_H4UL.Location = new System.Drawing.Point(932, 585);
             this.tb_H4UL.Name = "tb_H4UL";
             this.tb_H4UL.Size = new System.Drawing.Size(46, 20);
             this.tb_H4UL.TabIndex = 41;
@@ -528,7 +528,7 @@
             // 
             // tb_H4LL
             // 
-            this.tb_H4LL.Location = new System.Drawing.Point(776, 533);
+            this.tb_H4LL.Location = new System.Drawing.Point(932, 559);
             this.tb_H4LL.Name = "tb_H4LL";
             this.tb_H4LL.Size = new System.Drawing.Size(46, 20);
             this.tb_H4LL.TabIndex = 40;
@@ -536,7 +536,7 @@
             // 
             // tb_H4SV
             // 
-            this.tb_H4SV.Location = new System.Drawing.Point(672, 533);
+            this.tb_H4SV.Location = new System.Drawing.Point(828, 611);
             this.tb_H4SV.Name = "tb_H4SV";
             this.tb_H4SV.Size = new System.Drawing.Size(46, 20);
             this.tb_H4SV.TabIndex = 39;
@@ -544,7 +544,7 @@
             // 
             // tb_T4LL
             // 
-            this.tb_T4LL.Location = new System.Drawing.Point(724, 533);
+            this.tb_T4LL.Location = new System.Drawing.Point(880, 611);
             this.tb_T4LL.Name = "tb_T4LL";
             this.tb_T4LL.Size = new System.Drawing.Size(46, 20);
             this.tb_T4LL.TabIndex = 38;

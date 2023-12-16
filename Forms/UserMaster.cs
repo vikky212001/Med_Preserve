@@ -1,10 +1,9 @@
 ﻿using Med_Preserve.Class;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Net.Mail;
 using System.Windows.Forms;
 
@@ -106,7 +105,7 @@ namespace Med_Preserve.Forms
                             cmb_Role.Text = "-SELECT-";
                         }
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -255,18 +254,23 @@ namespace Med_Preserve.Forms
             }
         }
 
-        private void tb_Email_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void tb_Email_Validating(object sender, CancelEventArgs e)
         {
             string email = tb_Email.Text.Trim();
-            try
+
+            if (string.IsNullOrWhiteSpace(email))
+            { }
+            else
             {
-                MailAddress mailAddress = new MailAddress(email);
-                errorProvider.SetError(tb_Email, "");
-            }
-            catch (FormatException)
-            {
-                e.Cancel = true;
-                errorProvider.SetError(tb_Email, "Invalid email format");
+                try
+                {
+                    MailAddress mailAddress = new MailAddress(email);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid email address format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
             }
         }
 

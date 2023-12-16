@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,7 +15,9 @@ namespace Med_Preserve.Forms
         private string receivedDataBuffer = string.Empty;
         private string connectionString;
         private ChartArea temperatureChartArea;
+        private Dictionary<string, Series> temperatureSeriesDictionary = new Dictionary<string, Series>();
         private ChartArea humidityChartArea;
+        private Dictionary<string, Series> humiditySeriesDictionary = new Dictionary<string, Series>();
         private Series temperatureSeries;
         private Series humiditySeries;
         private SerialPort serialPort;
@@ -25,12 +28,20 @@ namespace Med_Preserve.Forms
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             selectedComPort = comPort;
             InitializeForm();
-        }
 
+            for (int sensorNumber = 1; sensorNumber <= 4; sensorNumber++)
+            {
+                string seriesKey = $"Temperature_Sensor{sensorNumber}";
+                temperatureSeriesDictionary.Add(seriesKey, new Series(seriesKey));
+
+                string humiditySeriesKey = $"Humidity_Sensor{sensorNumber}";
+                humiditySeriesDictionary.Add(humiditySeriesKey, new Series(humiditySeriesKey));
+            }
+        }
         private void InitializeForm()
         {
             if (selectedComPort == null)
-            { 
+            {
                 tb_SerialPort.Text = "No COM Port Selected";
             }
             else
@@ -49,32 +60,44 @@ namespace Med_Preserve.Forms
                 }
             }
         }
-
         private void InitializeCharts()
         {
             temperatureChartArea = new ChartArea();
-            temperatureSeries = new Series("Temperature");
-
-            temperatureChartArea.AxisX.Title = "Time";
-            temperatureChartArea.AxisY.Title = "Temperature";
-            temperatureSeries.ChartType = SeriesChartType.Line;
-
-            temperatureChartArea.AxisY.StripLines.Add(new StripLine
+            humidityChartArea = new ChartArea();
+            ch_Temp.ChartAreas.Add(temperatureChartArea);
+            ch_Humi.ChartAreas.Add(humidityChartArea);
+            int numberOfSensors = int.Parse(tb_NoOfSensors.Text);
+            for (int i = 1; i <= numberOfSensors; i++)
             {
-                Interval = Convert.ToDouble(tb_T1UL.Text),
-                BorderDashStyle = ChartDashStyle.Dash,
-                BorderColor = System.Drawing.Color.Red,
-                StripWidth = 0.1
-            });
-
-            temperatureChartArea.AxisY.StripLines.Add(new StripLine
-            {
-                Interval = Convert.ToDouble(tb_T1LL.Text),
-                BorderDashStyle = ChartDashStyle.Dash,
-                BorderColor = System.Drawing.Color.Red,
-                StripWidth = 0.1
-            });
-
+                string temperatureSeriesName = $"Temperature_Sensor{i}";
+                Series temperatureSeries = new Series(temperatureSeriesName)
+                {
+                    ChartType = SeriesChartType.Line
+                };
+                temperatureSeriesDictionary.Add($"Sensor{i}", temperatureSeries);
+                temperatureChartArea.AxisY.StripLines.Add(new StripLine
+                {
+                    Interval = 0,
+                    BorderDashStyle = ChartDashStyle.Dash,
+                    BorderColor = System.Drawing.Color.Red,
+                    StripWidth = 0.1
+                });
+                ch_Temp.Series.Add(temperatureSeries);
+                string humiditySeriesName = $"Humidity_Sensor{i}";
+                Series humiditySeries = new Series(humiditySeriesName)
+                {
+                    ChartType = SeriesChartType.Line
+                };
+                humiditySeriesDictionary.Add($"Sensor{i}", humiditySeries);
+                humidityChartArea.AxisY.StripLines.Add(new StripLine
+                {
+                    Interval = 0,
+                    BorderDashStyle = ChartDashStyle.Dash,
+                    BorderColor = System.Drawing.Color.Red,
+                    StripWidth = 0.1
+                });
+                ch_Humi.Series.Add(humiditySeries);
+            }
             temperatureChartArea.AxisY.StripLines.Add(new StripLine
             {
                 Interval = Convert.ToDouble(tb_T1SV.Text),
@@ -82,45 +105,14 @@ namespace Med_Preserve.Forms
                 BorderColor = System.Drawing.Color.Gray,
                 StripWidth = 0.1
             });
-
-            ch_Temp.ChartAreas.Add(temperatureChartArea);
-            ch_Temp.Series.Add(temperatureSeries);
-
-            humidityChartArea = new ChartArea();
-            humiditySeries = new Series("Humidity");
-
-            humidityChartArea.AxisX.Title = "Time";
-            humidityChartArea.AxisY.Title = "Humidity";
-            humiditySeries.ChartType = SeriesChartType.Line;
-
             humidityChartArea.AxisY.StripLines.Add(new StripLine
             {
-                Interval = 0,
+                Interval = Convert.ToDouble(tb_T1SV.Text),
                 BorderDashStyle = ChartDashStyle.Dash,
-                BorderColor = System.Drawing.Color.Blue,
-                StripWidth = 10
-            });
-
-            humidityChartArea.AxisY.StripLines.Add(new StripLine
-            {
-                Interval = 0,
-                BorderDashStyle = ChartDashStyle.Dash,
-                BorderColor = System.Drawing.Color.Blue,
-                StripWidth = 10
-            });
-
-            ch_Humi.ChartAreas.Add(humidityChartArea);
-            ch_Humi.Series.Add(humiditySeries);
-
-            humidityChartArea.AxisY.StripLines.Add(new StripLine
-            {
-                Interval = 0,
-                BorderDashStyle = ChartDashStyle.Dash,
-                BorderColor = System.Drawing.Color.Blue,
-                StripWidth = 10
+                BorderColor = System.Drawing.Color.Gray,
+                StripWidth = 0.1
             });
         }
-
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             receivedDataBuffer += serialPort.ReadExisting();
@@ -128,504 +120,566 @@ namespace Med_Preserve.Forms
             if (receivedDataBuffer.Contains("\n"))
             {
                 string[] lines = receivedDataBuffer.Split('\n');
+                string capturedLogName = string.Empty;
+
+                Invoke(new Action(() =>
+                {
+                    capturedLogName = cmb_LogName.Text;
+                }));
+
                 foreach (string line in lines)
                 {
-                    if (!string.IsNullOrEmpty(line.Trim()))
+                    string[] head = line.Split('_');
+                    if (head.Length > 3)
                     {
-                        ProcessData(line.Trim());
+                        string deviceName = head[0];
+                        string cmd = head[1];
+
+                        if (deviceName == capturedLogName)
+                        {
+                            if (cmd == "VALUES")
+                            {
+                                if (!string.IsNullOrEmpty(line.Trim()))
+                                {
+                                    ProcessData(line.Trim());
+                                }
+                            }
+                        }
                     }
                 }
                 receivedDataBuffer = string.Empty;
             }
         }
-
         private void ProcessData(string data)
         {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => ProcessData(data)));
+                return;
+            }
             DateTime timestamp;
             string[] head = data.Split('_');
-            string deviceName = head[0];
-            string cmd = head[1];
-            string logtype = tb_LogType.Text;
-            string NoOfSensor = tb_NoOfSensors.Text;
-            string logName = cmb_LogName.Text;
-            if (deviceName == logName)
+            if (head.Length > 3)
             {
-                if (cmd == "VALUES")
+                string deviceName = head[0];
+                string cmd = head[1];
+                string logtype = tb_LogType.Text;
+                string NoOfSensor = tb_NoOfSensors.Text;
+                string logName = string.Empty;
+                Invoke(new Action(() =>
                 {
-                    if (logtype == "Temperature")
+                    logName = cmb_LogName.Text;
+                }));
+                if (deviceName == logName)
+                {
+                    if (cmd == "VALUES")
                     {
-                        if (NoOfSensor == "1")
+                        if (logtype == "Temperature")
                         {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            string date = body[1];
-                            string time = body[2];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            tb_S1_Humi.Enabled = false;
-                            gb_S2.Enabled = false;
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = false;
-
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
+                            if (NoOfSensor == "1")
                             {
-                                Invoke(new Action(() =>
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                string date = body[1];
+                                string time = body[2];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Humi.Enabled = false;
+                                gb_S2.Enabled = false;
+                                tb_S2_Temp.Enabled = false;
+                                tb_S2_Humi.Enabled = false;
+                                gb_S3.Enabled = false;
+                                tb_S3_Temp.Enabled = false;
+                                tb_S3_Humi.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = false;
+
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                }));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-
-                        }
-                        else if (NoOfSensor == "2")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double temp2 = double.Parse(body[1]);
-                            string date = body[2];
-                            string time = body[3];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            tb_S1_Humi.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            tb_S2_Humi.Enabled = false;
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = false;
-
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        UpdateHumidityChart(timestamp, temp1, 1);
+                                    }));
+                                }
+                                else
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                }));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "3")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double temp2 = double.Parse(body[1]);
-                            double temp3 = double.Parse(body[2]);
-                            string date = body[3];
-                            string time = body[4];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            tb_S1_Humi.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            tb_S2_Humi.Enabled = false;
-                            gb_S3.Enabled = true;
-                            tb_S3_Temp.Text = Convert.ToString(temp3);
-                            tb_S3_Humi.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = false;
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
-                                {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                    UpdateTemperatureChart(timestamp, temp3);
-                                }));
                             }
-                            else
+                            else if (NoOfSensor == "2")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "4")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double temp2 = double.Parse(body[1]);
-                            double temp3 = double.Parse(body[2]);
-                            double temp4 = double.Parse(body[3]);
-                            string date = body[4];
-                            string time = body[5];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            tb_S1_Humi.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            tb_S2_Humi.Enabled = false;
-                            gb_S3.Enabled = true;
-                            tb_S3_Temp.Text = Convert.ToString(temp3);
-                            tb_S3_Humi.Enabled = false;
-                            gb_S4.Enabled = true;
-                            tb_S3_Temp.Text = Convert.ToString(temp4);
-                            tb_S3_Humi.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = false;
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double temp2 = double.Parse(body[1]);
+                                string date = body[2];
+                                string time = body[3];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Humi.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Humi.Enabled = false;
+                                gb_S3.Enabled = false;
+                                tb_S3_Humi.Enabled = false;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = false;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                    UpdateTemperatureChart(timestamp, temp3);
-                                    UpdateTemperatureChart(timestamp, temp4);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "3")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                    }
-                    else if (logtype == "Humidity")
-                    {
-                        if (NoOfSensor == "1")
-                        {
-                            string[] body = head[2].Split(' ');
-                            double humi1 = double.Parse(body[0]);
-                            string date = body[1];
-                            string time = body[2];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Enabled = false;
-                            gb_S2.Enabled = false;
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = false;
-                            ch_Humi.Enabled = true;
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double temp2 = double.Parse(body[1]);
+                                double temp3 = double.Parse(body[2]);
+                                string date = body[3];
+                                string time = body[4];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Humi.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Humi.Enabled = false;
+                                gb_S3.Enabled = true;
+                                tb_S3_Humi.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = false;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateHumidityChart(timestamp, humi1);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        tb_S3_Temp.Text = Convert.ToString(temp3);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                        UpdateTemperatureChart(timestamp, temp3, 3);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "4")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double temp2 = double.Parse(body[1]);
+                                double temp3 = double.Parse(body[2]);
+                                double temp4 = double.Parse(body[3]);
+                                string date = body[4];
+                                string time = body[5];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Humi.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Humi.Enabled = false;
+                                gb_S3.Enabled = true;
+                                tb_S3_Humi.Enabled = false;
+                                gb_S4.Enabled = true;
+                                tb_S3_Humi.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = false;
+
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
+                                {
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        tb_S3_Temp.Text = Convert.ToString(temp3);
+                                        tb_S3_Temp.Text = Convert.ToString(temp4);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                        UpdateTemperatureChart(timestamp, temp3, 3);
+                                        UpdateTemperatureChart(timestamp, temp4, 4);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
                         }
-                        else if (NoOfSensor == "2")
+                        else if (logtype == "Humidity")
                         {
-                            string[] body = head[2].Split(' ');
-                            double humi1 = double.Parse(body[0]);
-                            double humi2 = double.Parse(body[1]);
-                            string date = body[2];
-                            string time = body[3];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Enabled = false;
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = false;
-                            ch_Humi.Enabled = true;
+                            if (NoOfSensor == "1")
+                            {
+                                string[] body = head[2].Split(' ');
+                                double humi1 = double.Parse(body[0]);
+                                string date = body[1];
+                                string time = body[2];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Temp.Enabled = false;
+                                gb_S2.Enabled = false;
+                                tb_S2_Humi.Enabled = false;
+                                tb_S2_Temp.Enabled = false;
+                                gb_S3.Enabled = false;
+                                tb_S3_Humi.Enabled = false;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = false;
+                                ch_Humi.Enabled = true;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "2")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
+                                string[] body = head[2].Split(' ');
+                                double humi1 = double.Parse(body[0]);
+                                double humi2 = double.Parse(body[1]);
+                                string date = body[2];
+                                string time = body[3];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Temp.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Temp.Enabled = false;
+                                gb_S3.Enabled = false;
+                                tb_S3_Humi.Enabled = false;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = false;
+                                ch_Humi.Enabled = true;
+
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
+                                {
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
+                            }
+                            else if (NoOfSensor == "3")
+                            {
+                                string[] body = head[2].Split(' ');
+                                double humi1 = double.Parse(body[0]);
+                                double humi2 = double.Parse(body[1]);
+                                double humi3 = double.Parse(body[2]);
+                                string date = body[3];
+                                string time = body[4];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Temp.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Temp.Enabled = false;
+                                gb_S3.Enabled = true;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = false;
+                                ch_Humi.Enabled = true;
+
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
+                                {
+                                    Invoke(new Action(() =>
+                                    {
+
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        tb_S3_Humi.Text = Convert.ToString(humi3);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                        UpdateHumidityChart(timestamp, humi3, 3);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
+                            }
+                            else if (NoOfSensor == "4")
+                            {
+                                string[] body = head[2].Split(' ');
+                                double humi1 = double.Parse(body[0]);
+                                double humi2 = double.Parse(body[1]);
+                                double humi3 = double.Parse(body[2]);
+                                double humi4 = double.Parse(body[3]);
+                                string date = body[4];
+                                string time = body[5];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                tb_S1_Temp.Enabled = false;
+                                gb_S2.Enabled = true;
+                                tb_S2_Temp.Enabled = false;
+                                gb_S3.Enabled = true;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = true;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = false;
+                                ch_Humi.Enabled = true;
+
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
+                                {
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        tb_S3_Humi.Text = Convert.ToString(humi3);
+                                        tb_S4_Humi.Text = Convert.ToString(humi4);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                        UpdateHumidityChart(timestamp, humi3, 3);
+                                        UpdateHumidityChart(timestamp, humi4, 4);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
                         }
-                        else if (NoOfSensor == "3")
+                        else if (logtype == "Both")
                         {
-                            string[] body = head[2].Split(' ');
-                            double humi1 = double.Parse(body[0]);
-                            double humi2 = double.Parse(body[1]);
-                            double humi3 = double.Parse(body[2]);
-                            string date = body[3];
-                            string time = body[4];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Enabled = false;
-                            gb_S3.Enabled = true;
-                            tb_S3_Humi.Text = Convert.ToString(humi3);
-                            tb_S3_Temp.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = false;
-                            ch_Humi.Enabled = true;
+                            if (NoOfSensor == "1")
+                            {
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double humi1 = double.Parse(body[1]);
+                                string date = body[2];
+                                string time = body[3];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
-                                {
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                    UpdateHumidityChart(timestamp, humi3);
-                                }));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "4")
-                        {
-                            string[] body = head[2].Split(' ');
-                            double humi1 = double.Parse(body[0]);
-                            double humi2 = double.Parse(body[1]);
-                            double humi3 = double.Parse(body[2]);
-                            double humi4 = double.Parse(body[3]);
-                            string date = body[4];
-                            string time = body[5];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Enabled = false;
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Enabled = false;
-                            gb_S3.Enabled = true;
-                            tb_S3_Humi.Text = Convert.ToString(humi3);
-                            tb_S3_Temp.Enabled = false;
-                            gb_S4.Enabled = true;
-                            tb_S4_Humi.Text = Convert.ToString(humi4);
-                            tb_S4_Temp.Enabled = false;
-                            ch_Temp.Enabled = false;
-                            ch_Humi.Enabled = true;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                    UpdateHumidityChart(timestamp, humi3);
-                                    UpdateHumidityChart(timestamp, humi4);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        gb_S2.Enabled = false;
+                                        tb_S2_Humi.Enabled = false;
+                                        tb_S2_Temp.Enabled = false;
+                                        gb_S3.Enabled = false;
+                                        tb_S3_Humi.Enabled = false;
+                                        tb_S3_Temp.Enabled = false;
+                                        gb_S4.Enabled = false;
+                                        tb_S4_Humi.Enabled = false;
+                                        tb_S4_Temp.Enabled = false;
+                                        ch_Temp.Enabled = true;
+                                        ch_Humi.Enabled = true;
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "2")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                    }
-                    else if (logtype == "Both")
-                    {
-                        if (NoOfSensor == "1")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double humi1 = double.Parse(body[1]);
-                            string date = body[2];
-                            string time = body[3];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            gb_S2.Enabled = false;
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = true;
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double humi1 = double.Parse(body[1]);
+                                double temp2 = double.Parse(body[2]);
+                                double humi2 = double.Parse(body[3]);
+                                string date = body[4];
+                                string time = body[5];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                gb_S2.Enabled = true;
+                                gb_S3.Enabled = false;
+                                tb_S3_Humi.Enabled = false;
+                                tb_S3_Temp.Enabled = false;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = true;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateHumidityChart(timestamp, humi1);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "3")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "2")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double humi1 = double.Parse(body[1]);
-                            double temp2 = double.Parse(body[2]);
-                            double humi2 = double.Parse(body[3]);
-                            string date = body[4];
-                            string time = body[5];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            gb_S3.Enabled = false;
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = true;
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double humi1 = double.Parse(body[1]);
+                                double temp2 = double.Parse(body[2]);
+                                double humi2 = double.Parse(body[3]);
+                                double temp3 = double.Parse(body[4]);
+                                double humi3 = double.Parse(body[5]);
+                                string date = body[6];
+                                string time = body[7];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                gb_S2.Enabled = true;
+                                gb_S3.Enabled = true;
+                                gb_S4.Enabled = false;
+                                tb_S4_Humi.Enabled = false;
+                                tb_S4_Temp.Enabled = false;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = true;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                }));
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        tb_S3_Humi.Text = Convert.ToString(humi3);
+                                        tb_S3_Temp.Text = Convert.ToString(temp3);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                        UpdateTemperatureChart(timestamp, temp3, 3);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                        UpdateHumidityChart(timestamp, humi3, 3);
+                                    }));
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
-                            else
+                            else if (NoOfSensor == "4")
                             {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "3")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double humi1 = double.Parse(body[1]);
-                            double temp2 = double.Parse(body[2]);
-                            double humi2 = double.Parse(body[3]);
-                            double temp3 = double.Parse(body[4]);
-                            double humi3 = double.Parse(body[5]);
-                            string date = body[6];
-                            string time = body[7];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            gb_S3.Enabled = true;
-                            tb_S3_Humi.Text = Convert.ToString(humi3);
-                            tb_S3_Temp.Text = Convert.ToString(temp3);
-                            gb_S4.Enabled = false;
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = true;
+                                string[] body = head[3].Split(' ');
+                                double temp1 = double.Parse(body[0]);
+                                double humi1 = double.Parse(body[1]);
+                                double temp2 = double.Parse(body[2]);
+                                double humi2 = double.Parse(body[3]);
+                                double temp3 = double.Parse(body[4]);
+                                double humi3 = double.Parse(body[5]);
+                                double temp4 = double.Parse(body[6]);
+                                double humi4 = double.Parse(body[7]);
+                                string date = body[8];
+                                string time = body[9];
+                                string format = "yyyy/MM/dd HH:mm:ss";
+                                string dateTimeString = $"{date} {time}";
+                                gb_S2.Enabled = true;
+                                gb_S3.Enabled = true;
+                                gb_S4.Enabled = true;
+                                ch_Temp.Enabled = true;
+                                ch_Humi.Enabled = true;
 
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                    UpdateTemperatureChart(timestamp, temp3);
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                    UpdateHumidityChart(timestamp, humi3);
-                                }));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Failed to parse DateTime.");
-                            }
-                        }
-                        else if (NoOfSensor == "4")
-                        {
-                            string[] body = head[3].Split(' ');
-                            double temp1 = double.Parse(body[0]);
-                            double humi1 = double.Parse(body[1]);
-                            double temp2 = double.Parse(body[2]);
-                            double humi2 = double.Parse(body[3]);
-                            double temp3 = double.Parse(body[4]);
-                            double humi3 = double.Parse(body[5]);
-                            double temp4 = double.Parse(body[6]);
-                            double humi4 = double.Parse(body[7]);
-                            string date = body[8];
-                            string time = body[9];
-                            string format = "yyyy/MM/dd HH:mm:ss";
-                            string dateTimeString = $"{date} {time}";
-                            tb_S1_Humi.Text = Convert.ToString(humi1);
-                            tb_S1_Temp.Text = Convert.ToString(temp1);
-                            gb_S2.Enabled = true;
-                            tb_S2_Humi.Text = Convert.ToString(humi2);
-                            tb_S2_Temp.Text = Convert.ToString(temp2);
-                            gb_S3.Enabled = true;
-                            tb_S3_Humi.Text = Convert.ToString(humi3);
-                            tb_S3_Temp.Text = Convert.ToString(temp3);
-                            gb_S4.Enabled = true;
-                            tb_S4_Humi.Text = Convert.ToString(humi4);
-                            tb_S4_Temp.Text = Convert.ToString(temp4);
-                            ch_Temp.Enabled = true;
-                            ch_Humi.Enabled = true;
-
-                            if (DateTime.TryParseExact(dateTimeString, format, null, System.Globalization.DateTimeStyles.None, out timestamp))
-                            {
-                                Invoke(new Action(() =>
+                                    Invoke(new Action(() =>
+                                    {
+                                        tb_S1_Humi.Text = Convert.ToString(humi1);
+                                        tb_S1_Temp.Text = Convert.ToString(temp1);
+                                        tb_S2_Humi.Text = Convert.ToString(humi2);
+                                        tb_S2_Temp.Text = Convert.ToString(temp2);
+                                        tb_S3_Humi.Text = Convert.ToString(humi3);
+                                        tb_S3_Temp.Text = Convert.ToString(temp3);
+                                        tb_S4_Humi.Text = Convert.ToString(humi4);
+                                        tb_S4_Temp.Text = Convert.ToString(temp4);
+                                        UpdateTemperatureChart(timestamp, temp1, 1);
+                                        UpdateTemperatureChart(timestamp, temp2, 2);
+                                        UpdateTemperatureChart(timestamp, temp3, 3);
+                                        UpdateTemperatureChart(timestamp, temp4, 4);
+                                        UpdateHumidityChart(timestamp, humi1, 1);
+                                        UpdateHumidityChart(timestamp, humi2, 2);
+                                        UpdateHumidityChart(timestamp, humi3, 3);
+                                        UpdateHumidityChart(timestamp, humi4, 4);
+                                    }));
+                                }
+                                else
                                 {
-                                    UpdateTemperatureChart(timestamp, temp1);
-                                    UpdateTemperatureChart(timestamp, temp2);
-                                    UpdateTemperatureChart(timestamp, temp3);
-                                    UpdateTemperatureChart(timestamp, temp4);
-                                    UpdateHumidityChart(timestamp, humi1);
-                                    UpdateHumidityChart(timestamp, humi2);
-                                    UpdateHumidityChart(timestamp, humi3);
-                                    UpdateHumidityChart(timestamp, humi4);
-                                }));
-                            }
-                            else
-                            {
-                                Console.WriteLine("Failed to parse DateTime.");
+                                    Console.WriteLine("Failed to parse DateTime.");
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
-        private void UpdateTemperatureChart(DateTime timestamp, double temperature)
+        private void UpdateTemperatureChart(DateTime timestamp, double value, int sensorNumber)
         {
-            temperatureSeries.Points.AddXY(timestamp, temperature);
-
-            while (temperatureSeries.Points.Count > 20)
+            string seriesName = $"Temperature_Sensor{sensorNumber}";
+            Series series = temperatureSeriesDictionary[seriesName];
+            series.Points.AddXY(timestamp, value);
+            while (series.Points.Count > 20)
             {
-                temperatureSeries.Points.RemoveAt(0);
+                series.Points.RemoveAt(0);
             }
             ch_Temp.ResetAutoValues();
             ch_Temp.Invalidate();
         }
-
-        private void UpdateHumidityChart(DateTime timestamp, double humidity)
+        private void UpdateHumidityChart(DateTime timestamp, double value, int sensorNumber)
         {
-            humiditySeries.Points.AddXY(timestamp, humidity);
+            string seriesName = $"Humidity_Sensor{sensorNumber}";
+            Series series = humiditySeriesDictionary[seriesName];
 
-            while (humiditySeries.Points.Count > 20)
+            series.Points.AddXY(timestamp, value);
+
+            while (series.Points.Count > 20)
             {
-                humiditySeries.Points.RemoveAt(0);
+                series.Points.RemoveAt(0);
             }
             ch_Humi.ResetAutoValues();
             ch_Humi.Invalidate();
         }
-
-        private void LiveReading_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (serialPort != null && serialPort.IsOpen)
-            {
-                serialPort.Close();
-            }
-        }
-
         private void cmb_LogName_TextChanged(object sender, EventArgs e)
         {
             string logName = cmb_LogName.Text;
@@ -696,7 +750,6 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("An error occurred." + ex.Message, "Error");
             }
         }
-
         private void Clear()
         {
             foreach (Control control in Controls)
@@ -708,7 +761,6 @@ namespace Med_Preserve.Forms
             }
             cmb_LogName.Text = "-SELECT-";
         }
-
         private void LiveReading_Load(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -732,6 +784,13 @@ namespace Med_Preserve.Forms
                 {
                     MessageBox.Show("An error occurred while refreshing data." + ex.Message, "Error");
                 }
+            }
+        }
+        private void LiveReading_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (serialPort != null && serialPort.IsOpen)
+            {
+                serialPort.Close();
             }
         }
     }

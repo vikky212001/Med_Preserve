@@ -57,6 +57,7 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.p_MainScreen = new System.Windows.Forms.Panel();
             this.p_Title = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.p_MenuPanel.SuspendLayout();
             this.p_Reports.SuspendLayout();
             this.p_DataManagement.SuspendLayout();
@@ -440,6 +441,7 @@
             // p_RightPanel
             // 
             this.p_RightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.p_RightPanel.Controls.Add(this.button1);
             this.p_RightPanel.Controls.Add(this.lb_COM);
             this.p_RightPanel.Controls.Add(this.cmb_COMPort);
             this.p_RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
@@ -486,6 +488,16 @@
             this.p_Title.Name = "p_Title";
             this.p_Title.Size = new System.Drawing.Size(538, 90);
             this.p_Title.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(66, 186);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Home
             // 
@@ -543,5 +555,6 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Panel p_MainScreen;
         private System.Windows.Forms.Button bt_DeletedUser;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -73,17 +73,22 @@ namespace Med_Preserve.Forms
         {
             string email = tb_Email.Text.Trim();
 
-            try
+            if (string.IsNullOrWhiteSpace(email))
+            {}
+            else
             {
-                MailAddress mailAddress = new MailAddress(email);
-                errorProvider.SetError(tb_Email, "");
-            }
-            catch (FormatException)
-            {
-                e.Cancel = true;
-                errorProvider.SetError(tb_Email, "Invalid email format");
+                try
+                {
+                    MailAddress mailAddress = new MailAddress(email);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Invalid email address format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
             }
         }
+
 
         private void dgv_CompanyMaster_CellClick(object sender, DataGridViewCellEventArgs e)
         {
