@@ -329,6 +329,7 @@
             this.cmb_LogName.Name = "cmb_LogName";
             this.cmb_LogName.Size = new System.Drawing.Size(121, 21);
             this.cmb_LogName.TabIndex = 19;
+            this.cmb_LogName.TextChanged += new System.EventHandler(this.cmb_LogName_TextChanged);
             // 
             // tb_Date
             // 
@@ -597,6 +598,7 @@
             this.Controls.Add(this.cmb_LogName);
             this.Name = "RealTimeData";
             this.Text = "RealTimeData";
+            this.Load += new System.EventHandler(this.RealTimeData_Load);
             this.gb_S4.ResumeLayout(false);
             this.gb_S4.PerformLayout();
             this.gb_S3.ResumeLayout(false);
