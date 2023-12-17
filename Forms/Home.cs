@@ -205,5 +205,10 @@ namespace Med_Preserve.Forms
             currentForm = downloadData;
             downloadData.Show();
         }
+
+        private void bt_Close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

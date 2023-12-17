@@ -203,6 +203,16 @@ namespace Med_Preserve.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MED_Preserve_T1 {
+            get {
+                object obj = ResourceManager.GetObject("MED-Preserve_T1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Real_Time_Data {
             get {
                 object obj = ResourceManager.GetObject("Real-Time Data", resourceCulture);
