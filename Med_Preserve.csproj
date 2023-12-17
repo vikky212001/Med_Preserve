@@ -110,6 +110,12 @@
     <Compile Include="Class\Duplication.cs" />
     <Compile Include="Class\Global.cs" />
     <Compile Include="Class\PasswordHasher.cs" />
+    <Compile Include="Forms\Audit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Audit.Designer.cs">
+      <DependentUpon>Audit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,23 +134,17 @@
     <Compile Include="Forms\DeletedUser.Designer.cs">
       <DependentUpon>DeletedUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Audit.cs">
+    <Compile Include="Forms\DownloadData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Audit.Designer.cs">
-      <DependentUpon>Audit.cs</DependentUpon>
+    <Compile Include="Forms\DownloadData.Designer.cs">
+      <DependentUpon>DownloadData.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LiveReading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LiveReading.Designer.cs">
-      <DependentUpon>LiveReading.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoggerConfig.cs">
       <SubType>Form</SubType>
@@ -183,6 +183,9 @@
       <DependentUpon>Med_PreserveDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\Audit.resx">
+      <DependentUpon>Audit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,14 +195,11 @@
     <EmbeddedResource Include="Forms\DeletedUser.resx">
       <DependentUpon>DeletedUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Audit.resx">
-      <DependentUpon>Audit.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DownloadData.resx">
+      <DependentUpon>DownloadData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LiveReading.resx">
-      <DependentUpon>LiveReading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoggerConfig.resx">
       <DependentUpon>LoggerConfig.cs</DependentUpon>

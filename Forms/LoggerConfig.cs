@@ -19,19 +19,23 @@ namespace Med_Preserve.Forms
             dgv_LoggerConfig.CellClick += dgv_LoggerConfig_CellClick;
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             selectedComPort = comPort;
+            InitializeForm();
         }
         private void InitializeForm()
         {
-            serialPort = new SerialPort();
-            serialPort.PortName = selectedComPort;
-            serialPort.BaudRate = 9600;
-            try
+            if (selectedComPort != null)
             {
-                serialPort.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error opening serial port: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                serialPort = new SerialPort();
+                serialPort.PortName = selectedComPort;
+                serialPort.BaudRate = 9600;
+                try
+                {
+                    serialPort.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error opening serial port: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void LoggerConfig_Load(object sender, EventArgs e)
@@ -718,7 +722,6 @@ namespace Med_Preserve.Forms
         }
         private void SerialWrite(string unit)
         {
-            InitializeForm();
             if (serialPort != null && serialPort.IsOpen)
             {
                 try
@@ -865,5 +868,15 @@ namespace Med_Preserve.Forms
             }
         }
 
+        private void LoggerConfig_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (selectedComPort != null)
+            {
+                if (serialPort.IsOpen)
+                {
+                    serialPort.Close();
+                }
+            }
+        }
     }
 }

@@ -1,10 +1,16 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using LiveCharts.WinForms;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.IO.Ports;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Linq;
 
 namespace Med_Preserve.Forms
 {
@@ -13,6 +19,12 @@ namespace Med_Preserve.Forms
         private string selectedComPort;
         private string connectionString;
         private SerialPort serialPort;
+        private ChartValues<double> temperatureValues;
+        private ChartValues<int> humidityValues;
+        private int xAxisCounter = 0;
+        private bool chartInitialized = false;
+        private bool sectionT = false;
+        private bool sectionH = false;
         public RealTimeData(string comPort)
         {
             InitializeComponent();
@@ -20,12 +32,11 @@ namespace Med_Preserve.Forms
             selectedComPort = comPort;
             InitializeSerialPorts();
         }
-
         private void InitializeSerialPorts()
         {
             if (selectedComPort == null)
             {
-                tb_SerialPort.Text = "No COM Port Selected";
+                MessageBox.Show("No COM Port Selected", "Error");
             }
             else
             {
@@ -33,7 +44,6 @@ namespace Med_Preserve.Forms
                 serialPort.PortName = selectedComPort;
                 serialPort.BaudRate = 9600;
                 serialPort.DataReceived += SerialPort_DataReceived;
-                tb_SerialPort.Text = selectedComPort;
                 try
                 {
                     serialPort.Open();
@@ -52,10 +62,38 @@ namespace Med_Preserve.Forms
                 {
                     textBox.Text = string.Empty;
                 }
+                else if (control == cmb_LogName)
+                {
+                    continue;
+                }
             }
             cmb_LogName.Text = "-SELECT-";
         }
-
+        private void RealTimeData_Load(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string queryLogName = "SELECT LoggerMaster.LoggerName FROM LoggerMaster JOIN LoggerConfig ON LoggerMaster.LoggerID = LoggerConfig.LoggerID WHERE LoggerConfig.Sync = 1;";
+                    using (SqlCommand command = new SqlCommand(queryLogName, connection))
+                    {
+                        using (SqlDataAdapter logAdapter = new SqlDataAdapter(command))
+                        {
+                            DataTable logDataTable = new DataTable();
+                            logAdapter.Fill(logDataTable);
+                            cmb_LogName.DataSource = logDataTable;
+                            cmb_LogName.DisplayMember = "LoggerName";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while refreshing data." + ex.Message, "Error");
+                }
+            }
+        }
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = serialPort.ReadLine();
@@ -64,15 +102,24 @@ namespace Med_Preserve.Forms
             {
                 string deviceName = head[0];
                 string cmd = head[1];
-                string logName = string.Empty; 
-                string logType = string.Empty; 
+                string logName = string.Empty;
+                string logType = string.Empty;
                 string SensorCount = string.Empty;
-                Invoke(new Action(() =>
+                if (cmb_LogName.InvokeRequired || tb_LogType.InvokeRequired || tb_NoOfSensors.InvokeRequired)
+                {
+                    Invoke(new Action(() =>
+                    {
+                        logName = cmb_LogName.Text;
+                        logType = tb_LogType.Text;
+                        SensorCount = tb_NoOfSensors.Text;
+                    }));
+                }
+                else
                 {
                     logName = cmb_LogName.Text;
                     logType = tb_LogType.Text;
                     SensorCount = tb_NoOfSensors.Text;
-                }));
+                }
                 if (deviceName == logName)
                 {
                     if (cmd == "VALUES")
@@ -85,10 +132,11 @@ namespace Med_Preserve.Forms
                                 double temp1 = 0;
                                 string Etemp1 = body[0];
                                 string dateTimeString = body[1] + " " + body[2];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -101,8 +149,8 @@ namespace Med_Preserve.Forms
                                 Invoke(new Action(() =>
                                 {
                                     tb_S1_Temp.Text = (temp1 != 0) ? temp1.ToString() : Etemp1;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
 
                             }
@@ -112,10 +160,11 @@ namespace Med_Preserve.Forms
                                 string Etemp1 = body[0];
                                 string Etemp2 = body[1];
                                 string dateTimeString = body[2] + " " + body[3];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -130,8 +179,8 @@ namespace Med_Preserve.Forms
                                 {
                                     tb_S1_Temp.Text = (temp1 != 0) ? temp1.ToString() : Etemp1;
                                     tb_S2_Temp.Text = (temp2 != 0) ? temp2.ToString() : Etemp2;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "3")
@@ -141,10 +190,11 @@ namespace Med_Preserve.Forms
                                 string Etemp2 = body[1];
                                 string Etemp3 = body[2];
                                 string dateTimeString = body[3] + " " + body[4];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -161,8 +211,8 @@ namespace Med_Preserve.Forms
                                     tb_S1_Temp.Text = (temp1 != 0) ? temp1.ToString() : Etemp1;
                                     tb_S2_Temp.Text = (temp2 != 0) ? temp2.ToString() : Etemp2;
                                     tb_S3_Temp.Text = (temp3 != 0) ? temp3.ToString() : Etemp3;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "4")
@@ -173,10 +223,11 @@ namespace Med_Preserve.Forms
                                 string Etemp3 = body[2];
                                 string Etemp4 = body[3];
                                 string dateTimeString = body[4] + " " + body[5];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -195,8 +246,8 @@ namespace Med_Preserve.Forms
                                     tb_S2_Temp.Text = (temp2 != 0) ? temp2.ToString() : Etemp2;
                                     tb_S3_Temp.Text = (temp3 != 0) ? temp3.ToString() : Etemp3;
                                     tb_S4_Temp.Text = (temp4 != 0) ? temp4.ToString() : Etemp4;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                         }
@@ -208,10 +259,11 @@ namespace Med_Preserve.Forms
                                 int humi1 = 0;
                                 string Ehumi1 = body[0];
                                 string dateTimeString = body[1] + " " + body[2];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -224,8 +276,8 @@ namespace Med_Preserve.Forms
                                 Invoke(new Action(() =>
                                 {
                                     tb_S1_Humi.Text = (humi1 != 0) ? humi1.ToString() : Ehumi1;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
 
                             }
@@ -235,10 +287,11 @@ namespace Med_Preserve.Forms
                                 string Ehumi1 = body[0];
                                 string Ehumi2 = body[1];
                                 string dateTimeString = body[2] + " " + body[3];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -253,8 +306,8 @@ namespace Med_Preserve.Forms
                                 {
                                     tb_S1_Humi.Text = (humi1 != 0) ? humi1.ToString() : Ehumi1;
                                     tb_S2_Humi.Text = (humi2 != 0) ? humi2.ToString() : Ehumi2;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "3")
@@ -264,10 +317,11 @@ namespace Med_Preserve.Forms
                                 string Ehumi2 = body[1];
                                 string Ehumi3 = body[2];
                                 string dateTimeString = body[3] + " " + body[4];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -284,8 +338,8 @@ namespace Med_Preserve.Forms
                                     tb_S1_Humi.Text = (humi1 != 0) ? humi1.ToString() : Ehumi1;
                                     tb_S2_Humi.Text = (humi2 != 0) ? humi2.ToString() : Ehumi2;
                                     tb_S3_Humi.Text = (humi3 != 0) ? humi3.ToString() : Ehumi3;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "4")
@@ -296,10 +350,11 @@ namespace Med_Preserve.Forms
                                 string Ehumi3 = body[2];
                                 string Ehumi4 = body[3];
                                 string dateTimeString = body[4] + " " + body[5];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -318,8 +373,8 @@ namespace Med_Preserve.Forms
                                     tb_S2_Humi.Text = (humi2 != 0) ? humi2.ToString() : Ehumi2;
                                     tb_S3_Humi.Text = (humi3 != 0) ? humi3.ToString() : Ehumi3;
                                     tb_S4_Humi.Text = (humi4 != 0) ? humi4.ToString() : Ehumi4;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                         }
@@ -352,8 +407,10 @@ namespace Med_Preserve.Forms
                                 {
                                     tb_S1_Temp.Text = (temp1 != 0) ? temp1.ToString() : Etemp1;
                                     tb_S1_Humi.Text = (humi1 != 0) ? humi1.ToString() : Ehumi1;
-                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");  
-                                    tb_Date.Text = date.ToString("yyyy/MM/dd"); //working here this block is correct now mimic this in other if else statements
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
+                                    UpdateChartTemp(temp1, time.ToString(@"hh\:mm\:ss"));
+                                    UpdateChartHumi(humi1, time.ToString(@"hh\:mm\:ss"));
                                 }));
 
                             }
@@ -366,10 +423,11 @@ namespace Med_Preserve.Forms
                                 string Etemp2 = body[2];
                                 string Ehumi2 = body[3];
                                 string dateTimeString = body[4] + " " + body[5];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -388,8 +446,8 @@ namespace Med_Preserve.Forms
                                     tb_S1_Humi.Text = (humi1 != 0) ? humi1.ToString() : Ehumi1;
                                     tb_S2_Temp.Text = (temp2 != 0) ? temp2.ToString() : Etemp2;
                                     tb_S2_Humi.Text = (humi2 != 0) ? humi2.ToString() : Ehumi2;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "3")
@@ -403,10 +461,11 @@ namespace Med_Preserve.Forms
                                 string Etemp3 = body[4];
                                 string Ehumi3 = body[5];
                                 string dateTimeString = body[6] + " " + body[7];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -429,8 +488,8 @@ namespace Med_Preserve.Forms
                                     tb_S2_Humi.Text = (humi2 != 0) ? humi2.ToString() : Ehumi2;
                                     tb_S3_Temp.Text = (temp3 != 0) ? temp3.ToString() : Etemp3;
                                     tb_S3_Humi.Text = (humi3 != 0) ? humi3.ToString() : Ehumi3;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                             else if (SensorCount == "4")
@@ -446,10 +505,11 @@ namespace Med_Preserve.Forms
                                 string Etemp4 = body[6];
                                 string Ehumi4 = body[7];
                                 string dateTimeString = body[8] + " " + body[9];
+                                string dateTime = dateTimeString.Trim();
                                 DateTime timeStamp;
                                 DateTime date = DateTime.MinValue;
                                 TimeSpan time = TimeSpan.Zero;
-                                if (DateTime.TryParseExact(dateTimeString, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
+                                if (DateTime.TryParseExact(dateTime, "yyyy/MM/dd H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out timeStamp))
                                 {
                                     date = timeStamp.Date;
                                     time = timeStamp.TimeOfDay;
@@ -476,8 +536,8 @@ namespace Med_Preserve.Forms
                                     tb_S3_Humi.Text = (humi3 != 0) ? humi3.ToString() : Ehumi3;
                                     tb_S4_Temp.Text = (temp4 != 0) ? temp4.ToString() : Etemp4;
                                     tb_S4_Humi.Text = (humi4 != 0) ? humi4.ToString() : Ehumi4;
-                                    tb_Time.Text = time.ToString();
-                                    tb_Date.Text = date.ToString();
+                                    tb_Time.Text = time.ToString(@"hh\:mm\:ss");
+                                    tb_Date.Text = date.ToString("yyyy/MM/dd");
                                 }));
                             }
                         }
@@ -547,6 +607,16 @@ namespace Med_Preserve.Forms
                                 tb_S3_Humi.Text = " ";
                                 tb_S4_Temp.Text = " ";
                                 tb_S4_Humi.Text = " ";
+                                InitializeChart();
+                                double minTemp, maxTemp, minHumi, maxHumi;
+                                if (double.TryParse(tb_T1LL.Text, out minTemp) && double.TryParse(tb_T1UL.Text, out maxTemp) && double.TryParse(tb_H1LL.Text, out minHumi) && double.TryParse(tb_H1UL.Text, out maxHumi))
+                                {
+                                    UpdateYaxis(minTemp, maxTemp, minHumi, maxHumi);
+                                }
+                                else 
+                                {
+                                    UpdateYaxis(25, 38, 60, 100);
+                                }
                             }
                             else
                             {
@@ -562,29 +632,206 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("An error occurred." + ex.Message, "Error");
             }
         }
-
-        private void RealTimeData_Load(object sender, EventArgs e)
+        private void InitializeChart()
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (!chartInitialized)
             {
-                try
+                temperatureValues = new ChartValues<double>();
+                var temperatureLineSeries = new LineSeries
                 {
-                    connection.Open();
-                    string queryLogName = "SELECT LoggerMaster.LoggerName FROM LoggerMaster JOIN LoggerConfig ON LoggerMaster.LoggerID = LoggerConfig.LoggerID WHERE LoggerConfig.Sync = 1;";
-                    using (SqlCommand command = new SqlCommand(queryLogName, connection))
+                    Title = "Temperature",
+                    Values = temperatureValues,
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 10,
+                    Fill = Brushes.Transparent
+                };
+
+                humidityValues = new ChartValues<int>();
+                var humidityLineSeries = new LineSeries
+                {
+                    Title = "Humidity",
+                    Values = humidityValues,
+                    PointGeometry = DefaultGeometries.Circle,
+                    PointGeometrySize = 10,
+                    Fill = Brushes.Transparent
+                };
+                cartesianTemp.Series.Add(temperatureLineSeries);
+                cartesianHumi.Series.Add(humidityLineSeries); 
+
+                cartesianTemp.AxisX.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Time",
+                    Labels = new List<string>(),
+                });
+                cartesianHumi.AxisX.Add(new LiveCharts.Wpf.Axis
+                {
+                    Title = "Time",
+                    Labels = new List<string>(),
+                });
+
+                double minValueTemp, maxValueTemp;
+                if (double.TryParse(tb_T1LL.Text, out minValueTemp) && double.TryParse(tb_T1UL.Text, out maxValueTemp))
+                {
+                    cartesianTemp.AxisY.Add(new LiveCharts.Wpf.Axis
                     {
-                        using (SqlDataAdapter logAdapter = new SqlDataAdapter(command))
+                        Title = "Temperature",
+                        LabelFormatter = value => value.ToString("N"),
+                        MinValue = minValueTemp - 3,
+                        MaxValue = maxValueTemp + 3,
+                        Separator = new LiveCharts.Wpf.Separator
                         {
-                            DataTable logDataTable = new DataTable();
-                            logAdapter.Fill(logDataTable);
-                            cmb_LogName.DataSource = logDataTable;
-                            cmb_LogName.DisplayMember = "LoggerName";
+                            Step = 1,
+                        },
+                        Sections = new SectionsCollection
+                        {
+                            new AxisSection
+                            {
+                                Value = minValueTemp,
+                                SectionWidth = 0.08,
+                                Fill = new SolidColorBrush(Colors.Red),
+                            },
+                            new AxisSection
+                            {
+                                Value = maxValueTemp,
+                                SectionWidth = 0.08,
+                                Fill = new SolidColorBrush(Colors.Red),
+                            }
                         }
-                    }
+                    });
+                    sectionT = true;
                 }
-                catch (Exception ex)
+                double minValueHumi, maxValueHumi;
+                if (double.TryParse(tb_H1LL.Text, out minValueHumi) && double.TryParse(tb_H1UL.Text, out maxValueHumi))
                 {
-                    MessageBox.Show("An error occurred while refreshing data." + ex.Message, "Error");
+                    cartesianHumi.AxisY.Add(new LiveCharts.Wpf.Axis
+                    {
+                        Title = "Humidity",
+                        LabelFormatter = value => value.ToString("N"),
+                        MinValue = minValueHumi - 3,
+                        MaxValue = maxValueHumi + 3,
+                        Separator = new LiveCharts.Wpf.Separator
+                        {
+                            Step = 1,
+                        },
+                        Sections = new SectionsCollection
+                        {
+                            new AxisSection
+                            {
+                                Value = minValueHumi,
+                                SectionWidth = 0.08,
+                                Fill = new SolidColorBrush(Colors.Red),
+                            },
+                            new AxisSection
+                            {
+                                Value = maxValueHumi,
+                                SectionWidth = 0.08,
+                                Fill = new SolidColorBrush(Colors.Red),
+                            }
+                        }
+                    });
+                    sectionH = true;
+                }
+                chartInitialized = true;
+            }
+        }
+        private void UpdateChartTemp(double temp, string time)
+        {
+            temperatureValues.Add(temp);
+            if (temperatureValues.Count > 15)
+            {
+                temperatureValues.RemoveAt(0);
+            }
+            xAxisCounter++;
+            cartesianTemp.AxisX[0].Labels.Add(time);
+            if (cartesianTemp.AxisX[0].Labels.Count > 15)
+            {
+                cartesianTemp.AxisX[0].Labels.RemoveAt(0);
+            }
+            cartesianTemp.Update();
+        }
+        private void UpdateChartHumi(int humi, string time)
+        {
+            humidityValues.Add(humi);
+            if (humidityValues.Count > 15)
+            {
+                humidityValues.RemoveAt(0);
+            }
+            xAxisCounter++;
+            cartesianHumi.AxisX[0].Labels.Add(time);
+            if (cartesianHumi.AxisX[0].Labels.Count > 15)
+            {
+                cartesianHumi.AxisX[0].Labels.RemoveAt(0);
+            }
+            cartesianHumi.Update();
+        }
+
+        private void UpdateYaxis(double minValueTemp, double maxValueTemp, double minValueHumi, double maxValueHumi)
+        {
+            try
+            {
+                //if (cartesianTemp.AxisY.Count > 0 && cartesianTemp.AxisY[0] != null)
+                //{
+                    //if (cartesianTemp.AxisY[0].Sections != null)
+                    //{
+                    //    cartesianTemp.AxisY[0].Sections.Clear();
+                    //}
+
+                    cartesianTemp.AxisY[0].MinValue = minValueTemp - 3;
+                    cartesianTemp.AxisY[0].MaxValue = maxValueTemp + 3;
+
+                    cartesianTemp.AxisY[0].Sections.Add(new AxisSection
+                    {
+                        Value = minValueTemp,
+                        SectionWidth = 0.08,
+                        Fill = new SolidColorBrush(Colors.Red),
+                    });
+                    cartesianTemp.AxisY[0].Sections.Add(new AxisSection
+                    {
+                        Value = maxValueTemp,
+                        SectionWidth = 0.08,
+                        Fill = new SolidColorBrush(Colors.Red),
+                    });
+                    sectionT = true;
+                //}
+
+                //if (cartesianHumi.AxisY.Count > 0 && cartesianHumi.AxisY[0] != null)
+                //{
+                //    if (cartesianHumi.AxisY[0].Sections != null)
+                //    {
+                //        cartesianHumi.AxisY[0].Sections.Clear();
+                //    }
+
+                    cartesianHumi.AxisY[0].MinValue = minValueHumi - 3;
+                    cartesianHumi.AxisY[0].MaxValue = maxValueHumi + 3;
+
+                    cartesianHumi.AxisY[0].Sections.Add(new AxisSection
+                    {
+                        Value = minValueHumi,
+                        SectionWidth = 0.08,
+                        Fill = new SolidColorBrush(Colors.Red),
+                    });
+                    cartesianHumi.AxisY[0].Sections.Add(new AxisSection
+                    {
+                        Value = maxValueHumi,
+                        SectionWidth = 0.08,
+                        Fill = new SolidColorBrush(Colors.Red),
+                    });
+                //}
+            }
+            catch (System.NullReferenceException ex)
+            {
+                Console.WriteLine($"NullReferenceException: {ex.Message}");
+            }
+
+        }
+
+        private void RealTimeData_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (selectedComPort != null)
+            {
+                if (serialPort.IsOpen)
+                {
+                    serialPort.Close();
                 }
             }
         }

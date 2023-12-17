@@ -114,7 +114,7 @@ namespace Med_Preserve.Forms
             {
                 currentForm.Close();
             }
-            LiveReading liveReading = new LiveReading(SelectedComPort);
+            RealTimeData liveReading = new RealTimeData(SelectedComPort);
             liveReading.TopLevel = false;
             liveReading.Parent = p_MainScreen;
             liveReading.Dock = DockStyle.Fill;
@@ -192,18 +192,18 @@ namespace Med_Preserve.Forms
             p_Devices.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bt_DownloadData_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
             {
                 currentForm.Close();
             }
-            RealTimeData form1 = new RealTimeData(SelectedComPort);
-            form1.TopLevel = false;
-            form1.Parent = p_MainScreen;
-            form1.Dock = DockStyle.Fill;
-            currentForm = form1;
-            form1.Show();
+            DownloadData downloadData = new DownloadData(SelectedComPort);
+            downloadData.TopLevel = false;
+            downloadData.Parent = p_MainScreen;
+            downloadData.Dock = DockStyle.Fill;
+            currentForm = downloadData;
+            downloadData.Show();
         }
     }
 }

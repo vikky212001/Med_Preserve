@@ -32,24 +32,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.p_MenuPanel = new System.Windows.Forms.Panel();
             this.p_Reports = new System.Windows.Forms.Panel();
-            this.bt_AuditReport = new System.Windows.Forms.Button();
-            this.bt_LoggerReport = new System.Windows.Forms.Button();
-            this.bt_LoginReport = new System.Windows.Forms.Button();
-            this.bt_Reports = new System.Windows.Forms.Button();
             this.p_DataManagement = new System.Windows.Forms.Panel();
-            this.bt_DownloadData = new System.Windows.Forms.Button();
-            this.bt_RealTimeData = new System.Windows.Forms.Button();
-            this.bt_DataManagement = new System.Windows.Forms.Button();
             this.p_Devices = new System.Windows.Forms.Panel();
-            this.bt_LoggerConfig = new System.Windows.Forms.Button();
-            this.bt_LoggerMaster = new System.Windows.Forms.Button();
-            this.bt_Devices = new System.Windows.Forms.Button();
             this.p_UserManagement = new System.Windows.Forms.Panel();
-            this.bt_DeletedUser = new System.Windows.Forms.Button();
-            this.bt_ChangePassword = new System.Windows.Forms.Button();
-            this.bt_CompanyMaster = new System.Windows.Forms.Button();
-            this.bt_UserMaster = new System.Windows.Forms.Button();
-            this.bt_UserManagement = new System.Windows.Forms.Button();
             this.med_PreserveDataSet1 = new Med_Preserve.Med_PreserveDataSet();
             this.p_RightPanel = new System.Windows.Forms.Panel();
             this.lb_COM = new System.Windows.Forms.Label();
@@ -57,7 +42,21 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.p_MainScreen = new System.Windows.Forms.Panel();
             this.p_Title = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bt_AuditReport = new System.Windows.Forms.Button();
+            this.bt_LoggerReport = new System.Windows.Forms.Button();
+            this.bt_LoginReport = new System.Windows.Forms.Button();
+            this.bt_Reports = new System.Windows.Forms.Button();
+            this.bt_DownloadData = new System.Windows.Forms.Button();
+            this.bt_RealTimeData = new System.Windows.Forms.Button();
+            this.bt_DataManagement = new System.Windows.Forms.Button();
+            this.bt_LoggerConfig = new System.Windows.Forms.Button();
+            this.bt_LoggerMaster = new System.Windows.Forms.Button();
+            this.bt_Devices = new System.Windows.Forms.Button();
+            this.bt_DeletedUser = new System.Windows.Forms.Button();
+            this.bt_ChangePassword = new System.Windows.Forms.Button();
+            this.bt_CompanyMaster = new System.Windows.Forms.Button();
+            this.bt_UserMaster = new System.Windows.Forms.Button();
+            this.bt_UserManagement = new System.Windows.Forms.Button();
             this.p_MenuPanel.SuspendLayout();
             this.p_Reports.SuspendLayout();
             this.p_DataManagement.SuspendLayout();
@@ -105,6 +104,96 @@
             this.p_Reports.Name = "p_Reports";
             this.p_Reports.Size = new System.Drawing.Size(200, 122);
             this.p_Reports.TabIndex = 10;
+            // 
+            // p_DataManagement
+            // 
+            this.p_DataManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_DataManagement.Controls.Add(this.bt_DownloadData);
+            this.p_DataManagement.Controls.Add(this.bt_RealTimeData);
+            this.p_DataManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_DataManagement.Location = new System.Drawing.Point(0, 393);
+            this.p_DataManagement.Name = "p_DataManagement";
+            this.p_DataManagement.Size = new System.Drawing.Size(200, 81);
+            this.p_DataManagement.TabIndex = 8;
+            // 
+            // p_Devices
+            // 
+            this.p_Devices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_Devices.Controls.Add(this.bt_LoggerConfig);
+            this.p_Devices.Controls.Add(this.bt_LoggerMaster);
+            this.p_Devices.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_Devices.Location = new System.Drawing.Point(0, 261);
+            this.p_Devices.Name = "p_Devices";
+            this.p_Devices.Size = new System.Drawing.Size(200, 82);
+            this.p_Devices.TabIndex = 6;
+            // 
+            // p_UserManagement
+            // 
+            this.p_UserManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.p_UserManagement.Controls.Add(this.bt_DeletedUser);
+            this.p_UserManagement.Controls.Add(this.bt_ChangePassword);
+            this.p_UserManagement.Controls.Add(this.bt_CompanyMaster);
+            this.p_UserManagement.Controls.Add(this.bt_UserMaster);
+            this.p_UserManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_UserManagement.Location = new System.Drawing.Point(0, 50);
+            this.p_UserManagement.Name = "p_UserManagement";
+            this.p_UserManagement.Size = new System.Drawing.Size(200, 161);
+            this.p_UserManagement.TabIndex = 4;
+            // 
+            // med_PreserveDataSet1
+            // 
+            this.med_PreserveDataSet1.DataSetName = "Med_PreserveDataSet";
+            this.med_PreserveDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // p_RightPanel
+            // 
+            this.p_RightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.p_RightPanel.Controls.Add(this.lb_COM);
+            this.p_RightPanel.Controls.Add(this.cmb_COMPort);
+            this.p_RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.p_RightPanel.Location = new System.Drawing.Point(738, 0);
+            this.p_RightPanel.Name = "p_RightPanel";
+            this.p_RightPanel.Size = new System.Drawing.Size(200, 727);
+            this.p_RightPanel.TabIndex = 4;
+            // 
+            // lb_COM
+            // 
+            this.lb_COM.AutoSize = true;
+            this.lb_COM.Font = new System.Drawing.Font("Comfortaa", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_COM.Location = new System.Drawing.Point(63, 19);
+            this.lb_COM.Name = "lb_COM";
+            this.lb_COM.Size = new System.Drawing.Size(103, 18);
+            this.lb_COM.TabIndex = 1;
+            this.lb_COM.Text = "Select COM Port";
+            // 
+            // cmb_COMPort
+            // 
+            this.cmb_COMPort.FormattingEnabled = true;
+            this.cmb_COMPort.Location = new System.Drawing.Point(49, 36);
+            this.cmb_COMPort.Name = "cmb_COMPort";
+            this.cmb_COMPort.Size = new System.Drawing.Size(121, 21);
+            this.cmb_COMPort.TabIndex = 0;
+            // 
+            // p_MainScreen
+            // 
+            this.p_MainScreen.BackColor = System.Drawing.Color.White;
+            this.p_MainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p_MainScreen.Location = new System.Drawing.Point(200, 90);
+            this.p_MainScreen.Name = "p_MainScreen";
+            this.p_MainScreen.Size = new System.Drawing.Size(538, 637);
+            this.p_MainScreen.TabIndex = 6;
+            // 
+            // p_Title
+            // 
+            this.p_Title.BackColor = System.Drawing.Color.White;
+            this.p_Title.BackgroundImage = global::Med_Preserve.Properties.Resources.Banner;
+            this.p_Title.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.p_Title.Dock = System.Windows.Forms.DockStyle.Top;
+            this.p_Title.Location = new System.Drawing.Point(200, 0);
+            this.p_Title.Name = "p_Title";
+            this.p_Title.Size = new System.Drawing.Size(538, 90);
+            this.p_Title.TabIndex = 5;
             // 
             // bt_AuditReport
             // 
@@ -182,17 +271,6 @@
             this.bt_Reports.UseVisualStyleBackColor = true;
             this.bt_Reports.Click += new System.EventHandler(this.bt_Reports_Click);
             // 
-            // p_DataManagement
-            // 
-            this.p_DataManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.p_DataManagement.Controls.Add(this.bt_DownloadData);
-            this.p_DataManagement.Controls.Add(this.bt_RealTimeData);
-            this.p_DataManagement.Dock = System.Windows.Forms.DockStyle.Top;
-            this.p_DataManagement.Location = new System.Drawing.Point(0, 393);
-            this.p_DataManagement.Name = "p_DataManagement";
-            this.p_DataManagement.Size = new System.Drawing.Size(200, 81);
-            this.p_DataManagement.TabIndex = 8;
-            // 
             // bt_DownloadData
             // 
             this.bt_DownloadData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -211,6 +289,7 @@
             this.bt_DownloadData.Text = "Download Data";
             this.bt_DownloadData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_DownloadData.UseVisualStyleBackColor = true;
+            this.bt_DownloadData.Click += new System.EventHandler(this.bt_DownloadData_Click);
             // 
             // bt_RealTimeData
             // 
@@ -250,17 +329,6 @@
             this.bt_DataManagement.Text = "Data Management";
             this.bt_DataManagement.UseVisualStyleBackColor = true;
             this.bt_DataManagement.Click += new System.EventHandler(this.bt_DataManagement_Click);
-            // 
-            // p_Devices
-            // 
-            this.p_Devices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.p_Devices.Controls.Add(this.bt_LoggerConfig);
-            this.p_Devices.Controls.Add(this.bt_LoggerMaster);
-            this.p_Devices.Dock = System.Windows.Forms.DockStyle.Top;
-            this.p_Devices.Location = new System.Drawing.Point(0, 261);
-            this.p_Devices.Name = "p_Devices";
-            this.p_Devices.Size = new System.Drawing.Size(200, 82);
-            this.p_Devices.TabIndex = 6;
             // 
             // bt_LoggerConfig
             // 
@@ -320,19 +388,6 @@
             this.bt_Devices.Text = "Devices Management";
             this.bt_Devices.UseVisualStyleBackColor = true;
             this.bt_Devices.Click += new System.EventHandler(this.bt_Devices_Click);
-            // 
-            // p_UserManagement
-            // 
-            this.p_UserManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.p_UserManagement.Controls.Add(this.bt_DeletedUser);
-            this.p_UserManagement.Controls.Add(this.bt_ChangePassword);
-            this.p_UserManagement.Controls.Add(this.bt_CompanyMaster);
-            this.p_UserManagement.Controls.Add(this.bt_UserMaster);
-            this.p_UserManagement.Dock = System.Windows.Forms.DockStyle.Top;
-            this.p_UserManagement.Location = new System.Drawing.Point(0, 50);
-            this.p_UserManagement.Name = "p_UserManagement";
-            this.p_UserManagement.Size = new System.Drawing.Size(200, 161);
-            this.p_UserManagement.TabIndex = 4;
             // 
             // bt_DeletedUser
             // 
@@ -433,72 +488,6 @@
             this.bt_UserManagement.UseVisualStyleBackColor = true;
             this.bt_UserManagement.Click += new System.EventHandler(this.bt_UserManagement_Click);
             // 
-            // med_PreserveDataSet1
-            // 
-            this.med_PreserveDataSet1.DataSetName = "Med_PreserveDataSet";
-            this.med_PreserveDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // p_RightPanel
-            // 
-            this.p_RightPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.p_RightPanel.Controls.Add(this.button1);
-            this.p_RightPanel.Controls.Add(this.lb_COM);
-            this.p_RightPanel.Controls.Add(this.cmb_COMPort);
-            this.p_RightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.p_RightPanel.Location = new System.Drawing.Point(738, 0);
-            this.p_RightPanel.Name = "p_RightPanel";
-            this.p_RightPanel.Size = new System.Drawing.Size(200, 727);
-            this.p_RightPanel.TabIndex = 4;
-            // 
-            // lb_COM
-            // 
-            this.lb_COM.AutoSize = true;
-            this.lb_COM.Font = new System.Drawing.Font("Comfortaa", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_COM.Location = new System.Drawing.Point(63, 19);
-            this.lb_COM.Name = "lb_COM";
-            this.lb_COM.Size = new System.Drawing.Size(103, 18);
-            this.lb_COM.TabIndex = 1;
-            this.lb_COM.Text = "Select COM Port";
-            // 
-            // cmb_COMPort
-            // 
-            this.cmb_COMPort.FormattingEnabled = true;
-            this.cmb_COMPort.Location = new System.Drawing.Point(49, 36);
-            this.cmb_COMPort.Name = "cmb_COMPort";
-            this.cmb_COMPort.Size = new System.Drawing.Size(121, 21);
-            this.cmb_COMPort.TabIndex = 0;
-            // 
-            // p_MainScreen
-            // 
-            this.p_MainScreen.BackColor = System.Drawing.Color.White;
-            this.p_MainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p_MainScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p_MainScreen.Location = new System.Drawing.Point(200, 90);
-            this.p_MainScreen.Name = "p_MainScreen";
-            this.p_MainScreen.Size = new System.Drawing.Size(538, 637);
-            this.p_MainScreen.TabIndex = 6;
-            // 
-            // p_Title
-            // 
-            this.p_Title.BackColor = System.Drawing.Color.White;
-            this.p_Title.BackgroundImage = global::Med_Preserve.Properties.Resources.Banner;
-            this.p_Title.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.p_Title.Dock = System.Windows.Forms.DockStyle.Top;
-            this.p_Title.Location = new System.Drawing.Point(200, 0);
-            this.p_Title.Name = "p_Title";
-            this.p_Title.Size = new System.Drawing.Size(538, 90);
-            this.p_Title.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(66, 186);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -555,6 +544,5 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Panel p_MainScreen;
         private System.Windows.Forms.Button bt_DeletedUser;
-        private System.Windows.Forms.Button button1;
     }
 }

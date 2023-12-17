@@ -83,6 +83,7 @@
             this.Name = "Audit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Audit";
+            this.Load += new System.EventHandler(this.Audit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

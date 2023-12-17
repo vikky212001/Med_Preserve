@@ -978,6 +978,7 @@
             this.Name = "LoggerConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logger Configuration";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoggerConfig_FormClosing);
             this.Load += new System.EventHandler(this.LoggerConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerConfig)).EndInit();
             this.gb_Unit.ResumeLayout(false);
