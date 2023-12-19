@@ -44,7 +44,7 @@ namespace Med_Preserve.Forms
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            Close();
+            this.Close();
         }
 
         private void Audit_Load(object sender, EventArgs e)

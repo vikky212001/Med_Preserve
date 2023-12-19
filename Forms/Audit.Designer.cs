@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Audit));
             this.bt_Delete = new System.Windows.Forms.Button();
             this.bt_Cancel = new System.Windows.Forms.Button();
             this.rtb_Reason = new System.Windows.Forms.RichTextBox();
@@ -39,7 +40,7 @@
             this.bt_Delete.Location = new System.Drawing.Point(23, 135);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(75, 23);
-            this.bt_Delete.TabIndex = 0;
+            this.bt_Delete.TabIndex = 1;
             this.bt_Delete.Text = "Delete";
             this.bt_Delete.UseVisualStyleBackColor = true;
             this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
@@ -49,7 +50,7 @@
             this.bt_Cancel.Location = new System.Drawing.Point(166, 135);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.bt_Cancel.TabIndex = 1;
+            this.bt_Cancel.TabIndex = 2;
             this.bt_Cancel.Text = "Cancel";
             this.bt_Cancel.UseVisualStyleBackColor = true;
             this.bt_Cancel.Click += new System.EventHandler(this.bt_Cancel_Click);
@@ -59,7 +60,7 @@
             this.rtb_Reason.Location = new System.Drawing.Point(23, 33);
             this.rtb_Reason.Name = "rtb_Reason";
             this.rtb_Reason.Size = new System.Drawing.Size(224, 96);
-            this.rtb_Reason.TabIndex = 2;
+            this.rtb_Reason.TabIndex = 0;
             this.rtb_Reason.Text = "";
             // 
             // label1
@@ -80,6 +81,8 @@
             this.Controls.Add(this.rtb_Reason);
             this.Controls.Add(this.bt_Cancel);
             this.Controls.Add(this.bt_Delete);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Audit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Audit";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.p_MenuPanel = new System.Windows.Forms.Panel();
             this.p_Reports = new System.Windows.Forms.Panel();
@@ -121,7 +122,7 @@
             this.bt_AuditReport.Name = "bt_AuditReport";
             this.bt_AuditReport.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_AuditReport.Size = new System.Drawing.Size(200, 40);
-            this.bt_AuditReport.TabIndex = 6;
+            this.bt_AuditReport.TabIndex = 2;
             this.bt_AuditReport.Text = "Audit Report";
             this.bt_AuditReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_AuditReport.UseVisualStyleBackColor = true;
@@ -140,7 +141,7 @@
             this.bt_LoggerReport.Name = "bt_LoggerReport";
             this.bt_LoggerReport.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_LoggerReport.Size = new System.Drawing.Size(200, 40);
-            this.bt_LoggerReport.TabIndex = 5;
+            this.bt_LoggerReport.TabIndex = 1;
             this.bt_LoggerReport.Text = "Logger Report";
             this.bt_LoggerReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_LoggerReport.UseVisualStyleBackColor = true;
@@ -159,7 +160,7 @@
             this.bt_LoginReport.Name = "bt_LoginReport";
             this.bt_LoginReport.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_LoginReport.Size = new System.Drawing.Size(200, 40);
-            this.bt_LoginReport.TabIndex = 4;
+            this.bt_LoginReport.TabIndex = 0;
             this.bt_LoginReport.Text = "Login Report";
             this.bt_LoginReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_LoginReport.UseVisualStyleBackColor = true;
@@ -178,7 +179,7 @@
             this.bt_Reports.Name = "bt_Reports";
             this.bt_Reports.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.bt_Reports.Size = new System.Drawing.Size(200, 50);
-            this.bt_Reports.TabIndex = 9;
+            this.bt_Reports.TabIndex = 3;
             this.bt_Reports.Text = "Reports";
             this.bt_Reports.UseVisualStyleBackColor = true;
             this.bt_Reports.Visible = false;
@@ -209,7 +210,7 @@
             this.bt_DownloadData.Name = "bt_DownloadData";
             this.bt_DownloadData.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_DownloadData.Size = new System.Drawing.Size(200, 40);
-            this.bt_DownloadData.TabIndex = 5;
+            this.bt_DownloadData.TabIndex = 1;
             this.bt_DownloadData.Text = "Download Data";
             this.bt_DownloadData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_DownloadData.UseVisualStyleBackColor = true;
@@ -230,7 +231,7 @@
             this.bt_RealTimeData.Name = "bt_RealTimeData";
             this.bt_RealTimeData.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_RealTimeData.Size = new System.Drawing.Size(200, 40);
-            this.bt_RealTimeData.TabIndex = 4;
+            this.bt_RealTimeData.TabIndex = 0;
             this.bt_RealTimeData.Text = "Real-time Data";
             this.bt_RealTimeData.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_RealTimeData.UseVisualStyleBackColor = true;
@@ -250,7 +251,7 @@
             this.bt_DataManagement.Name = "bt_DataManagement";
             this.bt_DataManagement.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.bt_DataManagement.Size = new System.Drawing.Size(200, 50);
-            this.bt_DataManagement.TabIndex = 7;
+            this.bt_DataManagement.TabIndex = 2;
             this.bt_DataManagement.Text = "Data Management";
             this.bt_DataManagement.UseVisualStyleBackColor = true;
             this.bt_DataManagement.Click += new System.EventHandler(this.bt_DataManagement_Click);
@@ -280,7 +281,7 @@
             this.bt_LoggerConfig.Name = "bt_LoggerConfig";
             this.bt_LoggerConfig.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_LoggerConfig.Size = new System.Drawing.Size(200, 40);
-            this.bt_LoggerConfig.TabIndex = 5;
+            this.bt_LoggerConfig.TabIndex = 1;
             this.bt_LoggerConfig.Text = "Logger Config";
             this.bt_LoggerConfig.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_LoggerConfig.UseVisualStyleBackColor = true;
@@ -300,7 +301,7 @@
             this.bt_LoggerMaster.Name = "bt_LoggerMaster";
             this.bt_LoggerMaster.Padding = new System.Windows.Forms.Padding(25, 0, 10, 0);
             this.bt_LoggerMaster.Size = new System.Drawing.Size(200, 40);
-            this.bt_LoggerMaster.TabIndex = 4;
+            this.bt_LoggerMaster.TabIndex = 0;
             this.bt_LoggerMaster.Text = "Logger Master";
             this.bt_LoggerMaster.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_LoggerMaster.UseVisualStyleBackColor = true;
@@ -320,7 +321,7 @@
             this.bt_Devices.Name = "bt_Devices";
             this.bt_Devices.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.bt_Devices.Size = new System.Drawing.Size(200, 50);
-            this.bt_Devices.TabIndex = 5;
+            this.bt_Devices.TabIndex = 1;
             this.bt_Devices.Text = "Devices Management";
             this.bt_Devices.UseVisualStyleBackColor = true;
             this.bt_Devices.Click += new System.EventHandler(this.bt_Devices_Click);
@@ -352,7 +353,7 @@
             this.bt_DeletedUser.Name = "bt_DeletedUser";
             this.bt_DeletedUser.Padding = new System.Windows.Forms.Padding(20, 0, 10, 0);
             this.bt_DeletedUser.Size = new System.Drawing.Size(200, 40);
-            this.bt_DeletedUser.TabIndex = 4;
+            this.bt_DeletedUser.TabIndex = 3;
             this.bt_DeletedUser.Text = "Deleted User";
             this.bt_DeletedUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_DeletedUser.UseVisualStyleBackColor = true;
@@ -372,7 +373,7 @@
             this.bt_ChangePassword.Name = "bt_ChangePassword";
             this.bt_ChangePassword.Padding = new System.Windows.Forms.Padding(20, 0, 10, 0);
             this.bt_ChangePassword.Size = new System.Drawing.Size(200, 40);
-            this.bt_ChangePassword.TabIndex = 3;
+            this.bt_ChangePassword.TabIndex = 2;
             this.bt_ChangePassword.Text = "Change Password";
             this.bt_ChangePassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_ChangePassword.UseVisualStyleBackColor = true;
@@ -392,7 +393,7 @@
             this.bt_CompanyMaster.Name = "bt_CompanyMaster";
             this.bt_CompanyMaster.Padding = new System.Windows.Forms.Padding(20, 0, 10, 0);
             this.bt_CompanyMaster.Size = new System.Drawing.Size(200, 40);
-            this.bt_CompanyMaster.TabIndex = 2;
+            this.bt_CompanyMaster.TabIndex = 1;
             this.bt_CompanyMaster.Text = "Company Master";
             this.bt_CompanyMaster.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_CompanyMaster.UseVisualStyleBackColor = true;
@@ -412,7 +413,7 @@
             this.bt_UserMaster.Name = "bt_UserMaster";
             this.bt_UserMaster.Padding = new System.Windows.Forms.Padding(20, 0, 10, 0);
             this.bt_UserMaster.Size = new System.Drawing.Size(200, 40);
-            this.bt_UserMaster.TabIndex = 1;
+            this.bt_UserMaster.TabIndex = 0;
             this.bt_UserMaster.Text = "User Master";
             this.bt_UserMaster.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bt_UserMaster.UseVisualStyleBackColor = true;
@@ -520,6 +521,7 @@
             this.Controls.Add(this.p_MenuPanel);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

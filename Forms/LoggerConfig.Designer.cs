@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoggerConfig));
             this.tb_TS4_LL = new System.Windows.Forms.TextBox();
             this.tb_TS4_UL = new System.Windows.Forms.TextBox();
             this.tb_TS3_LL = new System.Windows.Forms.TextBox();
@@ -111,6 +112,8 @@
             this.gb_SV = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lb_Title = new System.Windows.Forms.Label();
+            this.tb_delay = new System.Windows.Forms.TextBox();
+            this.tb_delaytype = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_LoggerConfig)).BeginInit();
             this.gb_Unit.SuspendLayout();
             this.gb_Calibrate.SuspendLayout();
@@ -125,7 +128,7 @@
             this.tb_TS4_LL.Location = new System.Drawing.Point(20, 121);
             this.tb_TS4_LL.Name = "tb_TS4_LL";
             this.tb_TS4_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS4_LL.TabIndex = 64;
+            this.tb_TS4_LL.TabIndex = 6;
             // 
             // tb_TS4_UL
             // 
@@ -133,7 +136,7 @@
             this.tb_TS4_UL.Location = new System.Drawing.Point(114, 121);
             this.tb_TS4_UL.Name = "tb_TS4_UL";
             this.tb_TS4_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS4_UL.TabIndex = 63;
+            this.tb_TS4_UL.TabIndex = 7;
             // 
             // tb_TS3_LL
             // 
@@ -141,7 +144,7 @@
             this.tb_TS3_LL.Location = new System.Drawing.Point(20, 95);
             this.tb_TS3_LL.Name = "tb_TS3_LL";
             this.tb_TS3_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS3_LL.TabIndex = 62;
+            this.tb_TS3_LL.TabIndex = 4;
             // 
             // tb_TS3_UL
             // 
@@ -149,7 +152,7 @@
             this.tb_TS3_UL.Location = new System.Drawing.Point(114, 95);
             this.tb_TS3_UL.Name = "tb_TS3_UL";
             this.tb_TS3_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS3_UL.TabIndex = 61;
+            this.tb_TS3_UL.TabIndex = 5;
             // 
             // tb_TS2_LL
             // 
@@ -157,7 +160,7 @@
             this.tb_TS2_LL.Location = new System.Drawing.Point(20, 69);
             this.tb_TS2_LL.Name = "tb_TS2_LL";
             this.tb_TS2_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS2_LL.TabIndex = 60;
+            this.tb_TS2_LL.TabIndex = 2;
             // 
             // tb_TS2_UL
             // 
@@ -165,7 +168,7 @@
             this.tb_TS2_UL.Location = new System.Drawing.Point(114, 69);
             this.tb_TS2_UL.Name = "tb_TS2_UL";
             this.tb_TS2_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS2_UL.TabIndex = 59;
+            this.tb_TS2_UL.TabIndex = 3;
             // 
             // tb_TS1_LL
             // 
@@ -173,7 +176,7 @@
             this.tb_TS1_LL.Location = new System.Drawing.Point(20, 43);
             this.tb_TS1_LL.Name = "tb_TS1_LL";
             this.tb_TS1_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS1_LL.TabIndex = 58;
+            this.tb_TS1_LL.TabIndex = 0;
             // 
             // tb_TS1_UL
             // 
@@ -181,7 +184,7 @@
             this.tb_TS1_UL.Location = new System.Drawing.Point(114, 43);
             this.tb_TS1_UL.Name = "tb_TS1_UL";
             this.tb_TS1_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS1_UL.TabIndex = 57;
+            this.tb_TS1_UL.TabIndex = 1;
             // 
             // tb_S4_Humidity
             // 
@@ -189,7 +192,7 @@
             this.tb_S4_Humidity.Location = new System.Drawing.Point(119, 121);
             this.tb_S4_Humidity.Name = "tb_S4_Humidity";
             this.tb_S4_Humidity.Size = new System.Drawing.Size(64, 22);
-            this.tb_S4_Humidity.TabIndex = 56;
+            this.tb_S4_Humidity.TabIndex = 7;
             // 
             // tb_S4_Temp
             // 
@@ -197,7 +200,7 @@
             this.tb_S4_Temp.Location = new System.Drawing.Point(20, 121);
             this.tb_S4_Temp.Name = "tb_S4_Temp";
             this.tb_S4_Temp.Size = new System.Drawing.Size(64, 22);
-            this.tb_S4_Temp.TabIndex = 55;
+            this.tb_S4_Temp.TabIndex = 6;
             // 
             // tb_S3_Humidity
             // 
@@ -205,7 +208,7 @@
             this.tb_S3_Humidity.Location = new System.Drawing.Point(119, 95);
             this.tb_S3_Humidity.Name = "tb_S3_Humidity";
             this.tb_S3_Humidity.Size = new System.Drawing.Size(64, 22);
-            this.tb_S3_Humidity.TabIndex = 54;
+            this.tb_S3_Humidity.TabIndex = 5;
             // 
             // tb_S3_Temp
             // 
@@ -213,7 +216,7 @@
             this.tb_S3_Temp.Location = new System.Drawing.Point(20, 95);
             this.tb_S3_Temp.Name = "tb_S3_Temp";
             this.tb_S3_Temp.Size = new System.Drawing.Size(64, 22);
-            this.tb_S3_Temp.TabIndex = 53;
+            this.tb_S3_Temp.TabIndex = 4;
             // 
             // tb_S2_Humidity
             // 
@@ -221,7 +224,7 @@
             this.tb_S2_Humidity.Location = new System.Drawing.Point(119, 69);
             this.tb_S2_Humidity.Name = "tb_S2_Humidity";
             this.tb_S2_Humidity.Size = new System.Drawing.Size(64, 22);
-            this.tb_S2_Humidity.TabIndex = 52;
+            this.tb_S2_Humidity.TabIndex = 3;
             // 
             // tb_S2_Temp
             // 
@@ -229,7 +232,7 @@
             this.tb_S2_Temp.Location = new System.Drawing.Point(20, 69);
             this.tb_S2_Temp.Name = "tb_S2_Temp";
             this.tb_S2_Temp.Size = new System.Drawing.Size(64, 22);
-            this.tb_S2_Temp.TabIndex = 51;
+            this.tb_S2_Temp.TabIndex = 2;
             // 
             // tb_S1_Humidity
             // 
@@ -237,7 +240,7 @@
             this.tb_S1_Humidity.Location = new System.Drawing.Point(119, 43);
             this.tb_S1_Humidity.Name = "tb_S1_Humidity";
             this.tb_S1_Humidity.Size = new System.Drawing.Size(64, 22);
-            this.tb_S1_Humidity.TabIndex = 50;
+            this.tb_S1_Humidity.TabIndex = 1;
             // 
             // tb_S1_Temp
             // 
@@ -245,7 +248,7 @@
             this.tb_S1_Temp.Location = new System.Drawing.Point(20, 43);
             this.tb_S1_Temp.Name = "tb_S1_Temp";
             this.tb_S1_Temp.Size = new System.Drawing.Size(64, 22);
-            this.tb_S1_Temp.TabIndex = 49;
+            this.tb_S1_Temp.TabIndex = 0;
             // 
             // lb_T_LowThreshold
             // 
@@ -313,7 +316,7 @@
             this.tb_TS1_Calibrate.Location = new System.Drawing.Point(25, 43);
             this.tb_TS1_Calibrate.Name = "tb_TS1_Calibrate";
             this.tb_TS1_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS1_Calibrate.TabIndex = 68;
+            this.tb_TS1_Calibrate.TabIndex = 0;
             // 
             // tb_TS2_Calibrate
             // 
@@ -321,7 +324,7 @@
             this.tb_TS2_Calibrate.Location = new System.Drawing.Point(25, 69);
             this.tb_TS2_Calibrate.Name = "tb_TS2_Calibrate";
             this.tb_TS2_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS2_Calibrate.TabIndex = 69;
+            this.tb_TS2_Calibrate.TabIndex = 2;
             // 
             // tb_TS3_Calibrate
             // 
@@ -329,7 +332,7 @@
             this.tb_TS3_Calibrate.Location = new System.Drawing.Point(25, 95);
             this.tb_TS3_Calibrate.Name = "tb_TS3_Calibrate";
             this.tb_TS3_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS3_Calibrate.TabIndex = 70;
+            this.tb_TS3_Calibrate.TabIndex = 4;
             // 
             // tb_TS4_Calibrate
             // 
@@ -337,7 +340,7 @@
             this.tb_TS4_Calibrate.Location = new System.Drawing.Point(25, 121);
             this.tb_TS4_Calibrate.Name = "tb_TS4_Calibrate";
             this.tb_TS4_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_TS4_Calibrate.TabIndex = 71;
+            this.tb_TS4_Calibrate.TabIndex = 6;
             // 
             // dgv_LoggerConfig
             // 
@@ -347,7 +350,7 @@
             this.dgv_LoggerConfig.Name = "dgv_LoggerConfig";
             this.dgv_LoggerConfig.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_LoggerConfig.Size = new System.Drawing.Size(929, 173);
-            this.dgv_LoggerConfig.TabIndex = 72;
+            this.dgv_LoggerConfig.TabIndex = 12;
             this.dgv_LoggerConfig.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_LoggerConfig_CellClick);
             // 
             // tb_S1_Name
@@ -498,7 +501,7 @@
             this.bt_Close.Location = new System.Drawing.Point(606, 549);
             this.bt_Close.Name = "bt_Close";
             this.bt_Close.Size = new System.Drawing.Size(70, 30);
-            this.bt_Close.TabIndex = 91;
+            this.bt_Close.TabIndex = 10;
             this.bt_Close.Text = "CLOSE";
             this.bt_Close.UseVisualStyleBackColor = true;
             this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
@@ -511,7 +514,7 @@
             this.bt_Clear.Location = new System.Drawing.Point(500, 549);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(70, 30);
-            this.bt_Clear.TabIndex = 90;
+            this.bt_Clear.TabIndex = 9;
             this.bt_Clear.Text = "CLEAR";
             this.bt_Clear.UseVisualStyleBackColor = true;
             this.bt_Clear.Click += new System.EventHandler(this.bt_Clear_Click);
@@ -524,7 +527,7 @@
             this.bt_Delete.Location = new System.Drawing.Point(394, 549);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(70, 30);
-            this.bt_Delete.TabIndex = 89;
+            this.bt_Delete.TabIndex = 8;
             this.bt_Delete.Text = "DELETE";
             this.bt_Delete.UseVisualStyleBackColor = true;
             this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
@@ -537,7 +540,7 @@
             this.bt_Update.Location = new System.Drawing.Point(288, 549);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(70, 30);
-            this.bt_Update.TabIndex = 88;
+            this.bt_Update.TabIndex = 7;
             this.bt_Update.Text = "UPDATE";
             this.bt_Update.UseVisualStyleBackColor = true;
             this.bt_Update.Click += new System.EventHandler(this.bt_Update_Click);
@@ -550,7 +553,7 @@
             this.bt_Add.Location = new System.Drawing.Point(182, 549);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(70, 30);
-            this.bt_Add.TabIndex = 87;
+            this.bt_Add.TabIndex = 6;
             this.bt_Add.Text = "ADD";
             this.bt_Add.UseVisualStyleBackColor = true;
             this.bt_Add.Click += new System.EventHandler(this.bt_Add_Click);
@@ -575,7 +578,7 @@
             this.cmb_LoggerName.Location = new System.Drawing.Point(126, 305);
             this.cmb_LoggerName.Name = "cmb_LoggerName";
             this.cmb_LoggerName.Size = new System.Drawing.Size(121, 29);
-            this.cmb_LoggerName.TabIndex = 93;
+            this.cmb_LoggerName.TabIndex = 1;
             this.cmb_LoggerName.TextChanged += new System.EventHandler(this.cmb_LoggerName_TextChanged);
             // 
             // tb_HS4_LL
@@ -584,7 +587,7 @@
             this.tb_HS4_LL.Location = new System.Drawing.Point(17, 121);
             this.tb_HS4_LL.Name = "tb_HS4_LL";
             this.tb_HS4_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS4_LL.TabIndex = 104;
+            this.tb_HS4_LL.TabIndex = 6;
             // 
             // tb_HS4_UL
             // 
@@ -592,7 +595,7 @@
             this.tb_HS4_UL.Location = new System.Drawing.Point(103, 121);
             this.tb_HS4_UL.Name = "tb_HS4_UL";
             this.tb_HS4_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS4_UL.TabIndex = 103;
+            this.tb_HS4_UL.TabIndex = 7;
             // 
             // tb_HS3_LL
             // 
@@ -600,7 +603,7 @@
             this.tb_HS3_LL.Location = new System.Drawing.Point(17, 95);
             this.tb_HS3_LL.Name = "tb_HS3_LL";
             this.tb_HS3_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS3_LL.TabIndex = 102;
+            this.tb_HS3_LL.TabIndex = 4;
             // 
             // tb_HS3_UL
             // 
@@ -608,7 +611,7 @@
             this.tb_HS3_UL.Location = new System.Drawing.Point(103, 95);
             this.tb_HS3_UL.Name = "tb_HS3_UL";
             this.tb_HS3_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS3_UL.TabIndex = 101;
+            this.tb_HS3_UL.TabIndex = 5;
             // 
             // tb_HS2_LL
             // 
@@ -616,7 +619,7 @@
             this.tb_HS2_LL.Location = new System.Drawing.Point(17, 69);
             this.tb_HS2_LL.Name = "tb_HS2_LL";
             this.tb_HS2_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS2_LL.TabIndex = 100;
+            this.tb_HS2_LL.TabIndex = 2;
             // 
             // tb_HS2_UL
             // 
@@ -624,7 +627,7 @@
             this.tb_HS2_UL.Location = new System.Drawing.Point(103, 69);
             this.tb_HS2_UL.Name = "tb_HS2_UL";
             this.tb_HS2_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS2_UL.TabIndex = 99;
+            this.tb_HS2_UL.TabIndex = 3;
             // 
             // tb_HS1_LL
             // 
@@ -632,7 +635,7 @@
             this.tb_HS1_LL.Location = new System.Drawing.Point(17, 43);
             this.tb_HS1_LL.Name = "tb_HS1_LL";
             this.tb_HS1_LL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS1_LL.TabIndex = 98;
+            this.tb_HS1_LL.TabIndex = 0;
             // 
             // tb_HS1_UL
             // 
@@ -640,7 +643,7 @@
             this.tb_HS1_UL.Location = new System.Drawing.Point(103, 43);
             this.tb_HS1_UL.Name = "tb_HS1_UL";
             this.tb_HS1_UL.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS1_UL.TabIndex = 97;
+            this.tb_HS1_UL.TabIndex = 1;
             // 
             // lb_H_LowThreshold
             // 
@@ -668,7 +671,7 @@
             this.tb_HS4_Calibrate.Location = new System.Drawing.Point(108, 121);
             this.tb_HS4_Calibrate.Name = "tb_HS4_Calibrate";
             this.tb_HS4_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS4_Calibrate.TabIndex = 109;
+            this.tb_HS4_Calibrate.TabIndex = 7;
             // 
             // tb_HS3_Calibrate
             // 
@@ -676,7 +679,7 @@
             this.tb_HS3_Calibrate.Location = new System.Drawing.Point(108, 95);
             this.tb_HS3_Calibrate.Name = "tb_HS3_Calibrate";
             this.tb_HS3_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS3_Calibrate.TabIndex = 108;
+            this.tb_HS3_Calibrate.TabIndex = 5;
             // 
             // tb_HS2_Calibrate
             // 
@@ -684,7 +687,7 @@
             this.tb_HS2_Calibrate.Location = new System.Drawing.Point(108, 69);
             this.tb_HS2_Calibrate.Name = "tb_HS2_Calibrate";
             this.tb_HS2_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS2_Calibrate.TabIndex = 107;
+            this.tb_HS2_Calibrate.TabIndex = 3;
             // 
             // tb_HS1_Calibrate
             // 
@@ -692,7 +695,7 @@
             this.tb_HS1_Calibrate.Location = new System.Drawing.Point(108, 43);
             this.tb_HS1_Calibrate.Name = "tb_HS1_Calibrate";
             this.tb_HS1_Calibrate.Size = new System.Drawing.Size(64, 22);
-            this.tb_HS1_Calibrate.TabIndex = 106;
+            this.tb_HS1_Calibrate.TabIndex = 1;
             // 
             // lb_Humi_Calibrate
             // 
@@ -719,7 +722,7 @@
             this.tb_Search.Location = new System.Drawing.Point(741, 83);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(205, 22);
-            this.tb_Search.TabIndex = 113;
+            this.tb_Search.TabIndex = 0;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
             // lb_Search
@@ -794,7 +797,7 @@
             this.bt_SyncNow.Location = new System.Drawing.Point(712, 549);
             this.bt_SyncNow.Name = "bt_SyncNow";
             this.bt_SyncNow.Size = new System.Drawing.Size(70, 30);
-            this.bt_SyncNow.TabIndex = 119;
+            this.bt_SyncNow.TabIndex = 11;
             this.bt_SyncNow.Text = "SYNC NOW";
             this.bt_SyncNow.UseVisualStyleBackColor = true;
             this.bt_SyncNow.Click += new System.EventHandler(this.bt_SyncNow_Click);
@@ -817,7 +820,7 @@
             this.gb_Calibrate.Name = "gb_Calibrate";
             this.gb_Calibrate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gb_Calibrate.Size = new System.Drawing.Size(183, 152);
-            this.gb_Calibrate.TabIndex = 120;
+            this.gb_Calibrate.TabIndex = 5;
             this.gb_Calibrate.TabStop = false;
             // 
             // lb_Cali_gb
@@ -848,7 +851,7 @@
             this.gb_HumiLimit.Name = "gb_HumiLimit";
             this.gb_HumiLimit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gb_HumiLimit.Size = new System.Drawing.Size(183, 152);
-            this.gb_HumiLimit.TabIndex = 121;
+            this.gb_HumiLimit.TabIndex = 4;
             this.gb_HumiLimit.TabStop = false;
             // 
             // label1
@@ -879,7 +882,7 @@
             this.gb_TempLimit.Name = "gb_TempLimit";
             this.gb_TempLimit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gb_TempLimit.Size = new System.Drawing.Size(203, 152);
-            this.gb_TempLimit.TabIndex = 122;
+            this.gb_TempLimit.TabIndex = 3;
             this.gb_TempLimit.TabStop = false;
             // 
             // label2
@@ -910,7 +913,7 @@
             this.gb_SV.Name = "gb_SV";
             this.gb_SV.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gb_SV.Size = new System.Drawing.Size(195, 152);
-            this.gb_SV.TabIndex = 123;
+            this.gb_SV.TabIndex = 2;
             this.gb_SV.TabStop = false;
             // 
             // label3
@@ -933,12 +936,30 @@
             this.lb_Title.TabIndex = 124;
             this.lb_Title.Text = "LOGGER CONFIGURATION";
             // 
+            // tb_delay
+            // 
+            this.tb_delay.Location = new System.Drawing.Point(368, 81);
+            this.tb_delay.Name = "tb_delay";
+            this.tb_delay.Size = new System.Drawing.Size(44, 20);
+            this.tb_delay.TabIndex = 125;
+            this.tb_delay.Visible = false;
+            // 
+            // tb_delaytype
+            // 
+            this.tb_delaytype.Location = new System.Drawing.Point(418, 81);
+            this.tb_delaytype.Name = "tb_delaytype";
+            this.tb_delaytype.Size = new System.Drawing.Size(44, 20);
+            this.tb_delaytype.TabIndex = 126;
+            this.tb_delaytype.Visible = false;
+            // 
             // LoggerConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(966, 633);
+            this.Controls.Add(this.tb_delaytype);
+            this.Controls.Add(this.tb_delay);
             this.Controls.Add(this.lb_Title);
             this.Controls.Add(this.gb_SV);
             this.Controls.Add(this.gb_TempLimit);
@@ -975,6 +996,7 @@
             this.Controls.Add(this.dgv_LoggerConfig);
             this.Controls.Add(this.lb_Sensors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoggerConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Logger Configuration";
@@ -1099,5 +1121,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gb_SV;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tb_delay;
+        private System.Windows.Forms.TextBox tb_delaytype;
     }
 }

@@ -12,7 +12,6 @@ namespace Med_Preserve.Forms
             InitializeComponent();
             PopulateComPort();
         }
-
         private void PopulateComPort()
         {
             string[] ports = SerialPort.GetPortNames();
@@ -29,7 +28,6 @@ namespace Med_Preserve.Forms
                 cmb_COMPort.Text = "No COM ports found";
             }
         }
-
         public string SelectedComPort
         {
             get
@@ -37,7 +35,6 @@ namespace Med_Preserve.Forms
                 return cmb_COMPort.SelectedItem?.ToString();
             }
         }
-
         private void bt_UserMaster_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -51,7 +48,6 @@ namespace Med_Preserve.Forms
             currentForm = userMaster;
             userMaster.Show();
         }
-
         private void bt_CompanyMaster_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -65,7 +61,6 @@ namespace Med_Preserve.Forms
             currentForm = companyMaster;
             companyMaster.Show();
         }
-
         private void bt_ChangePassword_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -79,7 +74,6 @@ namespace Med_Preserve.Forms
             currentForm = changePassword;
             changePassword.Show();
         }
-
         private void bt_LoggerMaster_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -93,7 +87,6 @@ namespace Med_Preserve.Forms
             currentForm = loggerMaster;
             loggerMaster.Show();
         }
-
         private void bt_LoggerConfig_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -107,7 +100,6 @@ namespace Med_Preserve.Forms
             currentForm = loggerConfig;
             loggerConfig.Show();
         }
-
         private void bt_RealTimeData_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -133,7 +125,6 @@ namespace Med_Preserve.Forms
                 p_UserManagement.Visible = true;
             }
         }
-
         private void bt_Devices_Click(object sender, EventArgs e)
         {
             if (p_Devices.Visible)
@@ -145,7 +136,6 @@ namespace Med_Preserve.Forms
                 p_Devices.Visible = true;
             }
         }
-
         private void bt_DataManagement_Click(object sender, EventArgs e)
         {
             if (p_DataManagement.Visible)
@@ -157,7 +147,6 @@ namespace Med_Preserve.Forms
                 p_DataManagement.Visible = true;
             }
         }
-
         private void bt_Reports_Click(object sender, EventArgs e)
         {
             if (p_Reports.Visible)
@@ -169,7 +158,6 @@ namespace Med_Preserve.Forms
                 p_Reports.Visible = true;
             }
         }
-
         private void bt_DeletedUser_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -183,7 +171,6 @@ namespace Med_Preserve.Forms
             currentForm = deletedUser;
             deletedUser.Show();
         }
-
         private void Home_Load(object sender, EventArgs e)
         {
             p_UserManagement.Visible = false;
@@ -191,7 +178,6 @@ namespace Med_Preserve.Forms
             p_DataManagement.Visible = false;
             p_Devices.Visible = false;
         }
-
         private void bt_DownloadData_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
@@ -205,7 +191,6 @@ namespace Med_Preserve.Forms
             currentForm = downloadData;
             downloadData.Show();
         }
-
         private void bt_Close_Click(object sender, EventArgs e)
         {
             Application.Exit();

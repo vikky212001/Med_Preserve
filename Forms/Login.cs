@@ -10,54 +10,42 @@ namespace Med_Preserve
     public partial class Login : Form
     {
         private string connectionString;
-
-        // Constructor for the Login form
         public Login()
         {
             InitializeComponent();
-
-            // Load the database connection string from the app.config file
             connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
 
-        // Event handler for the "Login" button
         private void bt_Login_Click(object sender, EventArgs e)
         {
-            // Check if the login is successful, and if it is, open the Home form
             if (IsLoginSuccessful())
             {
-                this.Hide(); // Hide the Login form
-                Home home = new Home(); // Create an instance of the Home form
-                home.ShowDialog(); // Show the Home form
-                Application.Exit(); // Exit the application
+                this.Hide(); 
+                Home home = new Home();
+                home.ShowDialog(); 
+                Application.Exit(); 
             }
         }
 
-        // Event handler for the "Cancel" button
         private void bt_Cancel_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // Exit the application
+            Application.Exit(); 
         }
 
-        // Method to check if the login is successful
         public bool IsLoginSuccessful()
         {
             string UserName = tb_UName.Text;
             string Password = tb_Pass.Text;
             PasswordHasher passwordHasher = new PasswordHasher();
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    // SQL query to retrieve user data
                     string query = "Select UserData.Password, UserData.UserID, Role.RoleType " +
                         "From UserData " +
                         "INNER JOIN Role ON UserData.RoleID = Role.RoleID " +
                         "WHERE UserData.UserName = @Username";
-
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Username", UserName);
@@ -72,7 +60,7 @@ namespace Med_Preserve
 
                                 if (role == "Admin")
                                 {
-                                    // Check the password for an Admin user
+                                    
                                     if (Password == hashedPassword)
                                     {
                                         MessageBox.Show("Admin Login Successful!", "Success");
@@ -88,7 +76,7 @@ namespace Med_Preserve
                                 }
                                 else if (role == "Manager")
                                 {
-                                    // Check the password for a Manager user
+                                   
                                     bool passwordMatches = passwordHasher.VerifyPassword(Password, hashedPassword);
 
                                     if (passwordMatches)
@@ -106,7 +94,7 @@ namespace Med_Preserve
                                 }
                                 else
                                 {
-                                    // Check the password for other user roles
+                                   
                                     bool passwordMatches = passwordHasher.VerifyPassword(Password, hashedPassword);
 
                                     if (passwordMatches)
@@ -139,10 +127,9 @@ namespace Med_Preserve
             return false;
         }
 
-        // Event handler for the form's Load event
         private void Login_Load(object sender, EventArgs e)
         {
-            tb_Pass.PasswordChar = '●'; // Set the PasswordChar to display password characters as dots (●)
+            tb_Pass.PasswordChar = '●'; 
         }
     }
 }

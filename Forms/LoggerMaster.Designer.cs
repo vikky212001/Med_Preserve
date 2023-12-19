@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoggerMaster));
             this.lb_LogID = new System.Windows.Forms.Label();
             this.dgv_LoggerMaster = new System.Windows.Forms.DataGridView();
             this.lb_LogType = new System.Windows.Forms.Label();
@@ -189,7 +190,7 @@
             this.tb_S1_Name.Location = new System.Drawing.Point(244, 428);
             this.tb_S1_Name.Name = "tb_S1_Name";
             this.tb_S1_Name.Size = new System.Drawing.Size(100, 22);
-            this.tb_S1_Name.TabIndex = 14;
+            this.tb_S1_Name.TabIndex = 10;
             // 
             // tb_LogID
             // 
@@ -206,7 +207,7 @@
             this.tb_Interval.Location = new System.Drawing.Point(602, 360);
             this.tb_Interval.Name = "tb_Interval";
             this.tb_Interval.Size = new System.Drawing.Size(85, 22);
-            this.tb_Interval.TabIndex = 23;
+            this.tb_Interval.TabIndex = 8;
             // 
             // tb_S2_Name
             // 
@@ -214,7 +215,7 @@
             this.tb_S2_Name.Location = new System.Drawing.Point(370, 428);
             this.tb_S2_Name.Name = "tb_S2_Name";
             this.tb_S2_Name.Size = new System.Drawing.Size(100, 22);
-            this.tb_S2_Name.TabIndex = 24;
+            this.tb_S2_Name.TabIndex = 11;
             // 
             // tb_S3_Name
             // 
@@ -222,7 +223,7 @@
             this.tb_S3_Name.Location = new System.Drawing.Point(496, 428);
             this.tb_S3_Name.Name = "tb_S3_Name";
             this.tb_S3_Name.Size = new System.Drawing.Size(100, 22);
-            this.tb_S3_Name.TabIndex = 25;
+            this.tb_S3_Name.TabIndex = 12;
             // 
             // tb_S4_Name
             // 
@@ -230,7 +231,7 @@
             this.tb_S4_Name.Location = new System.Drawing.Point(622, 428);
             this.tb_S4_Name.Name = "tb_S4_Name";
             this.tb_S4_Name.Size = new System.Drawing.Size(100, 22);
-            this.tb_S4_Name.TabIndex = 26;
+            this.tb_S4_Name.TabIndex = 13;
             // 
             // cmb_NoOfSensors
             // 
@@ -244,7 +245,7 @@
             this.cmb_NoOfSensors.Location = new System.Drawing.Point(281, 327);
             this.cmb_NoOfSensors.Name = "cmb_NoOfSensors";
             this.cmb_NoOfSensors.Size = new System.Drawing.Size(77, 29);
-            this.cmb_NoOfSensors.TabIndex = 43;
+            this.cmb_NoOfSensors.TabIndex = 5;
             this.cmb_NoOfSensors.TextChanged += new System.EventHandler(this.cmb_NoOfSensors_TextChanged);
             // 
             // rb_Temp
@@ -254,7 +255,7 @@
             this.rb_Temp.Location = new System.Drawing.Point(561, 293);
             this.rb_Temp.Name = "rb_Temp";
             this.rb_Temp.Size = new System.Drawing.Size(113, 25);
-            this.rb_Temp.TabIndex = 44;
+            this.rb_Temp.TabIndex = 2;
             this.rb_Temp.TabStop = true;
             this.rb_Temp.Text = "Temperature";
             this.rb_Temp.UseVisualStyleBackColor = true;
@@ -266,7 +267,7 @@
             this.rb_humidity.Location = new System.Drawing.Point(680, 293);
             this.rb_humidity.Name = "rb_humidity";
             this.rb_humidity.Size = new System.Drawing.Size(89, 25);
-            this.rb_humidity.TabIndex = 45;
+            this.rb_humidity.TabIndex = 3;
             this.rb_humidity.TabStop = true;
             this.rb_humidity.Text = "Humidity";
             this.rb_humidity.UseVisualStyleBackColor = true;
@@ -279,7 +280,7 @@
             this.rb_both.Location = new System.Drawing.Point(775, 293);
             this.rb_both.Name = "rb_both";
             this.rb_both.Size = new System.Drawing.Size(60, 25);
-            this.rb_both.TabIndex = 46;
+            this.rb_both.TabIndex = 4;
             this.rb_both.TabStop = true;
             this.rb_both.Text = "Both";
             this.rb_both.UseVisualStyleBackColor = true;
@@ -291,7 +292,7 @@
             this.cmb_AssignTo.Location = new System.Drawing.Point(602, 323);
             this.cmb_AssignTo.Name = "cmb_AssignTo";
             this.cmb_AssignTo.Size = new System.Drawing.Size(137, 29);
-            this.cmb_AssignTo.TabIndex = 47;
+            this.cmb_AssignTo.TabIndex = 6;
             // 
             // lb_CreatedDate
             // 
@@ -310,7 +311,7 @@
             this.tb_CreatedDate.Location = new System.Drawing.Point(281, 362);
             this.tb_CreatedDate.Name = "tb_CreatedDate";
             this.tb_CreatedDate.Size = new System.Drawing.Size(118, 22);
-            this.tb_CreatedDate.TabIndex = 49;
+            this.tb_CreatedDate.TabIndex = 7;
             // 
             // bt_Add
             // 
@@ -319,7 +320,7 @@
             this.bt_Add.Location = new System.Drawing.Point(233, 464);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(70, 30);
-            this.bt_Add.TabIndex = 50;
+            this.bt_Add.TabIndex = 14;
             this.bt_Add.Text = "ADD";
             this.bt_Add.UseVisualStyleBackColor = true;
             this.bt_Add.Click += new System.EventHandler(this.bt_Add_Click);
@@ -331,7 +332,7 @@
             this.bt_Update.Location = new System.Drawing.Point(340, 464);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(70, 30);
-            this.bt_Update.TabIndex = 51;
+            this.bt_Update.TabIndex = 15;
             this.bt_Update.Text = "UPDATE";
             this.bt_Update.UseVisualStyleBackColor = true;
             this.bt_Update.Click += new System.EventHandler(this.bt_Update_Click);
@@ -343,7 +344,7 @@
             this.bt_Delete.Location = new System.Drawing.Point(447, 464);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(70, 30);
-            this.bt_Delete.TabIndex = 52;
+            this.bt_Delete.TabIndex = 16;
             this.bt_Delete.Text = "DELETE";
             this.bt_Delete.UseVisualStyleBackColor = true;
             this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
@@ -355,7 +356,7 @@
             this.bt_Clear.Location = new System.Drawing.Point(554, 464);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(70, 30);
-            this.bt_Clear.TabIndex = 53;
+            this.bt_Clear.TabIndex = 17;
             this.bt_Clear.Text = "CLEAR";
             this.bt_Clear.UseVisualStyleBackColor = true;
             this.bt_Clear.Click += new System.EventHandler(this.bt_Clear_Click);
@@ -367,7 +368,7 @@
             this.bt_Close.Location = new System.Drawing.Point(661, 464);
             this.bt_Close.Name = "bt_Close";
             this.bt_Close.Size = new System.Drawing.Size(70, 30);
-            this.bt_Close.TabIndex = 54;
+            this.bt_Close.TabIndex = 18;
             this.bt_Close.Text = "CLOSE";
             this.bt_Close.UseVisualStyleBackColor = true;
             this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
@@ -378,7 +379,7 @@
             this.tb_LogName.Location = new System.Drawing.Point(240, 299);
             this.tb_LogName.Name = "tb_LogName";
             this.tb_LogName.Size = new System.Drawing.Size(118, 22);
-            this.tb_LogName.TabIndex = 56;
+            this.tb_LogName.TabIndex = 1;
             // 
             // lb_LogName
             // 
@@ -400,7 +401,7 @@
             this.cmb_IntervalType.Location = new System.Drawing.Point(693, 358);
             this.cmb_IntervalType.Name = "cmb_IntervalType";
             this.cmb_IntervalType.Size = new System.Drawing.Size(64, 29);
-            this.cmb_IntervalType.TabIndex = 57;
+            this.cmb_IntervalType.TabIndex = 9;
             this.cmb_IntervalType.TextChanged += new System.EventHandler(this.cmb_IntervalType_TextChanged);
             // 
             // med_PreserveDataSet
@@ -414,7 +415,7 @@
             this.tb_Search.Location = new System.Drawing.Point(666, 100);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(205, 22);
-            this.tb_Search.TabIndex = 115;
+            this.tb_Search.TabIndex = 0;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
             // lb_Search
@@ -479,6 +480,7 @@
             this.Controls.Add(this.dgv_LoggerMaster);
             this.Controls.Add(this.lb_LogID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoggerMaster";
             this.Text = "Logger Master";
             this.Load += new System.EventHandler(this.LoggerMaster_Load);

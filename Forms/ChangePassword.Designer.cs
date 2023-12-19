@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangePassword));
             this.tb_CurrPass = new System.Windows.Forms.TextBox();
             this.tb_NewPass = new System.Windows.Forms.TextBox();
             this.tb_ConPass = new System.Windows.Forms.TextBox();
@@ -70,7 +71,7 @@
             this.lb_CurrPass.Location = new System.Drawing.Point(327, 112);
             this.lb_CurrPass.Name = "lb_CurrPass";
             this.lb_CurrPass.Size = new System.Drawing.Size(120, 19);
-            this.lb_CurrPass.TabIndex = 3;
+            this.lb_CurrPass.TabIndex = 5;
             this.lb_CurrPass.Text = "Current Password";
             // 
             // lb_NewPass
@@ -80,7 +81,7 @@
             this.lb_NewPass.Location = new System.Drawing.Point(350, 149);
             this.lb_NewPass.Name = "lb_NewPass";
             this.lb_NewPass.Size = new System.Drawing.Size(97, 19);
-            this.lb_NewPass.TabIndex = 4;
+            this.lb_NewPass.TabIndex = 5;
             this.lb_NewPass.Text = "New Password";
             // 
             // lb_ConPass
@@ -100,7 +101,7 @@
             this.bt_ChangePass.Location = new System.Drawing.Point(343, 233);
             this.bt_ChangePass.Name = "bt_ChangePass";
             this.bt_ChangePass.Size = new System.Drawing.Size(130, 30);
-            this.bt_ChangePass.TabIndex = 6;
+            this.bt_ChangePass.TabIndex = 3;
             this.bt_ChangePass.Text = "Change Password";
             this.bt_ChangePass.UseVisualStyleBackColor = true;
             this.bt_ChangePass.Click += new System.EventHandler(this.bt_ChangePass_Click);
@@ -112,7 +113,7 @@
             this.bt_Cancel.Location = new System.Drawing.Point(512, 233);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(70, 30);
-            this.bt_Cancel.TabIndex = 7;
+            this.bt_Cancel.TabIndex = 4;
             this.bt_Cancel.Text = "Cancel";
             this.bt_Cancel.UseVisualStyleBackColor = true;
             this.bt_Cancel.Click += new System.EventHandler(this.bt_Cancel_Click);
@@ -143,6 +144,7 @@
             this.Controls.Add(this.tb_NewPass);
             this.Controls.Add(this.tb_CurrPass);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChangePassword";
             this.Text = "Change Password";
             this.Load += new System.EventHandler(this.ChangePassword_Load);

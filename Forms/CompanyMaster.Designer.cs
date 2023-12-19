@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyMaster));
             this.lb_CompanyName = new System.Windows.Forms.Label();
             this.lb_Address = new System.Windows.Forms.Label();
             this.lb_ContactNo = new System.Windows.Forms.Label();
@@ -87,7 +88,7 @@
             this.lb_Address.Location = new System.Drawing.Point(172, 356);
             this.lb_Address.Name = "lb_Address";
             this.lb_Address.Size = new System.Drawing.Size(58, 19);
-            this.lb_Address.TabIndex = 2;
+            this.lb_Address.TabIndex = 3;
             this.lb_Address.Text = "Address";
             // 
             // lb_ContactNo
@@ -97,7 +98,7 @@
             this.lb_ContactNo.Location = new System.Drawing.Point(445, 309);
             this.lb_ContactNo.Name = "lb_ContactNo";
             this.lb_ContactNo.Size = new System.Drawing.Size(81, 19);
-            this.lb_ContactNo.TabIndex = 3;
+            this.lb_ContactNo.TabIndex = 2;
             this.lb_ContactNo.Text = "Contact No";
             // 
             // openFileDialog
@@ -129,7 +130,7 @@
             this.rtb_Address.Location = new System.Drawing.Point(236, 351);
             this.rtb_Address.Name = "rtb_Address";
             this.rtb_Address.Size = new System.Drawing.Size(262, 78);
-            this.rtb_Address.TabIndex = 6;
+            this.rtb_Address.TabIndex = 3;
             this.rtb_Address.Text = "";
             // 
             // tb_CompanyName
@@ -138,7 +139,7 @@
             this.tb_CompanyName.Location = new System.Drawing.Point(236, 307);
             this.tb_CompanyName.Name = "tb_CompanyName";
             this.tb_CompanyName.Size = new System.Drawing.Size(165, 22);
-            this.tb_CompanyName.TabIndex = 7;
+            this.tb_CompanyName.TabIndex = 1;
             // 
             // tb_ContactNo
             // 
@@ -146,7 +147,7 @@
             this.tb_ContactNo.Location = new System.Drawing.Point(532, 307);
             this.tb_ContactNo.Name = "tb_ContactNo";
             this.tb_ContactNo.Size = new System.Drawing.Size(121, 22);
-            this.tb_ContactNo.TabIndex = 8;
+            this.tb_ContactNo.TabIndex = 2;
             this.tb_ContactNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ContactNo_KeyPress);
             // 
             // bt_Add
@@ -156,7 +157,7 @@
             this.bt_Add.Location = new System.Drawing.Point(253, 501);
             this.bt_Add.Name = "bt_Add";
             this.bt_Add.Size = new System.Drawing.Size(70, 30);
-            this.bt_Add.TabIndex = 9;
+            this.bt_Add.TabIndex = 6;
             this.bt_Add.Text = "Add";
             this.bt_Add.UseVisualStyleBackColor = true;
             this.bt_Add.Click += new System.EventHandler(this.bt_Add_Click);
@@ -168,7 +169,7 @@
             this.bt_Update.Location = new System.Drawing.Point(354, 501);
             this.bt_Update.Name = "bt_Update";
             this.bt_Update.Size = new System.Drawing.Size(70, 30);
-            this.bt_Update.TabIndex = 10;
+            this.bt_Update.TabIndex = 7;
             this.bt_Update.Text = "Update";
             this.bt_Update.UseVisualStyleBackColor = true;
             this.bt_Update.Click += new System.EventHandler(this.bt_Update_Click);
@@ -180,7 +181,7 @@
             this.bt_Delete.Location = new System.Drawing.Point(545, 501);
             this.bt_Delete.Name = "bt_Delete";
             this.bt_Delete.Size = new System.Drawing.Size(70, 30);
-            this.bt_Delete.TabIndex = 11;
+            this.bt_Delete.TabIndex = 9;
             this.bt_Delete.Text = "Delete";
             this.bt_Delete.UseVisualStyleBackColor = true;
             this.bt_Delete.Click += new System.EventHandler(this.bt_Delete_Click);
@@ -192,7 +193,7 @@
             this.bt_Close.Location = new System.Drawing.Point(643, 501);
             this.bt_Close.Name = "bt_Close";
             this.bt_Close.Size = new System.Drawing.Size(70, 30);
-            this.bt_Close.TabIndex = 12;
+            this.bt_Close.TabIndex = 10;
             this.bt_Close.Text = "Close";
             this.bt_Close.UseVisualStyleBackColor = true;
             this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
@@ -204,7 +205,7 @@
             this.bt_Browse.Location = new System.Drawing.Point(736, 416);
             this.bt_Browse.Name = "bt_Browse";
             this.bt_Browse.Size = new System.Drawing.Size(70, 30);
-            this.bt_Browse.TabIndex = 13;
+            this.bt_Browse.TabIndex = 5;
             this.bt_Browse.Text = "Browse";
             this.bt_Browse.UseVisualStyleBackColor = true;
             this.bt_Browse.Click += new System.EventHandler(this.bt_Browse_Click);
@@ -225,7 +226,7 @@
             this.tb_Email.Location = new System.Drawing.Point(236, 444);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(262, 22);
-            this.tb_Email.TabIndex = 15;
+            this.tb_Email.TabIndex = 4;
             this.tb_Email.Validating += new System.ComponentModel.CancelEventHandler(this.tb_Email_Validating);
             // 
             // errorProvider
@@ -239,7 +240,7 @@
             this.bt_Clear.Location = new System.Drawing.Point(450, 501);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(70, 30);
-            this.bt_Clear.TabIndex = 16;
+            this.bt_Clear.TabIndex = 8;
             this.bt_Clear.Text = "Clear";
             this.bt_Clear.UseVisualStyleBackColor = true;
             this.bt_Clear.Click += new System.EventHandler(this.bt_Clear_Click);
@@ -250,7 +251,7 @@
             this.tb_SrNo.Location = new System.Drawing.Point(185, 97);
             this.tb_SrNo.Name = "tb_SrNo";
             this.tb_SrNo.Size = new System.Drawing.Size(73, 22);
-            this.tb_SrNo.TabIndex = 18;
+            this.tb_SrNo.TabIndex = 12;
             this.tb_SrNo.Visible = false;
             // 
             // lb_SrNo
@@ -260,7 +261,7 @@
             this.lb_SrNo.Location = new System.Drawing.Point(134, 100);
             this.lb_SrNo.Name = "lb_SrNo";
             this.lb_SrNo.Size = new System.Drawing.Size(45, 19);
-            this.lb_SrNo.TabIndex = 17;
+            this.lb_SrNo.TabIndex = 12;
             this.lb_SrNo.Text = "Sr No";
             this.lb_SrNo.Visible = false;
             // 
@@ -270,7 +271,7 @@
             this.tb_Search.Location = new System.Drawing.Point(650, 100);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(205, 22);
-            this.tb_Search.TabIndex = 20;
+            this.tb_Search.TabIndex = 0;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
             // lb_Search
@@ -280,7 +281,7 @@
             this.lb_Search.Location = new System.Drawing.Point(591, 102);
             this.lb_Search.Name = "lb_Search";
             this.lb_Search.Size = new System.Drawing.Size(53, 19);
-            this.lb_Search.TabIndex = 19;
+            this.lb_Search.TabIndex = 12;
             this.lb_Search.Text = "Search";
             // 
             // dgv_CompanyMaster
@@ -304,7 +305,7 @@
             this.dgv_CompanyMaster.ReadOnly = true;
             this.dgv_CompanyMaster.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_CompanyMaster.Size = new System.Drawing.Size(744, 150);
-            this.dgv_CompanyMaster.TabIndex = 21;
+            this.dgv_CompanyMaster.TabIndex = 11;
             // 
             // srNoDataGridViewTextBoxColumn
             // 
@@ -408,6 +409,7 @@
             this.Controls.Add(this.lb_Address);
             this.Controls.Add(this.lb_CompanyName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CompanyMaster";
             this.Text = "Company Master";
             this.Load += new System.EventHandler(this.CompanyMaster_Load);

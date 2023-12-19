@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeletedUser));
             this.dgv_DeletedUser = new System.Windows.Forms.DataGridView();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -208,7 +209,7 @@
             this.tb_R_UName.Location = new System.Drawing.Point(402, 294);
             this.tb_R_UName.Name = "tb_R_UName";
             this.tb_R_UName.Size = new System.Drawing.Size(100, 22);
-            this.tb_R_UName.TabIndex = 7;
+            this.tb_R_UName.TabIndex = 2;
             // 
             // tb_Email
             // 
@@ -216,7 +217,7 @@
             this.tb_Email.Location = new System.Drawing.Point(167, 334);
             this.tb_Email.Name = "tb_Email";
             this.tb_Email.Size = new System.Drawing.Size(140, 22);
-            this.tb_Email.TabIndex = 8;
+            this.tb_Email.TabIndex = 3;
             // 
             // tb_UID
             // 
@@ -233,7 +234,7 @@
             this.tb_Mobile.Location = new System.Drawing.Point(402, 334);
             this.tb_Mobile.Name = "tb_Mobile";
             this.tb_Mobile.Size = new System.Drawing.Size(100, 22);
-            this.tb_Mobile.TabIndex = 10;
+            this.tb_Mobile.TabIndex = 4;
             // 
             // bt_Recover
             // 
@@ -242,7 +243,7 @@
             this.bt_Recover.Location = new System.Drawing.Point(167, 391);
             this.bt_Recover.Name = "bt_Recover";
             this.bt_Recover.Size = new System.Drawing.Size(75, 30);
-            this.bt_Recover.TabIndex = 11;
+            this.bt_Recover.TabIndex = 5;
             this.bt_Recover.Text = "Recover";
             this.bt_Recover.UseVisualStyleBackColor = true;
             this.bt_Recover.Click += new System.EventHandler(this.bt_Recover_Click);
@@ -254,7 +255,7 @@
             this.bt_Clear.Location = new System.Drawing.Point(314, 391);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(70, 30);
-            this.bt_Clear.TabIndex = 12;
+            this.bt_Clear.TabIndex = 6;
             this.bt_Clear.Text = "Clear";
             this.bt_Clear.UseVisualStyleBackColor = true;
             this.bt_Clear.Click += new System.EventHandler(this.bt_Clear_Click);
@@ -266,7 +267,7 @@
             this.bt_Cancel.Location = new System.Drawing.Point(449, 391);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(70, 30);
-            this.bt_Cancel.TabIndex = 13;
+            this.bt_Cancel.TabIndex = 7;
             this.bt_Cancel.Text = "Cancel";
             this.bt_Cancel.UseVisualStyleBackColor = true;
             this.bt_Cancel.Click += new System.EventHandler(this.bt_Cancel_Click);
@@ -283,6 +284,7 @@
             // 
             // rtb_Reason
             // 
+            this.rtb_Reason.Enabled = false;
             this.rtb_Reason.Font = new System.Drawing.Font("Comfortaa SemiBold", 9.75F, System.Drawing.FontStyle.Bold);
             this.rtb_Reason.Location = new System.Drawing.Point(605, 286);
             this.rtb_Reason.Name = "rtb_Reason";
@@ -296,7 +298,7 @@
             this.tb_Search.Location = new System.Drawing.Point(669, 100);
             this.tb_Search.Name = "tb_Search";
             this.tb_Search.Size = new System.Drawing.Size(149, 22);
-            this.tb_Search.TabIndex = 16;
+            this.tb_Search.TabIndex = 0;
             this.tb_Search.TextChanged += new System.EventHandler(this.tb_Search_TextChanged);
             // 
             // label1
@@ -315,7 +317,7 @@
             this.tb_Name.Location = new System.Drawing.Point(167, 296);
             this.tb_Name.Name = "tb_Name";
             this.tb_Name.Size = new System.Drawing.Size(100, 22);
-            this.tb_Name.TabIndex = 18;
+            this.tb_Name.TabIndex = 1;
             // 
             // bt_pDelete
             // 
@@ -324,7 +326,7 @@
             this.bt_pDelete.Location = new System.Drawing.Point(669, 391);
             this.bt_pDelete.Name = "bt_pDelete";
             this.bt_pDelete.Size = new System.Drawing.Size(90, 30);
-            this.bt_pDelete.TabIndex = 19;
+            this.bt_pDelete.TabIndex = 8;
             this.bt_pDelete.Text = "Permanent Delete";
             this.bt_pDelete.UseVisualStyleBackColor = true;
             this.bt_pDelete.Click += new System.EventHandler(this.bt_pDelete_Click);
@@ -366,6 +368,7 @@
             this.Controls.Add(this.lb_Name);
             this.Controls.Add(this.dgv_DeletedUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeletedUser";
             this.Text = "Deleted User";
             this.Load += new System.EventHandler(this.DeletedUser_Load);

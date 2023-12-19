@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RealTimeData));
             this.gb_S4 = new System.Windows.Forms.GroupBox();
             this.lb_S4_Humi = new System.Windows.Forms.Label();
             this.lb_S4_Temp = new System.Windows.Forms.Label();
@@ -615,7 +616,6 @@
             this.lb_Title.TabIndex = 75;
             this.lb_Title.Text = "Real-Time Data";
             this.lb_Title.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lb_Title.Visible = false;
             // 
             // RealTimeData
             // 
@@ -663,6 +663,7 @@
             this.Controls.Add(this.lb_LogName);
             this.Controls.Add(this.cmb_LogName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RealTimeData";
             this.Text = "RealTimeData";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RealTimeData_FormClosing);

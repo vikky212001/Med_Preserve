@@ -149,7 +149,7 @@ namespace Med_Preserve.Forms
             if (sync == "True")
             {
                 tb_SyncStatus.Text = "Synced";
-                bt_SyncNow.Enabled = false;
+                bt_SyncNow.Enabled = true;
             }
             else if (sync == "False")
             {
@@ -335,7 +335,7 @@ namespace Med_Preserve.Forms
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string fillQuery = "SELECT LoggerMaster.LoggerID, LoggerMaster.LoggerName, LoggerMaster.LoggerType, LoggerMaster.NoOfSensors, LoggerMaster.AssignTo, LoggerMaster.Interval, LoggerMaster.S1Name, LoggerMaster.S2Name, LoggerMaster.S3Name, LoggerMaster.S4Name, LoggerMaster.IntervalType, LoggerConfig.S1_Temp, LoggerConfig.S2_Temp, LoggerConfig.S3_Temp, LoggerConfig.S4_Temp, LoggerConfig.S1_Humi,LoggerConfig.S2_Humi, LoggerConfig.S3_Humi, LoggerConfig.S4_Humi, LoggerConfig.S1_T_Low, LoggerConfig.S1_T_High, LoggerConfig.S1_H_Low, LoggerConfig.S1_H_High, LoggerConfig.S2_T_Low,LoggerConfig.S2_T_High, LoggerConfig.S2_H_Low, LoggerConfig.S2_H_High, LoggerConfig.S3_T_Low, LoggerConfig.S3_T_High, LoggerConfig.S3_H_Low, LoggerConfig.S3_H_High, LoggerConfig.S4_T_Low, LoggerConfig.S4_T_High, LoggerConfig.S4_H_Low, LoggerConfig.S4_H_High, LoggerConfig.S1_T_Calibrate, LoggerConfig.S2_T_Calibrate, LoggerConfig.S3_T_Calibrate, LoggerConfig.S4_T_Calibrate, LoggerConfig.S1_H_Calibrate, LoggerConfig.S2_H_Calibrate, LoggerConfig.S3_H_Calibrate, LoggerConfig.S4_H_Calibrate, LoggerMaster.IsConfig FROM LoggerMaster LEFT JOIN LoggerConfig ON LoggerMaster.LoggerID = LoggerConfig.LoggerID WHERE (LoggerMaster.LoggerName = @LogName)";
+                    string fillQuery = "SELECT LoggerMaster.LoggerID, LoggerMaster.LoggerName, LoggerMaster.LoggerType, LoggerMaster.NoOfSensors, LoggerMaster.AssignTo, LoggerMaster.Interval, LoggerMaster.S1Name, LoggerMaster.S2Name, LoggerMaster.S3Name, LoggerMaster.S4Name, LoggerMaster.IntervalType, LoggerConfig.S1_Temp, LoggerConfig.S2_Temp, LoggerConfig.S3_Temp, LoggerConfig.S4_Temp, LoggerConfig.S1_Humi,LoggerConfig.S2_Humi, LoggerConfig.S3_Humi, LoggerConfig.S4_Humi, LoggerConfig.S1_T_Low, LoggerConfig.S1_T_High, LoggerConfig.S1_H_Low, LoggerConfig.S1_H_High, LoggerConfig.S2_T_Low,LoggerConfig.S2_T_High, LoggerConfig.S2_H_Low, LoggerConfig.S2_H_High, LoggerConfig.S3_T_Low, LoggerConfig.S3_T_High, LoggerConfig.S3_H_Low, LoggerConfig.S3_H_High, LoggerConfig.S4_T_Low, LoggerConfig.S4_T_High, LoggerConfig.S4_H_Low, LoggerConfig.S4_H_High, LoggerConfig.S1_T_Calibrate, LoggerConfig.S2_T_Calibrate, LoggerConfig.S3_T_Calibrate, LoggerConfig.S4_T_Calibrate, LoggerConfig.S1_H_Calibrate, LoggerConfig.S2_H_Calibrate, LoggerConfig.S3_H_Calibrate, LoggerConfig.S4_H_Calibrate, LoggerMaster.IsConfig, LoggerMaster.Interval, LoggerMaster.IntervalType FROM LoggerMaster LEFT JOIN LoggerConfig ON LoggerMaster.LoggerID = LoggerConfig.LoggerID WHERE (LoggerMaster.LoggerName = @LogName)";
                     using (SqlCommand selectCommand = new SqlCommand(fillQuery, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@LogName", logName);
@@ -387,6 +387,8 @@ namespace Med_Preserve.Forms
                                 tb_HS3_Calibrate.Text = reader["S3_H_Calibrate"].ToString();
                                 tb_HS4_Calibrate.Text = reader["S4_H_Calibrate"].ToString();
                                 tb_IsConfig.Text = reader["IsConfig"].ToString();
+                                tb_delay.Text = reader["Interval"].ToString();
+                                tb_delaytype.Text = reader["IntervalType"].ToString();
                             }
                             else
                             {
@@ -722,6 +724,23 @@ namespace Med_Preserve.Forms
         }
         private void SerialWrite(string unit)
         {
+            string intervalType = tb_delaytype.Text;
+            string interval = tb_delay.Text;
+            string delay = "10000";
+            if (intervalType == "min")
+            {
+                string[] timeParts = interval.Split(':');
+                if (timeParts.Length == 2 && int.TryParse(timeParts[0], out int minutes) && int.TryParse(timeParts[1], out int seconds))
+                {
+                    int delayMilliseconds = (minutes * 60 + seconds) * 1000;
+                    delay = delayMilliseconds.ToString();
+                }
+            }
+            else if (intervalType == "sec")
+            {
+                int delayMilliseconds = int.Parse(interval) * 1000;
+                delay = delayMilliseconds.ToString();
+            }
             if (serialPort != null && serialPort.IsOpen)
             {
                 try
@@ -730,22 +749,22 @@ namespace Med_Preserve.Forms
                     {
                         if (tb_NoOfSensors.Text == "1")
                         {
-                            string data_t1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text;
+                            string data_t1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + delay;
                             serialPort.Write(data_t1);
                         }
                         else if (tb_NoOfSensors.Text == "2")
                         {
-                            string data_t2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text;
+                            string data_t2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + delay;
                             serialPort.Write(data_t2);
                         }
                         else if (tb_NoOfSensors.Text == "3")
                         {
-                            string data_t3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text;
+                            string data_t3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + delay;
                             serialPort.Write(data_t3);
                         }
                         else if (tb_NoOfSensors.Text == "4")
                         {
-                            string data_t4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text;
+                            string data_t4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text + " " + delay;
                             serialPort.Write(data_t4);
                         }
                     }
@@ -753,22 +772,21 @@ namespace Med_Preserve.Forms
                     {
                         if (tb_NoOfSensors.Text == "1")
                         {
-                            string data_h1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text;
+                            string data_h1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + delay;
                             serialPort.Write(data_h1);
                         }
                         else if (tb_NoOfSensors.Text == "2")
                         {
-                            string data_h2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text;
+                            string data_h2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + delay;
                             serialPort.Write(data_h2);
                         }
                         else if (tb_NoOfSensors.Text == "3")
                         {
-                            string data_h3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text;
-                            serialPort.Write(data_h3);
+                            string data_h3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + delay;
                         }
                         else if (tb_NoOfSensors.Text == "4")
                         {
-                            string data_h4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text;
+                            string data_h4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text + " " + delay;
                             serialPort.Write(data_h4);
                         }
                     }
@@ -776,22 +794,22 @@ namespace Med_Preserve.Forms
                     {
                         if (tb_NoOfSensors.Text == "1")
                         {
-                            string data_b1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text;
+                            string data_b1 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + delay;
                             serialPort.Write(data_b1);
                         }
                         else if (tb_NoOfSensors.Text == "2")
                         {
-                            string data_b2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text;
+                            string data_b2 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + delay;
                             serialPort.Write(data_b2);
                         }
                         else if (tb_NoOfSensors.Text == "3")
                         {
-                            string data_b3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text;
+                            string data_b3 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + delay;
                             serialPort.Write(data_b3);
                         }
                         else if (tb_NoOfSensors.Text == "4")
                         {
-                            string data_b4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text;
+                            string data_b4 = cmb_LoggerName.Text + "_Config_" + tb_LogType.Text + " " + tb_NoOfSensors.Text + " " + unit + " " + tb_S1_Temp.Text + " " + tb_TS1_UL.Text + " " + tb_TS1_LL.Text + " " + tb_TS1_Calibrate.Text + " " + tb_S2_Temp.Text + " " + tb_TS2_UL.Text + " " + tb_TS2_LL.Text + " " + tb_TS2_Calibrate.Text + " " + tb_S3_Temp.Text + " " + tb_TS3_UL.Text + " " + tb_TS3_LL.Text + " " + tb_TS3_Calibrate.Text + " " + tb_S4_Temp.Text + " " + tb_TS4_UL.Text + " " + tb_TS4_LL.Text + " " + tb_TS4_Calibrate.Text + " " + tb_S1_Humidity.Text + " " + tb_HS1_UL.Text + " " + tb_HS1_LL.Text + " " + tb_HS1_Calibrate.Text + " " + tb_S2_Humidity.Text + " " + tb_HS2_UL.Text + " " + tb_HS2_LL.Text + " " + tb_HS2_Calibrate.Text + " " + tb_S3_Humidity.Text + " " + tb_HS3_UL.Text + " " + tb_HS3_LL.Text + " " + tb_HS3_Calibrate.Text + " " + tb_S4_Humidity.Text + " " + tb_HS4_UL.Text + " " + tb_HS4_LL.Text + " " + tb_HS4_Calibrate.Text + " " + delay;
                             serialPort.Write(data_b4);
                         }
                     }
@@ -807,15 +825,6 @@ namespace Med_Preserve.Forms
                 MessageBox.Show("Serial port is not open.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            base.OnFormClosed(e);
-            if (serialPort != null && serialPort.IsOpen)
-            {
-                serialPort.Close();
-            }
-        }
-
         private void bt_SyncNow_Click(object sender, EventArgs e)
         {
             bool comAvailable = false;
